@@ -1,0 +1,98 @@
+<template>
+	<router-link
+		:to="`/shows/${ show.id }`"
+		style="text-decoration: none; color: inherit;"
+	>
+		<div id="container">
+			<img id="poster" :src="show.poster_url" draggable="false" />
+			<div id="information">
+				<p id="title">{{ show.title}}</p>
+				<div id="details">
+					<div id="rating">
+						O
+						{{ show.score }}
+					</div>
+					<p id="season-count">{{ seasonCount }}</p>
+				</div>
+			</div>
+		</div>
+	</router-link>
+</template>
+
+<script lang="ts">
+
+	// Modules
+	import { defineComponent, PropType } from "vue";
+
+	// Utils
+	import { pluralize } from "@utils/essentials";
+
+	// Types
+	import { Show } from "@typings/types";
+
+	export default defineComponent({
+		name: "ShowCard",
+		props: {
+			show: {
+				type: Object as PropType<Show>,
+				required: true
+			}
+		},
+		computed: {
+			seasonCount (): string {
+				return pluralize(this.show.seasons, "Season%");
+			}
+		}
+	});
+
+</script>
+
+<style scoped>
+
+	#container {
+		max-width: 170px;
+		background: transparent;
+		transition: .2s background ease-out;
+		padding: 5px 5px 2px 5px;
+		border-radius: 5px;
+	}
+
+	#container:hover {
+		background: var(--transparent-hover-color);
+	}
+
+	#poster {
+		width: 170px;
+		height: calc(170px * 1.5);
+		border-radius: 5px;
+	}
+
+	#information {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 5px;
+	}
+
+	#title {
+		word-wrap: normal;
+		font-size: 18px;
+		font-weight: 500;
+		text-align: left;
+		margin-top: 0;
+		margin-bottom: 5px;
+		height: calc(18px * 2);
+	}
+
+	#details {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	#details p {
+		font-weight: 300;
+		margin: 0;
+	}
+
+</style>

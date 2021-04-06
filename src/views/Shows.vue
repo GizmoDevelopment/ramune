@@ -1,8 +1,19 @@
 <template>
 	<h1 class="heading">All Shows</h1>
-	<div id="show-container">
+	<div
+		v-if="shows.length > 0"
+		id="show-container"
+	>
 		<div v-for="show in shows" :key="show.id">
 			<ShowCard :show="show" />
+		</div>
+	</div>
+	<div
+		v-else
+		id="show-container"
+	>
+		<div v-for="(_, index) in new Array(10)" :key="index">
+			<ShowCardHusk />
 		</div>
 	</div>
 </template>
@@ -14,6 +25,7 @@
 
 	// Components
 	import ShowCard from "@components/ShowCard.vue";
+	import ShowCardHusk from "@components/ShowCardHusk.vue";
 
 	// Utils
 	import { getShows } from "@utils/api";
@@ -24,12 +36,13 @@
 	export default defineComponent({
 		name: "Shows",
 		components: {
-			ShowCard
+			ShowCard,
+			ShowCardHusk
 		},
 		data () {
 			return {
 				shows: [] as Show[]
-			}
+			};
 		},
 		async mounted () {
 
@@ -51,6 +64,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
+		flex-wrap: wrap;
 	}
 
 </style>

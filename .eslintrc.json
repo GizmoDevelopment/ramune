@@ -38,6 +38,10 @@
 				"baseIndent": 1,
 				"switchCase": 1
 			}
+		],
+		"vue/html-indent": [
+			"error",
+			"tab"
 		]
     },
 	"overrides": [

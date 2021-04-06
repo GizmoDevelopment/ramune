@@ -69,7 +69,6 @@
 	}
 
 	#details p {
-		font-weight: 300;
 		margin: 0;
 	}
 

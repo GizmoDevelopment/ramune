@@ -42,6 +42,9 @@
 		"vue/html-indent": [
 			"error",
 			"tab"
+		],
+		"vue/singleline-html-element-content-newline": [
+			"off"
 		]
     },
 	"overrides": [

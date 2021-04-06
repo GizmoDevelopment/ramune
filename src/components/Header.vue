@@ -3,9 +3,7 @@
 		<div id="content">
 			<div id="navigation">
 				<router-link to="/">
-					<div id="logo">
-
-					</div>
+					<div id="logo" />
 				</router-link>
 				<router-link to="shows">
 					Shows
@@ -15,7 +13,9 @@
 				</router-link>
 			</div>
 			<div id="login">
-				<button class="primary-button">Log In</button>
+				<button class="primary-button">
+					Log In
+				</button>
 			</div>
 		</div>
 	</header>

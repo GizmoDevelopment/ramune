@@ -4,9 +4,13 @@
 		style="text-decoration: none; color: inherit;"
 	>
 		<div id="container">
-			<img id="poster" :src="show.poster_url" draggable="false" />
+			<img
+				id="poster"
+				:src="show.poster_url"
+				draggable="false"
+			>
 			<div id="information">
-				<p id="title">{{ show.title}}</p>
+				<p id="title">{{ show.title }}</p>
 				<div id="details">
 					<div id="rating">
 						O
@@ -62,6 +66,7 @@
 	}
 
 	#poster {
+		background-color: var(--container-background-color);
 		width: 170px;
 		height: calc(170px * 1.5);
 		border-radius: 5px;

@@ -1,0 +1,94 @@
+<template>
+	<Header />
+	<div id="content-container">
+		<div id="content">
+			<router-view />
+		</div>
+	</div>
+</template>
+
+<script lang="ts">
+
+	// Modules
+	import { defineComponent } from "vue";
+
+	// Components
+	import Header from "@components/Header.vue";
+
+	export default defineComponent({
+		name: "App",
+		components: {
+			Header
+		}
+	});
+
+</script>
+
+<style>
+
+	:root {
+		--text-color: white;
+		--container-background-color: #1C1C1C;
+		--background-color: #101010;
+		--primary-color: #60C2F1;
+		--primary-hover-color: #4886a3;
+		--transparent-hover-color: rgba(28, 28, 28, .5);
+	}
+
+	body {
+		margin: 0;
+		background-color: var(--background-color);
+	}
+
+	#content-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	@media only screen and (min-width: 1200px) {
+		#content {
+			width: 1200px;
+		}
+	}
+
+	@media only screen and (max-width: 1200px) {
+		#content {
+			width: 100%;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+
+	.primary-button {
+		background-color: var(--primary-color);
+		color: var(--text-color);
+		border: 0;
+		border-radius: 10px;
+		padding: 5px;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-size: 18px;
+		font-weight: 500;
+		transition: .2s background-color ease-in-out;
+	}
+
+	.primary-button:hover {
+		background-color: var(--primary-hover-color);
+	}
+
+	.heading {
+		font-size: 40px;
+		font-weight: bold;
+		text-align: left;
+	}
+
+	#app {
+		font-family: Roboto, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-align: center;
+		color: var(--text-color);
+	}
+
+</style>

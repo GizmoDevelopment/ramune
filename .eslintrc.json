@@ -8,6 +8,7 @@
         "plugin:vue/vue3-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
+	"parser": "vue-eslint-parser",
     "parserOptions": {
         "ecmaVersion": 12,
         "parser": "@typescript-eslint/parser",
@@ -29,6 +30,22 @@
         "semi": [
             "error",
             "always"
-        ]
-    }
+        ],
+		"vue/script-indent": [
+			"error",
+			"tab",
+			{
+				"baseIndent": 1,
+				"switchCase": 1
+			}
+		]
+    },
+	"overrides": [
+		{
+			"files": ["*.vue"],
+			"rules": {
+				"indent": "off"
+			}
+		}
+	]
 }

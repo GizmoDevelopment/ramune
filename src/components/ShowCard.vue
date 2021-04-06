@@ -40,7 +40,7 @@
 		},
 		computed: {
 			seasonCount (): string {
-				return pluralize(this.show.seasons, "Season%");
+				return pluralize("%NUM% Season%S%", this.show.seasons);
 			}
 		}
 	});

@@ -12,11 +12,17 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Components
+	import ShowEpisodeCard from "@components/ShowEpisodeCard.vue";
+
 	// Types
 	import { Season } from "@typings/types";
 
 	export default defineComponent({
 		name: "ShowSeasonEpisodeList",
+		components: {
+			ShowEpisodeCard
+		},
 		props: {
 			season: {
 				type: Object as PropType<Season>,

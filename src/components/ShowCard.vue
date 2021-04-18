@@ -12,10 +12,7 @@
 			<div class="information">
 				<p class="title">{{ show.title }}</p>
 				<div class="details">
-					<div class="rating">
-						<Star class="icon" />
-						<p>{{ show.score }}</p>
-					</div>
+					<ShowScoreLabel :score="show.score" />
 					<p class="season-count">{{ seasonCount }}</p>
 				</div>
 			</div>
@@ -28,8 +25,8 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
-	// Icons
-	import Star from "@assets/icons/star.svg";
+	// Components
+	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 
 	// Utils
 	import { pluralize } from "@utils/essentials";
@@ -40,7 +37,7 @@
 	export default defineComponent({
 		name: "ShowCard",
 		components: {
-			Star
+			ShowScoreLabel
 		},
 		props: {
 			show: {
@@ -104,18 +101,6 @@
 	.details p {
 		font-weight: 300;
 		margin: 0;
-	}
-
-	.rating {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-content: center;
-	}
-
-	.rating p {
-		margin-left: 4px;
-		font-weight: 400;
 	}
 
 </style>

@@ -78,7 +78,7 @@
 	}
 
 	.heading {
-		font-size: 40px;
+		font-size: 45px;
 		font-weight: bold;
 		text-align: left;
 	}
@@ -97,6 +97,12 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: var(--text-color);
+	}
+
+	@media only screen and (max-width: 600px) {
+		.heading {
+			font-size: 30px;
+		}
 	}
 
 </style>

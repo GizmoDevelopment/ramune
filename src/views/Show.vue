@@ -1,13 +1,18 @@
 <template>
 	<div v-if="show">
-		<div class="show-information">
-			<img :src="show.poster_url" class="show-artwork">
-			<div class="show-details">
-				<h1 class="heading show-title">{{ show.title }}</h1>
-				<div class="show-stats">
-					<ShowScoreLabel :score="show.score" class="show-score" />
-					<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+		<div class="show-container">
+			<div class="show-information">
+				<img :src="show.poster_url" class="show-artwork">
+				<div class="show-details">
+					<h1 class="heading show-title">{{ show.title }}</h1>
+					<div class="show-stats">
+						<ShowScoreLabel :score="show.score" class="show-score" />
+						<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+					</div>
 				</div>
+			</div>
+			<div v-for="season in show.seasons" :key="season.title">
+				<ShowSeasonEpisodeList :season="season" />
 			</div>
 		</div>
 	</div>
@@ -24,6 +29,7 @@
 	// Components
 	import NotFound from "@components/NotFound.vue";
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
+	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
 
 	// Types
 	import { Show, Season } from "@typings/types";
@@ -32,7 +38,8 @@
 		name: "Show",
 		components: {
 			NotFound,
-			ShowScoreLabel
+			ShowScoreLabel,
+			ShowSeasonEpisodeList
 		},
 		props: {
 			showId: {
@@ -59,6 +66,13 @@
 </script>
 
 <style scoped>
+
+	@media only screen and (min-width: 800px) {
+		.show-container {
+			width: 80%;
+			margin-left: 10%;
+		}
+	}
 
 	.show-information {
 		margin-top: 2.5em;

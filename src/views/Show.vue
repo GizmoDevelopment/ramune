@@ -73,6 +73,12 @@
 		width: auto;
 	}
 
+	@media only screen and (max-width: 800px) {
+		.show-artwork {
+			height: 200px;
+		}
+	}
+
 	.show-details {
 		margin-left: 20px;
 	}

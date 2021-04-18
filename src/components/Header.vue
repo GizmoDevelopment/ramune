@@ -5,10 +5,10 @@
 				<router-link to="/">
 					<Logo class="logo" />
 				</router-link>
-				<router-link to="shows">
+				<router-link to="/shows">
 					Shows
 				</router-link>
-				<router-link to="rooms">
+				<router-link to="/rooms">
 					Rooms
 				</router-link>
 			</div>

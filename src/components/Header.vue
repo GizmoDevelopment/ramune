@@ -3,7 +3,7 @@
 		<div id="content">
 			<div id="navigation">
 				<router-link to="/">
-					<div id="logo" />
+					<Logo class="logo" />
 				</router-link>
 				<router-link to="shows">
 					Shows
@@ -26,8 +26,14 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Icons
+	import Logo from "@assets/icons/Logo.svg";
+
 	export default defineComponent({
 		name: "Header",
+		components: {
+			Logo
+		}
 	});
 
 </script>
@@ -83,7 +89,8 @@
 		position: relative;
 	}
 
-	#navigation a::after {
+	/* Underline every anchor label except for the logo, which has the href for root path */
+	#navigation a:not([href="/"])::after {
 		content: "";
 		background-color: var(--text-color);
 		position: absolute;
@@ -99,18 +106,12 @@
 		left: 0%;
 	}
 
-	#logo {
+	.logo {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		margin-right: 20px;
-	}
-
-	#logo span {
-		margin-left: 10px;
-		font-weight: 500;
-		font-size: 20px;
+		height: 25px;
 	}
 
 </style>

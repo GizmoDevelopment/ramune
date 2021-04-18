@@ -99,7 +99,7 @@
 		color: var(--text-color);
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 800px) {
 		.heading {
 			font-size: 30px;
 		}

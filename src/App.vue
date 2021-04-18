@@ -83,6 +83,14 @@
 		text-align: left;
 	}
 
+	.icon {
+		height: 1em;
+	}
+
+	.icon path {
+		fill: var(--text-color);
+	}
+
 	#app {
 		font-family: Roboto, sans-serif;
 		-webkit-font-smoothing: antialiased;

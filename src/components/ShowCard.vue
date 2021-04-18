@@ -3,20 +3,20 @@
 		:to="`/shows/${ show.id }`"
 		style="text-decoration: none; color: inherit;"
 	>
-		<div id="container">
+		<div class="container">
 			<img
-				id="poster"
+				class="poster"
 				:src="show.poster_url"
 				draggable="false"
 			>
-			<div id="information">
-				<p id="title">{{ show.title }}</p>
-				<div id="details">
-					<div id="rating">
-						O
-						{{ show.score }}
+			<div class="information">
+				<p class="title">{{ show.title }}</p>
+				<div class="details">
+					<div class="rating">
+						<Star class="icon" />
+						<p>{{ show.score }}</p>
 					</div>
-					<p id="season-count">{{ seasonCount }}</p>
+					<p class="season-count">{{ seasonCount }}</p>
 				</div>
 			</div>
 		</div>
@@ -28,6 +28,9 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Icons
+	import Star from "@assets/icons/star.svg";
+
 	// Utils
 	import { pluralize } from "@utils/essentials";
 
@@ -36,6 +39,9 @@
 
 	export default defineComponent({
 		name: "ShowCard",
+		components: {
+			Star
+		},
 		props: {
 			show: {
 				type: Object as PropType<Show>,
@@ -53,7 +59,7 @@
 
 <style scoped>
 
-	#container {
+	.container {
 		max-width: 170px;
 		background: transparent;
 		transition: .2s background ease-out;
@@ -61,24 +67,24 @@
 		border-radius: 5px;
 	}
 
-	#container:hover {
+	.container:hover {
 		background: var(--transparent-hover-color);
 	}
 
-	#poster {
+	.poster {
 		background-color: var(--container-background-color);
 		width: 170px;
 		height: calc(170px * 1.5);
 		border-radius: 5px;
 	}
 
-	#information {
+	.information {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 5px;
 	}
 
-	#title {
+	.title {
 		word-wrap: normal;
 		font-size: 18px;
 		font-weight: 500;
@@ -88,16 +94,28 @@
 		height: calc(18px * 2);
 	}
 
-	#details {
+	.details {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 	}
 
-	#details p {
+	.details p {
 		font-weight: 300;
 		margin: 0;
+	}
+
+	.rating {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-content: center;
+	}
+
+	.rating p {
+		margin-left: 4px;
+		font-weight: 400;
 	}
 
 </style>

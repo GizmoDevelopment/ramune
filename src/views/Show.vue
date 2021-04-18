@@ -79,6 +79,7 @@
 
 	.show-title {
 		margin-top: .2em;
+		margin-bottom: 10px;
 	}
 
 	.show-stats {

@@ -15,7 +15,7 @@ export async function getShows (): Promise<Show[]|[]> {
 
 		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows`);
 
-		if (response.success && response.data) {
+		if (response.type === "success" && response.data) {
 			return response.data;
 		} else {
 			throw new Error(response.message);
@@ -35,7 +35,7 @@ export async function getShow (showId: string): Promise<Show|null> {
 
 		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows/${ showId }`);
 
-		if (response.success && response.data) {
+		if (response.type === "success" && response.data) {
 			return response.data;
 		} else {
 			throw new Error(response.message);

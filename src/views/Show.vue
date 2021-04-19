@@ -74,8 +74,6 @@
 		},
 		async mounted () {
 
-			changePageTitle("Ramune");
-
 			const
 				cachedShows = this.$store.state.shows,
 				showId = this.showId.toString();

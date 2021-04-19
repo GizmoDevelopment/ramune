@@ -1,19 +1,21 @@
 <template>
-	<h1 class="heading">All Shows</h1>
-	<div
-		v-if="shows.length > 0"
-		id="show-container"
-	>
-		<div v-for="show in shows" :key="show.id">
-			<ShowCard :show="show" />
+	<div>
+		<h1 class="heading">All Shows</h1>
+		<div
+			v-if="shows.length > 0"
+			id="show-container"
+		>
+			<div v-for="show in shows" :key="show.id">
+				<ShowCard :show="show" />
+			</div>
 		</div>
-	</div>
-	<div
-		v-else
-		id="show-container"
-	>
-		<div v-for="(_, index) in new Array(10)" :key="index">
-			<ShowCardHusk />
+		<div
+			v-else
+			id="show-container"
+		>
+			<div v-for="(_, index) in new Array(10)" :key="index">
+				<ShowCardHusk />
+			</div>
 		</div>
 	</div>
 </template>

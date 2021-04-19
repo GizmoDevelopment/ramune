@@ -9,6 +9,7 @@
 						<ShowScoreLabel :score="show.score" class="show-score" />
 						<div class="show-episode-count">{{ episodeCount }} Episodes</div>
 					</div>
+					<p class="show-description">{{ formattedDescription }}</p>
 				</div>
 			</div>
 			<div v-for="season in show.seasons" :key="season.title">
@@ -47,7 +48,7 @@
 		},
 		props: {
 			showId: {
-				type: Number,
+				type: String,
 				required: true
 			}
 		},
@@ -65,6 +66,9 @@
 				} else {
 					return 0;
 				}
+			},
+			formattedDescription (): string {
+				return this.show?.description?.replace(/\\n/g, "\n") || "";
 			}
 		},
 		watch: {
@@ -156,6 +160,12 @@
 		border-radius: 20px;
 		padding-left: 6px;
 		padding-right: 6px;
+	}
+
+	.show-description {
+		text-align: left;
+		font-size: 15px;
+		white-space: pre-line;
 	}
 
 </style>

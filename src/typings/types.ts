@@ -1,6 +1,7 @@
 export interface Show {
     id: string;
     title: string;
+	description: string;
     score: string;
     poster_url: string;
     seasons: Season[];

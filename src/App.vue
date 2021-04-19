@@ -2,7 +2,11 @@
 	<Header />
 	<div id="content-container">
 		<div id="content">
-			<router-view />
+			<router-view v-slot="{ Component }">
+				<transition name="fade-view" mode="out-in">
+					<component :is="Component" />
+				</transition>
+			</router-view>
 		</div>
 	</div>
 </template>
@@ -58,6 +62,15 @@
 			padding-left: 30px;
 			padding-right: 30px;
 		}
+	}
+
+	.fade-view-enter-active, .fade-view-leave-active {
+		transition: all .3s ease;
+	}
+
+	.fade-view-enter-from, .fade-view-leave-to {
+		opacity: 0;
+		transform: translateY(2em);
 	}
 
 	.primary-button {

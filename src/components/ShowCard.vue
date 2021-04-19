@@ -58,7 +58,6 @@
 
 	.container {
 		max-width: 170px;
-		background: transparent;
 		padding: 5px 5px 2px 5px;
 		border-radius: 5px;
 	}

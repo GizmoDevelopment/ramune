@@ -117,6 +117,7 @@
 
 	.hover-container {
 		transition: .2s background ease-out;
+		border-radius: var(--card-border-radius);
 	}
 
 	.hover-container:hover {

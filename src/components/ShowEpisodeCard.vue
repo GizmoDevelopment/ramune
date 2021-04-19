@@ -40,6 +40,7 @@
 		width: 200px;
 		padding: 4px;
 	}
+	
 	.episode-thumbnail {
 		width: 100%;
 		height: auto;

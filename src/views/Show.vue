@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div v-else>
-		<LoadingBuffer />
+		<LoadingBuffer class="loading-buffer" />
 	</div>
 </template>
 
@@ -33,6 +33,7 @@
 
 	// Utils
 	import { getShow } from "@utils/api";
+	import { changePageTitle } from "@utils/dom";
 
 	// Types
 	import { Show, Season } from "@typings/types";
@@ -66,6 +67,11 @@
 				}
 			}
 		},
+		watch: {
+			show (val: Show | null) {
+				if (val) changePageTitle(val.title);
+			}
+		},
 		async mounted () {
 
 			const
@@ -93,6 +99,10 @@
 </script>
 
 <style scoped>
+
+	.loading-buffer {
+		margin-top: 30vh;
+	}
 
 	@media only screen and (min-width: 800px) {
 		.show-container {

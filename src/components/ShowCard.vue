@@ -3,7 +3,7 @@
 		:to="`/shows/${ show.id }`"
 		class="anchor-without-decoration"
 	>
-		<div class="container">
+		<div class="container hover-container">
 			<img
 				class="poster"
 				:src="show.poster_url"
@@ -59,15 +59,9 @@
 	.container {
 		max-width: 170px;
 		background: transparent;
-		transition: .2s background ease-out;
 		padding: 5px 5px 2px 5px;
 		border-radius: 5px;
 	}
-
-	.container:hover {
-		background: var(--transparent-hover-color);
-	}
-
 	.poster {
 		background-color: var(--container-background-color);
 		width: 170px;

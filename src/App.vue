@@ -40,7 +40,7 @@
 		--primary-hover-color: #4886a3;
 		--transparent-hover-color: rgba(28, 28, 28, .5);
 
-		/* Borders */
+		/* Values */
 		--card-border-radius: 3px;
 
 	}
@@ -113,6 +113,14 @@
 	.anchor-without-decoration {
 		text-decoration: none;
 		color: inherit;
+	}
+
+	.hover-container {
+		transition: .2s background ease-out;
+	}
+
+	.hover-container:hover {
+		background-color: var(--transparent-hover-color);
 	}
 
 	#app {

@@ -110,6 +110,11 @@
 		fill: var(--text-color);
 	}
 
+	.anchor-without-decoration {
+		text-decoration: none;
+		color: inherit;
+	}
+
 	#app {
 		font-family: Roboto, sans-serif;
 		-webkit-font-smoothing: antialiased;

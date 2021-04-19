@@ -1,7 +1,7 @@
 <template>
 	<router-link
 		:to="`/shows/${ show.id }`"
-		style="text-decoration: none; color: inherit;"
+		class="anchor-without-decoration"
 	>
 		<div class="container">
 			<img

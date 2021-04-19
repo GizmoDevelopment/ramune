@@ -1,7 +1,11 @@
 <template>
 	<h2 class="season-title">{{ season.title }}</h2>
-	<div class="episode-container">
-		<div v-for="episode in season.episodes" :key="episode.title">
+	<div class="episode-list-container">
+		<div
+			v-for="episode in season.episodes"
+			:key="episode.title"
+			class="episode-container"
+		>
 			<ShowEpisodeCard :episode="episode" />
 		</div>
 	</div>
@@ -39,11 +43,16 @@
 		text-align: left;
 	}
 
-	.episode-container {
+	.episode-list-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
-		align-items: center;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.episode-container {
+		margin-right: 5px;
 	}
 
 </style>

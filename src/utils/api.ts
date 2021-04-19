@@ -26,3 +26,23 @@ export async function getShows (): Promise<Show[]|[]> {
 		return [];
 	}
 }
+
+/**
+ * Fetches specified show by its ID
+ */
+export async function getShow (showId: string): Promise<Show|null> {
+	try {
+
+		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows/${ showId }`);
+
+		if (response.success && response.data) {
+			return response.data;
+		} else {
+			throw new Error(response.message);
+		}
+
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+}

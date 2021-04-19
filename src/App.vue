@@ -31,12 +31,18 @@
 <style>
 
 	:root {
+
+		/* Colors */
 		--text-color: white;
 		--container-background-color: #1C1C1C;
 		--background-color: #101010;
 		--primary-color: #60C2F1;
 		--primary-hover-color: #4886a3;
 		--transparent-hover-color: rgba(28, 28, 28, .5);
+
+		/* Borders */
+		--card-border-radius: 3px;
+
 	}
 
 	body {

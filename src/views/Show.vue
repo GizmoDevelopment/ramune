@@ -119,7 +119,7 @@
 	}
 
 	.show-artwork {
-		border-radius: 5px;
+		border-radius: var(--card-border-radius);
 		height: 280px;
 		width: auto;
 	}

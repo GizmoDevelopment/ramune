@@ -1,12 +1,15 @@
 // Modules
 import { createRouter, createWebHistory } from "vue-router";
 
+// Utils
+import { changePageTitle } from "@utils/dom";
+
 // Views
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
 import Show from "@views/Show.vue";
 
-export default createRouter({
+const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
@@ -24,3 +27,12 @@ export default createRouter({
 		},
 	]
 });
+
+router.beforeEach(() =>{
+
+	changePageTitle("Ramune");
+
+	return true;
+});
+
+export default router;

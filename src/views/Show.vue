@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div v-else>
-		<NotFound />
+		<LoadingBuffer />
 	</div>
 </template>
 
@@ -27,7 +27,7 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import NotFound from "@components/NotFound.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
 
@@ -40,7 +40,7 @@
 	export default defineComponent({
 		name: "Show",
 		components: {
-			NotFound,
+			LoadingBuffer,
 			ShowScoreLabel,
 			ShowSeasonEpisodeList
 		},

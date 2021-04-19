@@ -48,13 +48,23 @@
 		},
 		async mounted () {
 
-			const shows = await getShows();
+			const cachedShows = this.$store.state.shows;
 
-			shows.forEach(show => {
-				this.$store.commit("CACHE_SHOW", show);
-			});
+			if (cachedShows.size > 0) {
+				
+				this.shows = Array.from(cachedShows.values());
 
-			this.shows = shows;
+			} else {
+
+				const shows = await getShows();
+
+				shows.forEach(show => {
+					this.$store.commit("CACHE_SHOW", show);
+				});
+
+				this.shows = shows;
+			}			
+
 		}
 	});
 

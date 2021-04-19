@@ -31,6 +31,9 @@
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
 
+	// Utils
+	import { getShow } from "@utils/api";
+
 	// Types
 	import { Show, Season } from "@typings/types";
 
@@ -47,10 +50,12 @@
 				required: true
 			}
 		},
+		data () {
+			return {
+				show: null as Show | null
+			};
+		},
 		computed: {
-			show (): Show | undefined {
-				return this.$store.state.shows.get(this.showId.toString());
-			},
 			episodeCount (): number {
 				if (this.show) {
 					return this.show.seasons.reduce((total: number, curr: Season): number => {
@@ -60,6 +65,28 @@
 					return 0;
 				}
 			}
+		},
+		async mounted () {
+
+			const
+				cachedShows = this.$store.state.shows,
+				showId = this.showId.toString();
+
+			if (cachedShows.has(showId)) {
+
+				// No idea why it still complains about it possibly being an undefined type since it exists in the Map
+				this.show = cachedShows.get(showId) || null;
+
+			} else {
+
+				const freshShow = await getShow(showId);
+
+				if (freshShow) {
+					this.show = freshShow;
+				}
+
+			}
+
 		}
 	});
 

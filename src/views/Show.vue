@@ -129,9 +129,28 @@
 	}
 
 	@media only screen and (max-width: 800px) {
+
 		.show-artwork {
 			height: 200px;
 		}
+
+		.show-description {
+			position: relative;
+			height: 50%;
+			overflow-y: hidden;
+			text-overflow: clip;
+		}
+
+		.show-description::before {
+			position: absolute;
+			content: "";
+			width: 100%;
+			left: 0;
+			bottom: 0;
+			height: 70px;
+			background: linear-gradient(transparent, var(--background-color));
+		}
+
 	}
 
 	.show-details {

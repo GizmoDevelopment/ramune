@@ -43,7 +43,7 @@
 	
 	.episode-thumbnail {
 		width: 100%;
-		height: auto;
+		height: 112.5px;
 		border-radius: var(--card-border-radius);
 	}
 

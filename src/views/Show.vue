@@ -92,7 +92,11 @@
 				const freshShow = await getShow(showId);
 
 				if (freshShow) {
+
+					this.$store.commit("CACHE_SHOW", freshShow);
+
 					this.show = freshShow;
+
 				}
 
 			}

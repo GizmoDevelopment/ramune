@@ -12,10 +12,19 @@
 					Rooms
 				</router-link>
 			</div>
-			<div id="login">
-				<button class="primary-button">
-					Log In
-				</button>
+			<div v-if="user" class="user-container">
+				<p class="user-username">{{ user.username }}</p>
+				<img
+					class="user-avatar"
+					:src="user.avatar_url"
+				>
+			</div>
+			<div v-else>
+				<div id="login">
+					<button class="primary-button">
+						Log In
+					</button>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -33,6 +42,11 @@
 		name: "Header",
 		components: {
 			Logo
+		},
+		computed: {
+			user () {
+				return this.$store.state.user;
+			}
 		}
 	});
 
@@ -60,6 +74,8 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		align-content: center;
+		align-items: center;
 	}
 
 	@media only screen and (min-width: 1420px) {
@@ -112,6 +128,23 @@
 		justify-content: center;
 		align-items: center;
 		height: 25px;
+	}
+
+	.user-container {
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		align-items: center;
+	}
+
+	.user-container * {
+		padding-left: 10px;
+	}
+
+	.user-avatar {
+		width: 35px;
+		height: 35px;
+		border-radius: 100%;
 	}
 
 </style>

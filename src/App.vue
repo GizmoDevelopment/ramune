@@ -15,6 +15,10 @@
 
 	// Modules
 	import { defineComponent } from "vue";
+	import { getAuthenticatedUser } from "gizmo-api";
+
+	// Utils
+	import { getCookie } from "@utils/essentials";
 
 	// Components
 	import Header from "@components/Header.vue";
@@ -23,6 +27,26 @@
 		name: "App",
 		components: {
 			Header
+		},
+		async mounted () {
+
+			let token = getCookie("GIZMO_TOKEN");
+
+			if (token) {
+
+				try {
+					
+					token = decodeURIComponent(token);
+
+					const user = await getAuthenticatedUser(token);
+
+					this.$store.commit("UPDATE_USER", { ...user, token });
+
+				} catch (err) {
+					console.error(err);
+				}
+
+			}
 		}
 	});
 

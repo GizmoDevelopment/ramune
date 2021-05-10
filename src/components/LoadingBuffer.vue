@@ -34,6 +34,7 @@
 	}
 
 	.logo {
+		margin-top: 15em;
 		width: auto;
 		height: 5em;
 		animation: loading 2s ease-in-out infinite;

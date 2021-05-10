@@ -3,8 +3,13 @@
 		<h1 class="heading">Rooms</h1>
 		<div v-if="user">
 			<div v-if="rooms">
-				<div v-for="room in rooms" :key="room.id">
-					<RoomCard :room="room" />
+				<div v-if="rooms.length > 0">
+					<div v-for="room in rooms" :key="room.id">
+						<RoomCard :room="room" />
+					</div>
+				</div>
+				<div v-else>
+					<Error text="There are no active rooms" />
 				</div>
 			</div>
 			<div v-else>
@@ -29,12 +34,14 @@
 
 	// Types
 	import { Room } from "@typings/room";
+	import { SuccessResponse, ErrorResponse } from "@typings/index";
 
 	export default defineComponent({
 		name: "Rooms",
 		components: {
 			Error,
-			LoadingBuffer
+			LoadingBuffer,
+			RoomCard
 		},
 		data () {
 			return {
@@ -45,6 +52,17 @@
 			user () {
 				return this.$store.state.user;
 			}
+		},
+		mounted () {
+
+			this.$socket.emit("client:fetch_rooms", ({ type, message, data }: SuccessResponse<Room[]> | ErrorResponse) => {
+				if (type === "success" && data) {
+					this.rooms = data;
+				} else {
+					console.error(message);
+				}
+			});
+
 		}
 	});
 

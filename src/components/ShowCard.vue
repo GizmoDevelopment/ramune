@@ -32,7 +32,7 @@
 	import { pluralize } from "@utils/essentials";
 
 	// Types
-	import { Show } from "@typings/types";
+	import { Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowCard",

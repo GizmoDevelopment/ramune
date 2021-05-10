@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Types
-import { Show } from "@typings/types";
+import { Show } from "@typings/show";
 
 // Constants
 const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;

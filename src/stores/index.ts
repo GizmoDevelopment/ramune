@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 
 // Types
 import { AuthenticatedUser } from "gizmo-api/lib/types";
-import { Show } from "@typings/types";
+import { Show } from "@typings/show";
 import { State } from "@typings/vuex";
 
 export default createStore<State>({

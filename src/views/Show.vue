@@ -37,7 +37,7 @@
 	import { changePageTitle } from "@utils/dom";
 
 	// Types
-	import { Show, Season } from "@typings/types";
+	import { Show, Season } from "@typings/show";
 
 	export default defineComponent({
 		name: "Show",

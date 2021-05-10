@@ -16,7 +16,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Types
-	import { Episode } from "@typings/types";
+	import { Episode } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowEpisodeCard",

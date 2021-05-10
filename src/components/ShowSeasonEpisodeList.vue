@@ -31,7 +31,7 @@
 	import CaretDown from "@assets/icons/caret-down.svg";
 
 	// Types
-	import { Season } from "@typings/types";
+	import { Season } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowSeasonEpisodeList",

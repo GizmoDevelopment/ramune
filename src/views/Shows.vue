@@ -33,7 +33,7 @@
 	import { getShows } from "@utils/api";
 
 	// Types
-	import { Show } from "@typings/types";
+	import { Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "Shows",

@@ -3,7 +3,7 @@ import { Store } from "vuex";
 
 // Types
 import { AuthenticatedUser } from "gizmo-api/lib/types";
-import { Show } from "@typings/types";
+import { Show } from "@typings/show";
 
 export interface State {
     shows: Map<string, Show>;

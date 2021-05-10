@@ -47,7 +47,6 @@
 					this.$store.commit("UPDATE_USER", { ...user, token });
 
 					this.$socket.emit("client:authenticate", { token }, ({ type, message, data }: SuccessResponse<User> | ErrorResponse) => {
-						console.log(type, message, data);
 						if (type !== "success") {
 							console.error(message);
 						}

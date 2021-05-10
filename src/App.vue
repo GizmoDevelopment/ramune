@@ -126,6 +126,10 @@
 		text-align: left;
 	}
 
+	.opaque-label {
+		opacity: .5;
+	}
+
 	.icon {
 		height: 1em;
 	}

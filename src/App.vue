@@ -23,6 +23,10 @@
 	// Components
 	import Header from "@components/Header.vue";
 
+	// Types
+	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { User } from "gizmo-api/lib/types";
+
 	export default defineComponent({
 		name: "App",
 		components: {
@@ -41,6 +45,13 @@
 					const user = await getAuthenticatedUser(token);
 
 					this.$store.commit("UPDATE_USER", { ...user, token });
+
+					this.$socket.emit("client:authenticate", { token }, ({ type, message, data }: SuccessResponse<User> | ErrorResponse) => {
+						console.log(type, message, data);
+						if (type !== "success") {
+							console.error(message);
+						}
+					});
 
 				} catch (err) {
 					console.error(err);

@@ -3,19 +3,28 @@
 		<h1 class="heading">All Shows</h1>
 		<div
 			v-if="shows.length > 0"
-			id="show-container"
+			class="show-container"
 		>
 			<div v-for="show in shows" :key="show.id">
-				<ShowCard :show="show" />
+				<ShowCard
+					:show="show"
+					@click="selectShow(show)"
+				/>
 			</div>
 		</div>
 		<div
 			v-else
-			id="show-container"
+			class="show-container"
 		>
 			<div v-for="(_, index) in new Array(10)" :key="index">
 				<ShowCardHusk />
 			</div>
+		</div>
+		<div v-if="selectedShow">
+			<FloatingShowCard
+				:show="selectedShow"
+				@dismiss="selectShow(null)"
+			/>
 		</div>
 	</div>
 </template>
@@ -28,6 +37,7 @@
 	// Components
 	import ShowCard from "@components/ShowCard.vue";
 	import ShowCardHusk from "@components/ShowCardHusk.vue";
+	import FloatingShowCard from "@components/FloatingShowCard.vue";
 
 	// Utils
 	import { getShows } from "@utils/api";
@@ -39,11 +49,13 @@
 		name: "Shows",
 		components: {
 			ShowCard,
-			ShowCardHusk
+			ShowCardHusk,
+			FloatingShowCard
 		},
 		data () {
 			return {
-				shows: [] as Show[]
+				shows: [] as Show[],
+				selectedShow: null as Show | null
 			};
 		},
 		async mounted () {
@@ -65,6 +77,11 @@
 				this.shows = shows;
 			}			
 
+		},
+		methods: {
+			selectShow (show: Show | null) {
+				this.selectedShow = show;
+			}
 		}
 	});
 
@@ -72,11 +89,28 @@
 
 <style scoped>
 
-	#show-container {
+	.fade-popup-overlay-enter-active, .fade-popup-overlay-leave-active {
+		transition: opacity .4s ease;
+	}
+
+	.fade-popup-overlay-enter-from, .fade-popup-overlay-leave-to {
+		opacity: 0;
+	}
+
+	.show-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		flex-wrap: wrap;
+	}
+
+	.show-overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, .5)
 	}
 
 </style>

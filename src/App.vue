@@ -147,6 +147,7 @@
 
 	.icon path {
 		fill: var(--text-color);
+		stroke: var(--text-color);
 	}
 
 	.anchor-without-decoration {

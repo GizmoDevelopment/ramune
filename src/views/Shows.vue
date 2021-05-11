@@ -20,12 +20,16 @@
 				<ShowCardHusk />
 			</div>
 		</div>
-		<div v-if="selectedShow">
+		<!--<div v-if="selectedShow">
 			<FloatingShowCard
 				:show="selectedShow"
 				@dismiss="selectShow(null)"
 			/>
-		</div>
+		</div>-->
+		<FloatingShowCard
+			:show="selectedShow"
+			@dismiss="selectShow(null)"
+		/>
 	</div>
 </template>
 

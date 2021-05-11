@@ -1,24 +1,40 @@
 <template>
-	<PopupCard @dismiss="$emit('dismiss')">
-		<div class="show-container">
-			<div class="show-information">
-				<img :src="show.poster_url" class="show-artwork">
-				<div class="show-details">
-					<h1 class="heading show-title">{{ show.title }}</h1>
-					<div class="show-stats">
-						<ShowScoreLabel :score="show.score" class="show-score" />
-						<div class="show-episode-count">{{ episodeCount }} Episodes</div>
-					</div>
-					<p class="show-description">{{ formattedDescription }}</p>
+	<transition name="fade-overlay">
+		<div
+			v-if="show"
+			class="overlay"
+			@click="$emit('dismiss')"
+		/>
+	</transition>
+	<transition name="slide-content">
+		<div
+			v-if="show"
+			class="content-container"
+			@click="$emit('dismiss')"
+		>
+			<div class="show-container" @click.stop>
+				<div class="popup-title-bar">
+					<Close class="popup-close-button" @click="$emit('dismiss')" />
 				</div>
-			</div>
-			<div class="season-container">
-				<div v-for="season in show.seasons" :key="season.title">
-					<ShowSeasonEpisodeList :season="season" />
+				<div class="show-information">
+					<img :src="show.poster_url" class="show-artwork">
+					<div class="show-details">
+						<h1 class="heading show-title">{{ show.title }}</h1>
+						<div class="show-stats">
+							<ShowScoreLabel :score="show.score" class="show-score" />
+							<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+						</div>
+						<p class="show-description">{{ formattedDescription }}</p>
+					</div>
+				</div>
+				<div class="season-container">
+					<div v-for="season in show.seasons" :key="season.title">
+						<ShowSeasonEpisodeList :season="season" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</PopupCard>
+	</transition>
 </template>
 
 <script lang="ts">
@@ -27,12 +43,11 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import PopupCard from "@components/PopupCard.vue";
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
 
-	// Utils
-	import { changePageTitle } from "@utils/dom";
+	// Icons
+	import Close from "@assets/icons/close.svg";
 
 	// Types
 	import { Show, Season } from "@typings/show";
@@ -40,9 +55,9 @@
 	export default defineComponent({
 		name: "FloatingShowCard",
 		components: {
-			PopupCard,
 			ShowScoreLabel,
-			ShowSeasonEpisodeList
+			ShowSeasonEpisodeList,
+			Close
 		},
 		props: {
 			show: {
@@ -65,23 +80,89 @@
 				return this.show?.description?.replace(/\\n/g, "\n") || "";
 			}
 		},
-		watch: {
-			show (val: Show | null) {
-				if (val) changePageTitle(val.title);
-			}
-		}
 	});
 
 </script>
 
 <style scoped>
 
+	/* Overlay & Container */
+
+	.overlay, .content-container {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.overlay {
+		background: rgba(0, 0, 0, .5);
+	}
+
+	.fade-overlay-enter-active,
+	.fade-overlay-leave-active {
+		transition: opacity .3s ease-in-out;
+	}
+
+	.fade-overlay-enter-from,
+	.fade-overlay-leave-to {
+		opacity: 0;
+	}
+
+	.content-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+		overflow-y: auto;
+	}
+
+	.slide-content-enter-active,
+	.slide-content-leave-active {
+		transition: transform .3s ease, opacity .3s ease;
+	}
+
+	.slide-content-enter-from,
+	.slide-content-leave-to {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
 	.show-container {
+		margin-top: 5%;
+		margin-bottom: 20px;
 		width: 1100px;
-		height: 700px;
+		background-color: var(--container-background-color);
+		border-radius: var(--popup-border-radius);
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		padding-left: 2em;
+		padding-right: 2em;
 	}
+
+	.popup-title-bar {
+		width: calc(100% + 1em); /* Push into padding so the close button sits properly in the corner */
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.popup-close-button {
+		height: 2em;
+	}
+
+	.popup-close-button:hover {
+		cursor: pointer;
+	}
+
+	/* Show Information */
+
 
 	.show-information {
 		margin-top: 1em;
@@ -128,66 +209,6 @@
 		text-align: left;
 		font-size: 15px;
 		white-space: pre-line;
-	}
-
-	.season-container {
-		overflow-y: auto;
-	}
-
-	@media only screen and (max-width: 1210px) {
-
-		.show-container {
-			width: 1000px;
-		}
-
-	}
-
-	@media only screen and (max-width: 1100px) {
-
-		.show-container {
-			width: 900px;
-		}
-
-		.show-artwork {
-			height: 200px;
-		}
-
-	}
-
-	@media only screen and (max-width: 980px) {
-
-		.show-container {
-			width: 800px;
-		}
-
-	}
-
-	@media only screen and (max-width: 880px) {
-
-		.show-container {
-			width: 700px;
-		}
-
-		.show-description {
-			display: none;
-		}
-
-	}
-
-	@media only screen and (max-width: 780px) {
-
-		.show-container {
-			width: 100%;
-		}
-
-	}
-
-	@media only screen and (max-height: 770px) {
-
-		.show-container {
-			height: 90%;
-		}
-
 	}
 
 </style>

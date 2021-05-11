@@ -76,7 +76,7 @@
 
 		/* Values */
 		--card-border-radius: 3px;
-		--popup-border-radius: 15px;
+		--popup-border-radius: 10px;
 
 	}
 

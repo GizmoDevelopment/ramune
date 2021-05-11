@@ -1,6 +1,6 @@
 <template>
 	<PopupCard @dismiss="$emit('dismiss')">
-		<div class="container">
+		<div class="show-container">
 			<div class="show-information">
 				<img :src="show.poster_url" class="show-artwork">
 				<div class="show-details">
@@ -74,9 +74,11 @@
 
 <style scoped>
 
-	.container {
+	.show-container {
 		width: 1100px;
 		height: 700px;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.show-information {
@@ -124,6 +126,62 @@
 		text-align: left;
 		font-size: 15px;
 		white-space: pre-line;
+	}
+
+	@media only screen and (max-width: 1210px) {
+
+		.show-container {
+			width: 1000px;
+		}
+
+	}
+
+	@media only screen and (max-width: 1100px) {
+
+		.show-container {
+			width: 900px;
+		}
+
+		.show-artwork {
+			height: 200px;
+		}
+
+	}
+
+	@media only screen and (max-width: 980px) {
+
+		.show-container {
+			width: 800px;
+		}
+
+	}
+
+	@media only screen and (max-width: 880px) {
+
+		.show-container {
+			width: 700px;
+		}
+
+		.show-description {
+			display: none;
+		}
+
+	}
+
+	@media only screen and (max-width: 780px) {
+
+		.show-container {
+			width: 100%;
+		}
+
+	}
+
+	@media only screen and (max-height: 770px) {
+
+		.show-container {
+			height: 90%;
+		}
+
 	}
 
 </style>

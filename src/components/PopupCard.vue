@@ -7,7 +7,7 @@
 					@click="$emit('dismiss')"
 				/>
 			</div>
-			<slot />
+			<slot class="content" />
 		</div>
 	</div>
 </template>
@@ -55,6 +55,8 @@
 		padding-right: 25px;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		overflow: hidden;
 	}
 
 	.title-bar {
@@ -70,6 +72,16 @@
 
 	.icon:hover {
 		cursor: pointer;
+	}
+
+	@media only screen and (max-width: 780px) {
+
+		.container {
+			width: 100%;
+			height: 100%;
+			border-radius: 0;
+		}
+
 	}
 
 	/*

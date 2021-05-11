@@ -60,7 +60,7 @@
 	}
 
 	.title-bar {
-		width: calc(100% + 15px); /* Ignore padding to properly position X button */
+		width: calc(100% + 25px); /* Ignore padding to properly position X button */
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;

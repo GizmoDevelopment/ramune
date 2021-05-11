@@ -105,11 +105,13 @@
 		}
 	}
 
-	.fade-view-enter-active, .fade-view-leave-active {
+	.fade-view-enter-active,
+	.fade-view-leave-active {
 		transition: all .3s ease;
 	}
 
-	.fade-view-enter-from, .fade-view-leave-to {
+	.fade-view-enter-from,
+	.fade-view-leave-to {
 		opacity: 0;
 		transform: translateY(2em);
 	}

@@ -1,6 +1,12 @@
 <template>
 	<div class="overlay" @click="$emit('dismiss')">
 		<div class="container" @click.stop>
+			<div class="title-bar">
+				<Close
+					class="icon"
+					@click="$emit('dismiss')"
+				/>
+			</div>
 			<slot />
 		</div>
 	</div>
@@ -11,8 +17,14 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Icons
+	import Close from "@assets/icons/close.svg";
+
 	export default defineComponent({
 		name: "PopupCard",
+		components: {
+			Close
+		},
 		emits: [ "dismiss" ]
 	});
 
@@ -41,6 +53,23 @@
 		padding-bottom: 5px;
 		padding-left: 25px;
 		padding-right: 25px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.title-bar {
+		width: calc(100% + 15px); /* Ignore padding to properly position X button */
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+
+	.icon {
+		height: 2em;
+	}
+
+	.icon:hover {
+		cursor: pointer;
 	}
 
 	/*

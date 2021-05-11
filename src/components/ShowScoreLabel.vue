@@ -1,6 +1,6 @@
 <template>
 	<div class="rating">
-		<Star class="icon" />
+		<Star />
 		<p>{{ score }}</p>
 	</div>
 </template>

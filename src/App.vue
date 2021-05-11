@@ -46,7 +46,7 @@
 
 					this.$store.commit("UPDATE_USER", { ...user, token });
 
-					this.$socket.emit("client:authenticate", { token }, ({ type, message, data }: SuccessResponse<User> | ErrorResponse) => {
+					this.$socket.emit("client:authenticate", { token }, ({ type, message }: SuccessResponse<User> | ErrorResponse) => {
 						if (type !== "success") {
 							console.error(message);
 						}
@@ -76,6 +76,7 @@
 
 		/* Values */
 		--card-border-radius: 3px;
+		--popup-border-radius: 15px;
 
 	}
 

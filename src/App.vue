@@ -160,6 +160,7 @@
 
 	.hover-container:hover {
 		background-color: var(--transparent-hover-color);
+		cursor: pointer;
 	}
 
 	#app {

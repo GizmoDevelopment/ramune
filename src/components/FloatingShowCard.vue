@@ -12,8 +12,10 @@
 					<p class="show-description">{{ formattedDescription }}</p>
 				</div>
 			</div>
-			<div v-for="season in show.seasons" :key="season.title">
-				<ShowSeasonEpisodeList :season="season" />
+			<div class="season-container">
+				<div v-for="season in show.seasons" :key="season.title">
+					<ShowSeasonEpisodeList :season="season" />
+				</div>
 			</div>
 		</div>
 	</PopupCard>
@@ -126,6 +128,10 @@
 		text-align: left;
 		font-size: 15px;
 		white-space: pre-line;
+	}
+
+	.season-container {
+		overflow-y: auto;
 	}
 
 	@media only screen and (max-width: 1210px) {

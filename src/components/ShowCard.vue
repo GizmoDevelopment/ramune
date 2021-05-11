@@ -1,23 +1,23 @@
 <template>
-	<router-link
+	<!--<router-link
 		:to="`/shows/${ show.id }`"
 		class="anchor-without-decoration"
-	>
-		<div class="container hover-container">
-			<img
-				class="poster"
-				:src="show.poster_url"
-				draggable="false"
-			>
-			<div class="information">
-				<p class="title">{{ show.title }}</p>
-				<div class="details">
-					<ShowScoreLabel :score="show.score" />
-					<p class="season-count">{{ seasonCount }}</p>
-				</div>
+	>-->
+	<div class="container hover-container">
+		<img
+			class="poster"
+			:src="show.poster_url"
+			draggable="false"
+		>
+		<div class="information">
+			<p class="title">{{ show.title }}</p>
+			<div class="details">
+				<ShowScoreLabel :score="show.score" />
+				<p class="season-count">{{ seasonCount }}</p>
 			</div>
 		</div>
-	</router-link>
+	</div>
+	<!--</router-link>-->
 </template>
 
 <script lang="ts">

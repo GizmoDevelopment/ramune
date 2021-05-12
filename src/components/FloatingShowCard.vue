@@ -8,7 +8,7 @@
 	</transition>
 	<transition name="slide-content">
 		<div
-			v-if="show"
+			v-if="show || status"
 			class="content-container"
 			@click="$emit('dismiss')"
 		>
@@ -16,23 +16,33 @@
 				<div class="popup-title-bar">
 					<Close class="popup-close-button" @click="$emit('dismiss')" />
 				</div>
-				<div class="show-information">
-					<img :src="show.poster_url" class="show-artwork">
-					<div class="show-details">
-						<h1 class="heading show-title">{{ show.title }}</h1>
-						<div class="show-stats">
-							<ShowScoreLabel :score="show.score" class="show-score" />
-							<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+				<div v-if="show">
+					<div class="show-information">
+						<img :src="show.poster_url" class="show-artwork">
+						<div class="show-details">
+							<h1 class="heading show-title">{{ show.title }}</h1>
+							<div class="show-stats">
+								<ShowScoreLabel :score="show.score" class="show-score" />
+								<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+							</div>
+							<p class="show-description">{{ formattedDescription }}</p>
 						</div>
-						<p class="show-description">{{ formattedDescription }}</p>
+					</div>
+					<div class="season-container">
+						<div v-for="season in show.seasons" :key="season.title">
+							<ShowSeasonEpisodeList
+								:season="season"
+								@play-episode="playEpisode"
+							/>
+						</div>
 					</div>
 				</div>
-				<div class="season-container">
-					<div v-for="season in show.seasons" :key="season.title">
-						<ShowSeasonEpisodeList
-							:season="season"
-							@play-episode="playEpisode"
-						/>
+				<div v-else-if="status">
+					<div v-if="status === 'loading'">
+						<LoadingBuffer />
+					</div>
+					<div v-else>
+						<Error :text="status" />
 					</div>
 				</div>
 			</div>
@@ -48,6 +58,8 @@
 	// Components
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
+	import Error from "@components/Error.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
 	// Icons
 	import Close from "@assets/icons/close.svg";
@@ -60,12 +72,18 @@
 		components: {
 			ShowScoreLabel,
 			ShowSeasonEpisodeList,
-			Close
+			Close,
+			Error,
+			LoadingBuffer
 		},
 		props: {
 			show: {
 				type: Object as PropType<Show>,
 				required: true
+			},
+			status: {
+				type: String,
+				default: ""
 			}
 		},
 		emits: [ "dismiss" ],
@@ -146,7 +164,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: flex-start;
+		align-items: center;
 		padding-top: 1em;
 		padding-bottom: 1em;
 		padding-left: 2em;

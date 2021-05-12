@@ -22,6 +22,7 @@
 		</div>
 		<FloatingShowCard
 			:show="selectedShow"
+			:status="popupStatus"
 			@dismiss="selectShow(null)"
 		/>
 	</div>
@@ -30,7 +31,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent } from "vue";
 
 	// Components
 	import ShowCard from "@components/ShowCard.vue";
@@ -59,7 +60,8 @@
 		data () {
 			return {
 				shows: [] as Show[],
-				selectedShow: null as Show | null
+				selectedShow: null as Show | null,
+				popupStatus: 0 as string | number
 			};
 		},
 		async mounted () {
@@ -90,10 +92,21 @@
 					// TS still complains about that undefined type even after using #has()
 					if (_show) {
 						this.selectShow(_show);
+					} else {
+						this.selectShow(null);
 					}
 
 				} else {
-					this.selectShow(await getShow(this.showId));
+
+					this.popupStatus = "loading";
+
+					const _show = await getShow(this.showId);
+
+					if (_show) {
+						this.selectShow(_show);
+					} else {
+						this.popupStatus = 404;
+					}
 				}
 			}
 
@@ -104,8 +117,10 @@
 				this.selectedShow = show;
 
 				if (show) {
+					this.popupStatus = "loading";
 					this.$router.push(`/shows/${ show.id }`);
 				} else {
+					this.popupStatus = 0;
 					this.$router.push("/shows");
 				}
 

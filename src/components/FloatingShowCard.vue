@@ -29,7 +29,10 @@
 				</div>
 				<div class="season-container">
 					<div v-for="season in show.seasons" :key="season.title">
-						<ShowSeasonEpisodeList :season="season" />
+						<ShowSeasonEpisodeList
+							:season="season"
+							@play-episode="playEpisode"
+						/>
 					</div>
 				</div>
 			</div>
@@ -80,6 +83,11 @@
 				return this.show?.description?.replace(/\\n/g, "\n") || "";
 			}
 		},
+		methods: {
+			playEpisode (episodeId: number) {
+				this.$router.push(`/watch/${ this.show.id }/${ episodeId }`);
+			}
+		}
 	});
 
 </script>

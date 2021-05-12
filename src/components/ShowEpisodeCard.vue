@@ -6,7 +6,7 @@
 				<div class="episode-index">{{ episode.id }}</div>
 				<div class="episode-duration">24:00</div>
 			</div>
-			<div class="overlay">
+			<div class="overlay" @click="$emit('play-episode', episode.id)">
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
@@ -35,7 +35,8 @@
 				type: Object as PropType<Episode>,
 				required: true
 			}
-		}
+		},
+		emits: [ "play-episode" ]
 	});
 
 </script>

@@ -14,7 +14,10 @@
 			:key="episode.title"
 			class="episode-container"
 		>
-			<ShowEpisodeCard :episode="episode" />
+			<ShowEpisodeCard
+				:episode="episode"
+				@play-episode="playEpisode"
+			/>
 		</div>
 	</div>
 </template>
@@ -45,6 +48,7 @@
 				required: true
 			}
 		},
+		emits: [ "play-episode" ],
 		data: () => {
 			return {
 				expanded: false
@@ -53,6 +57,9 @@
 		methods: {
 			toggleExpansion () {
 				this.expanded = !this.expanded;
+			},
+			playEpisode (episodeId: number) {
+				this.$emit("play-episode", episodeId);
 			}
 		}
 	});

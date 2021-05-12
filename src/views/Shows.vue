@@ -20,7 +20,7 @@
 				<ShowCardHusk />
 			</div>
 		</div>
-		<FloatingShowCard
+		<ShowInformationPopup
 			:show="selectedShow"
 			:status="popupStatus"
 			@dismiss="selectShow(null)"
@@ -36,7 +36,7 @@
 	// Components
 	import ShowCard from "@components/ShowCard.vue";
 	import ShowCardHusk from "@components/ShowCardHusk.vue";
-	import FloatingShowCard from "@components/FloatingShowCard.vue";
+	import ShowInformationPopup from "@components/ShowInformationPopup.vue";
 
 	// Utils
 	import { getShow, getShows } from "@utils/api";
@@ -49,7 +49,7 @@
 		components: {
 			ShowCard,
 			ShowCardHusk,
-			FloatingShowCard
+			ShowInformationPopup
 		},
 		props: {
 			showId: {

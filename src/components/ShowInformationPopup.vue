@@ -45,7 +45,7 @@
 	import { Show } from "@typings/show";
 
 	export default defineComponent({
-		name: "FloatingShowCard",
+		name: "ShowInformationPopup",
 		components: {
 			Close,
 			Error,

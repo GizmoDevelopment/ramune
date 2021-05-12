@@ -20,12 +20,6 @@
 				<ShowCardHusk />
 			</div>
 		</div>
-		<!--<div v-if="selectedShow">
-			<FloatingShowCard
-				:show="selectedShow"
-				@dismiss="selectShow(null)"
-			/>
-		</div>-->
 		<FloatingShowCard
 			:show="selectedShow"
 			@dismiss="selectShow(null)"
@@ -36,7 +30,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineComponent, PropType } from "vue";
 
 	// Components
 	import ShowCard from "@components/ShowCard.vue";
@@ -44,7 +38,7 @@
 	import FloatingShowCard from "@components/FloatingShowCard.vue";
 
 	// Utils
-	import { getShows } from "@utils/api";
+	import { getShow, getShows } from "@utils/api";
 
 	// Types
 	import { Show } from "@typings/show";
@@ -55,6 +49,12 @@
 			ShowCard,
 			ShowCardHusk,
 			FloatingShowCard
+		},
+		props: {
+			showId: {
+				type: String,
+				default: null
+			}
 		},
 		data () {
 			return {
@@ -76,15 +76,39 @@
 
 				shows.forEach(show => {
 					this.$store.commit("CACHE_SHOW", show);
+					cachedShows.set(show.id, show);
 				});
 
 				this.shows = shows;
-			}			
+			}
+			
+			if (this.showId) {
+				if (cachedShows.has(this.showId)) {
+					
+					const _show = cachedShows.get(this.showId);
+
+					// TS still complains about that undefined type even after using #has()
+					if (_show) {
+						this.selectShow(_show);
+					}
+
+				} else {
+					this.selectShow(await getShow(this.showId));
+				}
+			}
 
 		},
 		methods: {
 			selectShow (show: Show | null) {
+
 				this.selectedShow = show;
+
+				if (show) {
+					this.$router.push(`/shows/${ show.id }`);
+				} else {
+					this.$router.push("/shows");
+				}
+
 			}
 		}
 	});

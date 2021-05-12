@@ -97,7 +97,7 @@
 	}
 
 	.overlay {
-		background: rgba(0, 0, 0, .5);
+		background: var(--overlay-background-color);
 	}
 
 	.fade-overlay-enter-active,

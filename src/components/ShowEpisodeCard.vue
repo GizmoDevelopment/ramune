@@ -1,16 +1,16 @@
 <template>
-	<div class="episode-container">
-		<div class="thumbnail-container">
-			<img class="episode-thumbnail" :src="episode.thumbnail_url">
-			<div class="episode-info">
-				<div class="episode-index">{{ episode.id }}</div>
-				<div class="episode-duration">24:00</div>
+	<div id="episode-container">
+		<div id="thumbnail-container">
+			<img id="episode-thumbnail" :src="episode.thumbnail_url">
+			<div id="episode-info">
+				<div id="episode-index">{{ episode.id }}</div>
+				<div id="episode-duration">24:00</div>
 			</div>
-			<div class="overlay" @click="$emit('play-episode', episode.id)">
+			<div id="overlay" @click="$emit('play-episode', episode.id)">
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
-		<p class="episode-title">{{ episode.title }}</p>
+		<p id="episode-title">{{ episode.title }}</p>
 	</div>
 </template>
 
@@ -43,7 +43,7 @@
 
 <style scoped>
 
-	.episode-container {
+	#episode-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -52,13 +52,14 @@
 		padding: 4px;
 	}
 
-	.thumbnail-container, .overlay {
+	#thumbnail-container, .overlay {
 		position: relative;
 		display: block;
-		height: 7em;
+		width: 200px;
+		height: 112px;
 	}
 
-	.overlay {
+	#overlay {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -73,20 +74,21 @@
 		align-items: center;
 	}
 	
-	.overlay:hover {
+	#overlay:hover {
 		opacity: 1;
 		cursor: pointer;
 	}
 
-	.episode-thumbnail {
+	#episode-thumbnail {
+		width: inherit;
 		height: inherit;
 	}
 
-	.episode-thumbnail, .overlay {
+	#episode-thumbnail, #overlay {
 		border-radius: var(--card-border-radius);
 	}
 
-	.overlay-container, .episode-info {
+	#overlay-container, #episode-info {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -98,7 +100,7 @@
 		font-size: 4em;
 	}
 
-	.episode-info {
+	#episode-info {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -106,7 +108,7 @@
 		
 	}
 
-	.episode-info * {
+	#episode-info * {
 		background-color: var(--overlay-background-color);
 		border-radius: var(--card-border-radius);
 		margin-left: 5px;
@@ -117,7 +119,7 @@
 		font-weight: 400;
 	}
 
-	.episode-title {
+	#episode-title {
 		margin-top: 5px;
 		width: calc(100% - 4px);
 		text-align: left;

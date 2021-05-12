@@ -7,7 +7,6 @@ import { changePageTitle } from "@utils/dom";
 // Views
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
-import Show from "@views/Show.vue";
 import Rooms from "@views/Rooms.vue";
 
 const router = createRouter({
@@ -18,18 +17,14 @@ const router = createRouter({
 			component: Home
 		},
 		{
-			path: "/shows",
-			component: Shows
-		},
-		{
-			path: "/shows/:showId",
-			component: Show,
+			path: "/shows/:showId?",
+			component: Shows,
 			props: true
 		},
 		{
 			path: "/rooms",
 			component: Rooms
-		},
+		}
 	]
 });
 

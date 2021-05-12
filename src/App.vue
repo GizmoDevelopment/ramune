@@ -153,6 +153,14 @@
 		stroke: var(--text-color);
 	}
 
+	.husk {
+		color: transparent;
+		border: none !important;
+		background-color: var(--background-color) !important;
+		user-select: none;
+		border-radius: var(--card-border-radius);
+	}
+
 	.anchor-without-decoration {
 		text-decoration: none;
 		color: inherit;

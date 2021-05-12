@@ -62,6 +62,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		margin-bottom: 1em;
 	}
 
 	a {

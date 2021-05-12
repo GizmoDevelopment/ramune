@@ -36,7 +36,7 @@ const router = createRouter({
 
 router.beforeEach(() =>{
 
-	changePageTitle("Ramune");
+	// changePageTitle("Ramune");
 
 	return true;
 });

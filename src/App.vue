@@ -153,12 +153,19 @@
 		stroke: var(--text-color);
 	}
 
-	.husk {
+	.husk, .husk-dark {
 		color: transparent;
 		border: none !important;
-		background-color: var(--background-color) !important;
 		user-select: none;
 		border-radius: var(--card-border-radius);
+	}
+
+	.husk {
+		background-color: var(--background-color) !important;
+	}
+
+	.husk-dark {
+		background-color: var(--container-background-color) !important;
 	}
 
 	.anchor-without-decoration {

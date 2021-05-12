@@ -1,11 +1,11 @@
 <template>
 	<div id="container">
-		<div id="poster" />
+		<div id="poster" class="husk-dark" />
 		<div id="information">
-			<p id="title">Example Anime Title</p>
+			<p id="title" class="husk-dark">Example Anime Title</p>
 			<div id="details">
-				<div id="rating">10/10</div>
-				<p id="season-count">50 Seaons</p>
+				<div id="rating" class="husk-dark">10/10</div>
+				<p id="season-count" class="husk-dark">50 Seaons</p>
 			</div>
 		</div>
 	</div>

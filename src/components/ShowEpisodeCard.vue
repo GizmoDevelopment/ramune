@@ -6,7 +6,7 @@
 				<div id="episode-index">{{ episode.id }}</div>
 				<div id="episode-duration">24:00</div>
 			</div>
-			<div id="overlay" @click="$emit('play-episode', episode.id)">
+			<div class="overlay" @click="$emit('play-episode', episode.id)">
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
@@ -52,29 +52,14 @@
 		padding: 4px;
 	}
 
-	#thumbnail-container, .overlay {
+	#thumbnail-container {
 		position: relative;
 		display: block;
 		width: 200px;
 		height: 112px;
 	}
-
-	#overlay {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		left: 0;
-		top: 0;
-		background-color: var(--overlay-background-color);
-		opacity: 0;
-		transition: opacity .2s ease;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-	}
 	
-	#overlay:hover {
+	.overlay:hover {
 		opacity: 1;
 		cursor: pointer;
 	}
@@ -84,7 +69,7 @@
 		height: inherit;
 	}
 
-	#episode-thumbnail, #overlay {
+	#episode-thumbnail {
 		border-radius: var(--card-border-radius);
 	}
 

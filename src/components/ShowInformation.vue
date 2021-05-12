@@ -1,7 +1,7 @@
 <template>
 	<div v-if="show">
 		<div id="show-information">
-			<img id="show-artwork" :src="show.poster_url">
+			<img id="show-poster" :src="show.poster_url">
 			<div id="show-details">
 				<h1 id="show-title" class="heading">{{ show.title }}</h1>
 				<div id="show-stats">
@@ -78,7 +78,7 @@
 		justify-content: flex-start;
 	}
 
-	#show-artwork {
+	#show-poster {
 		border-radius: var(--card-border-radius);
 		height: 280px;
 		width: auto;

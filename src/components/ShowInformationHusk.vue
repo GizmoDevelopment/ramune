@@ -1,5 +1,5 @@
 <template>
-	<div id="show-information" class="husk">
+	<div id="show-information">
 		<div id="show-artwork" class="husk" />
 		<div id="show-details">
 			<h1 id="show-title" class="heading husk">This is an empty title</h1>
@@ -34,7 +34,7 @@
 
 	#show-artwork {
 		border-radius: var(--card-border-radius);
-		width: 186px;
+		min-width: 186px;
 		height: 280px;
 	}
 

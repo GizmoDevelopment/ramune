@@ -1,5 +1,5 @@
 <template>
-	<div v-if="show.id === 'lol'">
+	<div v-if="show && show.id === 'lol'">
 		<div class="show-information">
 			<img :src="show.poster_url" class="show-artwork">
 			<div class="show-details">
@@ -56,7 +56,7 @@
 		props: {
 			show: {
 				type: Object as PropType<Show> | null,
-				required: true
+				default: null
 			}
 		},
 		computed: {

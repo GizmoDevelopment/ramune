@@ -54,7 +54,7 @@
 		props: {
 			showId: {
 				type: String,
-				default: null
+				default: ""
 			}
 		},
 		data () {
@@ -65,6 +65,8 @@
 			};
 		},
 		async mounted () {
+
+			if (this.showId) this.popupStatus = "loading";
 
 			const cachedShows = this.$store.state.shows;
 
@@ -115,12 +117,11 @@
 			selectShow (show: Show | null) {
 
 				this.selectedShow = show;
+				this.popupStatus = 0;
 
 				if (show) {
-					this.popupStatus = "loading";
 					this.$router.push(`/shows/${ show.id }`);
 				} else {
-					this.popupStatus = 0;
 					this.$router.push("/shows");
 				}
 

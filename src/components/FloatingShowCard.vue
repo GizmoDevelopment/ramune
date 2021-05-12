@@ -1,7 +1,7 @@
 <template>
 	<transition name="fade-overlay">
 		<div
-			v-if="show"
+			v-if="show || status"
 			class="overlay"
 			@click="$emit('dismiss')"
 		/>
@@ -16,18 +16,13 @@
 				<div class="popup-title-bar">
 					<Close class="popup-close-button" @click="$emit('dismiss')" />
 				</div>
-				<div v-if="show">
+				<div v-if="status && status !== 'loading'">
+					<Error :text="status" />
+				</div>
+				<div v-else>
 					<ShowInformation
 						:show="show"
 					/>
-				</div>
-				<div v-else-if="status">
-					<div v-if="status === 'loading'">
-						<LoadingBuffer />
-					</div>
-					<div v-else>
-						<Error :text="status" />
-					</div>
 				</div>
 			</div>
 		</div>
@@ -41,7 +36,6 @@
 
 	// Components
 	import Error from "@components/Error.vue";
-	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import ShowInformation from "@components/ShowInformation.vue";
 
 	// Icons
@@ -55,17 +49,16 @@
 		components: {
 			Close,
 			Error,
-			LoadingBuffer,
 			ShowInformation
 		},
 		props: {
 			show: {
-				type: Object as PropType<Show>,
+				type: Object as PropType<Show> | null,
 				required: true
 			},
 			status: {
-				type: String,
-				default: ""
+				type: [ String, Number ],
+				default: 0
 			}
 		},
 		emits: [ "dismiss" ]

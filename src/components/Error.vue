@@ -11,7 +11,7 @@
 		name: "Error",
 		props: {
 			text: {
-				type: String,
+				type: [ String, Number ],
 				default: "Something went wrong"
 			}
 		},
@@ -21,16 +21,16 @@
 			};
 		},
 		mounted () {
-			if (parseInt(this.text) > 0) {
-				switch (parseInt(this.text)) {
+			if (typeof this.text === "number" && this.text > 0) {
+				switch (this.text) {
 					case 404:
 						this.label = "Not found :(";
 						break;
 					default:
-						this.label = this.text;
+						this.label = `${ this.text }`;
 				}
 			} else {
-				this.label = this.text;
+				this.label = `${ this.text }`;
 			}
 		}
 	});

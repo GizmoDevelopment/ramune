@@ -77,6 +77,7 @@
 		/* Values */
 		--card-border-radius: 3px;
 		--popup-border-radius: 10px;
+		--overlay-background-color: rgba(0, 0, 0, .7);
 
 	}
 

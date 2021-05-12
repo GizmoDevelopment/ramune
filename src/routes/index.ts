@@ -8,6 +8,7 @@ import { changePageTitle } from "@utils/dom";
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
 import Rooms from "@views/Rooms.vue";
+import Player from "@views/Player.vue";
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -24,6 +25,11 @@ const router = createRouter({
 		{
 			path: "/rooms",
 			component: Rooms
+		},
+		{
+			path: "/watch/:showId/:episodeId?",
+			component: Player,
+			props: true
 		}
 	]
 });

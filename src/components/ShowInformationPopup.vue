@@ -16,13 +16,16 @@
 				<div class="popup-title-bar">
 					<Close class="popup-close-button" @click="$emit('dismiss')" />
 				</div>
-				<div v-if="status && status !== 'loading'">
-					<Error :text="status" />
-				</div>
-				<div v-else>
+				<div v-if="show">
 					<ShowInformation
 						:show="show"
 					/>
+				</div>
+				<div v-else-if="status && status !== 'loading'">
+					<Error :text="status" />
+				</div>
+				<div v-else>
+					<ShowInformationHusk />
 				</div>
 			</div>
 		</div>
@@ -37,6 +40,7 @@
 	// Components
 	import Error from "@components/Error.vue";
 	import ShowInformation from "@components/ShowInformation.vue";
+	import ShowInformationHusk from "@components/ShowInformationHusk.vue";
 
 	// Icons
 	import Close from "@assets/icons/close.svg";
@@ -49,7 +53,8 @@
 		components: {
 			Close,
 			Error,
-			ShowInformation
+			ShowInformation,
+			ShowInformationHusk
 		},
 		props: {
 			show: {

@@ -1,9 +1,6 @@
 // Modules
 import { createRouter, createWebHistory } from "vue-router";
 
-// Utils
-import { changePageTitle } from "@utils/dom";
-
 // Views
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";

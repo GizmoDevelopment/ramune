@@ -48,5 +48,5 @@ export async function getShow (showId: string): Promise<Show|null> {
 }
 
 export function getStreamURL (showId: string, episodeId: number): string {
-	return `${ SHOW_ENDPOINT }/shows/${ showId }/${ episodeId }/stream`;
+	return `${ SHOW_ENDPOINT }/shows/${ showId }/episodes/${ episodeId }/stream`;
 }

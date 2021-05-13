@@ -26,7 +26,12 @@ const router = createRouter({
 		{
 			path: "/watch/:showId/:episodeId?",
 			component: Player,
-			props: true
+			props: (route) => {
+				return {
+					showId: route.params.showId,
+					episodeId: Number(route.params.episodeId)
+				};
+			}
 		}
 	]
 });

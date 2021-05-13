@@ -11,14 +11,9 @@
 				<p id="show-description">{{ formattedDescription }}</p>
 			</div>
 		</div>
-		<div id="season-container">
-			<div v-for="season in show.seasons" :key="season.title">
-				<ShowSeasonEpisodeList
-					:season="season"
-					@play-episode="playEpisode"
-				/>
-			</div>
-		</div>
+		<ShowSeasonList
+			:show="show"
+		/>
 	</div>
 </template>
 
@@ -29,7 +24,7 @@
 
 	// Components
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
-	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
+	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Types
 	import { Show, Season } from "@typings/show";
@@ -38,7 +33,7 @@
 		name: "ShowInformation",
 		components: {
 			ShowScoreLabel,
-			ShowSeasonEpisodeList
+			ShowSeasonList
 		},
 		props: {
 			show: {
@@ -58,11 +53,6 @@
 			},
 			formattedDescription (): string {
 				return this.show?.description?.replace(/\\n/g, "\n") || "";
-			}
-		},
-		methods: {
-			playEpisode (episodeId: number) {
-				this.$router.push(`/watch/${ this.show.id }/${ episodeId }`);
 			}
 		}
 	});

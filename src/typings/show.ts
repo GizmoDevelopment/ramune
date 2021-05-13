@@ -8,11 +8,15 @@ export interface Show {
 }
 
 export interface Season {
+	id: number;
     title: string;
     episodes: Episode[];
 }
 
 export interface Episode {
-    title: string;
+    id: number;
+	title: string;
     thumbnail_url: string;
+	duration: number;
+	stream_url: string;
 }

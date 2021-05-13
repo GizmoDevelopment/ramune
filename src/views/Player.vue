@@ -10,6 +10,7 @@
 			controls
 
 			:src="streamURL"
+			:poster="episode.thumbnail_url"
 		/>
 		<ShowSeasonList
 			:show="show"

@@ -140,7 +140,7 @@
 		text-align: left;
 	}
 
-	.opaque-label {
+	.faded {
 		opacity: .5;
 	}
 

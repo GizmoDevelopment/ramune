@@ -1,5 +1,5 @@
 <template>
-	<h3 class="opaque-label">{{ label }}</h3>
+	<h3 class="faded">{{ label }}</h3>
 </template>
 
 <script lang="ts">

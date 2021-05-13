@@ -108,8 +108,4 @@
 		white-space: pre-line;
 	}
 
-	#season-container {
-		width: 100%;
-	}
-
 </style>

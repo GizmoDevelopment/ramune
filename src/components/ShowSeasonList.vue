@@ -39,3 +39,11 @@
 	});
 
 </script>
+
+<style scoped>
+
+	#season-container {
+		width: 100%;
+	}
+
+</style>

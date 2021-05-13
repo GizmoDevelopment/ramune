@@ -1,7 +1,19 @@
 <template>
-	<div v-if="show">
-		{{ show.title }}
-		{{ episodeId }}
+	<div v-if="show && episode">
+		<h1 id="show-title" class="heading">{{ show.title }}</h1>
+		<h3 id="episode-title" class="faded">Episode {{ episode.id }} - {{ episode.title }}</h3>
+		<video
+
+			id="video-player"
+
+			playsinline
+			controls
+
+			:src="streamURL"
+		/>
+		<ShowSeasonList
+			:show="show"
+		/>
 	</div>
 	<div v-else-if="status">
 		<Error :text="status" />
@@ -19,18 +31,21 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
+	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Utils
-	import { getShow } from "@utils/api";
+	import { getShow, getStreamURL } from "@utils/api";
+	import { getEpisodeById } from "@utils/show";
 
 	// Types
-	import { Show } from "@typings/show";
+	import { Show, Episode } from "@typings/show";
 
 	export default defineComponent({
 		name: "Player",
 		components: {
 			LoadingBuffer,
-			Error
+			Error,
+			ShowSeasonList
 		},
 		props: {
 			showId: {
@@ -45,8 +60,19 @@
 		data () {
 			return {
 				show: null as Show | null,
+				episode: null as Episode | null,
 				status: "" as string | number
 			};
+		},
+		computed: {
+			streamURL (): string {
+				return getStreamURL(this.showId, this.episodeId);
+			}
+		},
+		watch: {
+			episodeId (_episodeId: number) {
+				this.setEpisode(_episodeId);
+			}
 		},
 		async mounted () {
 
@@ -74,7 +100,33 @@
 
 			}
 
+			this.setEpisode(this.episodeId);
+		},
+		methods: {
+			setEpisode (episodeId: number) {
+				if (this.show) {
+					this.episode = getEpisodeById(this.show, episodeId);
+				}
+			}
 		}
 	});
 
 </script>
+
+<style scoped>
+
+	#show-title {
+		margin-bottom: .1em;
+	}
+
+	#episode-title {
+		text-align: left;
+		margin-top: 0;
+	}
+
+	#video-player {
+		width: 100%;
+		height: auto;
+	}
+
+</style>

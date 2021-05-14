@@ -127,12 +127,13 @@
 	}
 
 	#popup-title-bar {
-		width: calc(100% + 1em); /* Push into padding so the close button sits properly in the corner */
+		width: calc(100% + 2em); /* Push into padding so the close button sits properly in the corner */
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2em;
+		margin-left: -1em;
 	}
 
 	#popup-title-bar h2 {

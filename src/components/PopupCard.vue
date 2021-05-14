@@ -12,7 +12,11 @@
 			id="content-container"
 			@click="$emit('dismiss')"
 		>
-			<div id="content" @click.stop>
+			<div
+				id="content"
+				:style="alignment"
+				@click.stop
+			>
 				<div id="popup-title-bar">
 					<h2>{{ title }}</h2>
 					<Close class="popup-close-button" @click="$emit('dismiss')" />
@@ -44,9 +48,23 @@
 			visible: {
 				type: Boolean,
 				default: false
+			},
+			align: {
+				type: String,
+				default: "center",
+				validator: (prop: string) => [
+					"left",
+					"center",
+					"right"
+				].includes(prop)
 			}
 		},
-		emits: [ "dismiss" ]
+		emits: [ "dismiss" ],
+		computed: {
+			alignment (): string {
+				return `{ align-items: ${ this.align }; }`;
+			}
+		}
 	});
 
 </script>
@@ -102,7 +120,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: center;
 		padding-top: 1em;
 		padding-bottom: 1em;
 		padding-left: 2em;
@@ -121,7 +138,7 @@
 	#popup-title-bar h2 {
 		margin-top: 0;
 		margin-bottom: 0;
-		margin-right: 70px;
+		margin-right: 10em;
 	}
 
 	.popup-close-button {
@@ -130,6 +147,14 @@
 
 	.popup-close-button:hover {
 		cursor: pointer;
+	}
+
+	@media only screen and (max-width: 600px) {
+
+		#popup-title-bar h2 {
+			margin-right: 0;
+		}
+
 	}
 
 </style>

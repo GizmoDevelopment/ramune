@@ -194,12 +194,14 @@
 
 	#room-preview-container p {
 		text-align: left;
+		margin-bottom: 0;
 	}
 
 	#room-preview {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		margin-top: 0;
 	}
 
 </style>

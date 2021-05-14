@@ -3,6 +3,7 @@
 		<div v-for="season in show.seasons" :key="season.title">
 			<ShowSeasonEpisodeList
 				:season="season"
+				:selected-episode-id="selectedEpisodeId"
 				@play-episode="playEpisode"
 			/>
 		</div>
@@ -29,6 +30,10 @@
 			show: {
 				type: Object as PropType<Show>,
 				required: true
+			},
+			selectedEpisodeId: {
+				type: Number,
+				default: 0
 			}
 		},
 		methods: {

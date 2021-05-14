@@ -14,6 +14,7 @@
 		/>
 		<ShowSeasonList
 			:show="show"
+			:selected-episode-id="episodeId"
 		/>
 	</div>
 	<div v-else-if="status">

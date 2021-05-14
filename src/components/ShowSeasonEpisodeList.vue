@@ -16,6 +16,7 @@
 		>
 			<ShowEpisodeCard
 				:episode="episode"
+				:active="episode.id === selectedEpisodeId"
 				@play-episode="playEpisode"
 			/>
 		</div>
@@ -46,6 +47,10 @@
 			season: {
 				type: Object as PropType<Season>,
 				required: true
+			},
+			selectedEpisodeId: {
+				type: Number,
+				default: 0
 			}
 		},
 		emits: [ "play-episode" ],

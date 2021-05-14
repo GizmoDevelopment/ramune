@@ -6,7 +6,11 @@
 				<div id="episode-index">{{ episode.id }}</div>
 				<div id="episode-duration">24:00</div>
 			</div>
-			<div class="overlay" @click="$emit('play-episode', episode.id)">
+			<div
+				:id="active && 'active' || ''" 
+				class="overlay"
+				@click="$emit('play-episode', episode.id)"
+			>
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
@@ -34,6 +38,10 @@
 			episode: {
 				type: Object as PropType<Episode>,
 				required: true
+			},
+			active: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: [ "play-episode" ]
@@ -59,7 +67,7 @@
 		height: 112px;
 	}
 	
-	.overlay:hover {
+	.overlay:hover, #active {
 		opacity: 1;
 		cursor: pointer;
 	}

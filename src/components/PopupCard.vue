@@ -120,26 +120,28 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		align-items: center;
 		padding-top: 1em;
 		padding-bottom: 1em;
-		padding-left: 2em;
-		padding-right: 2em;
+		padding-left: 1em;
+		padding-right: 1em;
 	}
 
 	#popup-title-bar {
-		width: calc(100% + 2em); /* Push into padding so the close button sits properly in the corner */
+		width: 100%; /* Push into padding so the close button sits properly in the corner */
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2em;
-		margin-left: -1em;
 	}
 
 	#popup-title-bar h2 {
+		flex: 1;
 		margin-top: 0;
 		margin-bottom: 0;
 		margin-right: 10em;
+		text-align: left;
 	}
 
 	.popup-close-button {
@@ -150,10 +152,10 @@
 		cursor: pointer;
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 500px) {
 
 		#popup-title-bar h2 {
-			margin-right: 0;
+			margin-right: 1em;
 		}
 
 	}

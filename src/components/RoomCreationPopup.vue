@@ -24,9 +24,7 @@
 				/>
 			</div>
 		</div>
-		<div id="create-room-button">
-			<button class="button" @click="createRoom">Create</button>
-		</div>
+		<button class="button" @click="createRoom">Create</button>
 	</PopupCard>
 </template>
 
@@ -125,16 +123,6 @@
 
 	.form-row p {
 		font-size: 1.2em;
-	}
-
-	#create-room-button {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-
-	#create-room-button button {
-		width: 50%;
 	}
 
 	#room-preview-container {

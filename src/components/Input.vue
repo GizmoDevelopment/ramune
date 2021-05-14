@@ -29,7 +29,7 @@
 
 				const target = <HTMLInputElement>e.target;
 
-				this.$emit("update", target.value);
+				this.$emit("update", target.value || target.placeholder);
 			}
 		}
 	});

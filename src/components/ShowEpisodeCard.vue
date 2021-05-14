@@ -8,7 +8,7 @@
 			</div>
 			<div
 				:id="active && 'active' || ''" 
-				class="overlay"
+				class="overlay hover-opacity"
 				@click="$emit('play-episode', episode.id)"
 			>
 				<Play class="overlay-play-icon" />

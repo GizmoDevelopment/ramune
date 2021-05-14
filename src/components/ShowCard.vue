@@ -10,7 +10,7 @@
 				:src="show.poster_url"
 				draggable="false"
 			>
-			<div class="overlay" @click="$emit('select-show', show)">
+			<div class="overlay hover-opacity" @click="$emit('select-show', show)">
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>

@@ -197,12 +197,20 @@
 		top: 0;
 		background-color: var(--overlay-background-color);
 		border-radius: var(--card-border-radius);
-		opacity: 0;
 		transition: opacity .2s ease;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.hover-opacity {
+		opacity: 0;
+		transition: opacity .2s ease-in-out;
+	}
+
+	.hover-opacity:hover {
+		opacity: 1;
 	}
 
 	.anchor-without-decoration {

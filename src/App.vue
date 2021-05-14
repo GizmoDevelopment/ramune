@@ -140,6 +140,27 @@
 		text-align: left;
 	}
 
+	.button {
+		background-color: var(--primary-color);
+		color: var(--text-color);
+		border: 2px solid var(--primary-color);
+		border-radius: var(--popup-border-radius);
+		font-weight: bold;
+		font-size: 1.5em;
+		transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		padding: 4px;
+	}
+
+	.button:hover {
+		background-color: var(--primary-hover-color);
+		border-color: var(--primary-hover-color);
+	}
+
 	.faded {
 		opacity: .5;
 	}

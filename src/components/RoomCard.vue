@@ -1,7 +1,7 @@
 <template>
 	<div id="container">
 		<div id="title-bar">
-			<h1 id="room-name">{{ room.name }}</h1>
+			<h2 id="room-name">{{ room.name }}</h2>
 			<button class="button">
 				<CaretRight />
 			</button>

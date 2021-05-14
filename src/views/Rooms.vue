@@ -36,7 +36,7 @@
 					</div>
 					<div id="room-preview-container" class="form-row">
 						<p>Preview</p>
-						<div v-if="roomPreviewObject">
+						<div v-if="roomPreviewObject" id="room-preview">
 							<RoomCard
 								:room="roomPreviewObject"
 							/>
@@ -178,11 +178,19 @@
 	}
 
 	#room-preview-container * {
-		width: 100%;
+		margin: 0;
+		margin-bottom: .5em;
+		margin-top: 1em;
 	}
 
 	#room-preview-container p {
 		text-align: left;
+	}
+
+	#room-preview {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 
 </style>

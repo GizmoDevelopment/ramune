@@ -87,4 +87,16 @@
 		border: 2px solid var(--primary-color);
 	}
 
+	@media only screen and (max-width: 600px) {
+		
+		#container {
+			width: 300px;
+		}
+
+		#room-name {
+			font-size: 1em;
+		}
+
+	}
+
 </style>

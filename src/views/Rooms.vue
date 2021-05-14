@@ -23,14 +23,15 @@
 					title="Create a room"
 					align="left"
 					:visible="isCreatingRoom"
-					@dismiss="isCreatingRoom = false"
+					@dismiss="clearRoomPopup()"
 				>
 					<div class="form-row">
-						<p>Room name</p>
+						<p>Name</p>
 						<Input
 							class="input-dark"
 							type="text"
-							placeholder="Anime Night"
+							placeholder="Anime night"
+							limit="25"
 							@update="generateRoomPreview"
 						/>
 					</div>
@@ -111,7 +112,7 @@
 				}
 			});
 
-			this.generateRoomPreview("anime night");
+			this.generateRoomPreview("Anime night");
 
 		},
 		methods: {
@@ -125,6 +126,10 @@
 						data: null
 					};
 				}
+			},
+			clearRoomPopup () {
+				this.isCreatingRoom = false;
+				this.generateRoomPreview("Anime night");
 			}
 		}
 	});
@@ -156,6 +161,10 @@
 
 	.form-row * {
 		margin-right: .5em;
+	}
+
+	.form-row input {
+		flex: 1;
 	}
 
 	.form-row p {

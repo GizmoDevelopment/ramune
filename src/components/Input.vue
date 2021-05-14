@@ -2,6 +2,7 @@
 	<input
 		:type="type"
 		:placeholder="placeholder"
+		:maxlength="limit"
 		@input="inputChange"
 	>
 </template>
@@ -21,6 +22,10 @@
 			placeholder: {
 				type: String,
 				default: "Placeholder"
+			},
+			limit: {
+				type: Number,
+				default: Infinity
 			}
 		},
 		emits: [ "update" ],

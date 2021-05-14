@@ -13,3 +13,7 @@ export type RoomData = null | {
     showId: string;
     episodeId: string;
 };
+
+export interface RoomOptions {
+	name: string;
+}

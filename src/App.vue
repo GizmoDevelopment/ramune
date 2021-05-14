@@ -161,6 +161,31 @@
 		border-color: var(--primary-hover-color);
 	}
 
+	.input, .input-dark {
+		color: var(--text-color);
+		border: 2px solid;
+		border-radius: var(--popup-border-radius);
+		font-size: 1.1em;
+		outline: none;
+		padding-left: .3em;
+		padding-right: .3em;
+		transition: border-color .2s ease-in-out;
+	}
+
+	.input {
+		background-color: var(--container-background-color);
+		border-color: var(--container-background-color);
+	}
+
+	.input-dark {
+		background-color: var(--background-color);
+		border-color: var(--background-color);
+	}
+
+	.input:focus {
+		border-color: var(--primary-color);
+	}
+
 	.faded {
 		opacity: .5;
 	}

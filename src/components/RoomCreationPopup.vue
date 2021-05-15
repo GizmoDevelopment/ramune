@@ -6,6 +6,11 @@
 		:visible="visible"
 		@dismiss="clearRoomPopup()"
 	>
+		<Error
+			v-if="status"
+			id="error-label"
+			:text="status"
+		/>
 		<div class="form-row">
 			<p>Name</p>
 			<Input
@@ -24,7 +29,12 @@
 				/>
 			</div>
 		</div>
-		<button class="button" @click="createRoom">Create</button>
+		<div v-if="debounce">
+			<LoadingBuffer />
+		</div>
+		<div v-else>
+			<button class="button" @click="createRoom">Create</button>
+		</div>
 	</PopupCard>
 </template>
 
@@ -37,6 +47,8 @@
 	import RoomCard from "@components/RoomCard.vue";
 	import PopupCard from "@components/PopupCard.vue";
 	import Input from "@components/Input.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import Error from "@components/Error.vue";
 
 	// Utils
 	import { getUserFromAuthenticatedUser } from "@utils/user";
@@ -51,7 +63,9 @@
 		components: {
 			PopupCard,
 			Input,
-			RoomCard
+			RoomCard,
+			LoadingBuffer,
+			Error
 		},
 		props: {
 			visible: {
@@ -63,12 +77,21 @@
 		data () {
 			return {
 				roomPreviewObject: null as Room | null,
-				roomOptions: { name: "" } as RoomOptions
+				roomOptions: { name: "" } as RoomOptions,
+				debounce: false,
+				status: ""
 			};
 		},
 		computed: {
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
+			}
+		},
+		watch: {
+			visible (newState: boolean) {
+				if (newState) {
+					this.status = "";
+				}
 			}
 		},
 		mounted () {
@@ -98,11 +121,17 @@
 			},
 			createRoom () {
 				
+				this.debounce = true;
+				
 				this.$socket.emit("client:create_room", this.roomOptions, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
 						this.$store.commit("JOIN_ROOM", res.data);
 						this.$router.push(`/rooms/${ res.data.id }`);
 					} else {
+
+						this.debounce = false;
+						this.status = res.message;
+
 						console.error(res.message);
 					}
 				});
@@ -114,6 +143,12 @@
 </script>
 
 <style scoped>
+
+	#error-label {
+		margin-top: 0;
+		margin-bottom: 0;
+		color: var(--error-color);
+	}
 
 	.form-row {
 		width: 100%;

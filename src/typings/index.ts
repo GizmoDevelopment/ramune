@@ -1,6 +1,5 @@
 interface BaseResponse {
 	type: "success" | "error";
-	data?: any;
 	message?: string;
 }
 

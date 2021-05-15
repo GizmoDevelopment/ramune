@@ -21,7 +21,6 @@
 				<RoomCreationPopup
 					:visible="isCreatingRoom"
 					@dismiss="isCreatingRoom = false"
-					@create-room="createRoom"
 				/>
 			</div>
 			<div v-else>
@@ -49,7 +48,7 @@
 	import Plus from "@assets/icons/plus.svg";
 
 	// Types
-	import { Room, RoomOptions } from "@typings/room";
+	import { Room } from "@typings/room";
 	import { SuccessResponse, ErrorResponse } from "@typings/index";
 
 	export default defineComponent({
@@ -74,19 +73,14 @@
 		},
 		mounted () {
 
-			this.$socket.emit("client:fetch_rooms", ({ type, message, data }: SuccessResponse<Room[]> | ErrorResponse) => {
-				if (type === "success" && data) {
-					this.rooms = data;
+			this.$socket.emit("client:fetch_rooms", (res: SuccessResponse<Room[]> | ErrorResponse) => {
+				if (res.type === "success") {
+					this.rooms = res.data;
 				} else {
-					console.error(message);
+					console.error(res.message);
 				}
 			});
 
-		},
-		methods: {
-			createRoom (options: RoomOptions) {
-				//
-			}
 		}
 	});
 

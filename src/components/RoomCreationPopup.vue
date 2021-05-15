@@ -42,7 +42,9 @@
 	import { getUserFromAuthenticatedUser } from "@utils/user";
 
 	// Types
+	import { SuccessResponse, ErrorResponse } from "@typings/index";
 	import { Room, RoomOptions } from "@typings/room";
+	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "RoomCreationPopup",
@@ -65,7 +67,7 @@
 			};
 		},
 		computed: {
-			user () {
+			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
 			}
 		},
@@ -95,7 +97,16 @@
 				this.$emit("dismiss");
 			},
 			createRoom () {
-				this.$emit("create-room", this.roomOptions);
+				
+				this.$socket.emit("client:create_room", this.roomOptions, (res: SuccessResponse<Room> | ErrorResponse) => {
+					if (res.type === "success") {
+						this.$store.commit("JOIN_ROOM", res.data);
+						this.$router.push(`/rooms/${ res.data.id }`);
+					} else {
+						console.error(res.message);
+					}
+				});
+
 			}
 		}
 	});

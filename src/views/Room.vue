@@ -1,6 +1,7 @@
 <template>
 	<div v-if="room">
-		{{ room.name }}
+		<h1 class="heading">{{ room.name }}</h1>
+		<RoomUserList :room="room" />
 	</div>
 	<div v-else-if="status">
 		<Error :text="status" />
@@ -18,16 +19,19 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
+	import RoomUserList from "@components/RoomUserList.vue";
 
 	// Types
 	import { Room } from "@typings/room";
 	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "Room",
 		components: {
 			LoadingBuffer,
-			Error
+			Error,
+			RoomUserList
 		},
 		props: {
 			roomId: {
@@ -41,20 +45,34 @@
 				status: ""
 			};
 		},
-		async mounted () {
-
-			if (this.$store.state.room) {
-				this.room = this.$store.state.room;
-			} else {
+		computed: {
+			user (): AuthenticatedUser | null {
+				return this.$store.state.user;
+			}
+		},
+		watch: {
+			user (newUser) {
+				if (newUser) {
+					this.joinRoom();
+				}
+			}
+		},
+		mounted () {
+			if (this.user) {
+				this.joinRoom();
+			}
+		},
+		methods: {
+			joinRoom () {
 				this.$socket.emit("client:join_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
+						this.$store.commit("JOIN_ROOM", res.data);
 						this.room = res.data;
 					} else {
 						this.status = res.message;
 					}
 				});
 			}
-
 		}
 	});
 

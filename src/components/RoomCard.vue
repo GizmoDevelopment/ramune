@@ -6,15 +6,7 @@
 				<CaretRight />
 			</button>
 		</div>
-		<div id="user-container">
-			<div v-for="user in room.users" :key="user.id">
-				<img
-					class="user-avatar"
-					:class="{ host: isHost(user) }"
-					:src="user.avatar_url"
-				>
-			</div>
-		</div>
+		<RoomUserList :room="room" />
 	</div>
 </template>
 
@@ -23,27 +15,25 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Components
+	import RoomUserList from "@components/RoomUserList.vue";
+
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg";
 
 	// Types
 	import { Room } from "@typings/room";
-	import { User } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "RoomCard",
 		components: {
-			CaretRight
+			CaretRight,
+			RoomUserList
 		},
 		props: {
 			room: {
 				type: Object as PropType<Room>,
 				required: true
-			}
-		},
-		methods: {
-			isHost (user: User) {
-				return user.id === this.room.host.id;
 			}
 		}
 	});
@@ -75,16 +65,6 @@
 	#room-name {
 		margin-top: 0;
 		margin-bottom: 0;
-	}
-
-	.user-avatar {
-		border-radius: 100%;
-		height: 3em;
-		width: 3em;
-	}
-
-	.host {
-		border: 2px solid var(--primary-color);
 	}
 
 	@media only screen and (max-width: 600px) {

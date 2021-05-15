@@ -70,9 +70,10 @@
 		--text-color: white;
 		--container-background-color: #1C1C1C;
 		--background-color: #101010;
-		--primary-color: hsl(199, 100%, 66%);
-		--primary-hover-color: #4886a3;
+		--primary-color: hsl(199, 95%, 60%);
+		--primary-hover-color: hsl(199, 95%, 30%);
 		--transparent-hover-color: rgba(28, 28, 28, .5);
+		--error-color: hsl(0, 95%, 60%);
 
 		/* Values */
 		--card-border-radius: 3px;

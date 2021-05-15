@@ -125,7 +125,6 @@
 				
 				this.$socket.emit("client:create_room", this.roomOptions, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
-						this.$store.commit("JOIN_ROOM", res.data);
 						this.$router.push(`/rooms/${ res.data.id }`);
 					} else {
 

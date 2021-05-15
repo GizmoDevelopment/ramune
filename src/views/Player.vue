@@ -2,15 +2,9 @@
 	<div v-if="show && episode">
 		<h1 id="show-title" class="heading">{{ show.title }}</h1>
 		<h3 id="episode-title" class="faded">Episode {{ episode.id }} - {{ episode.title }}</h3>
-		<video
-
-			id="video-player"
-
-			playsinline
-			controls
-
-			:src="streamURL"
-			:poster="episode.thumbnail_url"
+		<Video
+			:show="show"
+			:episode="episode"
 		/>
 		<ShowSeasonList
 			:show="show"
@@ -34,10 +28,11 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
 	import ShowSeasonList from "@components/ShowSeasonList.vue";
+	import Video from "@components/Video.vue";
 
 	// Utils
-	import { getShow, getStreamURL } from "@utils/api";
 	import { getEpisodeById } from "@utils/show";
+	import { getShow } from "@utils/api";
 
 	// Types
 	import { Show, Episode } from "@typings/show";
@@ -47,7 +42,8 @@
 		components: {
 			LoadingBuffer,
 			Error,
-			ShowSeasonList
+			ShowSeasonList,
+			Video
 		},
 		props: {
 			showId: {
@@ -65,11 +61,6 @@
 				episode: null as Episode | null,
 				status: "" as string | number
 			};
-		},
-		computed: {
-			streamURL (): string {
-				return getStreamURL(this.showId, this.episodeId);
-			}
 		},
 		watch: {
 			episodeId (_episodeId: number) {

@@ -1,14 +1,25 @@
 <template>
-	<video
+	<div id="video-container">
+		<video
 
-		id="video-player"
+			id="video-player"
 
-		playsinline
-		controls
+			playsinline
+			controls
 
-		:src="url"
-		:poster="episode.thumbnail_url"
-	/>
+			:src="url"
+			:poster="episode.thumbnail_url"
+		>
+			<template v-for="(subtitleURL, language) in episode.subtitles" :key="language">
+				<track
+					kind="subtitles"
+					:srclang="language"
+					:src="subtitleURL"
+					:default="language === 'en' ? true : false"
+				>
+			</template>
+		</video>
+	</div>
 </template>
 
 <script lang="ts">
@@ -42,3 +53,12 @@
 	});
 
 </script>
+
+<style scoped>
+
+	#video-player {
+		width: 100%;
+		height: 100%;
+	}
+
+</style>

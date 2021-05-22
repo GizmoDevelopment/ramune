@@ -20,7 +20,7 @@
 		},
 		props: {
 			score: {
-				type: Number,
+				type: String,
 				required: true
 			}
 		}

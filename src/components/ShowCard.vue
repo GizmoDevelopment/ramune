@@ -87,11 +87,6 @@
 		border-radius: 5px;
 	}
 
-	.overlay:hover {
-		opacity: 1;
-		cursor: pointer;
-	}
-
 	.overlay-play-icon {
 		font-size: 4em;
 	}

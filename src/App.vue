@@ -264,6 +264,7 @@
 
 	.hover-opacity:hover {
 		opacity: 1;
+		cursor: pointer;
 	}
 
 	.anchor-without-decoration {

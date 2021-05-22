@@ -67,7 +67,7 @@
 		height: 112px;
 	}
 	
-	.overlay:hover, #active {
+	#active {
 		opacity: 1;
 		cursor: pointer;
 	}

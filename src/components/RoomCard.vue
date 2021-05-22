@@ -40,14 +40,18 @@
 		methods: {
 			joinRoom () {
 				if (this.room.id !== "") { // Don't join from dummy room cards
-					this.$socket.emit("client:join_room", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
-						if (res.type === "success") {
-							this.$store.commit("JOIN_ROOM", res.data);
-							this.$router.push(`/rooms/${ res.data.id }`);
-						} else {
-							console.error(res.message);
-						}
-					});
+					if (this.$store.state.room?.id === this.room.id) {
+						this.$router.push(`/rooms/${ this.room.id }`);
+					} else {
+						this.$socket.emit("client:join_room", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
+							if (res.type === "success") {
+								this.$store.commit("JOIN_ROOM", res.data);
+								this.$router.push(`/rooms/${ res.data.id }`);
+							} else {
+								console.error(res.message);
+							}
+						});
+					}
 				}
 			}
 		}

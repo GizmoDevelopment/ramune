@@ -3,7 +3,7 @@
 	<div id="content-container">
 		<div id="content">
 			<router-view v-slot="{ Component }">
-				<transition name="fade-view" mode="out-in">
+				<transition name="view" mode="out-in">
 					<component :is="Component" />
 				</transition>
 			</router-view>
@@ -75,16 +75,16 @@
 			}
 		},
 		sockets: {
-			"client:join_room": function (user: User) {
+			"client:join_room" (user: User) {
 				this.$store.commit("USER_JOIN_ROOM", user);
 			},
-			"client:leave_room": function (userId: number) {
+			"client:leave_room" (userId: number) {
 				this.$store.commit("USER_LEAVE_ROOM", userId);
 			},
-			"client:update_room": function (room: Room) {
+			"client:update_room" (room: Room) {
 				this.$store.commit("UPDATE_ROOM", room);
 			},
-			"client:update_room_data": function (roomData: RoomData) {
+			"client:update_room_data" (roomData: RoomData) {
 				this.$store.commit("UPDATE_ROOM_DATA", roomData);
 			}
 		}
@@ -137,13 +137,13 @@
 		}
 	}
 
-	.fade-view-enter-active,
-	.fade-view-leave-active {
-		transition: all .3s ease;
+	.view-enter-active,
+	.view-leave-active {
+		transition: transform .3s ease, opacity .3s ease;
 	}
 
-	.fade-view-enter-from,
-	.fade-view-leave-to {
+	.view-enter-from,
+	.view-leave-to {
 		opacity: 0;
 		transform: translateY(2em);
 	}

@@ -42,11 +42,4 @@ const router = createRouter({
 	]
 });
 
-router.beforeEach(() =>{
-
-	// changePageTitle("Ramune");
-
-	return true;
-});
-
 export default router;

@@ -94,6 +94,7 @@
 
 	.overlay, #content-container {
 		position: fixed;
+		z-index: 20;
 	}
 
 	#content-container {

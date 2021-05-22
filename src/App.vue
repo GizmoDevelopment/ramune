@@ -8,6 +8,9 @@
 				</transition>
 			</router-view>
 		</div>
+		<div v-if="room && !isCurrentlyViewingRoom">
+			<RoomPopout />
+		</div>
 	</div>
 </template>
 
@@ -22,6 +25,7 @@
 
 	// Components
 	import Header from "@components/Header.vue";
+	import RoomPopout from "@components/RoomPopout.vue";
 
 	// Types
 	import { SuccessResponse, ErrorResponse } from "@typings/index";
@@ -31,7 +35,16 @@
 	export default defineComponent({
 		name: "App",
 		components: {
-			Header
+			Header,
+			RoomPopout
+		},
+		computed: {
+			room (): Room | null {
+				return this.$store.state.room;
+			},
+			isCurrentlyViewingRoom () {
+				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
+			}
 		},
 		async mounted () {
 

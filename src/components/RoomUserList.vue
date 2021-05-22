@@ -1,6 +1,6 @@
 <template>
 	<div id="user-list">
-		<div v-for="user in room.users" :key="user.id">
+		<div v-for="user in users" :key="user.id">
 			<img
 				class="user-avatar"
 				:class="{ host: isHost(user) }"
@@ -16,20 +16,23 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Types
-	import { Room } from "@typings/room";
 	import { User } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "RoomUserList",
 		props: {
-			room: {
-				type: Object as PropType<Room>,
+			users: {
+				type: Array as PropType<User[]>,
+				required: true
+			},
+			host: {
+				type: Object as PropType<User>,
 				required: true
 			}
 		},
 		methods: {
 			isHost (user: User) {
-				return user.id === this.room.host.id;
+				return user.id === this.host.id;
 			}
 		}
 	});

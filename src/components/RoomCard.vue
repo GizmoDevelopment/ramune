@@ -6,7 +6,7 @@
 				<CaretRight />
 			</button>
 		</div>
-		<RoomUserList :room="room" />
+		<RoomUserList :users="room.users" :host="room.host" />
 	</div>
 </template>
 

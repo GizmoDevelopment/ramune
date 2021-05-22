@@ -1,7 +1,7 @@
 <template>
 	<div v-if="room">
 		<h1 class="heading">{{ room.name }}</h1>
-		<RoomUserList :room="room" />
+		<RoomUserList :users="room.users" :host="room.host" />
 	</div>
 	<div v-else-if="status">
 		<Error :text="status" />

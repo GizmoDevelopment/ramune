@@ -6,8 +6,11 @@
 		:visible="visible"
 		@dismiss="clearRoomPopup()"
 	>
+		<div v-if="debounce">
+			<LoadingBuffer id="loading-buffer" size="small" />
+		</div>
 		<Error
-			v-if="status"
+			v-if="status && !debounce"
 			id="error-label"
 			:text="status"
 		/>
@@ -29,10 +32,7 @@
 				/>
 			</div>
 		</div>
-		<div v-if="debounce">
-			<LoadingBuffer />
-		</div>
-		<div v-else>
+		<div v-if="!debounce">
 			<button class="button" @click="createRoom">Create</button>
 		</div>
 	</PopupCard>
@@ -125,8 +125,14 @@
 				
 				this.$socket.emit("client:create_room", this.roomOptions, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
+
 						this.$store.commit("JOIN_ROOM", res.data);
-						this.$router.push(`/rooms/${ res.data.id }`);
+						this.$emit("dismiss");
+
+						setTimeout(() => {
+							this.$router.push(`/rooms/${ res.data.id }`);
+						}, 100);
+						
 					} else {
 
 						this.debounce = false;
@@ -192,6 +198,10 @@
 		flex-direction: row;
 		justify-content: center;
 		margin-top: 0;
+	}
+
+	#loading-buffer {
+		font-size: 2em;
 	}
 
 </style>

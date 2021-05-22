@@ -1,35 +1,33 @@
 <template>
-	<div>
-		<div id="heading-bar">
-			<h1 class="heading">Rooms</h1>
-			<div v-if="rooms">
-				<button class="button" @click="isCreatingRoom = true">
-					<Plus class="plus-icon" />
-				</button>
-			</div>
+	<div id="heading-bar">
+		<h1 class="heading">Rooms</h1>
+		<div v-if="rooms">
+			<button class="button" @click="isCreatingRoom = true">
+				<Plus class="plus-icon" />
+			</button>
 		</div>
-		<div v-if="user">
-			<div v-if="rooms">
-				<div v-if="rooms.length > 0">
-					<div v-for="room in rooms" :key="room.id">
-						<RoomCard :room="room" />
-					</div>
+	</div>
+	<div v-if="user">
+		<div v-if="rooms">
+			<div v-if="rooms.length > 0">
+				<div v-for="room in rooms" :key="room.id">
+					<RoomCard :room="room" />
 				</div>
-				<div v-else>
-					<Error text="There are no active rooms" />
-				</div>
-				<RoomCreationPopup
-					:visible="isCreatingRoom"
-					@dismiss="isCreatingRoom = false"
-				/>
 			</div>
 			<div v-else>
-				<LoadingBuffer />
+				<Error text="There are no active rooms" />
 			</div>
+			<RoomCreationPopup
+				:visible="isCreatingRoom"
+				@dismiss="isCreatingRoom = false"
+			/>
 		</div>
 		<div v-else>
-			<Error text="You must be logged in to view this page" />
+			<LoadingBuffer />
 		</div>
+	</div>
+	<div v-else>
+		<Error text="You must be logged in to view this page" />
 	</div>
 </template>
 

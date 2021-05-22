@@ -2,11 +2,12 @@
 	<div v-if="room">
 		<h1 class="heading">{{ room.name }}</h1>
 		<RoomUserList :users="room.users" :host="room.host" />
+		<button class="primary-button" @click="leaveRoom()">Leave</button>
 	</div>
 	<div v-else-if="status">
 		<Error :text="status" />
 	</div>
-	<div v-else>
+	<div v-else-if="!leaving">
 		<LoadingBuffer />
 	</div>
 </template>
@@ -41,7 +42,8 @@
 		},
 		data () {
 			return {
-				status: ""
+				status: "",
+				leaving: false
 			};
 		},
 		computed: {
@@ -69,6 +71,20 @@
 						this.$store.commit("JOIN_ROOM", res.data);
 					} else {
 						this.status = res.message;
+					}
+				});
+			},
+			leaveRoom () {
+
+				this.leaving = true;
+
+				this.$socket.emit("client:leave_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
+					if (res.type === "success") {
+						this.$store.commit("LEAVE_ROOM");
+						this.$router.push("/rooms");
+					} else {
+						console.error(res.message);
+						this.leaving = false;
 					}
 				});
 			}

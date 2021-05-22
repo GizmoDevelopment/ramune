@@ -41,24 +41,24 @@
 		},
 		data () {
 			return {
-				room: null as Room | null,
 				status: ""
 			};
 		},
 		computed: {
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
+			},
+			room (): Room | null {
+				return this.$store.state.room;
 			}
 		},
 		watch: {
-			user (newUser) {
-				if (newUser) {
-					this.joinRoom();
-				}
+			user (newUser: AuthenticatedUser) {
+				if (newUser) this.joinRoom();
 			}
 		},
 		mounted () {
-			if (this.user) {
+			if (this.user && this.room?.id !== this.roomId) {
 				this.joinRoom();
 			}
 		},
@@ -67,7 +67,6 @@
 				this.$socket.emit("client:join_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
 						this.$store.commit("JOIN_ROOM", res.data);
-						this.room = res.data;
 					} else {
 						this.status = res.message;
 					}

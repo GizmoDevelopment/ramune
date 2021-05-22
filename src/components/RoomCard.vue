@@ -2,7 +2,7 @@
 	<div id="container">
 		<div id="title-bar">
 			<h2 id="room-name">{{ room.name }}</h2>
-			<button class="button">
+			<button class="button" @click="joinRoom()">
 				<CaretRight />
 			</button>
 		</div>
@@ -22,6 +22,7 @@
 	import CaretRight from "@assets/icons/caret-right.svg";
 
 	// Types
+	import { SuccessResponse, ErrorResponse } from "@typings/index";
 	import { Room } from "@typings/room";
 
 	export default defineComponent({
@@ -34,6 +35,20 @@
 			room: {
 				type: Object as PropType<Room>,
 				required: true
+			}
+		},
+		methods: {
+			joinRoom () {
+				if (this.room.id !== "") { // Don't join from dummy room cards
+					this.$socket.emit("client:join_room", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
+						if (res.type === "success") {
+							this.$store.commit("JOIN_ROOM", res.data);
+							this.$router.push(`/rooms/${ res.data.id }`);
+						} else {
+							console.error(res.message);
+						}
+					});
+				}
 			}
 		}
 	});

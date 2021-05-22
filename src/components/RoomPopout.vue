@@ -11,7 +11,11 @@
 			<div id="video">
 				<p class="faded">Nothing is currently playing</p>
 			</div>
-			<div id="overlay" class="overlay hover-opacity" @click="returnToRoom()">
+			<div
+				id="overlay"
+				class="overlay hover-opacity"
+				@click="returnToRoom()"
+			>
 				<button class="primary-button">Return</button>
 			</div>
 		</div>
@@ -56,6 +60,9 @@
 		position: fixed;
 		right: 0;
 		bottom: 0;
+		z-index: 10;
+		margin-right: 15px;
+		margin-bottom: 15px;
 	}
 
 	#container {
@@ -64,8 +71,7 @@
 		border-radius: var(--popup-border-radius);
 		width: 400px;
 		height: calc(400px * 9/16);
-		margin-right: 15px;
-		margin-bottom: 15px;
+		box-shadow: 0 0 10px var(--primary-color);
 	}
 
 	#video {
@@ -78,10 +84,6 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-	}
-
-	#video p {
-		user-select: none;
 	}
 
 	#room-information {

@@ -8,9 +8,11 @@
 				</transition>
 			</router-view>
 		</div>
-		<div v-if="room && !isCurrentlyViewingRoom">
-			<RoomPopout />
-		</div>
+		<transition name="slide" mode="out-in">
+			<div v-if="room && !isCurrentlyViewingRoom">
+				<RoomPopout />
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -144,6 +146,16 @@
 	.fade-view-leave-to {
 		opacity: 0;
 		transform: translateY(2em);
+	}
+
+	.slide-enter-active,
+	.slide-leave-active {
+		transition: opacity .3s ease;
+	}
+
+	.slide-enter-from,
+	.slide-leave-to {
+		opacity: 0;
 	}
 
 	.primary-button {

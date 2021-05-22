@@ -1,14 +1,17 @@
 <template>
-	<div v-if="room">
-		<h1 class="heading">{{ room.name }}</h1>
-		<RoomUserList :users="room.users" :host="room.host" />
-		<button class="primary-button" @click="leaveRoom()">Leave</button>
-	</div>
-	<div v-else-if="status">
-		<Error :text="status" />
-	</div>
-	<div v-else-if="!leaving">
-		<LoadingBuffer />
+	<div>
+		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
+		<div v-if="room">
+			<h1 class="heading">{{ room.name }}</h1>
+			<RoomUserList :users="room.users" :host="room.host" />
+			<button class="primary-button" @click="leaveRoom()">Leave</button>
+		</div>
+		<div v-else-if="status">
+			<Error :text="status" />
+		</div>
+		<div v-else-if="!leaving">
+			<LoadingBuffer />
+		</div>
 	</div>
 </template>
 

@@ -9,7 +9,7 @@
 		<div v-else-if="status">
 			<Error :text="status" />
 		</div>
-		<div v-else-if="!leaving">
+		<div v-else>
 			<LoadingBuffer />
 		</div>
 	</div>
@@ -67,6 +67,11 @@
 				this.joinRoom();
 			}
 		},
+		beforeUnmount () {
+			if (this.leaving) {
+				this.$store.commit("LEAVE_ROOM");
+			}
+		},
 		methods: {
 			joinRoom () {
 				this.$socket.emit("client:join_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
@@ -83,7 +88,6 @@
 
 				this.$socket.emit("client:leave_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
-						this.$store.commit("LEAVE_ROOM");
 						this.$router.push("/rooms");
 					} else {
 						console.error(res.message);

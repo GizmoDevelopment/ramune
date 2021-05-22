@@ -54,13 +54,17 @@
 
 	.user {
 		height: 100%;
+		margin-left: -6px;
+	}
+
+	.user:first-child {
+		margin-left: 0;
 	}
 	
 	.user img {
 		border-radius: 100%;
 		width: auto;
 		height: 100%;
-		margin-left: -6px;
 	}
 
 	.host {

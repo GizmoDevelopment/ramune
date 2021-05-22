@@ -1,15 +1,17 @@
 <template>
 	<div id="user-list">
-		<div
-			v-for="user in users"
-			:key="user.id"
-			class="user"
-		>
-			<img
+		<transition-group name="list">
+			<div
+				v-for="user in users"
+				:key="user.id"
+				class="user"
 				:class="{ host: isHost(user) }"
-				:src="user.avatar_url"
 			>
-		</div>
+				<img
+					:src="user.avatar_url"
+				>
+			</div>
+		</transition-group>
 	</div>
 </template>
 
@@ -44,6 +46,17 @@
 
 <style scoped>
 
+	.list-enter-active,
+	.list-leave-active {
+		transition: all .4s ease;
+	}
+
+	.list-enter-from,
+	.list-leave-to {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
 	#user-list {
 		display: flex;
 		flex-direction: row;
@@ -67,8 +80,9 @@
 		height: 100%;
 	}
 
-	.host {
+	.host img {
 		border: 2px solid var(--primary-color);
+		height: calc(100% - 4px);
 	}
 
 </style>

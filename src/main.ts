@@ -12,6 +12,9 @@ import Router from "./routes";
 // Stores
 import Store from "./stores";
 
+// Directives
+import Tooltip from "./directives/tooltip";
+
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 
@@ -34,6 +37,7 @@ if (typeof SOCKET_ENDPOINT === "string") {
 				mutationPrefix: "SOCKET_",
 			}
 		}))
+		.directive("tooltip", Tooltip)
 		.mount("#app");
 
 } else {

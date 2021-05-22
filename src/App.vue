@@ -95,6 +95,8 @@
 <style>
 
 	:root {
+		
+		--font: Roboto, sans-serif;
 
 		/* Colors */
 		--text-color: white;
@@ -295,7 +297,7 @@
 	}
 
 	#app {
-		font-family: Roboto, sans-serif;
+		font-family: var(--font);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
@@ -306,6 +308,26 @@
 		.heading {
 			font-size: 30px;
 		}
+	}
+
+	/* Tooltip */
+
+	.tippy-box {
+		border-radius: var(--popup-border-radius);
+		box-shadow: 0 0 3px var(--primary-color);
+	}
+
+	.tippy-box, .tippy-arrow {
+		background-color: var(--container-background-color);
+	}
+
+	.tippy-content {
+		color: var(--text-color);
+		font-family: var(--font);
+		padding-left: 9px;
+		padding-right: 9px;
+		padding-top: 5px;
+		padding-bottom: 5px;
 	}
 
 </style>

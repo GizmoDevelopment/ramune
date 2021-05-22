@@ -8,6 +8,7 @@
 				:class="{ host: isHost(user) }"
 			>
 				<img
+					v-tooltip="user.username"
 					:src="user.avatar_url"
 				>
 			</div>

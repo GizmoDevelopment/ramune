@@ -1,8 +1,11 @@
 <template>
 	<div id="user-list">
-		<div v-for="user in users" :key="user.id">
+		<div
+			v-for="user in users"
+			:key="user.id"
+			class="user"
+		>
 			<img
-				class="user-avatar"
 				:class="{ host: isHost(user) }"
 				:src="user.avatar_url"
 			>
@@ -46,12 +49,17 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
+		height: 3em;
 	}
 
-	.user-avatar {
+	.user {
+		height: 100%;
+	}
+	
+	.user img {
 		border-radius: 100%;
-		height: 3em;
-		width: 3em;
+		width: auto;
+		height: 100%;
 		margin-left: -6px;
 	}
 

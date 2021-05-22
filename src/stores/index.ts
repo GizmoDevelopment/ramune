@@ -1,10 +1,10 @@
 // Modules
-import { createStore } from "vuex";
+import { createStore, createLogger } from "vuex";
 
 // Types
-import { AuthenticatedUser } from "gizmo-api/lib/types";
+import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 import { Show } from "@typings/show";
-import { Room } from "@typings/room";
+import { Room, RoomData } from "@typings/room";
 import { State } from "@typings/vuex";
 
 export default createStore<State>({
@@ -27,6 +27,27 @@ export default createStore<State>({
 		},
 		LEAVE_ROOM (state: State) {
 			state.room = null;
+		},
+		USER_JOIN_ROOM (state: State, user: User) {
+			if (state.room) {
+				state.room.users.push(user);
+			}
+		},
+		USER_LEAVE_ROOM (state: State, userId: number) {
+			if (state.room) {
+				state.room.users = state.room.users.filter(({ id }) => id !== userId);
+			}
+		},
+		UPDATE_ROOM (state: State, room: Room) {
+			if (state.room) {
+				state.room = room;
+			}
+		},
+		UPDATE_ROOM_DATA (state: State, roomData: RoomData) {
+			if (state.room) {
+				state.room.data = roomData;
+			}
 		}
-	}
+	},
+	plugins: [ createLogger() ] // REMOVE BEFORE PROD
 });

@@ -26,6 +26,7 @@
 	// Types
 	import { SuccessResponse, ErrorResponse } from "@typings/index";
 	import { User } from "gizmo-api/lib/types";
+	import { Room, RoomData } from "@typings/room";
 
 	export default defineComponent({
 		name: "App",
@@ -56,6 +57,20 @@
 					console.error(err);
 				}
 
+			}
+		},
+		sockets: {
+			"client:join_room": function (user: User) {
+				this.$store.commit("USER_JOIN_ROOM", user);
+			},
+			"client:leave_room": function (userId: number) {
+				this.$store.commit("USER_LEAVE_ROOM", userId);
+			},
+			"client:update_room": function (room: Room) {
+				this.$store.commit("UPDATE_ROOM", room);
+			},
+			"client:update_room_data": function (roomData: RoomData) {
+				this.$store.commit("UPDATE_ROOM_DATA", roomData);
 			}
 		}
 	});

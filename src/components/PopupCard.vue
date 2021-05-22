@@ -1,30 +1,32 @@
 <template>
-	<transition name="fade-overlay">
-		<div
-			v-if="visible"
-			class="overlay"
-			@click="$emit('dismiss')"
-		/>
-	</transition>
-	<transition name="slide-content">
-		<div
-			v-if="visible"
-			id="content-container"
-			@click="$emit('dismiss')"
-		>
+	<div>
+		<transition name="fade-overlay">
 			<div
-				id="content"
-				:style="alignment"
-				@click.stop
+				v-if="visible"
+				class="overlay"
+				@click="$emit('dismiss')"
+			/>
+		</transition>
+		<transition name="slide-content">
+			<div
+				v-if="visible"
+				id="content-container"
+				@click="$emit('dismiss')"
 			>
-				<div id="popup-title-bar">
-					<h2>{{ title }}</h2>
-					<Close class="popup-close-button" @click="$emit('dismiss')" />
+				<div
+					id="content"
+					:style="alignment"
+					@click.stop
+				>
+					<div id="popup-title-bar">
+						<h2>{{ title }}</h2>
+						<Close class="popup-close-button" @click="$emit('dismiss')" />
+					</div>
+					<slot />
 				</div>
-				<slot />
 			</div>
-		</div>
-	</transition>
+		</transition>
+	</div>
 </template>
 
 <script lang="ts">

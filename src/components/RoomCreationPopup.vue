@@ -17,7 +17,7 @@
 				class="input-dark"
 				type="text"
 				placeholder="Anime night"
-				limit="25"
+				:limit="25"
 				@update="updateRoomPreview"
 			/>
 		</div>

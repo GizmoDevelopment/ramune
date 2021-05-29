@@ -62,7 +62,7 @@
 
 					this.$store.commit("UPDATE_USER", { ...user, token });
 
-					this.$socket.emit("client:authenticate", { token }, ({ type, message }: SuccessResponse<User> | ErrorResponse) => {
+					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, ({ type, message }: SuccessResponse<User> | ErrorResponse) => {
 						if (type !== "success") {
 							console.error(message);
 						}
@@ -75,16 +75,16 @@
 			}
 		},
 		sockets: {
-			"client:join_room" (user: User) {
+			"ROOM:USER_JOIN" (user: User) {
 				this.$store.commit("USER_JOIN_ROOM", user);
 			},
-			"client:leave_room" (userId: number) {
-				this.$store.commit("USER_LEAVE_ROOM", userId);
+			"ROOM:USER_LEAVE" (user: User) {
+				this.$store.commit("USER_LEAVE_ROOM", user);
 			},
-			"client:update_room" (room: Room) {
+			"ROOM:UPDATE" (room: Room) {
 				this.$store.commit("UPDATE_ROOM", room);
 			},
-			"client:update_room_data" (roomData: RoomData) {
+			"ROOM:UPDATE_ROOM_DATA" (roomData: RoomData) {
 				this.$store.commit("UPDATE_ROOM_DATA", roomData);
 			}
 		}

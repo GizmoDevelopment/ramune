@@ -74,7 +74,7 @@
 		},
 		mounted () {
 
-			this.$socket.emit("client:fetch_rooms", (res: SuccessResponse<Room[]> | ErrorResponse) => {
+			this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SuccessResponse<Room[]> | ErrorResponse) => {
 				if (res.type === "success") {
 					this.rooms = res.data;
 				} else {

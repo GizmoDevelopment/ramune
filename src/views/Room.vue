@@ -5,6 +5,9 @@
 			<h1 class="heading">{{ room.name }}</h1>
 			<RoomUserList :users="room.users" :host="room.host" />
 			<button class="primary-button" @click="leaveRoom()">Leave</button>
+			<div v-if="show">
+				<Video />
+			</div>
 		</div>
 		<div v-else-if="status">
 			<Error :text="status" />
@@ -24,18 +27,21 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
 	import RoomUserList from "@components/RoomUserList.vue";
+	import Video from "@components/Video.vue";
 
 	// Types
 	import { Room } from "@typings/room";
 	import { SuccessResponse, ErrorResponse } from "@typings/index";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
+	import { Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "Room",
 		components: {
 			LoadingBuffer,
 			Error,
-			RoomUserList
+			RoomUserList,
+			Video
 		},
 		props: {
 			roomId: {
@@ -46,7 +52,8 @@
 		data () {
 			return {
 				status: "",
-				leaving: false
+				leaving: false,
+				show: null as Show | null
 			};
 		},
 		computed: {
@@ -60,7 +67,13 @@
 		watch: {
 			user (newUser: AuthenticatedUser) {
 				if (newUser) this.joinRoom();
+			},
+			room (newRoom: Room) {
+				if (newRoom.data?.show) {
+					this.show = newRoom.data.show;
+				}
 			}
+
 		},
 		mounted () {
 			if (this.user && this.room?.id !== this.roomId) {
@@ -74,7 +87,7 @@
 		},
 		methods: {
 			joinRoom () {
-				this.$socket.emit("client:join_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
+				this.$socket.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
 					if (res.type === "success") {
 						this.$store.commit("JOIN_ROOM", res.data);
 					} else {
@@ -86,7 +99,7 @@
 
 				this.leaving = true;
 
-				this.$socket.emit("client:leave_room", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
+				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SuccessResponse<string> | ErrorResponse) => {
 					if (res.type === "success") {
 						this.$router.push("/rooms");
 					} else {

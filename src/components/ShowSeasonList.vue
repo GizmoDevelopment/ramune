@@ -51,7 +51,7 @@
 			playEpisode (episodeId: number) {
 				if (this.room && this.user && this.room.host.id === this.user.id) {
 					
-					this.$socket.emit("client:update_room_data", { showId: this.show.id, episodeId }, (res: SuccessResponse<Room> | ErrorResponse) => {
+					this.$socket.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SuccessResponse<Room> | ErrorResponse) => {
 						if (res.type === "success") {
 							this.$router.push(`/rooms/${ this.room?.id }`);
 						} else {
@@ -62,7 +62,7 @@
 				} else {
 					
 					if (this.room) {
-						this.$socket.emit("client:leave_room", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
+						this.$socket.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
 							if (res.type === "success") {
 								this.$store.commit("LEAVE_ROOM");
 							} else {

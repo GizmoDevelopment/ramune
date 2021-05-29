@@ -4,7 +4,7 @@ import { createStore, createLogger } from "vuex";
 // Types
 import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 import { Show } from "@typings/show";
-import { Room, RoomData } from "@typings/room";
+import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
 import { State } from "@typings/vuex";
 
 export default createStore<State>({
@@ -33,14 +33,14 @@ export default createStore<State>({
 				state.room.users.push(user);
 			}
 		},
-		USER_LEAVE_ROOM (state: State, userId: number) {
+		USER_LEAVE_ROOM (state: State, user: User) {
 			if (state.room) {
-				state.room.users = state.room.users.filter(({ id }) => id !== userId);
+				state.room.users = state.room.users.filter(({ id }) => id !== user.id);
 			}
 		},
-		UPDATE_ROOM (state: State, room: Room) {
+		UPDATE_ROOM(state: State, data: UpdatableRoomProperties) {
 			if (state.room) {
-				state.room = room;
+				state.room = { ...state.room, ...data };
 			}
 		},
 		UPDATE_ROOM_DATA (state: State, roomData: RoomData) {

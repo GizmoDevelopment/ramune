@@ -28,6 +28,7 @@
 			</div>
 		</div>
 	</header>
+	<div id="empty" />
 </template>
 
 <script lang="ts">
@@ -55,13 +56,18 @@
 <style scoped>
 
 	header {
-		position: sticky;
+		position: fixed;
 		width: 100%;
 		height: 60px;
 		background-color: var(--container-background-color);
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		z-index: 2;
+	}
+
+	#empty {
+		height: 60px;
 		margin-bottom: 1em;
 	}
 

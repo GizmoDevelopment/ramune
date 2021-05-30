@@ -2,12 +2,10 @@
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div v-if="room">
-			<h1 class="heading">{{ room.name }}</h1>
-			<RoomUserList :users="room.users" :host="room.host" />
-			<button class="primary-button" @click="leaveRoom()">Leave</button>
-			<div v-if="show">
-				<Video />
-			</div>
+			<RoomView
+				:room="room"
+				@leave-room="leaveRoom()"
+			/>
 		</div>
 		<div v-else-if="status">
 			<Error :text="status" />
@@ -26,22 +24,21 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
-	import RoomUserList from "@components/RoomUserList.vue";
-	import Video from "@components/Video.vue";
+
+	// Views
+	import RoomView from "@views/RoomView.vue";
 
 	// Types
 	import { Room } from "@typings/room";
 	import { SocketResponse } from "@typings/main";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
-	import { Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "Room",
 		components: {
 			LoadingBuffer,
 			Error,
-			RoomUserList,
-			Video
+			RoomView
 		},
 		props: {
 			roomId: {
@@ -52,8 +49,7 @@
 		data () {
 			return {
 				status: "",
-				leaving: false,
-				show: null as Show | null
+				leaving: false
 			};
 		},
 		computed: {
@@ -69,11 +65,7 @@
 				if (newUser) this.joinRoom();
 			},
 			room (newRoom: Room | null) {
-				if (newRoom) {
-					if (newRoom.data?.show) {
-						this.show = newRoom.data.show;
-					}
-				} else {
+				if (!newRoom) {
 					this.$router.push("/rooms");
 				}
 			}

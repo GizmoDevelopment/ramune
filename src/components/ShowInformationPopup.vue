@@ -59,7 +59,7 @@
 		props: {
 			show: {
 				type: Object as PropType<Show> | null,
-				required: true
+				default: null
 			},
 			status: {
 				type: [ String, Number ],

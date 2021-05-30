@@ -72,16 +72,28 @@
 				return this.$store.state.user;
 			}
 		},
+		watch: {
+			user () {
+				this.fetchRooms();
+			}
+		},
 		mounted () {
 
-			this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SuccessResponse<Room[]> | ErrorResponse) => {
-				if (res.type === "success") {
-					this.rooms = res.data;
-				} else {
-					console.error(res.message);
-				}
-			});
+			this.fetchRooms();
 
+		},
+		methods: {
+			fetchRooms () {
+				if (this.user) {
+					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SuccessResponse<Room[]> | ErrorResponse) => {
+						if (res.type === "success") {
+							this.rooms = res.data;
+						} else {
+							console.error(res.message);
+						}
+					});
+				}
+			}
 		}
 	});
 

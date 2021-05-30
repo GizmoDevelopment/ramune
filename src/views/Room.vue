@@ -31,7 +31,7 @@
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SuccessResponse, ErrorResponse } from "@typings/main";
+	import { SocketResponse } from "@typings/main";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 	import { Show } from "@typings/show";
 
@@ -87,7 +87,7 @@
 		},
 		methods: {
 			joinRoom () {
-				this.$socket.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SuccessResponse<Room> | ErrorResponse) => {
+				this.$socket.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
 						this.$store.commit("JOIN_ROOM", res.data);
 					} else {
@@ -99,7 +99,7 @@
 
 				this.leaving = true;
 
-				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SuccessResponse<string> | ErrorResponse) => {
+				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
 					if (res.type === "success") {
 						this.$router.push("/rooms");
 					} else {

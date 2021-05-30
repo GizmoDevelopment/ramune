@@ -22,7 +22,7 @@
 	import { Show } from "@typings/show";
 	import { Room } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
-	import { SuccessResponse, ErrorResponse } from "@typings/main";
+	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "ShowSeasonList",
@@ -51,7 +51,7 @@
 			playEpisode (episodeId: number) {
 				if (this.room && this.user && this.room.host.id === this.user.id) {
 					
-					this.$socket.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SuccessResponse<Room> | ErrorResponse) => {
+					this.$socket.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SocketResponse<Room>) => {
 						if (res.type === "success") {
 							this.$router.push(`/rooms/${ this.room?.id }`);
 						} else {
@@ -62,7 +62,7 @@
 				} else {
 					
 					if (this.room) {
-						this.$socket.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SuccessResponse<Room> | ErrorResponse) => {
+						this.$socket.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
 								this.$store.commit("LEAVE_ROOM");
 							} else {

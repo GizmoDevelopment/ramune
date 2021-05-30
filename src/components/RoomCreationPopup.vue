@@ -54,7 +54,7 @@
 	import { getUserFromAuthenticatedUser } from "@utils/user";
 
 	// Types
-	import { SuccessResponse, ErrorResponse } from "@typings/main";
+	import { SocketResponse } from "@typings/main";
 	import { Room, RoomOptions } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
@@ -123,7 +123,7 @@
 				
 				this.debounce = true;
 				
-				this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SuccessResponse<Room> | ErrorResponse) => {
+				this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
 
 						this.$store.commit("JOIN_ROOM", res.data);

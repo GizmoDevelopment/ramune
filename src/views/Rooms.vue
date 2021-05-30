@@ -50,7 +50,7 @@
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SuccessResponse, ErrorResponse } from "@typings/main";
+	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "Rooms",
@@ -85,7 +85,7 @@
 		methods: {
 			fetchRooms () {
 				if (this.user) {
-					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SuccessResponse<Room[]> | ErrorResponse) => {
+					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SocketResponse<Room[]>) => {
 						if (res.type === "success") {
 							this.rooms = res.data;
 						} else {

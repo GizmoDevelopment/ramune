@@ -68,9 +68,13 @@
 			user (newUser: AuthenticatedUser) {
 				if (newUser) this.joinRoom();
 			},
-			room (newRoom: Room) {
-				if (newRoom.data?.show) {
-					this.show = newRoom.data.show;
+			room (newRoom: Room | null) {
+				if (newRoom) {
+					if (newRoom.data?.show) {
+						this.show = newRoom.data.show;
+					}
+				} else {
+					this.$router.push("/rooms");
 				}
 			}
 

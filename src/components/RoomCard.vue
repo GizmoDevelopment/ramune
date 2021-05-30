@@ -22,7 +22,7 @@
 	import CaretRight from "@assets/icons/caret-right.svg";
 
 	// Types
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SuccessResponse, ErrorResponse } from "@typings/main";
 	import { Room } from "@typings/room";
 
 	export default defineComponent({

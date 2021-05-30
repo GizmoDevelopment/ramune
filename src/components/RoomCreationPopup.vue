@@ -54,7 +54,7 @@
 	import { getUserFromAuthenticatedUser } from "@utils/user";
 
 	// Types
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SuccessResponse, ErrorResponse } from "@typings/main";
 	import { Room, RoomOptions } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 

@@ -50,7 +50,7 @@
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SuccessResponse, ErrorResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "Rooms",

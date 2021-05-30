@@ -31,7 +31,7 @@
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SuccessResponse, ErrorResponse } from "@typings/main";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 	import { Show } from "@typings/show";
 

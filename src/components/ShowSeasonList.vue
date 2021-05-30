@@ -22,7 +22,7 @@
 	import { Show } from "@typings/show";
 	import { Room } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SuccessResponse, ErrorResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "ShowSeasonList",

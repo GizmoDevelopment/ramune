@@ -14,6 +14,6 @@ export function getCookie (name: string): string | null {
 	const cookie = cookies.find((cookie: string) => cookie.match(cookieMatch));
 
 	return cookie
-		? cookie.replace(`${ name }=`, "")
+		? decodeURIComponent(cookie.replace(`${ name }=`, ""))
 		: null;
 }

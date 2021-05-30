@@ -55,7 +55,21 @@
 				if (token) {
 					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
 						if (res.type === "success") {
+
 							this.$store.commit("UPDATE_USER", { ...res.data, token });
+
+							// Attempt to rejoin saved room
+							if (this.room) {
+								this.$socket.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
+									if (res.type === "success") {
+										this.$store.commit("JOIN_ROOM", res.data);
+										this.$router.push(`/rooms/${ res.data.id }`);
+									} else {
+										this.$store.commit("LEAVE_ROOM");
+									}
+								});
+							}
+
 						} else {
 							console.error(res.message);
 						}

@@ -20,7 +20,6 @@
 
 	// Modules
 	import { defineComponent } from "vue";
-	import { getAuthenticatedUser } from "gizmo-api";
 
 	// Utils
 	import { getCookie } from "@utils/essentials";
@@ -30,7 +29,7 @@
 	import RoomPopout from "@components/RoomPopout.vue";
 
 	// Types
-	import { SuccessResponse, ErrorResponse } from "@typings/index";
+	import { SocketResponse } from "@typings/main";
 	import { User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
 
@@ -48,33 +47,22 @@
 				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
 			}
 		},
-		async mounted () {
+		sockets: {
+			connect () {
 
-			let token = getCookie("GIZMO_TOKEN");
+				const token = getCookie("GIZMO_TOKEN");
 
-			if (token) {
-
-				try {
-					
-					token = decodeURIComponent(token);
-
-					const user = await getAuthenticatedUser(token);
-
-					this.$store.commit("UPDATE_USER", { ...user, token });
-
-					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, ({ type, message }: SuccessResponse<User> | ErrorResponse) => {
-						if (type !== "success") {
-							console.error(message);
+				if (token) {
+					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
+						if (res.type === "success") {
+							this.$store.commit("UPDATE_USER", { ...res.data, token });
+						} else {
+							console.error(res.message);
 						}
 					});
-
-				} catch (err) {
-					console.error(err);
 				}
 
-			}
-		},
-		sockets: {
+			},
 			"ROOM:USER_JOIN" (user: User) {
 				this.$store.commit("USER_JOIN_ROOM", user);
 			},

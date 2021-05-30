@@ -12,9 +12,9 @@
 					<p class="show-description">{{ formattedDescription }}</p>
 				</div>
 			</div>
-			<div v-for="season in show.seasons" :key="season.title">
-				<ShowSeasonEpisodeList :season="season" />
-			</div>
+			<ShowSeasonList
+				:show="show"
+			/>
 		</div>
 	</div>
 	<div v-else>
@@ -30,7 +30,7 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
-	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
+	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Utils
 	import { getShow } from "@utils/api";
@@ -44,7 +44,7 @@
 		components: {
 			LoadingBuffer,
 			ShowScoreLabel,
-			ShowSeasonEpisodeList
+			ShowSeasonList
 		},
 		props: {
 			showId: {

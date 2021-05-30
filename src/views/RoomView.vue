@@ -8,9 +8,10 @@
 			:episode="episode"
 		/>
 		<div v-if="isHost">
-			<div v-for="season in show.seasons" :key="season.title">
-				<ShowSeasonEpisodeList :season="season" />
-			</div>
+			<ShowSeasonList
+				:show="show"
+				:selected-episode-id="episodeId"
+			/>
 		</div>
 	</div>
 </template>
@@ -23,7 +24,7 @@
 	// Components
 	import RoomUserList from "@components/RoomUserList.vue";
 	import Video from "@components/Video.vue";
-	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
+	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Utils
 	import { getEpisodeById } from "@utils/show";
@@ -38,7 +39,7 @@
 		components: {
 			RoomUserList,
 			Video,
-			ShowSeasonEpisodeList
+			ShowSeasonList
 		},
 		props: {
 			room: {

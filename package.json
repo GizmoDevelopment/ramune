@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "gizmo-api": "^1.0.5",
+    "gizmo-api": "^1.0.6",
     "socket.io-client": "^4.0.2",
     "tippy.js": "^6.3.1",
     "vue": "^3.0.11",

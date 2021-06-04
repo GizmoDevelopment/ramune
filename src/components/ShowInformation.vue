@@ -5,7 +5,7 @@
 			<div id="show-details">
 				<h1 id="show-title" class="heading">{{ show.title }}</h1>
 				<div id="show-stats">
-					<ShowScoreLabel id="show-score" :score="show.score" />
+					<!-- <ShowScoreLabel id="show-score" :score="show.score" /> -->
 					<div id="show-episode-count">{{ episodeCount }} Episodes</div>
 				</div>
 				<p id="show-description">{{ formattedDescription }}</p>
@@ -23,7 +23,6 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Types
@@ -32,7 +31,6 @@
 	export default defineComponent({
 		name: "ShowInformation",
 		components: {
-			ShowScoreLabel,
 			ShowSeasonList
 		},
 		props: {
@@ -94,12 +92,13 @@
 		margin-right: 10px;
 	}
 
-	#show-score {
+	#show-episode-count {
 		background-color: var(--primary-color);
 		border: 2px solid var(--primary-color);
 		border-radius: 20px;
-		padding-left: 6px;
-		padding-right: 6px;
+		padding-left: 8px;
+		padding-right: 8px;
+		font-weight: bold;
 	}
 
 	#show-description {

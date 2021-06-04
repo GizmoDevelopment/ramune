@@ -6,7 +6,7 @@
 				<div class="show-details">
 					<h1 class="heading show-title">{{ show.title }}</h1>
 					<div class="show-stats">
-						<ShowScoreLabel :score="show.score" class="show-score" />
+						<!-- <ShowScoreLabel :score="show.score" class="show-score" /> -->
 						<div class="show-episode-count">{{ episodeCount }} Episodes</div>
 					</div>
 					<p class="show-description">{{ formattedDescription }}</p>
@@ -29,7 +29,6 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 	import ShowSeasonList from "@components/ShowSeasonList.vue";
 
 	// Utils
@@ -43,7 +42,6 @@
 		name: "Show",
 		components: {
 			LoadingBuffer,
-			ShowScoreLabel,
 			ShowSeasonList
 		},
 		props: {

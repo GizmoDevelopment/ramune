@@ -17,7 +17,7 @@
 		<div id="information">
 			<p id="title">{{ show.title }}</p>
 			<div id="details">
-				<ShowScoreLabel :score="show.score" />
+				<!-- <ShowScoreLabel :score="show.score" /> -->
 				<p id="season-count">{{ seasonCount }}</p>
 			</div>
 		</div>
@@ -29,9 +29,6 @@
 
 	// Modules
 	import { defineComponent, PropType } from "vue";
-
-	// Components
-	import ShowScoreLabel from "@components/ShowScoreLabel.vue";
 
 	// Utils
 	import { pluralize } from "@utils/essentials";
@@ -45,7 +42,6 @@
 	export default defineComponent({
 		name: "ShowCard",
 		components: {
-			ShowScoreLabel,
 			Play
 		},
 		props: {

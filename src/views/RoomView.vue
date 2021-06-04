@@ -4,8 +4,12 @@
 	<button class="primary-button" @click="$emit('leave-room')">Leave</button>
 	<div v-if="show && episode">
 		<Video
+
 			:show="show"
 			:episode="episode"
+			:sync-data="syncData"
+
+			@sync="sync"
 		/>
 		<div v-if="isHost">
 			<ShowSeasonList
@@ -30,8 +34,9 @@
 	import { getEpisodeById } from "@utils/show";
 
 	// Types
-	import { Room } from "@typings/room";
+	import { Room, RoomSyncData } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
+	import { SocketResponse } from "@typings/main";
 	import { Show, Episode } from "@typings/show";
 
 	export default defineComponent({
@@ -48,6 +53,11 @@
 			}
 		},
 		emits: [ "leave-room" ],
+		data () {
+			return {
+				syncData: null as RoomSyncData | null
+			};
+		},
 		computed: {
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
@@ -65,6 +75,22 @@
 			},
 			isHost (): boolean {
 				return this.room.host.id === this.user?.id;
+			}
+		},
+		methods: {
+			sync (isPaused: boolean, timestamp: number) {
+				if (this.isHost) {
+					this.$socket.emit("CLIENT:SYNC_ROOM", { playing: !isPaused, currentTime: timestamp }, (res: SocketResponse<string>) => {
+						if (res.type !== "success") {
+							console.error(res.message);
+						}
+					});
+				}
+			}
+		},
+		sockets: {
+			"ROOM:SYNC" (data: RoomSyncData) {
+				this.syncData = data;
 			}
 		}
 	});

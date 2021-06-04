@@ -3,12 +3,19 @@
 		<video
 
 			id="video-player"
+			ref="video"
 
 			playsinline
 			controls
+			controlslist="nodownload"
+			preload="auto"
 
 			:src="url"
 			:poster="episode.thumbnail_url"
+
+			@play="sync"
+			@pause="sync"
+			@seeked="sync"
 		>
 			<template v-for="(subtitleURL, language) in episode.subtitles" :key="language">
 				<track
@@ -25,13 +32,14 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, PropType, ref } from "vue";
 
 	// Utils
 	import { getStreamURL } from "@utils/api";
 
 	// Types
 	import { Episode, Show } from "@typings/show";
+	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",
@@ -43,11 +51,46 @@
 			episode: {
 				type: Object as PropType<Episode>,
 				required: true
+			},
+			syncData: {
+				type: Object as PropType<RoomSyncData> | null,
+				default: null
 			}
+		},
+		emits: [ "sync" ],
+		setup () {
+		
+			const video = ref<HTMLVideoElement>();
+
+			return {
+				video
+			};
 		},
 		computed: {
 			url (): string {
 				return getStreamURL(this.show.id, this.episode.id);
+			}
+		},
+		watch: {
+			syncData (data: RoomSyncData | null) {
+				if (data && this.video) {
+
+					this.video.currentTime = data.currentTime;
+
+					if (data.playing) {
+						this.video.play();
+					} else {
+						this.video.pause();
+					}
+					
+				}
+			}
+		},
+		methods: {
+			sync () {
+				if (this.video) {
+					this.$emit("sync", this.video.paused, this.video.currentTime);
+				}
 			}
 		}
 	});

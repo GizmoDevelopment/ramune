@@ -6,7 +6,7 @@
 			ref="video"
 
 			playsinline
-			controls
+			:controls="controls"
 			controlslist="nodownload"
 			preload="auto"
 
@@ -55,6 +55,10 @@
 			syncData: {
 				type: Object as PropType<RoomSyncData> | null,
 				default: null
+			},
+			controls: {
+				type: Boolean,
+				default: true
 			}
 		},
 		emits: [ "sync" ],

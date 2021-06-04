@@ -8,6 +8,7 @@
 			:show="show"
 			:episode="episode"
 			:sync-data="syncData"
+			:controls="isHost"
 
 			@sync="sync"
 		/>

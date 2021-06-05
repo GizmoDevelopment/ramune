@@ -8,7 +8,7 @@
 			/>
 		</div>
 		<div v-else-if="status">
-			<Error :text="status" />
+			<h3 class="faded">{{ status }}</h3>
 		</div>
 		<div v-else>
 			<LoadingBuffer />
@@ -23,8 +23,7 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	import Error from "@components/Error.vue";
-
+	
 	// Views
 	import RoomView from "@views/RoomView.vue";
 
@@ -37,7 +36,6 @@
 		name: "Room",
 		components: {
 			LoadingBuffer,
-			Error,
 			RoomView
 		},
 		props: {

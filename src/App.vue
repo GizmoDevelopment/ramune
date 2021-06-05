@@ -185,7 +185,7 @@
 		background-color: var(--primary-hover-color);
 	}
 
-	.button {
+	/*.button {
 		background-color: var(--primary-color);
 		color: var(--text-color);
 		border: 2px solid var(--primary-color);
@@ -203,7 +203,7 @@
 	.button:hover {
 		background-color: var(--primary-hover-color);
 		border-color: var(--primary-hover-color);
-	}
+	}*/
 
 	.primary-button:hover, .button:hover {
 		cursor: pointer;

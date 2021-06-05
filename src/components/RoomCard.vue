@@ -2,7 +2,7 @@
 	<div id="container">
 		<div id="title-bar">
 			<h2 id="room-name">{{ room.name }}</h2>
-			<button class="button" @click="joinRoom()">
+			<button class="primary-button" @click="joinRoom()">
 				<CaretRight />
 			</button>
 		</div>

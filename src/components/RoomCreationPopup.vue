@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div v-if="!debounce">
-			<button class="button" @click="createRoom">Create</button>
+			<button class="primary-button" @click="createRoom">Create</button>
 		</div>
 	</PopupCard>
 </template>

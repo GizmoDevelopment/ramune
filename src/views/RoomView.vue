@@ -1,7 +1,10 @@
 <template>
-	<h1 class="heading">{{ room.name }}</h1>
+	<div id="room-title-bar">
+		<h1 class="heading">{{ room.name }}</h1>
+		<button class="primary-button" @click="$emit('leave-room')">Leave</button>
+	</div>
 	<RoomUserList :users="room.users" :host="room.host" />
-	<button class="primary-button" @click="$emit('leave-room')">Leave</button>
+	<br>
 	<div v-if="show && episode">
 		<Video
 
@@ -101,3 +104,14 @@
 	});
 
 </script>
+
+<style scoped>
+
+	#room-title-bar {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+</style>

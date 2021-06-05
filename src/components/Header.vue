@@ -161,7 +161,7 @@
 	.user-avatar {
 		width: 35px;
 		height: 35px;
-		border-radius: 100%;
+		border-radius: 50%;
 	}
 
 </style>

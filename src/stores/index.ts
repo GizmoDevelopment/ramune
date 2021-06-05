@@ -2,7 +2,7 @@
 import { createStore, createLogger } from "vuex";
 
 // Types
-import { User } from "gizmo-api/lib/types";
+import { User, AuthenticatedUser } from "gizmo-api/lib/types";
 import { Show } from "@typings/show";
 import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
 import { State } from "@typings/vuex";
@@ -19,7 +19,7 @@ export default createStore<State>({
 		CACHE_SHOW (state: State, show: Show) {
 			state.shows.set(show.id, show);
 		},
-		UPDATE_USER (state: State, user: User) {
+		UPDATE_USER(state: State, user: AuthenticatedUser) {
 			state.user = user;
 		},
 		JOIN_ROOM (state: State, room: Room) {

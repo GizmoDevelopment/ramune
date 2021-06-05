@@ -7,7 +7,6 @@ import Shows from "@views/Shows.vue";
 import Rooms from "@views/Rooms.vue";
 import Player from "@views/Player.vue";
 import RoomLoader from "@views/RoomLoader.vue";
-import Login from "@views/Login.vue";
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -15,10 +14,6 @@ const router = createRouter({
 		{
 			path: "/",
 			component: Home
-		},
-		{
-			path: "/login",
-			component: Login
 		},
 		{
 			path: "/shows/:showId?",

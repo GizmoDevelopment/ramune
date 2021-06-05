@@ -21,7 +21,7 @@
 			</div>
 			<div v-else>
 				<div id="login">
-					<button class="primary-button" @click="$router.push('/login')">
+					<button class="primary-button" @click="isLoggingIn = true">
 						Log In
 					</button>
 				</div>
@@ -29,6 +29,7 @@
 		</div>
 	</header>
 	<div id="empty" />
+	<LoginPopup :visible="isLoggingIn" @dismiss="isLoggingIn = false" />
 </template>
 
 <script lang="ts">
@@ -36,13 +37,22 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Components
+	import LoginPopup from "@components/LoginPopup.vue";
+
 	// Icons
 	import Logo from "@assets/icons/Logo.svg";
 
 	export default defineComponent({
 		name: "Header",
 		components: {
-			Logo
+			Logo,
+			LoginPopup
+		},
+		data () {
+			return {
+				isLoggingIn: false
+			};
 		},
 		computed: {
 			user () {

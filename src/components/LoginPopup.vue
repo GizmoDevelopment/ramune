@@ -23,7 +23,7 @@
 			<button
 				class="primary-button"
 				name="login"
-				@click="login()"
+				@click="attemptLogin()"
 			>
 				Log in
 			</button>
@@ -36,6 +36,9 @@
 	// Modules
 	import { defineComponent } from "vue";
 	import { login } from "gizmo-api";
+
+	// Mixins
+	import Socket from "@mixins/Socket";
 
 	// Components
 	import PopupCard from "@components/PopupCard.vue";
@@ -50,6 +53,7 @@
 			PopupCard,
 			Error
 		},
+		mixins: [ Socket ],
 		props: {
 			visible: {
 				type: Boolean,
@@ -65,7 +69,7 @@
 			};
 		},
 		methods: {
-			async login () {
+			async attemptLogin () {
 
 				const
 					username = this.username.trim(),
@@ -78,9 +82,7 @@
 
 						const user = await login(username, password);
 
-						setCookie("GIZMO_TOKEN", user.token);
-						this.$store.commit("UPDATE_USER", { ...user, token: undefined });
-
+						this.login(user);
 						this.$emit("dismiss");
 
 					} catch (err) {

@@ -21,16 +21,18 @@
 	// Modules
 	import { defineComponent } from "vue";
 
-	// Utils
-	import { getCookie } from "@utils/dom";
+	// Mixins
+	import Socket from "@mixins/Socket";
 
 	// Components
 	import Header from "@components/Header.vue";
 	import RoomPopout from "@components/RoomPopout.vue";
 
+	// Utils
+	import { getCookie } from "@utils/dom";
+
 	// Types
-	import { SocketResponse } from "@typings/main";
-	import { User } from "gizmo-api/lib/types";
+	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
 
 	export default defineComponent({
@@ -39,12 +41,16 @@
 			Header,
 			RoomPopout
 		},
+		mixins: [ Socket ],
 		computed: {
 			room (): Room | null {
 				return this.$store.state.room;
 			},
-			isCurrentlyViewingRoom () {
+			isCurrentlyViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
+			},
+			user (): AuthenticatedUser | null {
+				return this.$store.state.user;
 			}
 		},
 		sockets: {
@@ -53,27 +59,7 @@
 				const token = getCookie("GIZMO_TOKEN");
 
 				if (token) {
-					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
-						if (res.type === "success") {
-
-							this.$store.commit("UPDATE_USER", res.data);
-
-							// Attempt to rejoin saved room
-							if (this.room) {
-								this.$socket.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
-									if (res.type === "success") {
-										this.$store.commit("JOIN_ROOM", res.data);
-										this.$router.push(`/rooms/${ res.data.id }`);
-									} else {
-										this.$store.commit("LEAVE_ROOM");
-									}
-								});
-							}
-
-						} else {
-							console.error(res.message);
-						}
-					});
+					this.loginToSocket(token);
 				}
 
 			},
@@ -176,6 +162,7 @@
 
 	.primary-button {
 		background-color: var(--primary-color);
+		border-color: var(--primary-color);
 		color: var(--text-color);
 		border: 0;
 		border-radius: 10px;
@@ -213,6 +200,17 @@
 
 	.primary-button:hover, .button:hover {
 		cursor: pointer;
+	}
+
+	.icon-button {
+		border-width: 2px;
+		padding: 4px;
+		font-size: 1.5em;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
 	}
 
 	.input, .input-dark {

@@ -20,7 +20,8 @@
 			"@views/*": ["views/*"],
 			"@components/*": ["components/*"],
 			"@utils/*": ["utils/*"],
-			"@assets/*": ["assets/*"]
+			"@assets/*": ["assets/*"],
+			"@mixins/*": ["mixins/*"]
 		},
 		"plugins": [ { "name": "@vuedx/typescript-plugin-vue" } ]
 	},

@@ -1,7 +1,7 @@
 /**
  * Changes page title
  */
-export function changePageTitle (title: string): void {
+export function setPageTitle (title: string): void {
 	document.title = title;
 }
 

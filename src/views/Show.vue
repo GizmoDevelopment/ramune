@@ -33,7 +33,7 @@
 
 	// Utils
 	import { getShow } from "@utils/api";
-	import { changePageTitle } from "@utils/dom";
+	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import { Show, Season } from "@typings/show";
@@ -71,7 +71,7 @@
 		},
 		watch: {
 			show (val: Show | null) {
-				if (val) changePageTitle(val.title);
+				if (val) setPageTitle(val.title);
 			}
 		},
 		async mounted () {

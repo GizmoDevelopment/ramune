@@ -40,7 +40,7 @@
 
 	// Utils
 	import { getShow, getShows } from "@utils/api";
-	import { changePageTitle, clearPageTitle } from "@utils/dom";
+	import { setPageTitle, clearPageTitle } from "@utils/dom";
 
 	// Types
 	import { Show } from "@typings/show";
@@ -67,7 +67,7 @@
 		},
 		async mounted () {
 
-			// clearPageTitle();
+			clearPageTitle();
 
 			if (this.showId) this.popupStatus = "loading";
 
@@ -123,7 +123,7 @@
 				this.popupStatus = 0;
 
 				if (show) {
-					changePageTitle(show.title);
+					setPageTitle(show.title);
 					this.$router.push(`/shows/${ show.id }`);
 				} else {
 					clearPageTitle();

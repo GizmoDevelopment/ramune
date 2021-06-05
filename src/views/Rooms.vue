@@ -48,6 +48,9 @@
 	// Icons
 	import Plus from "@assets/icons/plus.svg";
 
+	// Utils
+	import { clearPageTitle } from "@utils/dom";
+
 	// Types
 	import { Room } from "@typings/room";
 	import { SocketResponse } from "@typings/main";
@@ -78,9 +81,8 @@
 			}
 		},
 		mounted () {
-
+			clearPageTitle();
 			this.fetchRooms();
-
 		},
 		methods: {
 			fetchRooms () {

@@ -33,6 +33,7 @@
 
 	// Utils
 	import { getEpisodeById } from "@utils/show";
+	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import { Room, RoomSyncData } from "@typings/room";
@@ -77,6 +78,9 @@
 			isHost (): boolean {
 				return this.room.host.id === this.user?.id;
 			}
+		},
+		mounted () {
+			setPageTitle(`Ramune — ${ this.room.name }`);
 		},
 		methods: {
 			sync (isPaused: boolean, timestamp: number) {

@@ -7,8 +7,14 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Utils
+	import { clearPageTitle } from "@utils/dom";
+
 	export default defineComponent({
-		name: "Home"
+		name: "Home",
+		mounted () {
+			clearPageTitle();
+		}
 	});
 
 </script>

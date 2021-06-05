@@ -33,6 +33,7 @@
 	// Utils
 	import { getEpisodeById } from "@utils/show";
 	import { getShow } from "@utils/api";
+	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import { Show, Episode } from "@typings/show";
@@ -99,6 +100,7 @@
 			setEpisode (episodeId: number) {
 				if (this.show) {
 					this.episode = getEpisodeById(this.show, episodeId);
+					setPageTitle(`${ this.show.title } — Episode ${ episodeId }`);
 				}
 			}
 		}

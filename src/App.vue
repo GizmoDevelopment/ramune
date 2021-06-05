@@ -58,8 +58,6 @@
 
 			const token = getCookie("GIZMO_TOKEN");
 
-			console.log(token);
-
 			if (token) {
 				try {
 					this.login({ ...await getAuthenticatedUser(token), token });

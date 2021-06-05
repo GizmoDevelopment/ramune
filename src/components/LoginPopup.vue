@@ -44,9 +44,6 @@
 	import PopupCard from "@components/PopupCard.vue";
 	import Error from "@components/Error.vue";
 
-	// Utils
-	import { setCookie } from "@utils/dom";
-
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {

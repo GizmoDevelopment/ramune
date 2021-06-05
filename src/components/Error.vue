@@ -1,5 +1,5 @@
 <template>
-	<h3 class="faded">{{ label }}</h3>
+	<h3 class="faded error">{{ label }}</h3>
 </template>
 
 <script lang="ts">
@@ -12,7 +12,7 @@
 		props: {
 			text: {
 				type: [ String, Number ],
-				default: "Something went wrong"
+				required: true
 			}
 		},
 		data () {
@@ -20,7 +20,7 @@
 				label: "" as string
 			};
 		},
-		mounted () {
+		beforeUpdate () {
 			if (typeof this.text === "number" && this.text > 0) {
 				switch (this.text) {
 					case 404:

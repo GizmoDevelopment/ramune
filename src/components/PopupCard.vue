@@ -161,6 +161,10 @@
 			margin-right: 1em;
 		}
 
+		#content {
+			width: 90%;
+		}
+
 	}
 
 </style>

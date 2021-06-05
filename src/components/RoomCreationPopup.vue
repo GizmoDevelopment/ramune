@@ -11,7 +11,6 @@
 		</div>
 		<Error
 			v-if="status && !debounce"
-			id="error-label"
 			:text="status"
 		/>
 		<div class="form-row">
@@ -149,12 +148,6 @@
 </script>
 
 <style scoped>
-
-	#error-label {
-		margin-top: 0;
-		margin-bottom: 0;
-		color: var(--error-color);
-	}
 
 	.form-row {
 		width: 100%;

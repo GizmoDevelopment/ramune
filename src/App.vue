@@ -22,7 +22,7 @@
 	import { defineComponent } from "vue";
 
 	// Utils
-	import { getCookie } from "@utils/essentials";
+	import { getCookie } from "@utils/dom";
 
 	// Components
 	import Header from "@components/Header.vue";
@@ -56,7 +56,7 @@
 					this.$socket.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
 						if (res.type === "success") {
 
-							this.$store.commit("UPDATE_USER", { ...res.data, token });
+							this.$store.commit("UPDATE_USER", res.data);
 
 							// Attempt to rejoin saved room
 							if (this.room) {
@@ -168,6 +168,12 @@
 		text-align: left;
 	}
 
+	.error {
+		margin-top: 0;
+		margin-bottom: 0;
+		color: var(--error-color);
+	}
+
 	.primary-button {
 		background-color: var(--primary-color);
 		color: var(--text-color);
@@ -229,7 +235,7 @@
 		border-color: var(--background-color);
 	}
 
-	.input:focus {
+	.input:focus, .input-dark:focus {
 		border-color: var(--primary-color);
 	}
 

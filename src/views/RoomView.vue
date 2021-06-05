@@ -12,6 +12,7 @@
 			:episode="episode"
 			:sync-data="syncData"
 			:controls="isHost"
+			:requesting-sync="isRequestingSync"
 
 			@sync="sync"
 		/>
@@ -60,7 +61,8 @@
 		emits: [ "leave-room" ],
 		data () {
 			return {
-				syncData: null as RoomSyncData | null
+				syncData: null as RoomSyncData | null,
+				isRequestingSync: false
 			};
 		},
 		computed: {
@@ -87,6 +89,9 @@
 		},
 		methods: {
 			sync (isPaused: boolean, timestamp: number) {
+
+				this.isRequestingSync = false;
+
 				if (this.isHost) {
 					this.$socket.emit("CLIENT:SYNC_ROOM", { playing: !isPaused, currentTime: timestamp }, (res: SocketResponse<string>) => {
 						if (res.type !== "success") {
@@ -99,6 +104,11 @@
 		sockets: {
 			"ROOM:SYNC" (data: RoomSyncData) {
 				this.syncData = data;
+			},
+			"ROOM:USER_JOIN" () {
+				if (this.isHost) {
+					this.isRequestingSync = true;
+				}
 			}
 		}
 	});

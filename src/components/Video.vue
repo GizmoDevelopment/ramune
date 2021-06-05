@@ -59,6 +59,10 @@
 			controls: {
 				type: Boolean,
 				default: true
+			},
+			requestingSync: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: [ "sync" ],
@@ -88,12 +92,21 @@
 					}
 					
 				}
+			},
+			requestingSync (value: boolean) {
+				if (value) {
+					this.sync();
+				}
 			}
 		},
 		methods: {
 			sync () {
 				if (this.video) {
-					this.$emit("sync", this.video.paused, this.video.currentTime);
+					setTimeout(() => {
+						if (this.video) {
+							this.$emit("sync", this.video.paused, this.video.currentTime);
+						}
+					}, 500);
 				}
 			}
 		}

@@ -20,13 +20,18 @@
 				name="password"
 				placeholder="Password"
 			>
-			<button
-				class="primary-button"
-				name="login"
-				@click="attemptLogin()"
-			>
-				Log in
-			</button>
+			<div v-if="isBusy">
+				<LoadingBuffer size="small" />
+			</div>
+			<div v-else>
+				<button
+					class="primary-button"
+					name="login"
+					@click="attemptLogin()"
+				>
+					Log in
+				</button>
+			</div>
 		</div>
 	</PopupCard>
 </template>
@@ -43,12 +48,14 @@
 	// Components
 	import PopupCard from "@components/PopupCard.vue";
 	import Error from "@components/Error.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {
 			PopupCard,
-			Error
+			Error,
+			LoadingBuffer
 		},
 		mixins: [ Socket ],
 		props: {
@@ -62,7 +69,8 @@
 			return {
 				username: "",
 				password: "",
-				error: ""
+				error: "",
+				isBusy: false
 			};
 		},
 		methods: {
@@ -72,21 +80,31 @@
 					username = this.username.trim(),
 					password = this.password.trim();
 
-				this.error = "";
+				if (!this.isBusy) {
 
-				if (username.length > 0 && password.length > 0) {
-					try {
+					this.error = "";
 
-						const user = await login(username, password);
+					if (username.length > 0 && password.length > 0) {
 
-						this.login(user);
-						this.$emit("dismiss");
+						this.isBusy = true;
 
-					} catch (err) {
-						this.error = err.message;
+						try {
+
+							const user = await login(username, password);
+
+							this.login(user);
+							this.$emit("dismiss");
+
+						} catch (err) {
+							this.error = err.message;
+						}
+
+						this.isBusy = false;
+
+					} else {
+						this.error = "Empty fields";
 					}
-				} else {
-					this.error = "Empty fields";
+
 				}
 			}
 		}

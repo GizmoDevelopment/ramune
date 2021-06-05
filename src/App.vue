@@ -323,7 +323,7 @@
 
 	.tippy-box {
 		border-radius: var(--popup-border-radius);
-		box-shadow: 0 0 3px var(--primary-color);
+		border: 2px solid var(--primary-color);
 	}
 
 	.tippy-box, .tippy-arrow {

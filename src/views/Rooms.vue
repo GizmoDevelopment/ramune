@@ -4,7 +4,7 @@
 		<div id="heading-bar">
 			<h1 class="heading">Rooms</h1>
 			<div v-if="rooms">
-				<button class="primary-button" @click="isCreatingRoom = true">
+				<button class="primary-button icon-button" @click="isCreatingRoom = true">
 					<Plus class="plus-icon" />
 				</button>
 			</div>

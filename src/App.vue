@@ -20,6 +20,7 @@
 
 	// Modules
 	import { defineComponent } from "vue";
+	import { getAuthenticatedUser } from "gizmo-api";
 
 	// Mixins
 	import Socket from "@mixins/Socket";
@@ -53,15 +54,26 @@
 				return this.$store.state.user;
 			}
 		},
+		async mounted () {
+
+			const token = getCookie("GIZMO_TOKEN");
+
+			console.log(token);
+
+			if (token) {
+				try {
+					this.login({ ...await getAuthenticatedUser(token), token });
+				} catch (err) {
+					console.error(err);
+				}
+			}
+
+		},
 		sockets: {
 			connect () {
-
-				const token = getCookie("GIZMO_TOKEN");
-
-				if (token) {
-					this.loginToSocket(token);
+				if (this.user) {
+					this.loginToSocket(this.user.token);
 				}
-
 			},
 			"ROOM:USER_JOIN" (user: User) {
 				this.$store.commit("USER_JOIN_ROOM", user);

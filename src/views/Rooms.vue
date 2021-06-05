@@ -17,7 +17,7 @@
 					</div>
 				</div>
 				<div v-else>
-					<Error text="There are no active rooms" />
+					<h3 class="faded">There are no active rooms</h3>
 				</div>
 				<RoomCreationPopup
 					:visible="isCreatingRoom"
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div v-else>
-			<Error text="You must be logged in to view this page" />
+			<h3 class="faded">You must be logged in to view this page</h3>
 		</div>
 	</div>
 </template>
@@ -40,7 +40,6 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import Error from "@components/Error.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import RoomCard from "@components/RoomCard.vue";
 	import RoomCreationPopup from "@components/RoomCreationPopup.vue";
@@ -58,7 +57,6 @@
 	export default defineComponent({
 		name: "Rooms",
 		components: {
-			Error,
 			LoadingBuffer,
 			RoomCard,
 			Plus,

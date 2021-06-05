@@ -21,7 +21,7 @@
 			</div>
 			<div v-else>
 				<div id="login">
-					<button class="primary-button">
+					<button class="primary-button" @click="$router.push('/login')">
 						Log In
 					</button>
 				</div>

@@ -162,6 +162,12 @@
 		opacity: 0;
 	}
 
+	.heading {
+		font-size: 45px;
+		font-weight: bold;
+		text-align: left;
+	}
+
 	.primary-button {
 		background-color: var(--primary-color);
 		color: var(--text-color);
@@ -177,12 +183,6 @@
 
 	.primary-button:hover {
 		background-color: var(--primary-hover-color);
-	}
-
-	.heading {
-		font-size: 45px;
-		font-weight: bold;
-		text-align: left;
 	}
 
 	.button {
@@ -205,14 +205,17 @@
 		border-color: var(--primary-hover-color);
 	}
 
+	.primary-button:hover, .button:hover {
+		cursor: pointer;
+	}
+
 	.input, .input-dark {
 		color: var(--text-color);
 		border: 2px solid;
 		border-radius: var(--popup-border-radius);
 		font-size: 1.1em;
 		outline: none;
-		padding-left: .3em;
-		padding-right: .3em;
+		padding: .2em .4em .2em .4em;
 		transition: border-color .2s ease-in-out;
 	}
 

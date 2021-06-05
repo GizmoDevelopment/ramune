@@ -21,16 +21,24 @@
 			};
 		},
 		beforeUpdate () {
-			if (typeof this.text === "number" && this.text > 0) {
-				switch (this.text) {
-					case 404:
-						this.label = "Not found :(";
-						break;
-					default:
-						this.label = `${ this.text }`;
+			this.formatError();
+		},
+		mounted () {
+			this.formatError();
+		},
+		methods: {
+			formatError () {
+				if (typeof this.text === "number" && this.text > 0) {
+					switch (this.text) {
+						case 404:
+							this.label = "Not found :(";
+							break;
+						default:
+							this.label = `${ this.text }`;
+					}
+				} else {
+					this.label = `${ this.text }`;
 				}
-			} else {
-				this.label = `${ this.text }`;
 			}
 		}
 	});

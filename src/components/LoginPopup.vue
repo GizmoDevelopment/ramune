@@ -4,6 +4,7 @@
 		title="Login"
 		@dismiss="$emit('dismiss')"
 	>
+		<Error v-show="error" :text="error" />
 		<div id="form">
 			<input
 				v-model="username"
@@ -19,7 +20,13 @@
 				name="password"
 				placeholder="Password"
 			>
-			<button class="primary-button" name="login">Log in</button>
+			<button
+				class="primary-button"
+				name="login"
+				@click="login()"
+			>
+				Log in
+			</button>
 		</div>
 	</PopupCard>
 </template>
@@ -28,14 +35,20 @@
 
 	// Modules
 	import { defineComponent } from "vue";
+	import { login } from "gizmo-api";
 
 	// Components
 	import PopupCard from "@components/PopupCard.vue";
+	import Error from "@components/Error.vue";
+
+	// Utils
+	import { setCookie } from "@utils/dom";
 
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {
-			PopupCard
+			PopupCard,
+			Error
 		},
 		props: {
 			visible: {
@@ -47,8 +60,36 @@
 		data () {
 			return {
 				username: "",
-				password: ""
+				password: "",
+				error: ""
 			};
+		},
+		methods: {
+			async login () {
+
+				const
+					username = this.username.trim(),
+					password = this.password.trim();
+
+				this.error = "";
+
+				if (username.length > 0 && password.length > 0) {
+					try {
+
+						const user = await login(username, password);
+
+						setCookie("GIZMO_TOKEN", user.token);
+						this.$store.commit("UPDATE_USER", { ...user, token: undefined });
+
+						this.$emit("dismiss");
+
+					} catch (err) {
+						this.error = err.message;
+					}
+				} else {
+					this.error = "Empty fields";
+				}
+			}
 		}
 	});
 

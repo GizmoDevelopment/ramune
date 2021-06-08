@@ -10,6 +10,7 @@ export interface State {
     shows: Map<string, Show>;
 	user: AuthenticatedUser | null;
 	room: Room | null;
+	roomVideoTeleportParent: string | null;
 }
 
 declare module "@vue/runtime-core" {
@@ -18,6 +19,7 @@ declare module "@vue/runtime-core" {
         shows: Map<string, Show>;
 		user: AuthenticatedUser | null;
 		room: Room | null;
+		roomVideoTeleportParent: string | null;
     }
 
     interface ComponentCustomProperties {

@@ -12,7 +12,8 @@ export default createStore<State>({
 		return {
 			shows: new Map(),
 			user: null,
-			room: null
+			room: null,
+			roomVideoTeleportParent: null
 		};
 	},
 	mutations: {
@@ -47,6 +48,9 @@ export default createStore<State>({
 			if (state.room) {
 				state.room.data = roomData;
 			}
+		},
+		UPDATE_ROOM_CONTROLLER_STATE (state: State, newState: string | null) {
+			state.roomVideoTeleportParent = newState;
 		}
 	},
 	plugins: [ createLogger() ] // REMOVE BEFORE PROD

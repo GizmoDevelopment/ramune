@@ -6,7 +6,8 @@
 	<RoomUserList :users="room.users" :host="room.host" />
 	<br>
 	<div v-if="show && episode">
-		<div id="room-video-container" /> <!-- This is where RoomVideoController will teleport the video element to -->
+		<!-- This is where RoomVideoController will teleport the video element to -->
+		<div id="room-video-container" />
 		<div v-if="isHost">
 			<ShowSeasonList
 				:show="show"
@@ -56,10 +57,10 @@
 		},
 		mounted () {
 			setPageTitle(`Ramune — ${ this.room.name }`);
-			this.toggleRoomControllerState(true);
+			this.toggleRoomControllerState("room-video-container");
 		},
 		beforeUnmount () {
-			this.toggleRoomControllerState(false);
+			this.toggleRoomControllerState(null);
 		},
 		methods: {
 			sync (isPaused: boolean, timestamp: number) {

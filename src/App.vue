@@ -9,10 +9,13 @@
 			</router-view>
 		</div>
 		<transition name="slide" mode="out-in">
-			<div v-if="room && !isCurrentlyViewingRoom">
-				<RoomPopout />
+			<div v-if="room && !isViewingRoom">
+				<RoomPopout :room="room" />
 			</div>
 		</transition>
+		<div v-if="room">
+			<RoomVideoController :room="room" />
+		</div>
 	</div>
 </template>
 
@@ -27,7 +30,8 @@
 
 	// Components
 	import Header from "@components/Header.vue";
-	import RoomPopout from "@components/RoomPopout.vue";
+	import RoomVideoController from "@components/room/RoomVideoController.vue";
+	import RoomPopout from "@components/room/RoomPopout.vue";
 
 	// Utils
 	import { getCookie } from "@utils/dom";
@@ -40,6 +44,7 @@
 		name: "App",
 		components: {
 			Header,
+			RoomVideoController,
 			RoomPopout
 		},
 		mixins: [ Socket ],
@@ -47,11 +52,11 @@
 			room (): Room | null {
 				return this.$store.state.room;
 			},
-			isCurrentlyViewingRoom (): boolean {
-				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
-			},
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
+			},
+			isViewingRoom (): boolean {
+				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
 			}
 		},
 		async mounted () {

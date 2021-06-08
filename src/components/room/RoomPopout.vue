@@ -102,13 +102,22 @@
 		height: 2em;
 	}
 
-	#overlay, #room-video-popout-container video {
+	#overlay {
 		border-radius: var(--popup-border-radius);
 	}
 
 	#overlay button:hover {
 		background-color: var(--primary-color);
 		cursor: pointer;
+	}
+
+</style>
+
+<style>
+
+	#room-video-popout-container video {
+		border-radius: var(--popup-border-radius);
+		margin-top: 4px;
 	}
 
 </style>

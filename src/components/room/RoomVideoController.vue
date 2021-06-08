@@ -3,7 +3,7 @@
 		<RoomVideo
 			ref="video"
 			:room="room"
-			:controls="isViewingRoom ? isHost : false"
+			:controls="allowControls ? isHost : false"
 		/>
 	</div>
 </template>
@@ -31,11 +31,11 @@
 			};
 		},
 		computed: {
-			isViewingRoom (): boolean {
-				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
-			},
 			teleportParent (): string | null {
 				return this.$store.state.roomVideoTeleportParent;
+			},
+			allowControls (): boolean {
+				return this.teleportParent === "room-video-container";
 			}
 		},
 		watch: {
@@ -48,7 +48,6 @@
 						videoRef = (this.$refs.video as any)?.$el as HTMLElement; // I deserve to get waterboarded for this
 
 					if (newParentInstance && videoRef) {
-						console.log("reparented");
 						newParentInstance.innerHTML = "";
 						newParentInstance.appendChild(videoRef);
 					}

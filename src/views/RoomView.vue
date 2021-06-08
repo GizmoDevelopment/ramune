@@ -6,16 +6,7 @@
 	<RoomUserList :users="room.users" :host="room.host" />
 	<br>
 	<div v-if="show && episode">
-		<Video
-
-			:show="show"
-			:episode="episode"
-			:sync-data="syncData"
-			:controls="isHost"
-			:requesting-sync="isRequestingSync"
-
-			@sync="sync"
-		/>
+		<div id="room-video-container" /> <!-- This is where RoomVideoController will teleport the video element to -->
 		<div v-if="isHost">
 			<ShowSeasonList
 				:show="show"
@@ -31,27 +22,26 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import RoomUserList from "@components/RoomUserList.vue";
-	import Video from "@components/Video.vue";
-	import ShowSeasonList from "@components/ShowSeasonList.vue";
+	import RoomUserList from "@components/room/RoomUserList.vue";
+	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
+
+	// Mixins
+	import RoomMixin from "@mixins/Room";
 
 	// Utils
-	import { getEpisodeById } from "@utils/show";
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
-	import { Room, RoomSyncData } from "@typings/room";
-	import { AuthenticatedUser } from "gizmo-api/lib/types";
+	import { Room } from "@typings/room";
 	import { SocketResponse } from "@typings/main";
-	import { Show, Episode } from "@typings/show";
 
 	export default defineComponent({
 		name: "Room",
 		components: {
 			RoomUserList,
-			Video,
 			ShowSeasonList
 		},
+		mixins: [ RoomMixin ],
 		props: {
 			room: {
 				type: Object as PropType<Room>,
@@ -61,31 +51,15 @@
 		emits: [ "leave-room" ],
 		data () {
 			return {
-				syncData: null as RoomSyncData | null,
 				isRequestingSync: false
 			};
 		},
-		computed: {
-			user (): AuthenticatedUser | null {
-				return this.$store.state.user;
-			},
-			show (): Show | null {
-				return this.room.data?.show || null;
-			},
-			episodeId (): number {
-				return this.room.data?.episodeId || 1;
-			},
-			episode (): Episode | null {
-				return this.show
-					? getEpisodeById(this.show, this.episodeId)
-					: null;
-			},
-			isHost (): boolean {
-				return this.room.host.id === this.user?.id;
-			}
-		},
 		mounted () {
 			setPageTitle(`Ramune — ${ this.room.name }`);
+			this.toggleRoomControllerState(true);
+		},
+		beforeUnmount () {
+			this.toggleRoomControllerState(false);
 		},
 		methods: {
 			sync (isPaused: boolean, timestamp: number) {
@@ -102,13 +76,12 @@
 			}
 		},
 		sockets: {
-			"ROOM:SYNC" (data: RoomSyncData) {
-				this.syncData = data;
-			},
 			"ROOM:USER_JOIN" () {
-				if (this.isHost) {
-					this.isRequestingSync = true;
-				}
+				setTimeout(() => {
+					if (this.isHost) {
+						this.isRequestingSync = true;
+					}
+				}, 500);
 			}
 		}
 	});

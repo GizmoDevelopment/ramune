@@ -12,10 +12,6 @@
 
 			:src="url"
 			:poster="episode.thumbnail_url"
-
-			@play="sync"
-			@pause="sync"
-			@seeked="sync"
 		>
 			<template v-for="(subtitleURL, language) in episode.subtitles" :key="language">
 				<track
@@ -39,7 +35,6 @@
 
 	// Types
 	import { Episode, Show } from "@typings/show";
-	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",
@@ -52,17 +47,9 @@
 				type: Object as PropType<Episode>,
 				required: true
 			},
-			syncData: {
-				type: Object as PropType<RoomSyncData> | null,
-				default: null
-			},
 			controls: {
 				type: Boolean,
 				default: true
-			},
-			requestingSync: {
-				type: Boolean,
-				default: false
 			}
 		},
 		emits: [ "sync" ],
@@ -77,37 +64,6 @@
 		computed: {
 			url (): string {
 				return getStreamURL(this.show.id, this.episode.id);
-			}
-		},
-		watch: {
-			syncData (data: RoomSyncData | null) {
-				if (data && this.video) {
-
-					this.video.currentTime = data.currentTime;
-
-					if (data.playing) {
-						this.video.play();
-					} else {
-						this.video.pause();
-					}
-					
-				}
-			},
-			requestingSync (value: boolean) {
-				if (value) {
-					this.sync();
-				}
-			}
-		},
-		methods: {
-			sync () {
-				if (this.video) {
-					setTimeout(() => {
-						if (this.video) {
-							this.$emit("sync", this.video.paused, this.video.currentTime);
-						}
-					}, 500);
-				}
 			}
 		}
 	});

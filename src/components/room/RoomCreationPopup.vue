@@ -43,7 +43,7 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import RoomCard from "@components/RoomCard.vue";
+	import RoomCard from "@components/room/RoomCard.vue";
 	import PopupCard from "@components/PopupCard.vue";
 	import Input from "@components/Input.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";

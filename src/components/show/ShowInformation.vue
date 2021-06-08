@@ -23,7 +23,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import ShowSeasonList from "@components/ShowSeasonList.vue";
+	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 
 	// Types
 	import { Show, Season } from "@typings/show";

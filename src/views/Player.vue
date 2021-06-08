@@ -27,7 +27,7 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
-	import ShowSeasonList from "@components/ShowSeasonList.vue";
+	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import Video from "@components/Video.vue";
 
 	// Utils

@@ -16,7 +16,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import ShowSeasonEpisodeList from "@components/ShowSeasonEpisodeList.vue";
+	import ShowSeasonEpisodeList from "@components/show/ShowSeasonEpisodeList.vue";
 
 	// Types
 	import { Show } from "@typings/show";

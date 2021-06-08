@@ -29,7 +29,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import ShowEpisodeCard from "@components/ShowEpisodeCard.vue";
+	import ShowEpisodeCard from "@components/show/ShowEpisodeCard.vue";
 
 	// Icons
 	import CaretDown from "@assets/icons/caret-down.svg";

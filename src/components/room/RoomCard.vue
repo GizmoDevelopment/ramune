@@ -16,7 +16,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import RoomUserList from "@components/RoomUserList.vue";
+	import RoomUserList from "@components/room/RoomUserList.vue";
 
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg";

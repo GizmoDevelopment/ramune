@@ -41,8 +41,8 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	import RoomCard from "@components/RoomCard.vue";
-	import RoomCreationPopup from "@components/RoomCreationPopup.vue";
+	import RoomCard from "@components/room/RoomCard.vue";
+	import RoomCreationPopup from "@components/room/RoomCreationPopup.vue";
 
 	// Icons
 	import Plus from "@assets/icons/plus.svg";

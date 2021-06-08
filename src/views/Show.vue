@@ -29,7 +29,7 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	import ShowSeasonList from "@components/ShowSeasonList.vue";
+	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 
 	// Utils
 	import { getShow } from "@utils/api";

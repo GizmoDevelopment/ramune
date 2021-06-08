@@ -34,9 +34,9 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import ShowCard from "@components/ShowCard.vue";
-	import ShowCardHusk from "@components/ShowCardHusk.vue";
-	import ShowInformationPopup from "@components/ShowInformationPopup.vue";
+	import ShowCard from "@components/show/ShowCard.vue";
+	import ShowCardHusk from "@components/show/ShowCardHusk.vue";
+	import ShowInformationPopup from "@components/show/ShowInformationPopup.vue";
 
 	// Utils
 	import { getShow, getShows } from "@utils/api";

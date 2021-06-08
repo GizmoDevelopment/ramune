@@ -39,8 +39,8 @@
 
 	// Components
 	import Error from "@components/Error.vue";
-	import ShowInformation from "@components/ShowInformation.vue";
-	import ShowInformationHusk from "@components/ShowInformationHusk.vue";
+	import ShowInformation from "@components/show/ShowInformation.vue";
+	import ShowInformationHusk from "@components/show/ShowInformationHusk.vue";
 
 	// Icons
 	import Close from "@assets/icons/close.svg";

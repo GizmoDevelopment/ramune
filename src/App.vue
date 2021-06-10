@@ -219,7 +219,7 @@
 
 	.icon-button {
 		border-width: 2px;
-		padding: 4px;
+		padding: 6px;
 		font-size: 1.5em;
 		display: flex;
 		flex-direction: row;

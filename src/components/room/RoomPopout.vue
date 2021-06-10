@@ -90,12 +90,15 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		z-index: 1;
 	}
 
 	#room-information {
+		position: relative;
 		width: 100%;
 		height: 100%;
 		padding: 5px;
+		z-index: 2;
 	}
 
 	#user-list {
@@ -104,6 +107,7 @@
 
 	#overlay {
 		border-radius: var(--popup-border-radius);
+		z-index: 3;
 	}
 
 	#overlay button:hover {

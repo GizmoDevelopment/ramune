@@ -103,11 +103,11 @@
 
 		/* Colors */
 		--text-color: white;
-		--container-background-color: #1C1C1C;
-		--background-color: #101010;
-		--primary-color: hsl(199, 95%, 60%);
-		--primary-hover-color: hsl(199, 95%, 30%);
-		--transparent-hover-color: rgba(28, 28, 28, .5);
+		--container-background-color: hsl(0, 0%, 12%);
+		--background-color: #0D0D0D;
+		--primary-color: hsl(200, 90%, 60%);
+		--primary-hover-color: hsl(200, 90%, 40%);
+		--transparent-hover-color: rgba(13, 13, 13, .5);
 		--error-color: hsl(0, 95%, 60%);
 
 		/* Values */
@@ -128,9 +128,9 @@
 		justify-content: center;
 	}
 
-	@media only screen and (min-width: 1200px) {
+	@media only screen and (min-width: 1350px) {
 		#content {
-			width: 1200px;
+			width: 1350px;
 		}
 	}
 

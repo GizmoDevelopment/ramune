@@ -1,9 +1,11 @@
 <template>
-	<Video
-		:show="show"
-		:episode="episode"
-		:controls="controls"
-	/>
+	<div v-if="room.data">
+		<Video
+			:show="show"
+			:episode="episode"
+			:controls="controls"
+		/>
+	</div>
 </template>
 
 <script lang="ts">

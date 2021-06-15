@@ -1,11 +1,9 @@
 <template>
-	<div v-if="room.data">
-		<RoomVideo
-			ref="video"
-			:room="room"
-			:controls="allowControls ? isHost : false"
-		/>
-	</div>
+	<RoomVideo
+		ref="video"
+		:room="room"
+		:controls="allowControls ? isHost : false"
+	/>
 </template>
 
 <script lang="ts">

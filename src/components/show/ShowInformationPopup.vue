@@ -58,7 +58,7 @@
 		},
 		props: {
 			show: {
-				type: Object as PropType<Show> | null,
+				type: Object as PropType<Show | null>,
 				default: null
 			},
 			status: {

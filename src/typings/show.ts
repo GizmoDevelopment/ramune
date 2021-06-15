@@ -19,4 +19,16 @@ export interface Episode {
 	subtitles: Record<string, string>;
 	duration: number;
 	stream_url: string;
+	data: EpisodeData;
+}
+
+export interface EpisodeData {
+	effects: EpisodeEffect[];
+}
+
+export interface EpisodeEffect {
+	engine: "tsparticles";
+	data: any;
+	start: number;
+	end: number;
 }

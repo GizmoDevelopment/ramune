@@ -2,6 +2,7 @@
 import { createApp } from "vue";
 import VueSocketIO from "vue-socket.io";
 import SocketIO from "socket.io-client";
+import Particles from "particles.vue3";
 
 // Vue
 import App from "./App.vue";
@@ -37,6 +38,7 @@ if (typeof SOCKET_ENDPOINT === "string") {
 				mutationPrefix: "SOCKET_",
 			}
 		}))
+		.use(Particles)
 		.directive("tooltip", Tooltip)
 		.mount("#app");
 

@@ -22,6 +22,11 @@
 				>
 			</template>
 		</video>
+		<div v-if="episode.data.effects.length > 0">
+			<EffectsRenderer
+				:effects="episode.data.effects"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -29,6 +34,9 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
+	
+	// Components
+	import EffectsRenderer from "@components/EffectsRenderer.vue";
 
 	// Utils
 	import { getStreamURL } from "@utils/api";
@@ -38,6 +46,9 @@
 
 	export default defineComponent({
 		name: "Video",
+		components: {
+			EffectsRenderer
+		},
 		props: {
 			show: {
 				type: Object as PropType<Show>,
@@ -75,6 +86,7 @@
 	#video-player {
 		width: 100%;
 		height: 100%;
+		z-index: 3;
 	}
 
 </style>

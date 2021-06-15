@@ -5,7 +5,7 @@ import SocketIO from "socket.io-client";
 import Particles from "particles.vue3";
 
 // Vue
-import App from "./App.vue";
+import App from "@views/App.vue";
 
 // Routes
 import Router from "./routes";

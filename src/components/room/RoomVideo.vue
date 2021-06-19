@@ -1,5 +1,5 @@
 <template>
-	<div v-if="room.data">
+	<div v-if="show && episode">
 		<Video
 			:show="show"
 			:episode="episode"

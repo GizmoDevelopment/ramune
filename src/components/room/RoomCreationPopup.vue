@@ -13,21 +13,23 @@
 			v-if="status && !debounce"
 			:text="status"
 		/>
-		<div class="form-row">
-			<p>Name</p>
+		<form class="form" @submit.prevent="createRoom">
 			<Input
-				class="input-dark"
 				type="text"
+				theme="dark"
 				placeholder="Anime night"
+				label="Name"
+				autofocus
 				:limit="25"
 				@update="updateRoomPreview"
 			/>
-		</div>
+		</form>
 		<div id="room-preview-container" class="form-row">
 			<p>Preview</p>
 			<div v-if="roomPreviewObject" id="room-preview">
 				<RoomCard
 					:room="roomPreviewObject"
+					theme="dark"
 				/>
 			</div>
 		</div>
@@ -98,7 +100,7 @@
 		},
 		methods: {
 			updateRoomPreview (roomName: string) {
-				
+
 				this.roomOptions = {
 					name: roomName
 				};
@@ -119,9 +121,9 @@
 				this.$emit("dismiss");
 			},
 			createRoom () {
-				
+
 				this.debounce = true;
-				
+
 				this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
 
@@ -131,7 +133,7 @@
 						setTimeout(() => {
 							this.$router.push(`/rooms/${ res.data.id }`);
 						}, 100);
-						
+
 					} else {
 
 						this.debounce = false;
@@ -149,7 +151,7 @@
 
 <style scoped>
 
-	.form-row {
+	.form {
 		width: 100%;
 		display: inline-flex;
 		flex-direction: row;
@@ -158,20 +160,13 @@
 		align-content: center;
 	}
 
-	.form-row * {
-		margin-right: .5em;
-	}
-
-	.form-row input {
+	.form * {
 		flex: 1;
-	}
-
-	.form-row p {
-		font-size: 1.2em;
 	}
 
 	#room-preview-container {
 		display: block;
+		width: 100%;
 		margin-bottom: 2em;
 	}
 
@@ -184,12 +179,19 @@
 	#room-preview-container p {
 		text-align: left;
 		margin-bottom: 0;
+		font-size: 1.1em;
 	}
 
 	#room-preview {
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		margin-top: .2em;
+	}
+
+	#room-preview > * {
+		width: 100%;
 		margin-top: 0;
 	}
 

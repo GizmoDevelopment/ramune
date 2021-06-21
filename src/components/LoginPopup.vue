@@ -4,18 +4,20 @@
 		title="Login"
 		@dismiss="$emit('dismiss')"
 	>
-		<Error v-show="error" :text="error" />
-		<div id="form">
+		<Error :v-show="error" :text="error" />
+		<form id="form" @submit.prevent="attemptLogin">
 			<input
 				v-model="username"
-				class="input-dark"
+				class="input"
+				theme="dark"
 				type="text"
 				name="username"
 				placeholder="Username / E-mail"
 			>
 			<input
 				v-model="password"
-				class="input-dark"
+				class="input"
+				theme="dark"
 				type="password"
 				name="password"
 				placeholder="Password"
@@ -32,7 +34,7 @@
 					Log in
 				</button>
 			</div>
-		</div>
+		</form>
 	</PopupCard>
 </template>
 
@@ -96,6 +98,7 @@
 							this.$emit("dismiss");
 
 						} catch (err) {
+							console.error(err);
 							this.error = err.message;
 						}
 
@@ -124,12 +127,9 @@
 	#form * {
 		margin-top: .5em;
 	}
-	
-	#form input {
-		width: 90%;
-	}
 
-	.input {
+	#form input {
+		width: 100%;
 		font-size: 1.2em;
 	}
 

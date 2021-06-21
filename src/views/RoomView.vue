@@ -1,7 +1,9 @@
 <template>
 	<div id="room-title-bar">
+		<button class="primary-button icon-button" @click="$emit('leave-room')">
+			<CaretLeft />
+		</button>
 		<h1 class="heading">{{ room.name }}</h1>
-		<button class="primary-button" @click="$emit('leave-room')">Leave</button>
 	</div>
 	<RoomUserList :users="room.users" :host="room.host" />
 	<br>
@@ -26,6 +28,9 @@
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 
+	// Icons
+	import CaretLeft from "@assets/icons/caret-left.svg";
+
 	// Mixins
 	import RoomMixin from "@mixins/Room";
 
@@ -40,7 +45,8 @@
 		name: "Room",
 		components: {
 			RoomUserList,
-			ShowSeasonList
+			ShowSeasonList,
+			CaretLeft
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -94,8 +100,12 @@
 	#room-title-bar {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
+	}
+
+	#room-title-bar > * {
+		margin-right: 10px;
 	}
 
 </style>

@@ -23,11 +23,6 @@
 			RoomVideo
 		},
 		mixins: [ RoomMixin ],
-		data () {
-			return {
-				visible: false
-			};
-		},
 		computed: {
 			teleportParent (): string | null {
 				return this.$store.state.roomVideoTeleportParent;
@@ -39,7 +34,7 @@
 		watch: {
 			teleportParent (newParent: string | null) {
 				if (newParent) {
-					
+
 					const
 						newParentInstance = document.getElementById(newParent),
 						// eslint-disable-next-line

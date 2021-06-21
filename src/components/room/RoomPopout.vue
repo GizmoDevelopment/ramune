@@ -1,29 +1,27 @@
 <template>
-	<div id="position-container">
-		<div id="container">
-			<div id="room-information">
-				<RoomUserList
-					id="user-list"
-					:users="room.users"
-					:host="room.host"
-				/>
+	<div id="container">
+		<div id="room-information">
+			<RoomUserList
+				id="user-list"
+				:users="room.users"
+				:host="room.host"
+			/>
+		</div>
+		<div id="video">
+			<div v-if="room.data">
+				<!-- This is where RoomVideoController will teleport the video element to -->
+				<div id="room-video-popout-container" />
 			</div>
-			<div id="video">
-				<div v-if="room.data">
-					<!-- This is where RoomVideoController will teleport the video element to -->
-					<div id="room-video-popout-container" />
-				</div>
-				<div v-else>
-					<p class="faded">Nothing is currently playing</p>
-				</div>
+			<div v-else>
+				<p class="faded">Nothing is currently playing</p>
 			</div>
-			<div
-				id="overlay"
-				class="overlay hover-opacity"
-				@click="returnToRoom()"
-			>
-				<button class="primary-button">Return</button>
-			</div>
+		</div>
+		<div
+			id="overlay"
+			class="overlay hover-opacity"
+			@click="returnToRoom()"
+		>
+			<button class="primary-button">Return</button>
 		</div>
 	</div>
 </template>
@@ -61,15 +59,6 @@
 </script>
 
 <style scoped>
-
-	#position-container {
-		position: fixed;
-		right: 0;
-		bottom: 0;
-		z-index: 10;
-		margin-right: 15px;
-		margin-bottom: 15px;
-	}
 
 	#container {
 		position: relative;

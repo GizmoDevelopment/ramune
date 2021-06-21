@@ -1,9 +1,16 @@
 <template>
 	<div v-if="effect" id="effect-container">
-		<Particles
-			id="tsparticles"
-			:options="effect.data"
-		/>
+		<div v-if="effect.renderer === 'tsparticles'">
+			<Particles
+				id="tsparticles"
+				:options="effect.data"
+			/>
+		</div>
+		<div v-else-if="effect.renderer === 'leaf'">
+			<Leaf
+				:data="effect.data"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -12,11 +19,17 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Components
+	import Leaf from "@renderers/Leaf.vue";
+
 	// Types
 	import { EpisodeEffect } from "@typings/show";
 
 	export default defineComponent({
 		name: "EffectsRenderer",
+		components: {
+			Leaf
+		},
 		props: {
 			effects: {
 				type: Object as PropType<EpisodeEffect[]>,
@@ -41,7 +54,7 @@
 
 			if (videoElement) {
 				videoElement.addEventListener("timeupdate", () => {
-					
+
 					const time = videoElement.currentTime;
 
 					if (this.effect && time > this.effect.end) {

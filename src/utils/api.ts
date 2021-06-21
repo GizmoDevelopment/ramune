@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Types
-import { Show } from "@typings/show";
+import { Show, ShowHusk } from "@typings/show";
 
 // Constants
 const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
@@ -11,7 +11,7 @@ const SHOW_CDN_ENDPOINT = import.meta.env.VITE_SHOW_CDN_ENDPOINT;
 /**
  * Fetches all available shows
  */
-export async function getShows (): Promise<Show[]|[]> {
+export async function getShows (): Promise<ShowHusk[]> {
 	try {
 
 		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows`);

@@ -1,14 +1,14 @@
 <template>
 	<transition name="fade-overlay">
 		<div
-			v-if="show || status"
+			v-if="showId"
 			class="overlay"
 			@click="$emit('dismiss')"
 		/>
 	</transition>
 	<transition name="slide-content">
 		<div
-			v-if="show || status"
+			v-if="showId"
 			class="content-container"
 			@click="$emit('dismiss')"
 		>
@@ -21,8 +21,8 @@
 						:show="show"
 					/>
 				</div>
-				<div v-else-if="status && status !== 'loading'">
-					<Error :text="status" />
+				<div v-else-if="error">
+					<Error :text="error" />
 				</div>
 				<div v-else>
 					<ShowInformationHusk />
@@ -35,7 +35,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent } from "vue";
 
 	// Components
 	import Error from "@components/Error.vue";
@@ -44,6 +44,9 @@
 
 	// Icons
 	import Close from "@assets/icons/close.svg";
+
+	// Utils
+	import { getShow } from "@/utils/api";
 
 	// Types
 	import { Show } from "@typings/show";
@@ -57,16 +60,51 @@
 			ShowInformationHusk
 		},
 		props: {
-			show: {
-				type: Object as PropType<Show | null>,
+			showId: {
+				type: String,
 				default: null
-			},
-			status: {
-				type: [ String, Number ],
-				default: 0
 			}
 		},
-		emits: [ "dismiss" ]
+		emits: [ "dismiss" ],
+		data () {
+			return {
+				error: "" as number | string,
+				show: null as Show | null
+			};
+		},
+		watch: {
+			showId () {
+				this.fetchShow();
+			}
+		},
+		mounted () {
+			this.fetchShow();
+		},
+		methods: {
+			async fetchShow () {
+				if (this.showId) {
+
+					const cachedShow = this.$store.state.shows.get(this.showId);
+
+					if (cachedShow) {
+						this.show = cachedShow;
+					} else {
+
+						const _show = await getShow(this.showId);
+
+						if (_show) {
+							this.show = _show;
+							this.$store.commit("CACHE_SHOW", _show);
+						} else {
+							this.error = 404;
+						}
+
+					}
+				} else {
+					this.show = null;
+				}
+			}
+		}
 	});
 
 </script>

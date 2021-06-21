@@ -8,7 +8,7 @@
 			<div v-for="show in shows" :key="show.id">
 				<ShowCard
 					:show="show"
-					@click="selectShow(show)"
+					@click="selectShow(show.id)"
 				/>
 			</div>
 		</div>
@@ -21,8 +21,7 @@
 			</div>
 		</div>
 		<ShowInformationPopup
-			:show="selectedShow"
-			:status="popupStatus"
+			:show-id="selectedShowId"
 			@dismiss="selectShow(null)"
 		/>
 	</div>
@@ -39,11 +38,11 @@
 	import ShowInformationPopup from "@components/show/ShowInformationPopup.vue";
 
 	// Utils
-	import { getShow, getShows } from "@utils/api";
-	import { setPageTitle, clearPageTitle } from "@utils/dom";
+	import { getShows } from "@utils/api";
+	import { clearPageTitle } from "@utils/dom";
 
 	// Types
-	import { Show } from "@typings/show";
+	import { ShowHusk } from "@typings/show";
 
 	export default defineComponent({
 		name: "Shows",
@@ -60,76 +59,31 @@
 		},
 		data () {
 			return {
-				shows: [] as Show[],
-				selectedShow: null as Show | null,
-				popupStatus: 0 as string | number
+				shows: [] as ShowHusk[],
+				selectedShowId: null as string | null
 			};
 		},
 		async mounted () {
 
 			clearPageTitle();
 
-			if (this.showId) this.popupStatus = "loading";
-
-			const cachedShows = this.$store.state.shows;
-
-			if (cachedShows.size > 0) {
-				
-				this.shows = Array.from(cachedShows.values());
-
-			} else {
-
-				const shows = await getShows();
-
-				shows.forEach(show => {
-					this.$store.commit("CACHE_SHOW", show);
-					cachedShows.set(show.id, show);
-				});
-
-				this.shows = shows;
-			}
-			
 			if (this.showId) {
-				if (cachedShows.has(this.showId)) {
-					
-					const _show = cachedShows.get(this.showId);
-
-					// TS still complains about that undefined type even after using #has()
-					if (_show) {
-						this.selectShow(_show);
-					} else {
-						this.selectShow(null);
-					}
-
-				} else {
-
-					this.popupStatus = "loading";
-
-					const _show = await getShow(this.showId);
-
-					if (_show) {
-						this.selectShow(_show);
-					} else {
-						this.popupStatus = 404;
-					}
-				}
+				this.selectShow(this.showId);
 			}
+
+			this.shows = await getShows();
 
 		},
 		methods: {
-			selectShow (show: Show | null) {
-
-				this.selectedShow = show;
-				this.popupStatus = 0;
-
-				if (show) {
-					setPageTitle(show.title);
-					this.$router.push(`/shows/${ show.id }`);
+			selectShow (showId: string | null) {
+				if (showId) {
+					this.selectedShowId = showId;
+					this.$router.push(`/shows/${ showId }`);
 				} else {
-					clearPageTitle();
+					this.selectedShowId = null;
 					this.$router.push("/shows");
+					clearPageTitle();
 				}
-
 			}
 		}
 	});

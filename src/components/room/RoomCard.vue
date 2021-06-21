@@ -1,5 +1,5 @@
 <template>
-	<div id="container">
+	<div id="container" :theme="theme">
 		<div id="title-bar">
 			<h2 id="room-name">{{ room.name }}</h2>
 			<button class="primary-button icon-button" @click="joinRoom()">
@@ -18,6 +18,9 @@
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/main";
+
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg";
 
@@ -31,6 +34,7 @@
 			CaretRight,
 			RoomUserList
 		},
+		mixins: [ MainMixin ],
 		props: {
 			room: {
 				type: Object as PropType<Room>,
@@ -63,7 +67,6 @@
 
 	#container {
 		width: 400px;
-		background-color: var(--background-color);
 		border-radius: var(--popup-border-radius);
 		display: flex;
 		flex-direction: column;
@@ -87,7 +90,7 @@
 	}
 
 	@media only screen and (max-width: 600px) {
-		
+
 		#container {
 			width: 300px;
 		}

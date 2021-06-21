@@ -8,11 +8,13 @@
 				</transition>
 			</router-view>
 		</div>
-		<transition name="slide" mode="out-in">
-			<div v-if="room && !isViewingRoom">
-				<RoomPopout :room="room" />
-			</div>
-		</transition>
+		<div id="room-popout-container">
+			<transition name="slide" mode="out-in">
+				<div v-if="room && !isViewingRoom">
+					<RoomPopout :room="room" />
+				</div>
+			</transition>
+		</div>
 		<div v-if="room">
 			<RoomVideoController :room="room" />
 		</div>
@@ -98,7 +100,7 @@
 <style>
 
 	:root {
-		
+
 		--font: Roboto, sans-serif;
 
 		/* Colors */
@@ -112,7 +114,7 @@
 
 		/* Values */
 		--card-border-radius: 3px;
-		--popup-border-radius: 10px;
+		--popup-border-radius: 8px;
 		--overlay-background-color: rgba(0, 0, 0, .7);
 
 	}
@@ -120,6 +122,8 @@
 	body {
 		margin: 0;
 		background-color: var(--background-color);
+		font-family: var(--font);
+		color: var(--text-color);
 	}
 
 	#content-container {
@@ -155,18 +159,27 @@
 
 	.slide-enter-active,
 	.slide-leave-active {
-		transition: opacity .3s ease;
+		transition: opacity .4s ease, transform .5s ease;
 	}
 
 	.slide-enter-from,
 	.slide-leave-to {
 		opacity: 0;
+		transform: translateY(1em);
 	}
 
 	.heading {
 		font-size: 45px;
 		font-weight: bold;
 		text-align: left;
+	}
+
+	*[theme=light] {
+		background-color: var(--container-background-color);
+	}
+
+	*[theme=dark] {
+		background-color: var(--background-color);
 	}
 
 	.error {
@@ -228,13 +241,15 @@
 		align-content: center;
 	}
 
-	.input, .input-dark {
+	.input, .input[theme=dark] {
+		font-family: var(--font);
 		color: var(--text-color);
 		border: 2px solid;
 		border-radius: var(--popup-border-radius);
 		font-size: 1.1em;
 		outline: none;
 		padding: .2em .4em .2em .4em;
+		box-sizing: border-box;
 		transition: border-color .2s ease-in-out;
 	}
 
@@ -243,7 +258,7 @@
 		border-color: var(--container-background-color);
 	}
 
-	.input-dark {
+	.input[theme=dark] {
 		background-color: var(--background-color);
 		border-color: var(--background-color);
 	}
@@ -321,11 +336,9 @@
 	}
 
 	#app {
-		font-family: var(--font);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
-		color: var(--text-color);
 	}
 
 	@media only screen and (max-width: 800px) {
@@ -352,6 +365,15 @@
 		padding-right: 9px;
 		padding-top: 5px;
 		padding-bottom: 5px;
+	}
+
+	#room-popout-container {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		margin-right: 15px;
+		margin-bottom: 15px;
 	}
 
 </style>

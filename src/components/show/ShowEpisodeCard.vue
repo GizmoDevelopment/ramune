@@ -4,10 +4,10 @@
 			<img id="episode-thumbnail" :src="episode.thumbnail_url">
 			<div id="episode-info">
 				<div id="episode-index">{{ episode.id }}</div>
-				<div id="episode-duration">24:00</div>
+				<div id="episode-duration">{{ formattedDuration }}</div>
 			</div>
 			<div
-				:id="active && 'active' || ''" 
+				:id="active && 'active' || ''"
 				class="overlay hover-opacity"
 				@click="$emit('play-episode', episode.id)"
 			>
@@ -26,6 +26,9 @@
 	// Icons
 	import Play from "@assets/icons/play.svg";
 
+	// Utils
+	import { formatTimestamp } from "@/utils/essentials";
+	
 	// Types
 	import { Episode } from "@typings/show";
 
@@ -44,7 +47,16 @@
 				default: false
 			}
 		},
-		emits: [ "play-episode" ]
+		emits: [ "play-episode" ],
+		computed: {
+			formattedDuration (): string {
+				if (this.episode.duration) {
+					return formatTimestamp(this.episode.duration);
+				} else {
+					return "00:00";
+				}
+			}
+		}
 	});
 
 </script>
@@ -66,7 +78,7 @@
 		width: 200px;
 		height: 112px;
 	}
-	
+
 	#active {
 		opacity: 1;
 		cursor: pointer;
@@ -98,7 +110,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: flex-end;
-		
+
 	}
 
 	#episode-info * {

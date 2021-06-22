@@ -10,8 +10,11 @@
 		"esModuleInterop": true,
 		"lib": ["esnext", "dom"],
 		"types": [
-			"vite-svg-loader",
-			"vite/client"
+			"vite-svg-loader"
+		],
+		"typeRoots": [
+			"node_modules/@types",
+			"src/typings"
 		],
 		"baseUrl": "src",
 		"paths": {
@@ -23,8 +26,7 @@
 			"@assets/*": ["assets/*"],
 			"@mixins/*": ["mixins/*"],
 			"@renderers/*": ["renderers/*"]
-		},
-		"plugins": [ { "name": "@vuedx/typescript-plugin-vue" } ]
+		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"exclude": ["src/old/**"]

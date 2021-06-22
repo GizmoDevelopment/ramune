@@ -18,7 +18,7 @@
 			<p id="title">{{ show.title }}</p>
 			<div id="details">
 				<!-- <ShowScoreLabel :score="show.score" /> -->
-				<p id="season-count">{{ seasonCount }}</p>
+				<!-- <p id="season-count">{{ seasonCount }}</p> -->
 			</div>
 		</div>
 	</div>
@@ -30,14 +30,11 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
-	// Utils
-	import { pluralize } from "@utils/essentials";
-
 	// Icons
-	import Play from "@assets/icons/play.svg";
+	import Play from "@assets/icons/play.svg?component";
 
 	// Types
-	import { Show } from "@typings/show";
+	import { ShowHusk } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowCard",
@@ -46,15 +43,15 @@
 		},
 		props: {
 			show: {
-				type: Object as PropType<Show>,
+				type: Object as PropType<ShowHusk>,
 				required: true
 			}
 		},
 		emits: [ "select-show" ],
 		computed: {
-			seasonCount (): string {
+			/*seasonCount (): string {
 				return pluralize("%NUM% Season%S%", this.show.seasons);
-			}
+			}*/
 		}
 	});
 

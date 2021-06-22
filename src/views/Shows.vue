@@ -22,7 +22,7 @@
 		</div>
 		<ShowInformationPopup
 			:show-id="selectedShowId"
-			@dismiss="selectShow(null)"
+			@dismiss="selectShow('')"
 		/>
 	</div>
 </template>
@@ -60,7 +60,7 @@
 		data () {
 			return {
 				shows: [] as ShowHusk[],
-				selectedShowId: null as string | null
+				selectedShowId: ""
 			};
 		},
 		async mounted () {
@@ -75,12 +75,12 @@
 
 		},
 		methods: {
-			selectShow (showId: string | null) {
+			selectShow (showId: string) {
 				if (showId) {
 					this.selectedShowId = showId;
 					this.$router.push(`/shows/${ showId }`);
 				} else {
-					this.selectedShowId = null;
+					this.selectedShowId = "";
 					this.$router.push("/shows");
 					clearPageTitle();
 				}

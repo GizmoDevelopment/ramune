@@ -35,7 +35,7 @@
 	import { defineComponent } from "vue";
 
 	// Icons
-	import Close from "@assets/icons/close.svg";
+	import Close from "@assets/icons/close.svg?component";
 
 	export default defineComponent({
 		name: "PopupCard",

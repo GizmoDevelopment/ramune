@@ -29,7 +29,7 @@
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 
 	// Icons
-	import CaretLeft from "@assets/icons/caret-left.svg";
+	import CaretLeft from "@assets/icons/caret-left.svg?component";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";

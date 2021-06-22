@@ -32,7 +32,7 @@
 	import ShowEpisodeCard from "@components/show/ShowEpisodeCard.vue";
 
 	// Icons
-	import CaretDown from "@assets/icons/caret-down.svg";
+	import CaretDown from "@assets/icons/caret-down.svg?component";
 
 	// Types
 	import { Season } from "@typings/show";

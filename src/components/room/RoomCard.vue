@@ -22,7 +22,7 @@
 	import MainMixin from "@mixins/main";
 
 	// Icons
-	import CaretRight from "@assets/icons/caret-right.svg";
+	import CaretRight from "@assets/icons/caret-right.svg?component";
 
 	// Types
 	import { SocketResponse } from "@typings/main";

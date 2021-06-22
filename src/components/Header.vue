@@ -41,7 +41,7 @@
 	import LoginPopup from "@components/LoginPopup.vue";
 
 	// Icons
-	import Logo from "@assets/icons/logo.svg";
+	import Logo from "@assets/icons/logo.svg?component";
 
 	export default defineComponent({
 		name: "Header",

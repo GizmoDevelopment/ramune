@@ -43,7 +43,7 @@
 	import ShowInformationHusk from "@components/show/ShowInformationHusk.vue";
 
 	// Icons
-	import Close from "@assets/icons/close.svg";
+	import Close from "@assets/icons/close.svg?component";
 
 	// Utils
 	import { getShow } from "@/utils/api";
@@ -62,7 +62,7 @@
 		props: {
 			showId: {
 				type: String,
-				default: null
+				default: ""
 			}
 		},
 		emits: [ "dismiss" ],
@@ -82,7 +82,7 @@
 		},
 		methods: {
 			async fetchShow () {
-				if (this.showId) {
+				if (this.showId.length > 0) {
 
 					const cachedShow = this.$store.state.shows.get(this.showId);
 

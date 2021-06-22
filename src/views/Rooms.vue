@@ -45,7 +45,7 @@
 	import RoomCreationPopup from "@components/room/RoomCreationPopup.vue";
 
 	// Icons
-	import Plus from "@assets/icons/plus.svg";
+	import Plus from "@assets/icons/plus.svg?component";
 
 	// Utils
 	import { clearPageTitle } from "@utils/dom";

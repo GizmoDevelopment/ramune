@@ -24,11 +24,11 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Icons
-	import Play from "@assets/icons/play.svg";
+	import Play from "@assets/icons/play.svg?component";
 
 	// Utils
 	import { formatTimestamp } from "@/utils/essentials";
-	
+
 	// Types
 	import { Episode } from "@typings/show";
 

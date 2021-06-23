@@ -12,6 +12,10 @@
 
 			:src="url"
 			:poster="episode.thumbnail_url"
+
+			@seeked="pushSync"
+			@pause="pushSync"
+			@play="pushSync"
 		>
 			<template v-for="(subtitleURL, language) in episode.subtitles" :key="language">
 				<track
@@ -34,7 +38,7 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
-	
+
 	// Components
 	import EffectsRenderer from "@components/EffectsRenderer.vue";
 
@@ -43,6 +47,7 @@
 
 	// Types
 	import { Episode, Show } from "@typings/show";
+	import { RoomSyncData } from "@/typings/room";
 
 	export default defineComponent({
 		name: "Video",
@@ -63,9 +68,9 @@
 				default: true
 			}
 		},
-		emits: [ "sync" ],
+		emits: [ "update" ],
 		setup () {
-		
+
 			const video = ref<HTMLVideoElement>();
 
 			return {
@@ -75,6 +80,27 @@
 		computed: {
 			url (): string {
 				return getStreamURL(this.show.id, this.episode.id);
+			}
+		},
+		methods: {
+			pushSync () {
+				if (this.video) {
+					this.$emit("update", !this.video.paused, this.video.currentTime);
+				}
+			}
+		},
+		sockets: {
+			"ROOM:SYNC" (data: RoomSyncData) {
+				if (this.video) {
+
+					this.video.currentTime = data.currentTime;
+
+					if (data.playing) {
+						this.video.play();
+					} else {
+						this.video.pause();
+					}
+				}
 			}
 		}
 	});

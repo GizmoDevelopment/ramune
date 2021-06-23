@@ -1,6 +1,6 @@
 <template>
 	<div class="season-info">
-		<h2 class="season-title">{{ season.title }}</h2>
+		<h2 class="season-title">Season {{ season.id }}</h2>
 		<button
 			:class="expanded ? 'expand-button expand-button-active' : 'expand-button'"
 			@click="toggleExpansion()"

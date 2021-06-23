@@ -171,6 +171,14 @@
 		padding-right: 2em;
 	}
 
+	@media only screen and (max-width: 1250px) {
+		.show-container {
+			width: 100%;
+			margin-left: 1em;
+			margin-bottom: 1em;
+		}
+	}
+
 	.popup-title-bar {
 		width: calc(100% + 1em); /* Push into padding so the close button sits properly in the corner */
 		display: flex;

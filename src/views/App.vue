@@ -132,13 +132,11 @@
 		justify-content: center;
 	}
 
-	@media only screen and (min-width: 1350px) {
-		#content {
-			width: 1350px;
-		}
+	#content {
+		width: 1350px;
 	}
 
-	@media only screen and (max-width: 1200px) {
+	@media only screen and (max-width: 1400px) {
 		#content {
 			width: 100%;
 			padding-left: 30px;

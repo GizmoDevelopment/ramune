@@ -59,7 +59,7 @@
 			};
 		},
 		mounted () {
-			if (this.input) {
+			if (this.input && this.input.autofocus) {
 				this.input.focus();
 			}
 		},

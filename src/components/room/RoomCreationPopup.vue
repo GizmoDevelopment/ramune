@@ -21,7 +21,7 @@
 				label="Name"
 				autofocus
 				:limit="25"
-				@update="updateRoomPreview"
+				@update="(newRoomName) => roomName = newRoomName"
 			/>
 		</form>
 		<div id="room-preview-container" class="form-row">
@@ -77,6 +77,7 @@
 		emits: [ "dismiss", "create-room" ],
 		data () {
 			return {
+				roomName: "Anime night",
 				roomPreviewObject: null as Room | null,
 				roomOptions: { name: "" } as RoomOptions,
 				debounce: false,
@@ -93,22 +94,25 @@
 				if (newState) {
 					this.status = "";
 				}
+			},
+			roomName () {
+				this.updateRoomPreview();
 			}
 		},
 		mounted () {
-			this.updateRoomPreview("Anime night");
+			this.updateRoomPreview();
 		},
 		methods: {
-			updateRoomPreview (roomName: string) {
+			updateRoomPreview () {
 
 				this.roomOptions = {
-					name: roomName
+					name: this.roomName
 				};
 
 				if (this.user) {
 					this.roomPreviewObject = {
 						id: "",
-						name: roomName,
+						name: this.roomName,
 						host: getUserFromAuthenticatedUser(this.user),
 						users: [ getUserFromAuthenticatedUser(this.user) ],
 						data: null
@@ -117,7 +121,7 @@
 
 			},
 			clearRoomPopup () {
-				this.updateRoomPreview("Anime night");
+				this.updateRoomPreview();
 				this.$emit("dismiss");
 			},
 			createRoom () {

@@ -18,7 +18,6 @@
 		],
 		"baseUrl": "src",
 		"paths": {
-			"@/*": ["./*"],
 			"@typings/*": ["typings/*"],
 			"@views/*": ["views/*"],
 			"@components/*": ["components/*"],

@@ -47,7 +47,7 @@
 
 	// Types
 	import { Episode, Show } from "@typings/show";
-	import { RoomSyncData } from "@/typings/room";
+	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",

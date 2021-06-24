@@ -26,7 +26,7 @@
 
 	// Types
 	import { Room, RoomSyncData } from "@typings/room";
-	import { SocketResponse } from "@/typings/main";
+	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "RoomVideo",

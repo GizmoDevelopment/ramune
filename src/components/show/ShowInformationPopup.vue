@@ -46,7 +46,8 @@
 	import Close from "@assets/icons/close.svg?component";
 
 	// Utils
-	import { getShow } from "@/utils/api";
+	import { getShow } from "@utils/api";
+	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import { Show } from "@typings/show";
@@ -75,6 +76,11 @@
 		watch: {
 			showId () {
 				this.fetchShow();
+			},
+			show (newShow: Show | null) {
+				if (newShow) {
+					setPageTitle(newShow.title);
+				}
 			}
 		},
 		mounted () {

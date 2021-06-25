@@ -139,8 +139,8 @@
 	@media only screen and (max-width: 1400px) {
 		#content {
 			width: 100%;
-			padding-left: 30px;
-			padding-right: 30px;
+			margin-left: 1.5rem;
+			margin-right: 1.5rem;
 		}
 	}
 

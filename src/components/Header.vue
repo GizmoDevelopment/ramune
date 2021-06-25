@@ -155,7 +155,7 @@
 	}
 
 	.user-container * {
-		padding-left: 10px;
+		margin-left: 10px;
 	}
 
 	.user-avatar {

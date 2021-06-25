@@ -17,7 +17,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, PropType, ref } from "vue";
 
 	// Components
 	import Leaf from "@renderers/Leaf.vue";
@@ -36,6 +36,16 @@
 				required: true
 			}
 		},
+		setup () {
+
+			const
+				videoElement = document.getElementById("video-player") as HTMLVideoElement | null,
+				video = ref<HTMLVideoElement | null>(videoElement);
+
+			return {
+				video
+			};
+		},
 		data () {
 			return {
 				currentEffectIndex: -1
@@ -49,13 +59,20 @@
 			}
 		},
 		mounted () {
+			if (this.video) {
+				this.video.addEventListener("timeupdate", this.updateEffects);
+			}
+		},
+		beforeUnmount () {
+			if (this.video) {
+				this.video.removeEventListener("timeupdate", this.updateEffects);
+			}
+		},
+		methods: {
+			updateEffects () {
+				if (this.video) {
 
-			const videoElement = <HTMLVideoElement | null>document.getElementById("video-player");
-
-			if (videoElement) {
-				videoElement.addEventListener("timeupdate", () => {
-
-					const time = videoElement.currentTime;
+					const time = this.video.currentTime;
 
 					if (this.effect && time > this.effect.end) {
 						this.currentEffectIndex = -1;
@@ -67,7 +84,7 @@
 						}
 					});
 
-				});
+				}
 			}
 		}
 	});

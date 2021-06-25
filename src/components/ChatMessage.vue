@@ -46,6 +46,10 @@
 		margin-top: .5rem;
 	}
 
+	.message-container * {
+		pointer-events: auto;
+	}
+
 	.message-author-avatar {
 		border-radius: 50%;
 		width: 35px;

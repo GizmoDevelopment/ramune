@@ -64,8 +64,8 @@
 		position: relative;
 		background-color: var(--container-background-color);
 		border-radius: var(--popup-border-radius);
-		width: 400px;
-		height: calc(400px * 9/16);
+		width: 350px;
+		height: calc(350px * 9/16);
 		box-shadow: 0 0 10px var(--primary-color);
 	}
 

@@ -138,14 +138,15 @@
 		left: 0;
 		position: fixed;
 		pointer-events: none;
+		z-index: 1337;
 	}
 
 	#container {
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		padding-right: 1em;
-		padding-bottom: 1em;
+		padding-right: 1rem;
+		padding-bottom: 1rem;
 		width: 330px;
 		height: 100%;
 		display: flex;
@@ -155,7 +156,6 @@
 
 	#container * {
 		position: relative;
-		pointer-events: auto;
 	}
 
 	#chat-container, #chat-input {
@@ -177,6 +177,7 @@
 	#chat-input {
 		width: 100%;
 		word-wrap: break-word;
+		pointer-events: auto;
 	}
 
 	#empty-chat-input-label {

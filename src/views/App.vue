@@ -170,6 +170,8 @@
 		font-size: 45px;
 		font-weight: bold;
 		text-align: left;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	*[theme=light] {

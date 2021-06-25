@@ -17,7 +17,6 @@
 		</div>
 		<div v-if="room">
 			<RoomVideoController :room="room" />
-			<RoomChat :room="room" />
 		</div>
 	</div>
 </template>
@@ -35,7 +34,6 @@
 	import Header from "@components/Header.vue";
 	import RoomVideoController from "@components/room/RoomVideoController.vue";
 	import RoomPopout from "@components/room/RoomPopout.vue";
-	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Utils
 	import { getCookie } from "@utils/dom";
@@ -49,8 +47,7 @@
 		components: {
 			Header,
 			RoomVideoController,
-			RoomPopout,
-			RoomChat
+			RoomPopout
 		},
 		mixins: [ Socket ],
 		computed: {

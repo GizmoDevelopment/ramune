@@ -1,15 +1,21 @@
 <template>
-	<div v-if="show && episode">
-		<Video
+	<div ref="roomVideoContainer">
+		<div v-if="show && episode" id="room-video-container">
+			<Video
 
-			ref="video"
+				ref="video"
 
-			:show="show"
-			:episode="episode"
-			:controls="controls"
+				:show="show"
+				:episode="episode"
+				:controls="controls"
 
-			@update="pushSync"
-		/>
+				@update="pushSync"
+			/>
+		</div>
+		<div v-if="room">
+			<RoomChat :room="room" />
+		</div>
+		<button @click="handleFullscreen">XD</button>
 	</div>
 </template>
 
@@ -20,6 +26,7 @@
 
 	// Components
 	import Video from "@components/Video.vue";
+	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -31,7 +38,8 @@
 	export default defineComponent({
 		name: "RoomVideo",
 		components: {
-			Video
+			Video,
+			RoomChat
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -46,11 +54,20 @@
 		},
 		setup () {
 
-			const video = ref<HTMLVideoElement>();
+			const
+				video = ref<HTMLVideoElement>(),
+				roomVideoContainer = ref<HTMLDivElement>();
 
 			return {
-				video
+				video,
+				roomVideoContainer
 			};
+		},
+		mounted () {
+			//document.addEventListener("fullscreenchange", this.handleFullscreen);
+		},
+		beforeUnmount () {
+			//document.removeEventListener("fullscreenchange", this.handleFullscreen);
 		},
 		methods: {
 			pushSync (playing: boolean, currentTime: number) {
@@ -66,6 +83,11 @@
 							console.error(res.message);
 						}
 					});
+				}
+			},
+			handleFullscreen () {
+				if (this.roomVideoContainer) {
+					this.roomVideoContainer.requestFullscreen();
 				}
 			}
 		}

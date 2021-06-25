@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div id="chat-input-container">
-				<span v-if="shouldMessageInputPlaceholderBeVisible" id="empty-chat-input-label">Message...</span>
+				<span v-if="shouldMessageInputPlaceholderBeVisible" id="empty-chat-input-label">Click here or press '/' to start typing</span>
 				<span
 					id="chat-input"
 					ref="input"
@@ -66,6 +66,12 @@
 				return this.messageContent.length === 0;
 			}
 		},
+		mounted () {
+			document.addEventListener("keydown", this.handleKey);
+		},
+		beforeUnmount () {
+			document.removeEventListener("keydown", this.handleKey);
+		},
 		methods: {
 			handleChatInput (e: InputEvent) {
 				if (e.inputType === "insertParagraph") { // Enter
@@ -86,21 +92,31 @@
 
 					const content = this.messageContent;
 
-					this.input.textContent = "";
-					this.messageContent = "";
+					if (content.trim().length > 0) {
 
-					this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
-						if (res.type === "success") {
-							this.messages.push(res.data);
-						} else {
-							console.error(res.message);
-						}
-					});
+						this.input.textContent = "";
+						this.messageContent = "";
+
+						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
+							if (res.type === "success") {
+								this.messages.push(res.data);
+							} else {
+								console.error(res.message);
+							}
+						});
+					}
 				}
 			},
-			focusInput () {
-				if (this.input) {
-					this.input.focus();
+			handleKey (e: KeyboardEvent) {
+				if (e.key === "/") {
+
+					e.preventDefault();
+
+					setTimeout(() => {
+						if (this.input && document.activeElement !== this.input) {
+							this.input.focus();
+						}
+					}, 10);
 				}
 			}
 		},

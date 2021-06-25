@@ -78,7 +78,7 @@
 
 	#empty {
 		height: 60px;
-		margin-bottom: 1em;
+		margin-bottom: 1rem;
 	}
 
 	a {

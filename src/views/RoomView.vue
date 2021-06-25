@@ -17,7 +17,6 @@
 			/>
 		</div>
 	</div>
-	<RoomChat :room="room" />
 </template>
 
 <script lang="ts">
@@ -28,7 +27,6 @@
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
-	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Icons
 	import CaretLeft from "@assets/icons/caret-left.svg?component";
@@ -48,8 +46,7 @@
 		components: {
 			RoomUserList,
 			ShowSeasonList,
-			CaretLeft,
-			RoomChat
+			CaretLeft
 		},
 		mixins: [ RoomMixin ],
 		props: {

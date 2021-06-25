@@ -372,10 +372,10 @@
 
 	#room-popout-container {
 		position: fixed;
-		right: 0;
+		left: 0;
 		bottom: 0;
 		z-index: 10;
-		margin-right: 15px;
+		margin-left: 15px;
 		margin-bottom: 15px;
 	}
 

@@ -77,7 +77,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 	}
 

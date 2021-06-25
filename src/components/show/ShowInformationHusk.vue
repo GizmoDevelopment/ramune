@@ -4,8 +4,7 @@
 		<div id="show-details">
 			<h1 id="show-title" class="heading husk">This is an empty title</h1>
 			<div id="show-stats">
-				<div id="show-score" class="husk">O 10</div>
-				<div id="show-episode-count" class="husk">420 Episodes</div>
+				<div id="show-episode-count" class="husk">420 Episode</div>
 			</div>
 			<p id="show-description" class="husk">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
 		</div>
@@ -58,7 +57,7 @@
 		margin-right: 10px;
 	}
 
-	#show-score {
+	#show-episode-count {
 		background-color: var(--primary-color);
 		border: 2px solid var(--primary-color);
 		border-radius: 20px;

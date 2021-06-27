@@ -117,6 +117,10 @@
 		--popup-border-radius: 8px;
 		--overlay-background-color: rgba(0, 0, 0, .7);
 
+		/* Timing Functions */
+		--easing-enter: cubic-bezier(.02, 2.03, .7, 1);
+		--easing-leave: cubic-bezier(.34, .01, .83, -.82);
+
 	}
 
 	body {
@@ -146,13 +150,13 @@
 
 	.view-enter-active,
 	.view-leave-active {
-		transition: transform .3s ease, opacity .3s ease;
+		transition: .3s transform ease, .25s opacity ease;
 	}
 
 	.view-enter-from,
 	.view-leave-to {
 		opacity: 0;
-		transform: translateY(2em);
+		transform: translateY(1rem);
 	}
 
 	.slide-enter-active,

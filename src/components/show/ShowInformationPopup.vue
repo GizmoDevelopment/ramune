@@ -150,9 +150,12 @@
 		overflow-y: auto;
 	}
 
-	.slide-content-enter-active,
+	.slide-content-enter-active {
+		transition: transform .4s var(--easing-enter), opacity .3s ease
+	}
+
 	.slide-content-leave-active {
-		transition: transform .3s ease, opacity .3s ease;
+		transition: transform .4s var(--easing-leave), opacity .3s ease
 	}
 
 	.slide-content-enter-from,

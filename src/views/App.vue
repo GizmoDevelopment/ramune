@@ -105,7 +105,8 @@
 
 		/* Colors */
 		--text-color: white;
-		--container-background-color: hsl(0, 0%, 12%);
+		--container-background-color: rgb(31, 31, 31);
+		--container-background-color-raw: 31, 31, 31;
 		--background-color: #0D0D0D;
 		--primary-color: hsl(200, 90%, 60%);
 		--primary-hover-color: hsl(200, 90%, 40%);

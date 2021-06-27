@@ -1,7 +1,7 @@
 <template>
 	<div id="overlay">
-		<div id="container">
-			<div id="chat-container">
+		<div id="chat-container">
+			<div id="chat-message-container">
 				<div v-for="(message, index) in messages" :key="index">
 					<div v-if="messages[index - 1]?.user?.id === message.user.id">
 						<ChatMessage :message="message" repeating />
@@ -141,7 +141,7 @@
 		z-index: 1337;
 	}
 
-	#container {
+	#chat-container {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -154,15 +154,15 @@
 		justify-content: flex-end;
 	}
 
-	#container * {
+	#chat-container * {
 		position: relative;
 	}
 
-	#chat-container, #chat-input {
+	#chat-message-container, #chat-input {
 		width: 100%;
 	}
 
-	#chat-container {
+	#chat-message-container {
 		margin-bottom: 1rem;
 	}
 

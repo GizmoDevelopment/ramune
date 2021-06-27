@@ -63,6 +63,11 @@
 				selectedShowId: ""
 			};
 		},
+		computed: {
+			showList (): ShowHusk[] {
+				return this.$store.state.cachedShowList;
+			}
+		},
 		async mounted () {
 
 			clearPageTitle();
@@ -71,7 +76,12 @@
 				this.selectShow(this.showId);
 			}
 
-			this.shows = await getShows();
+			if (this.showList.length > 0) {
+				this.shows = this.showList;
+			} else {
+				this.shows = await getShows();
+				this.$store.commit("CACHE_SHOW_LIST", this.shows);
+			}
 
 		},
 		methods: {

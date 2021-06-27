@@ -3,7 +3,7 @@ import { createStore, createLogger } from "vuex";
 
 // Types
 import { User, AuthenticatedUser } from "gizmo-api/lib/types";
-import { Show } from "@typings/show";
+import { Show, ShowHusk } from "@typings/show";
 import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
 import { State } from "@typings/vuex";
 
@@ -11,6 +11,7 @@ export default createStore<State>({
 	state () {
 		return {
 			shows: new Map(),
+			cachedShowList: [],
 			user: null,
 			room: null,
 			roomVideoTeleportParent: null
@@ -51,7 +52,10 @@ export default createStore<State>({
 		},
 		UPDATE_ROOM_CONTROLLER_STATE (state: State, newState: string | null) {
 			state.roomVideoTeleportParent = newState;
+		},
+		CACHE_SHOW_LIST (state: State, newShowList: ShowHusk[]) {
+			state.cachedShowList = newShowList;
 		}
 	},
-	plugins: [ createLogger() ] // REMOVE BEFORE PROD
+	plugins: [ createLogger() ] // !!! REMOVE BEFORE PROD
 });

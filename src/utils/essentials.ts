@@ -7,9 +7,11 @@ export function pluralize <T> (input: string, reference: T[]): string {
 
 export function formatTimestamp (timestamp: number): string {
 
+	if (isNaN(timestamp) || timestamp === 0) return "0:00";
+
 	const
 		minutes = Math.floor(timestamp / 60),
-		seconds = timestamp - (minutes * 60);
+		seconds = Math.floor(timestamp - (minutes * 60));
 
-	return `${minutes > 9 ? "" : 0}${minutes}:${seconds > 9 ? "" : 0}${seconds}`;
+	return `${ minutes }:${ seconds > 9 ? "" : 0 }${ seconds }`;
 }

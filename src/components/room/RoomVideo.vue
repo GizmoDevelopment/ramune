@@ -1,5 +1,5 @@
 <template>
-	<div ref="roomVideoContainer">
+	<div id="room-video-and-chat-container">
 		<div v-if="show && episode" id="room-video-container">
 			<Video
 
@@ -15,7 +15,6 @@
 		<div v-if="room">
 			<RoomChat :room="room" />
 		</div>
-		<button @click="handleFullscreen">XD</button>
 	</div>
 </template>
 
@@ -55,19 +54,11 @@
 		setup () {
 
 			const
-				video = ref<HTMLVideoElement>(),
-				roomVideoContainer = ref<HTMLDivElement>();
+				video = ref<HTMLVideoElement>();
 
 			return {
-				video,
-				roomVideoContainer
+				video
 			};
-		},
-		mounted () {
-			//document.addEventListener("fullscreenchange", this.handleFullscreen);
-		},
-		beforeUnmount () {
-			//document.removeEventListener("fullscreenchange", this.handleFullscreen);
 		},
 		methods: {
 			pushSync (playing: boolean, currentTime: number) {
@@ -83,11 +74,6 @@
 							console.error(res.message);
 						}
 					});
-				}
-			},
-			handleFullscreen () {
-				if (this.roomVideoContainer) {
-					this.roomVideoContainer.requestFullscreen();
 				}
 			}
 		}

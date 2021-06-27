@@ -13,9 +13,6 @@
 				@update="pushSync"
 			/>
 		</div>
-		<div v-if="room">
-			<RoomChat :room="room" />
-		</div>
 	</div>
 </template>
 
@@ -26,7 +23,6 @@
 
 	// Components
 	import Video from "@components/Video.vue";
-	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -38,8 +34,7 @@
 	export default defineComponent({
 		name: "RoomVideo",
 		components: {
-			Video,
-			RoomChat
+			Video
 		},
 		mixins: [ RoomMixin ],
 		props: {

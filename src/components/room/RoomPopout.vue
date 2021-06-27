@@ -1,5 +1,5 @@
 <template>
-	<div id="container">
+	<div id="popout-container">
 		<div id="room-information">
 			<RoomUserList
 				id="user-list"
@@ -8,7 +8,7 @@
 			/>
 		</div>
 		<div id="video">
-			<div v-if="room.data">
+			<div v-if="room.data" id="video-alignment">
 				<!-- This is where RoomVideoController will teleport the video element to -->
 				<div id="room-video-popout-container" />
 			</div>
@@ -60,7 +60,7 @@
 
 <style scoped>
 
-	#container {
+	#popout-container {
 		position: relative;
 		background-color: var(--container-background-color);
 		border-radius: var(--popup-border-radius);
@@ -78,8 +78,13 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		align-content: center;
 		align-items: center;
 		z-index: 1;
+	}
+
+	#video-alignment {
+		height: 100%;
 	}
 
 	#room-information {
@@ -110,7 +115,6 @@
 
 	#room-video-popout-container video {
 		border-radius: var(--popup-border-radius);
-		margin-top: 4px;
 	}
 
 </style>

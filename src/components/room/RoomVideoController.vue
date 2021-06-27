@@ -2,7 +2,8 @@
 	<RoomVideo
 		ref="video"
 		:room="room"
-		:controls="allowControls ? isHost : false"
+		:controls="isHost"
+		:hide-controls="!allowControls"
 	/>
 </template>
 

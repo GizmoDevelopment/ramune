@@ -16,7 +16,7 @@
 				id="video-overlay"
 			>
 				<div id="video-screen" @click="togglePlayPause" />
-				<div id="video-controls">
+				<div v-if="!hideControls" id="video-controls">
 					<transition name="fade">
 						<div
 							v-if="controls"
@@ -124,6 +124,10 @@
 			controls: {
 				type: Boolean,
 				default: true
+			},
+			hideControls: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: [ "update" ],

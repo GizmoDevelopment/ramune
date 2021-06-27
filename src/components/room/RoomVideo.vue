@@ -8,6 +8,7 @@
 				:show="show"
 				:episode="episode"
 				:controls="controls"
+				:hide-controls="hideControls"
 
 				@update="pushSync"
 			/>
@@ -47,6 +48,10 @@
 				required: true
 			},
 			controls: {
+				type: Boolean,
+				default: false
+			},
+			hideControls: {
 				type: Boolean,
 				default: false
 			}

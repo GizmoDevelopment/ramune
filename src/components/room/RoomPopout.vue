@@ -81,6 +81,7 @@
 		align-content: center;
 		align-items: center;
 		z-index: 1;
+		margin-top: 2px;
 	}
 
 	#video-alignment {

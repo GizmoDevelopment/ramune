@@ -76,13 +76,14 @@
 			setPageTitle(`Ramune — ${ this.room.name }`);
 			this.toggleRoomControllerState("room-video-container");
 		},
+		beforeUnmount () {
+			this.toggleRoomControllerState(null);
+		},
 		sockets: {
 			"ROOM:USER_JOIN" () {
-				setTimeout(() => {
-					if (this.isHost) {
-						this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", true);
-					}
-				}, 500);
+				if (this.isHost) {
+					this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", true);
+				}
 			}
 		}
 	});

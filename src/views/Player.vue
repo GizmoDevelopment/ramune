@@ -1,7 +1,9 @@
 <template>
 	<div v-if="show && episode">
-		<h1 id="show-title" class="heading">{{ show.title }}</h1>
-		<h3 id="episode-title" class="faded">Episode {{ episode.id }} - {{ episode.title }}</h3>
+		<ShowHeading
+			:show="show"
+			:episode="episode"
+		/>
 		<Video
 			:show="show"
 			:episode="episode"
@@ -30,6 +32,7 @@
 	import Error from "@components/Error.vue";
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import Video from "@components/Video.vue";
+	import ShowHeading from "@components/show/ShowHeading.vue";
 
 	// Utils
 	import { getEpisodeById } from "@utils/show";
@@ -45,7 +48,8 @@
 			LoadingBuffer,
 			Error,
 			ShowSeasonList,
-			Video
+			Video,
+			ShowHeading
 		},
 		props: {
 			showId: {
@@ -110,15 +114,6 @@
 </script>
 
 <style scoped>
-
-	#show-title {
-		margin-bottom: .1em;
-	}
-
-	#episode-title {
-		text-align: left;
-		margin-top: 0;
-	}
 
 	#video-player {
 		width: 100%;

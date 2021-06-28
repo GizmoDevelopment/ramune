@@ -10,6 +10,10 @@
 	<div v-if="show && episode">
 		<!-- This is where RoomVideoController will teleport the video element to -->
 		<div id="room-video-container" />
+		<ShowHeading
+			:show="show"
+			:episode="episode"
+		/>
 		<div v-if="isHost">
 			<ShowSeasonList
 				:show="show"
@@ -28,6 +32,7 @@
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
+	import ShowHeading from "@components/show/ShowHeading.vue";
 
 	// Icons
 	import CaretLeft from "@assets/icons/caret-left.svg?component";
@@ -47,7 +52,8 @@
 		components: {
 			RoomUserList,
 			ShowSeasonList,
-			CaretLeft
+			CaretLeft,
+			ShowHeading
 		},
 		mixins: [ RoomMixin ],
 		props: {

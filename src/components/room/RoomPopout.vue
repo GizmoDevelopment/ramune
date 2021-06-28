@@ -64,9 +64,9 @@
 		position: relative;
 		background-color: var(--container-background-color);
 		border-radius: var(--popup-border-radius);
+		box-shadow: 0 0 10px var(--primary-color);
 		width: 350px;
 		height: calc(350px * 9/16);
-		box-shadow: 0 0 10px var(--primary-color);
 	}
 
 	#video {
@@ -85,6 +85,9 @@
 
 	#video-alignment {
 		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	#room-information {

@@ -9,6 +9,7 @@
 		<ShowSeasonList
 			:show="show"
 			:selected-episode-id="episodeId"
+			collapsable
 		/>
 	</div>
 	<div v-else-if="status">
@@ -73,7 +74,7 @@
 			const cachedShows = this.$store.state.shows;
 
 			if (cachedShows.has(this.showId)) {
-				
+
 				const _show = cachedShows.get(this.showId);
 
 				if (_show) {

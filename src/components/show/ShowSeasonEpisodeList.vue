@@ -1,14 +1,16 @@
 <template>
 	<div class="season-info">
 		<h2 class="season-title">Season {{ season.id }}</h2>
-		<button
-			:class="expanded ? 'expand-button expand-button-active' : 'expand-button'"
-			@click="toggleExpansion()"
-		>
-			<CaretDown />
-		</button>
+		<div v-if="collapsable">
+			<button
+				:class="expanded ? 'expand-button expand-button-active' : 'expand-button'"
+				@click="toggleExpansion()"
+			>
+				<CaretDown />
+			</button>
+		</div>
 	</div>
-	<div v-if="expanded" class="episode-list-container">
+	<div v-if="!collapsable || expanded" class="episode-list-container">
 		<div
 			v-for="episode in season.episodes"
 			:key="episode.title"
@@ -30,9 +32,7 @@
 
 	// Components
 	import ShowEpisodeCard from "@components/show/ShowEpisodeCard.vue";
-
-	// Icons
-	import CaretDown from "@assets/icons/caret-down.svg?component";
+	import CaretDown from "@components/show/ShowEpisodeCard.vue";
 
 	// Types
 	import { Season } from "@typings/show";
@@ -51,6 +51,10 @@
 			selectedEpisodeId: {
 				type: Number,
 				default: 0
+			},
+			collapsable: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: [ "play-episode" ],

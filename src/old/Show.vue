@@ -14,6 +14,7 @@
 			</div>
 			<ShowSeasonList
 				:show="show"
+				collapsable
 			/>
 		</div>
 	</div>

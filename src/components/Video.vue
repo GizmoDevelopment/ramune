@@ -161,6 +161,17 @@
 			},
 			videoDurationTimestamp (): string {
 				return formatTimestamp(this.videoDuration);
+			},
+			isRequestingRoomSync (): boolean {
+				return this.$store.state.isRequestingRoomSync;
+			}
+		},
+		watch: {
+			isRequestingRoomSync (newState: boolean) {
+				if (newState) {
+					this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", false);
+					this.pushSync();
+				}
 			}
 		},
 		methods: {

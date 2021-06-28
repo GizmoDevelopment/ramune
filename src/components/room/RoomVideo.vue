@@ -53,8 +53,7 @@
 		},
 		setup () {
 
-			const
-				video = ref<HTMLVideoElement>();
+			const video = ref<HTMLVideoElement>();
 
 			return {
 				video

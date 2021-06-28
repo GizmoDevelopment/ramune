@@ -45,7 +45,6 @@
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "Room",
@@ -63,11 +62,6 @@
 			}
 		},
 		emits: [ "leave-room" ],
-		data () {
-			return {
-				isRequestingSync: false
-			};
-		},
 		mounted () {
 			setPageTitle(`Ramune — ${ this.room.name }`);
 			this.toggleRoomControllerState("room-video-container");
@@ -75,25 +69,11 @@
 		beforeUnmount () {
 			this.toggleRoomControllerState(null);
 		},
-		methods: {
-			sync (isPaused: boolean, timestamp: number) {
-
-				this.isRequestingSync = false;
-
-				if (this.isHost) {
-					this.$socket.emit("CLIENT:SYNC_ROOM", { playing: !isPaused, currentTime: timestamp }, (res: SocketResponse<string>) => {
-						if (res.type !== "success") {
-							console.error(res.message);
-						}
-					});
-				}
-			}
-		},
 		sockets: {
 			"ROOM:USER_JOIN" () {
 				setTimeout(() => {
 					if (this.isHost) {
-						this.isRequestingSync = true;
+						this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", true);
 					}
 				}, 500);
 			}

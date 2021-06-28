@@ -14,7 +14,8 @@ export default createStore<State>({
 			cachedShowList: [],
 			user: null,
 			room: null,
-			roomVideoTeleportParent: null
+			roomVideoTeleportParent: null,
+			isRequestingRoomSync: false
 		};
 	},
 	mutations: {
@@ -55,6 +56,9 @@ export default createStore<State>({
 		},
 		CACHE_SHOW_LIST (state: State, newShowList: ShowHusk[]) {
 			state.cachedShowList = newShowList;
+		},
+		UPDATE_ROOM_SYNC_REQUEST (state: State, newState: boolean) {
+			state.isRequestingRoomSync = newState;
 		}
 	},
 	plugins: [ createLogger() ] // !!! REMOVE BEFORE PROD

@@ -12,6 +12,7 @@ export interface State {
 	user: AuthenticatedUser | null;
 	room: Room | null;
 	roomVideoTeleportParent: string | null;
+	isRequestingRoomSync: boolean;
 }
 
 declare module "@vue/runtime-core" {
@@ -22,6 +23,7 @@ declare module "@vue/runtime-core" {
 		user: AuthenticatedUser | null;
 		room: Room | null;
 		roomVideoTeleportParent: string | null;
+		isRequestingRoomSync: boolean;
     }
 
     interface ComponentCustomProperties {

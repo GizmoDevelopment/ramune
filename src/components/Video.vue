@@ -59,7 +59,7 @@
 
 			@seeked="updateVideoTime(); pushSync();"
 			@pause="pushSync"
-			@play="pushSync"
+			@play="pushSync()"
 			@timeupdate="updateVideoTime"
 			@waiting="isBuffering = true"
 			@durationchange="updateVideoDuration"
@@ -149,7 +149,8 @@
 				videoProgressPercentage: 0,
 				isBuffering: false,
 				currentVideoTime: 0,
-				videoDuration: 0
+				videoDuration: 0,
+				lastSyncTimestamp: 0
 			};
 		},
 		computed: {
@@ -176,6 +177,12 @@
 					this.pushSync();
 				}
 			}
+		},
+		mounted () {
+			document.addEventListener("keydown", this.handleKeypress);
+		},
+		beforeUnmount () {
+			document.removeEventListener("keydown", this.handleKeypress);
 		},
 		methods: {
 			pushSync () {
@@ -211,7 +218,6 @@
 				}
 			},
 			updateVideoTime () {
-
 				if (this.video) {
 
 					const
@@ -239,12 +245,30 @@
 				if (this.video) {
 					this.videoDuration = this.video.duration;
 				}
+			},
+			handleKeypress (e: KeyboardEvent) {
+				// Only process keys if user isn't focused on any inputs/spans
+				if (this.video && document.activeElement && ![ "SPAN", "INPUT" ].includes(document.activeElement.tagName)) {
+					switch (e.code) {
+						case "ArrowLeft":
+							this.video.currentTime -= 15;
+							break;
+						case "ArrowRight":
+							this.video.currentTime += 15;
+							break;
+						case "Space":
+							this.togglePlayPause();
+							break;
+						default:
+					}
+				}
 			}
 		},
 		sockets: {
 			"ROOM:SYNC" (data: RoomSyncData) {
 				if (this.video) {
 
+					this.lastSyncTimestamp = new Date().getTime() / 1000;
 					this.video.currentTime = data.currentTime;
 
 					if (data.playing) {

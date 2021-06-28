@@ -122,8 +122,8 @@
 		--overlay-background-color: rgba(0, 0, 0, .7);
 
 		/* Timing Functions */
-		--easing-enter: cubic-bezier(.02, 2.03, .7, 1);
-		--easing-leave: cubic-bezier(.34, .01, .83, -.82);
+		--easing-enter: cubic-bezier(0, 1.68, .43, 1.01);
+		--easing-leave: cubic-bezier(.67, 0, 1, -.83);
 
 	}
 

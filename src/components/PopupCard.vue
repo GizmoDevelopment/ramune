@@ -84,16 +84,16 @@
 	}
 
 	.slide-content-enter-active {
-		transition: transform .4s var(--easing-enter), opacity .3s ease
+		transition: transform .45s var(--easing-enter), opacity .25s ease
 	}
 
 	.slide-content-leave-active {
-		transition: transform .4s var(--easing-leave), opacity .3s ease
+		transition: transform .3s var(--easing-leave), opacity .25s ease
 	}
 
 	.slide-content-enter-from,
 	.slide-content-leave-to {
-		transform: translateY(50px);
+		transform: translateY(6rem);
 		opacity: 0;
 	}
 

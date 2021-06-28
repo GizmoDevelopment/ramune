@@ -13,7 +13,7 @@
 	<div v-if="!collapsable || expanded" class="episode-list-container">
 		<div
 			v-for="episode in season.episodes"
-			:key="episode.title"
+			:key="episode.id"
 			class="episode-container"
 		>
 			<ShowEpisodeCard
@@ -32,7 +32,7 @@
 
 	// Components
 	import ShowEpisodeCard from "@components/show/ShowEpisodeCard.vue";
-	import CaretDown from "@components/show/ShowEpisodeCard.vue";
+	import CaretDown from "@assets/icons/caret-down.svg?component";
 
 	// Types
 	import { Season } from "@typings/show";

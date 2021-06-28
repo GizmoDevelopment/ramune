@@ -24,8 +24,13 @@
 			RoomVideo
 		},
 		mixins: [ RoomMixin ],
+		data () {
+			return {
+				teleportParent: "room-video-container" as string | null
+			};
+		},
 		computed: {
-			teleportParent (): string | null {
+			savedTeleportParent (): string | null {
 				return this.$store.state.roomVideoTeleportParent;
 			},
 			allowControls (): boolean {
@@ -33,11 +38,22 @@
 			}
 		},
 		watch: {
-			teleportParent (newParent: string | null) {
-				if (newParent) {
+			savedTeleportParent (newState: string | null) {
+				this.teleportParent = newState;
+			},
+			teleportParent () {
+				this.updateVideoParent();
+			}
+		},
+		mounted () {
+			this.updateVideoParent();
+		},
+		methods: {
+			updateVideoParent () {
+				if (this.teleportParent) {
 
 					const
-						newParentInstance = document.getElementById(newParent),
+						newParentInstance = document.getElementById(this.teleportParent),
 						// eslint-disable-next-line
 						videoRef = (this.$refs.video as any)?.$el as HTMLElement; // I deserve to get waterboarded for this
 

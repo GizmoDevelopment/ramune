@@ -7,9 +7,9 @@
 	</div>
 	<RoomUserList :users="room.users" :host="room.host" />
 	<br>
+	<!-- This is where RoomVideoController will teleport the video element to -->
+	<div id="room-video-container" />
 	<div v-if="show && episode">
-		<!-- This is where RoomVideoController will teleport the video element to -->
-		<div id="room-video-container" />
 		<ShowHeading
 			:show="show"
 			:episode="episode"
@@ -75,10 +75,6 @@
 		mounted () {
 			setPageTitle(`Ramune — ${ this.room.name }`);
 			this.toggleRoomControllerState("room-video-container");
-			console.log(document.getElementById("room-video-container"));
-		},
-		beforeUnmount () {
-			this.toggleRoomControllerState(null);
 		},
 		sockets: {
 			"ROOM:USER_JOIN" () {

@@ -46,9 +46,6 @@
 		mounted () {
 			this.toggleRoomControllerState("room-video-popout-container");
 		},
-		beforeUnmount () {
-			this.toggleRoomControllerState(null);
-		},
 		methods: {
 			returnToRoom () {
 				this.$router.push(`/rooms/${ this.room.id }`);

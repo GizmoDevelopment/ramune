@@ -1,6 +1,6 @@
 <template>
 	<div id="room-video-and-chat-container">
-		<div v-if="show && episode" id="room-video-container">
+		<div v-if="show && episode">
 			<Video
 
 				ref="video"

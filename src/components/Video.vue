@@ -7,7 +7,7 @@
 	>
 		<div id="constant-video-overlay">
 			<div v-if="isBuffering">
-				<LoadingBuffer />
+				<LoadingBuffer :size="isViewingRoom ? 'normal' : 'small'" />
 			</div>
 		</div>
 		<transition name="fade">
@@ -164,6 +164,9 @@
 			},
 			isRequestingRoomSync (): boolean {
 				return this.$store.state.isRequestingRoomSync;
+			},
+			isViewingRoom (): boolean {
+				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
 			}
 		},
 		watch: {

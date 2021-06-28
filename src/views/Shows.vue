@@ -8,7 +8,7 @@
 			<div v-for="show in shows" :key="show.id">
 				<ShowCard
 					:show="show"
-					@click="selectShow(show.id)"
+					@select-show="selectShow"
 				/>
 			</div>
 		</div>

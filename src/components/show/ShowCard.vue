@@ -10,7 +10,7 @@
 				:src="show.poster_url"
 				draggable="false"
 			>
-			<div class="overlay hover-opacity" @click="$emit('select-show', show)">
+			<div class="overlay hover-opacity" @click="$emit('select-show', show.id)">
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
@@ -47,12 +47,7 @@
 				required: true
 			}
 		},
-		emits: [ "select-show" ],
-		computed: {
-			/*seasonCount (): string {
-				return pluralize("%NUM% Season%S%", this.show.seasons);
-			}*/
-		}
+		emits: [ "select-show" ]
 	});
 
 </script>

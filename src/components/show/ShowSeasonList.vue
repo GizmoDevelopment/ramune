@@ -50,19 +50,25 @@
 			},
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user;
+			},
+			isHost (): boolean {
+				return this.room?.host?.id === this.user?.id;
 			}
 		},
 		methods: {
 			playEpisode (episodeId: number) {
-				if (this.room && this.user && this.room.host.id === this.user.id) {
+				if (this.room && this.user && this.isHost) {
+
+					this.$store.commit("UPDATE_ROOM_DATA_LOADING_STATE", true);
 
 					this.$socket.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SocketResponse<Room>) => {
-						if (res.type === "success") {
-							this.$router.push(`/rooms/${ this.room?.id }`);
-						} else {
+						if (res.type !== "success") {
 							console.error(res.message);
 						}
 					});
+
+					// Don't make the user wait to transition back to the room
+					this.$router.push(`/rooms/${ this.room?.id }`);
 
 				} else {
 

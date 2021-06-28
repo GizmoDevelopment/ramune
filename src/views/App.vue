@@ -93,6 +93,7 @@
 				this.$store.commit("UPDATE_ROOM", room);
 			},
 			"ROOM:UPDATE_ROOM_DATA" (roomData: RoomData) {
+				this.$store.commit("UPDATE_ROOM_DATA_LOADING_STATE", false);
 				this.$store.commit("UPDATE_ROOM_DATA", roomData);
 			}
 		}

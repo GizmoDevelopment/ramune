@@ -22,6 +22,9 @@
 			/>
 		</div>
 	</div>
+	<div v-else-if="isLoadingRoomData">
+		<LoadingBuffer />
+	</div>
 </template>
 
 <script lang="ts">
@@ -33,6 +36,7 @@
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
 	// Icons
 	import CaretLeft from "@assets/icons/caret-left.svg?component";
@@ -52,7 +56,8 @@
 			RoomUserList,
 			ShowSeasonList,
 			CaretLeft,
-			ShowHeading
+			ShowHeading,
+			LoadingBuffer
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -62,9 +67,15 @@
 			}
 		},
 		emits: [ "leave-room" ],
+		computed: {
+			isLoadingRoomData (): boolean {
+				return this.$store.state.isLoadingRoomData;
+			}
+		},
 		mounted () {
 			setPageTitle(`Ramune — ${ this.room.name }`);
 			this.toggleRoomControllerState("room-video-container");
+			console.log(document.getElementById("room-video-container"));
 		},
 		beforeUnmount () {
 			this.toggleRoomControllerState(null);

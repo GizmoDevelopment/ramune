@@ -58,6 +58,7 @@
 			:poster="episode.thumbnail_url"
 
 			@seeked="updateVideoTime(); pushSync();"
+			@seeking="updateVideoTime"
 			@pause="pushSync"
 			@play="pushSync()"
 			@timeupdate="updateVideoTime"
@@ -355,7 +356,7 @@
 	#progress-bar {
 		height: 100%;
 		background-color: var(--primary-color);
-		transition: .3s width linear;
+		transition: .3s width ease;
 	}
 
 	#video-timestamp, #video-duration {

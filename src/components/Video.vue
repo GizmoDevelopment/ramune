@@ -2,6 +2,7 @@
 	<div
 		id="video-container"
 		ref="videoContainer"
+		:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
 		@mouseenter="isOverlayVisible = true"
 		@mouseleave="isOverlayVisible = false"
 	>
@@ -12,7 +13,7 @@
 		</div>
 		<transition name="fade">
 			<div
-				v-show="isOverlayVisible"
+				v-show="isOverlayVisible && !isMouseStatic"
 				id="video-overlay"
 			>
 				<div id="video-screen" @click="togglePlayPause" />
@@ -151,7 +152,11 @@
 				isBuffering: false,
 				currentVideoTime: 0,
 				videoDuration: 0,
-				lastSyncTimestamp: 0
+				lastSyncTimestamp: 0,
+				isMouseStatic: false,
+				mouseChecker: 0,
+				lastMousePosition: [ 0, 0 ] as [ number, number ],
+				isFullscreen: false
 			};
 		},
 		computed: {
@@ -180,10 +185,20 @@
 			}
 		},
 		mounted () {
+
 			document.addEventListener("keydown", this.handleKeypress);
+			document.addEventListener("mousemove", this.updateMousePosition);
+
+			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
+
 		},
 		beforeUnmount () {
+
 			document.removeEventListener("keydown", this.handleKeypress);
+			document.removeEventListener("mousemove", this.updateMousePosition);
+
+			clearInterval(this.mouseChecker);
+
 		},
 		methods: {
 			pushSync () {
@@ -197,6 +212,7 @@
 			toggleFullscreen () {
 				if (document.fullscreenElement) {
 					document.exitFullscreen();
+					this.isFullscreen = false;
 				} else {
 
 					const roomVideoContainer = document.getElementById("room-video-and-chat-container");
@@ -206,6 +222,8 @@
 					} else if (this.videoContainer) {
 						this.videoContainer.requestFullscreen();
 					}
+
+					this.isFullscreen = true;
 				}
 			},
 			togglePlayPause () {
@@ -265,6 +283,20 @@
 						default:
 					}
 				}
+			},
+			updateMousePosition (e: MouseEvent) {
+				this.lastMousePosition = [ e.screenX, e.screenY ];
+			},
+			checkForStaticMouse () {
+
+				const currentPosition = this.lastMousePosition;
+
+				setTimeout(() => {
+					this.isMouseStatic = (this.lastMousePosition === currentPosition) && this.isOverlayVisible;
+				}, 2000);
+			},
+			updateFullscreenState () {
+				this.isFullscreen = document.fullscreenElement !== null;
 			}
 		},
 		sockets: {
@@ -296,6 +328,10 @@
 	.fade-leave-to,
 	.fade-enter-from {
 		opacity: 0;
+	}
+
+	.hide-mouse-cursor {
+		cursor: none;
 	}
 
 	#video-player {

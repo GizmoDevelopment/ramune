@@ -260,6 +260,9 @@
 						case "Space":
 							this.togglePlayPause();
 							break;
+						case "KeyF":
+							this.toggleFullscreen();
+							break;
 						default:
 					}
 				}

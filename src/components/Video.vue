@@ -58,7 +58,7 @@
 			:poster="episode.thumbnail_url"
 
 			@seeked="updateVideoTime(); pushSync();"
-			@seeking="updateVideoTime"
+			@seeking="updateVideoTime(); pushSync();"
 			@pause="pushSync"
 			@play="pushSync()"
 			@timeupdate="updateVideoTime"
@@ -190,7 +190,6 @@
 				if (this.video) {
 
 					this.isPaused = this.video.paused;
-					this.isBuffering = false;
 
 					this.$emit("update", !this.video.paused, this.video.currentTime);
 				}

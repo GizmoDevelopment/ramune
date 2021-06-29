@@ -155,7 +155,7 @@
 
 	.view-enter-active,
 	.view-leave-active {
-		transition: .3s transform ease, .25s opacity ease;
+		transition: .25s opacity ease, .3s transform ease;
 	}
 
 	.view-enter-from,
@@ -164,9 +164,12 @@
 		transform: translateY(1rem);
 	}
 
-	.slide-enter-active,
+	.slide-enter-active {
+		transition: opacity .2s ease, transform .4s var(--easing-enter);
+	}
+
 	.slide-leave-active {
-		transition: opacity .4s ease, transform .5s ease;
+		transition: opacity .35s ease, transform .25s var(--easing-leave);
 	}
 
 	.slide-enter-from,

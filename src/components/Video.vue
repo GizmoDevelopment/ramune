@@ -53,7 +53,7 @@
 				v-show="(isOverlayVisible && !isMouseStatic) || isSubtitleTrayVisible"
 				id="video-overlay"
 			>
-				<div id="video-screen" @click="togglePlayPause" />
+				<div id="video-screen" @click="togglePlayPause(); mouseClickCounter += 1" />
 				<div v-if="!hideControls" id="video-controls">
 					<transition name="fade">
 						<div
@@ -210,19 +210,21 @@
 			return {
 				isPaused: true,
 				isOverlayVisible: false,
-				videoProgressPercentage: 0,
 				isBuffering: false,
+				isMouseStatic: false,
+				isFullscreen: false,
+				isSubtitleTrayVisible: false,
+				isVolumeTrayVisible: false,
+				videoProgressPercentage: 0,
 				currentVideoTime: 0,
 				videoDuration: 0,
 				lastSyncTimestamp: 0,
-				isMouseStatic: false,
+				mouseClickCounter: 0,
 				mouseChecker: 0,
+				mouseClickChecker: 0,
+				volume: 1,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
-				isFullscreen: false,
-				selectedSubtitleLanguage: "en",
-				isSubtitleTrayVisible: false,
-				isVolumeTrayVisible: false,
-				volume: 1
+				selectedSubtitleLanguage: "en"
 			};
 		},
 		computed: {
@@ -254,6 +256,11 @@
 					this.isVolumeTrayVisible = false;
 					this.isSubtitleTrayVisible = false;
 				}
+			},
+			mouseClickCounter (count: number) {
+				if (count >= 2) {
+					this.toggleFullscreen();
+				}
 			}
 		},
 		mounted () {
@@ -262,6 +269,7 @@
 			document.addEventListener("mousemove", this.updateMousePosition);
 
 			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
+			this.mouseClickChecker = window.setInterval(this.doubleClickChecker, 400);
 
 			if (this.video) {
 				this.volume = this.video.volume;
@@ -273,6 +281,7 @@
 			document.removeEventListener("mousemove", this.updateMousePosition);
 
 			clearInterval(this.mouseChecker);
+			clearInterval(this.mouseClickChecker);
 
 		},
 		methods: {
@@ -399,6 +408,9 @@
 			},
 			toggleVolumeTray () {
 				this.isVolumeTrayVisible = !this.isVolumeTrayVisible;
+			},
+			doubleClickChecker () {
+				this.mouseClickCounter = 0;
 			}
 		},
 		sockets: {

@@ -111,6 +111,7 @@
 		--text-color: white;
 		--container-background-color: rgb(31, 31, 31);
 		--container-background-color-raw: 31, 31, 31;
+		--container-hover-color: rgb(65, 65, 65);
 		--background-color: #0D0D0D;
 		--primary-color: hsl(200, 90%, 60%);
 		--primary-hover-color: hsl(200, 90%, 40%);
@@ -290,6 +291,10 @@
 	.icon path {
 		fill: var(--text-color);
 		stroke: var(--text-color);
+	}
+
+	.no-fill path {
+		fill: none !important;
 	}
 
 	.husk, .husk-dark {

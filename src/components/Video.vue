@@ -222,7 +222,7 @@
 				selectedSubtitleLanguage: "en",
 				isSubtitleTrayVisible: false,
 				isVolumeTrayVisible: false,
-				volume: 0
+				volume: 1
 			};
 		},
 		computed: {
@@ -466,7 +466,7 @@
 	}
 
 	#constant-video-overlay {
-		z-index: 2;
+		z-index: 3;
 		pointer-events: none;
 	}
 

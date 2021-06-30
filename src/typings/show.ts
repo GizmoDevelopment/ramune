@@ -18,7 +18,7 @@ export interface Episode {
     id: number;
 	title: string;
     thumbnail_url: string;
-	subtitles: Record<string, string>;
+	subtitles: Subtitles[];
 	duration: number;
 	stream_url: string;
 	data: EpisodeData;
@@ -33,4 +33,10 @@ export interface EpisodeEffect {
 	data: any;
 	start: number;
 	end: number;
+}
+
+export interface Subtitles {
+	code: string;
+	language: string;
+	url: string;
 }

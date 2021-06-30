@@ -10,10 +10,28 @@
 			<div v-if="isBuffering">
 				<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 			</div>
+			<div
+				v-if="isSubtitleTrayVisible"
+				id="subtitle-tray"
+				@mouseleave="isSubtitleTrayVisible = false"
+			>
+				<h3>Subtitles</h3>
+				<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
+					<button
+						class="subtitle-language-button"
+						@click="setSubtitleLanguage(`${ subtitle.code }`)"
+					>
+						<template v-if="subtitle.code === selectedSubtitleLanguage">
+							<Checkmark />
+						</template>
+						{{ subtitle.language }}
+					</button>
+				</div>
+			</div>
 		</div>
 		<transition name="fade">
 			<div
-				v-show="isOverlayVisible && !isMouseStatic"
+				v-show="(isOverlayVisible && !isMouseStatic) || isSubtitleTrayVisible"
 				id="video-overlay"
 			>
 				<div id="video-screen" @click="togglePlayPause" />
@@ -39,9 +57,13 @@
 						:class="{ 'selectable-progress-bar': controls }"
 						@click="changeVideoProgress"
 					>
-						<div id="progress-bar" :style="`width: ${ videoProgressPercentage }%`" />
+						<div
+							id="progress-bar"
+							:style="`width: ${ videoProgressPercentage }%`"
+						/>
 					</div>
 					<span id="video-duration">{{ videoDurationTimestamp }}</span>
+					<Text class="video-control-button" @click="toggleSubtitleTray" />
 					<Expand class="video-control-button" @click="toggleFullscreen" />
 				</div>
 			</div>
@@ -66,12 +88,14 @@
 			@waiting="isBuffering = true"
 			@durationchange="updateVideoDuration"
 		>
-			<template v-for="(subtitleURL, language) in episode.subtitles" :key="language">
+			<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
 				<track
+					:id="subtitle.code"
 					kind="subtitles"
-					:srclang="language"
-					:src="subtitleURL"
-					:default="language === 'en' ? true : false"
+					:srclang="subtitle.code"
+					:label="subtitle.language"
+					:src="subtitle.url"
+					:default="subtitle.code === 'en'"
 				>
 			</template>
 		</video>
@@ -96,6 +120,8 @@
 	import Play from "@assets/icons/play.svg?component";
 	import Pause from "@assets/icons/pause.svg?component";
 	import Expand from "@assets/icons/expand.svg?component";
+	import Checkmark from "@assets/icons/checkmark.svg?component";
+	import Text from "@assets/icons/text.svg?component";
 
 	// Utils
 	import { getStreamURL } from "@utils/api";
@@ -112,7 +138,9 @@
 			Play,
 			Pause,
 			Expand,
-			LoadingBuffer
+			LoadingBuffer,
+			Checkmark,
+			Text
 		},
 		props: {
 			show: {
@@ -156,7 +184,9 @@
 				isMouseStatic: false,
 				mouseChecker: 0,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
-				isFullscreen: false
+				isFullscreen: false,
+				selectedSubtitleLanguage: "en",
+				isSubtitleTrayVisible: false
 			};
 		},
 		computed: {
@@ -251,6 +281,8 @@
 			changeVideoProgress (e: MouseEvent) {
 				if (this.video && e.target && this.controls) {
 
+					console.log(e);
+
 					const
 						{ offsetX } = e,
 						width = (e.target as HTMLElement).clientWidth,
@@ -297,6 +329,25 @@
 			},
 			updateFullscreenState () {
 				this.isFullscreen = document.fullscreenElement !== null;
+			},
+			setSubtitleLanguage (code: string) {
+
+				this.selectedSubtitleLanguage = code;
+
+				if (this.video) {
+
+					const tracks = this.video.textTracks;
+
+					for (let i = 0; i <= tracks.length; i++) {
+
+						const track = tracks[i];
+
+						track.mode = track.id === code ? "showing" : "disabled";
+					}
+				}
+			},
+			toggleSubtitleTray () {
+				this.isSubtitleTrayVisible = !this.isSubtitleTrayVisible;
 			}
 		},
 		sockets: {
@@ -345,6 +396,11 @@
 		height: auto;
 	}
 
+	#constant-video-overlay {
+		z-index: 2;
+		pointer-events: none;
+	}
+
 	#constant-video-overlay, #video-overlay {
 		position: absolute;
 		width: 100%;
@@ -364,7 +420,7 @@
 	}
 
 	#video-controls {
-		background-color: rgba(var(--container-background-color-raw), .95);
+		background-color: var(--container-background-color);
 		position: absolute;
 		width: 100%;
 		height: 3rem;
@@ -424,6 +480,44 @@
 	#play-pause-button * {
 		width: 100%;
 		height: 100%;
+	}
+
+	#subtitle-tray {
+		position: absolute;
+		right: 1rem;
+		bottom: 4rem;
+		padding: 0 0 1rem 0;
+		width: 10rem;
+		background-color: var(--container-background-color);
+		border-radius: var(--card-border-radius);
+		pointer-events: visible;
+	}
+
+	#subtitle-tray h3 {
+		margin-top: .5rem;
+	}
+
+	.subtitle-language-button {
+		background: none;
+		border: none;
+		font-weight: 100;
+		color: var(--text-color);
+		font-size: 1.1rem;
+		font-weight: lighter;
+		width: 100%;
+		height: 2rem;
+		padding: .2rem 0 .2rem 0;
+		transition: background-color .3s ease;
+	}
+
+	.subtitle-language-button svg {
+		position: absolute;
+		left: 1rem;
+	}
+
+	.subtitle-language-button:hover {
+		cursor: pointer;
+		background-color: var(--container-hover-color);
 	}
 
 </style>

@@ -89,7 +89,7 @@
 					</div>
 					<span id="video-duration">{{ videoDurationTimestamp }}</span>
 					<Text class="video-control-button" @click="toggleSubtitleTray" />
-					<Expand class="video-control-button" @click="toggleFullscreen" />
+					<Resize class="video-control-button" @click="toggleFullscreen" />
 				</div>
 			</div>
 		</transition>
@@ -146,7 +146,7 @@
 	// Icons
 	import Play from "@assets/icons/play.svg?component";
 	import Pause from "@assets/icons/pause.svg?component";
-	import Expand from "@assets/icons/expand.svg?component";
+	import Resize from "@assets/icons/resize.svg?component";
 	import Checkmark from "@assets/icons/checkmark.svg?component";
 	import Text from "@assets/icons/text.svg?component";
 	import VolumeOff from "@assets/icons/volume-off.svg?component";
@@ -167,7 +167,7 @@
 			EffectsRenderer,
 			Play,
 			Pause,
-			Expand,
+			Resize,
 			LoadingBuffer,
 			Checkmark,
 			Text,

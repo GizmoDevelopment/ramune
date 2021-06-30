@@ -33,7 +33,7 @@
 			</transition>
 			<transition name="slide">
 				<div
-					v-if="isVolumeTrayVisible"
+					v-if="!isVolumeTrayVisible"
 					id="volume-tray"
 					class="video-control-tray"
 					@mouseleave="isVolumeTrayVisible = false"
@@ -416,6 +416,8 @@
 
 <style scoped>
 
+	/* Transitions */
+
 	.fade-enter-active,
 	.fade-leave-active {
 		transition: .3s opacity ease;
@@ -443,6 +445,8 @@
 		opacity: 0;
 		transform: translateY(.5em);
 	}
+
+	/* Video Containers */
 
 	#video-player {
 		width: 100%;
@@ -478,18 +482,7 @@
 		flex: 1;
 	}
 
-	#video-controls {
-		background-color: var(--container-background-color);
-		position: absolute;
-		width: 100%;
-		height: 3rem;
-		bottom: 0;
-		left: 0;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
+	/* Progress Bar */
 
 	#progress-bar-container {
 		flex: 1;
@@ -512,6 +505,8 @@
 		transition: .3s width ease	;
 	}
 
+	/* Timestamp & Duration */
+
 	#video-timestamp, #video-duration {
 		margin-left: .5rem;
 		margin-right: .5rem;
@@ -525,11 +520,26 @@
 		text-align: left;
 	}
 
+	/* Video Controls */
+
+	#video-controls {
+		background-color: var(--container-background-color);
+		position: absolute;
+		width: 100%;
+		height: 3rem;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
 	.video-control-button {
 		width: 30px;
 		height: auto;
-		margin-left: 1rem;
-		margin-right: 1rem;
+		margin-left: .65rem;
+		margin-right: .65rem;
 	}
 
 	.video-control-button:hover {
@@ -541,6 +551,8 @@
 		height: 100%;
 	}
 
+	/* Video Control Trays */
+
 	.video-control-tray {
 		position: absolute;
 		bottom: 4rem;
@@ -548,6 +560,8 @@
 		border-radius: var(--card-border-radius);
 		pointer-events: visible;
 	}
+
+	/* Subtitle Tray */
 
 	#subtitle-tray {
 		right: 1rem;
@@ -582,12 +596,22 @@
 		background-color: var(--container-hover-color);
 	}
 
+	/* Volume Tray */
+
 	#volume-tray {
 		left: 1rem;
 		padding: .6rem;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+	}
+
+	/* Can we please, for the love of God, incorporate a standard for this */
+	#volume-tray input::-ms-fill-lower,
+	#volume-tray input::-moz-range-progress,
+	#volume-tray input::-webkit-slider-runnable-track
+	{
+		background: var(--primary-color);
 	}
 
 </style>

@@ -10,24 +10,26 @@
 			<div v-if="isBuffering">
 				<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 			</div>
-			<div
-				v-if="isSubtitleTrayVisible"
-				id="subtitle-tray"
-				@mouseleave="isSubtitleTrayVisible = false"
-			>
-				<h3>Subtitles</h3>
-				<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
-					<button
-						class="subtitle-language-button"
-						@click="setSubtitleLanguage(`${ subtitle.code }`)"
-					>
-						<template v-if="subtitle.code === selectedSubtitleLanguage">
-							<Checkmark />
-						</template>
-						{{ subtitle.language }}
-					</button>
+			<transition name="slide">
+				<div
+					v-if="isSubtitleTrayVisible"
+					id="subtitle-tray"
+					@mouseleave="isSubtitleTrayVisible = false"
+				>
+					<h3>Subtitles</h3>
+					<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
+						<button
+							class="subtitle-language-button"
+							@click="setSubtitleLanguage(`${ subtitle.code }`)"
+						>
+							<template v-if="subtitle.code === selectedSubtitleLanguage">
+								<Checkmark />
+							</template>
+							{{ subtitle.language }}
+						</button>
+					</div>
 				</div>
-			</div>
+			</transition>
 		</div>
 		<transition name="fade">
 			<div
@@ -383,6 +385,20 @@
 
 	.hide-mouse-cursor {
 		cursor: none;
+	}
+
+	.slide-enter-active {
+		transition: opacity .2s ease, transform .4s var(--easing-enter);
+	}
+
+	.slide-leave-active {
+		transition: opacity .25s ease, transform .3s ease;
+	}
+
+	.slide-enter-from,
+	.slide-leave-to {
+		opacity: 0;
+		transform: translateY(.5em);
 	}
 
 	#video-player {

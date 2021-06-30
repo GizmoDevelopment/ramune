@@ -33,7 +33,7 @@
 			</transition>
 			<transition name="slide">
 				<div
-					v-if="!isVolumeTrayVisible"
+					v-if="isVolumeTrayVisible"
 					id="volume-tray"
 					class="video-control-tray"
 					@mouseleave="isVolumeTrayVisible = false"
@@ -247,6 +247,12 @@
 				if (newState) {
 					this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", false);
 					this.pushSync();
+				}
+			},
+			isMouseStatic (newState: boolean) {
+				if (newState) {
+					this.isVolumeTrayVisible = false;
+					this.isSubtitleTrayVisible = false;
 				}
 			}
 		},
@@ -480,6 +486,7 @@
 
 	#video-screen {
 		flex: 1;
+		z-index: 2;
 	}
 
 	/* Progress Bar */
@@ -491,7 +498,7 @@
 
 	}
 
-	.selectable-progress-bar:hover {
+	.selectable-progress-bar {
 		cursor: pointer;
 	}
 
@@ -533,6 +540,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		z-index: 2;
 	}
 
 	.video-control-button {
@@ -542,7 +550,7 @@
 		margin-right: .65rem;
 	}
 
-	.video-control-button:hover {
+	.video-control-button {
 		cursor: pointer;
 	}
 
@@ -564,7 +572,7 @@
 	/* Subtitle Tray */
 
 	#subtitle-tray {
-		right: 1rem;
+		right: .5rem;
 		width: 10rem;
 		padding: 0 0 1rem 0;
 	}
@@ -580,10 +588,12 @@
 		color: var(--text-color);
 		font-size: 1.1rem;
 		font-weight: lighter;
+		border-radius: 0;
 		width: 100%;
 		height: 2rem;
 		padding: .2rem 0 .2rem 0;
 		transition: background-color .3s ease;
+		cursor: pointer;
 	}
 
 	.subtitle-language-button svg {
@@ -592,14 +602,13 @@
 	}
 
 	.subtitle-language-button:hover {
-		cursor: pointer;
 		background-color: var(--container-hover-color);
 	}
 
 	/* Volume Tray */
 
 	#volume-tray {
-		left: 1rem;
+		left: .5rem;
 		padding: .6rem;
 		display: flex;
 		flex-direction: row;

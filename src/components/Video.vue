@@ -4,7 +4,7 @@
 		ref="videoContainer"
 		:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
 		@mouseenter="isOverlayVisible = true"
-		@mouseleave="isOverlayVisible = false"
+		@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
 	>
 		<div id="constant-video-overlay">
 			<div v-if="isBuffering">
@@ -14,6 +14,7 @@
 				<div
 					v-if="isSubtitleTrayVisible"
 					id="subtitle-tray"
+					class="video-control-tray"
 					@mouseleave="isSubtitleTrayVisible = false"
 				>
 					<h3>Subtitles</h3>
@@ -28,6 +29,22 @@
 							{{ subtitle.language }}
 						</button>
 					</div>
+				</div>
+			</transition>
+			<transition name="slide">
+				<div
+					v-if="isVolumeTrayVisible"
+					id="volume-tray"
+					class="video-control-tray"
+					@mouseleave="isVolumeTrayVisible = false"
+				>
+					<input
+						v-model="volume"
+						type="range"
+						min="0"
+						max="1"
+						step=".01"
+					>
 				</div>
 			</transition>
 		</div>
@@ -53,6 +70,12 @@
 							</div>
 						</div>
 					</transition>
+					<div @click="toggleVolumeTray">
+						<VolumeOff v-if="volume == 0" class="video-control-button" />
+						<VolumeLow v-if="volume > 0 && volume < .45" class="video-control-button" />
+						<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
+						<VolumeHigh v-if="volume >= .85" class="video-control-button" />
+					</div>
 					<span id="video-timestamp">{{ videoCurrentTimestamp }}</span>
 					<div
 						id="progress-bar-container"
@@ -81,6 +104,7 @@
 
 			:src="url"
 			:poster="episode.thumbnail_url"
+			:volume="volume"
 
 			@seeked="updateVideoTime(); pushSync();"
 			@seeking="updateVideoTime(); pushSync();"
@@ -89,6 +113,7 @@
 			@timeupdate="updateVideoTime"
 			@waiting="isBuffering = true"
 			@durationchange="updateVideoDuration"
+			@volumechange="updateVolume"
 		>
 			<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
 				<track
@@ -124,7 +149,10 @@
 	import Expand from "@assets/icons/expand.svg?component";
 	import Checkmark from "@assets/icons/checkmark.svg?component";
 	import Text from "@assets/icons/text.svg?component";
-
+	import VolumeOff from "@assets/icons/volume-off.svg?component";
+	import VolumeLow from "@assets/icons/volume-low.svg?component";
+	import VolumeMedium from "@assets/icons/volume-medium.svg?component";
+	import VolumeHigh from "@assets/icons/volume-high.svg?component";
 	// Utils
 	import { getStreamURL } from "@utils/api";
 	import { formatTimestamp } from "@utils/essentials";
@@ -142,7 +170,11 @@
 			Expand,
 			LoadingBuffer,
 			Checkmark,
-			Text
+			Text,
+			VolumeOff,
+			VolumeLow,
+			VolumeMedium,
+			VolumeHigh
 		},
 		props: {
 			show: {
@@ -188,7 +220,9 @@
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
 				isFullscreen: false,
 				selectedSubtitleLanguage: "en",
-				isSubtitleTrayVisible: false
+				isSubtitleTrayVisible: false,
+				isVolumeTrayVisible: false,
+				volume: 0
 			};
 		},
 		computed: {
@@ -223,6 +257,9 @@
 
 			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
 
+			if (this.video) {
+				this.volume = this.video.volume;
+			}
 		},
 		beforeUnmount () {
 
@@ -282,8 +319,6 @@
 			},
 			changeVideoProgress (e: MouseEvent) {
 				if (this.video && e.target && this.controls) {
-
-					console.log(e);
 
 					const
 						{ offsetX } = e,
@@ -350,6 +385,14 @@
 			},
 			toggleSubtitleTray () {
 				this.isSubtitleTrayVisible = !this.isSubtitleTrayVisible;
+			},
+			updateVolume () {
+				if (this.video) {
+					this.volume = this.video.volume;
+				}
+			},
+			toggleVolumeTray () {
+				this.isVolumeTrayVisible = !this.isVolumeTrayVisible;
 			}
 		},
 		sockets: {
@@ -498,15 +541,18 @@
 		height: 100%;
 	}
 
-	#subtitle-tray {
+	.video-control-tray {
 		position: absolute;
-		right: 1rem;
 		bottom: 4rem;
-		padding: 0 0 1rem 0;
-		width: 10rem;
 		background-color: var(--container-background-color);
 		border-radius: var(--card-border-radius);
 		pointer-events: visible;
+	}
+
+	#subtitle-tray {
+		right: 1rem;
+		width: 10rem;
+		padding: 0 0 1rem 0;
 	}
 
 	#subtitle-tray h3 {
@@ -534,6 +580,14 @@
 	.subtitle-language-button:hover {
 		cursor: pointer;
 		background-color: var(--container-hover-color);
+	}
+
+	#volume-tray {
+		left: 1rem;
+		padding: .6rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 
 </style>

@@ -109,9 +109,9 @@
 
 		/* Colors */
 		--text-color: white;
+		--faded-text-color: #868686;
 		--container-background-color: rgb(31, 31, 31);
-		--container-background-color-raw: 31, 31, 31;
-		--container-hover-color: rgb(65, 65, 65);
+		--container-hover-color: #494949;
 		--background-color: #0D0D0D;
 		--primary-color: hsl(200, 90%, 60%);
 		--primary-hover-color: hsl(200, 90%, 40%);
@@ -316,7 +316,7 @@
 	}
 
 	.faded {
-		opacity: .5;
+		color: var(--faded-text-color);
 	}
 
 	.icon {

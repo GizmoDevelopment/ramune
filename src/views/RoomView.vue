@@ -22,8 +22,11 @@
 			/>
 		</div>
 	</div>
-	<div v-else-if="isLoadingRoomData">
-		<LoadingBuffer />
+	<div v-else>
+		<h3 id="no-video-message" class="faded">Waiting for host</h3>
+		<div v-if="isLoadingRoomData">
+			<LoadingBuffer />
+		</div>
 	</div>
 </template>
 
@@ -101,6 +104,10 @@
 
 	#room-title-bar > * {
 		margin-right: 10px;
+	}
+
+	#no-video-message {
+		font-size: 1.5rem;
 	}
 
 </style>

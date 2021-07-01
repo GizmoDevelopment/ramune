@@ -88,7 +88,11 @@
 						/>
 					</div>
 					<span id="video-duration">{{ videoDurationTimestamp }}</span>
-					<Text class="video-control-button" @click="toggleSubtitleTray" />
+					<Text
+						v-if="episode.subtitles.length > 0"
+						class="video-control-button"
+						@click="toggleSubtitleTray"
+					/>
 					<Resize class="video-control-button" @click="toggleFullscreen" />
 				</div>
 			</div>

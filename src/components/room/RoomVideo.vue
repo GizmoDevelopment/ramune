@@ -13,6 +13,10 @@
 				@update="pushSync"
 			/>
 		</div>
+		<div v-else id="no-video-message-container">
+			<p class="faded">Waiting for host</p>
+			<LoadingBuffer :size="isViewingRoom ? 'normal' : 'small'" />
+		</div>
 	</div>
 </template>
 
@@ -23,6 +27,7 @@
 
 	// Components
 	import Video from "@components/Video.vue";
+	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -34,7 +39,8 @@
 	export default defineComponent({
 		name: "RoomVideo",
 		components: {
-			Video
+			Video,
+			LoadingBuffer
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -79,3 +85,18 @@
 	});
 
 </script>
+
+<style scoped>
+
+	#no-video-message-container {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	#no-video-message-container p {
+		font-size: 2rem;
+	}
+
+</style>

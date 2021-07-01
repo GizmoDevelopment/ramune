@@ -7,14 +7,12 @@
 				:host="room.host"
 			/>
 		</div>
-		<div id="video">
-			<div v-if="room.data" id="video-alignment">
-				<!-- This is where RoomVideoController will teleport the video element to -->
-				<div id="room-video-popout-container" />
-			</div>
-			<div v-else>
-				<p class="faded">Nothing is currently playing</p>
-			</div>
+		<div v-if="room.data">
+			<!-- This is where RoomVideoController will teleport the video element to -->
+			<div id="room-video-popout-container" />
+		</div>
+		<div v-else id="no-video-message-container">
+			<p class="faded">Waiting for host</p>
 		</div>
 		<div
 			id="overlay"
@@ -69,7 +67,7 @@
 		height: calc(350px * 9/16);
 	}
 
-	#video {
+	#room-video-popout-container, #no-video-message-container {
 		position: absolute;
 		width: inherit;
 		top: 0;
@@ -82,13 +80,6 @@
 		align-items: center;
 		z-index: 1;
 		margin-top: 2px;
-	}
-
-	#video-alignment {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 	}
 
 	#room-information {

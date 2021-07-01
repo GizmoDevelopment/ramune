@@ -14,7 +14,7 @@
 			/>
 		</div>
 		<div v-else id="no-video-message-container">
-			<p class="faded">Waiting for host</p>
+			<h3 class="faded">Waiting for host</h3>
 			<LoadingBuffer :size="isViewingRoom ? 'normal' : 'small'" />
 		</div>
 	</div>
@@ -95,8 +95,8 @@
 		justify-content: center;
 	}
 
-	#no-video-message-container p {
-		font-size: 2rem;
+	#no-video-message-container h3 {
+		font-size: 1.5rem;
 	}
 
 </style>

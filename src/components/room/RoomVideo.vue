@@ -15,7 +15,6 @@
 		</div>
 		<div v-else id="no-video-message-container">
 			<h3 class="faded">Waiting for host</h3>
-			<LoadingBuffer :size="isViewingRoom ? 'normal' : 'small'" />
 		</div>
 	</div>
 </template>
@@ -27,7 +26,6 @@
 
 	// Components
 	import Video from "@components/Video.vue";
-	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -39,8 +37,7 @@
 	export default defineComponent({
 		name: "RoomVideo",
 		components: {
-			Video,
-			LoadingBuffer
+			Video
 		},
 		mixins: [ RoomMixin ],
 		props: {

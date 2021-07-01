@@ -1,9 +1,8 @@
 <template>
-	<div id="room-video-and-chat-container">
+	<div id="room-video-and-chat-container" ref="videoContainer">
 		<div v-if="show && episode">
 			<Video
 
-				ref="video"
 				:show="show"
 				:episode="episode"
 				:controls="isHost"
@@ -38,10 +37,10 @@
 		mixins: [ RoomMixin ],
 		setup () {
 
-			const video = ref<HTMLVideoElement>();
+			const videoContainer = ref<HTMLDivElement>();
 
 			return {
-				video
+				videoContainer
 			};
 		},
 		data () {
@@ -70,16 +69,12 @@
 		},
 		methods: {
 			updateVideoParent () {
-				if (this.teleportParent) {
+				if (this.teleportParent && this.videoContainer) {
 
-					const
-						newParentInstance = document.getElementById(this.teleportParent),
-						// eslint-disable-next-line
-						videoRef = (this.video as any)?.$el as HTMLElement; // I deserve to get waterboarded for this
+					const newParentElement = document.getElementById(this.teleportParent);
 
-					if (newParentInstance && videoRef) {
-						newParentInstance.innerHTML = "";
-						newParentInstance.appendChild(videoRef);
+					if (newParentElement) {
+						newParentElement.appendChild(this.videoContainer);
 					}
 				}
 			},

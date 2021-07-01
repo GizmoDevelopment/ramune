@@ -1,19 +1,25 @@
 <template>
-	<Video
+	<div id="room-video-and-chat-container">
+		<div v-if="show && episode">
+			<Video
 
-		:show="show"
-		:episode="episode"
-		:controls="controls"
-		:requesting-sync="requestingSync"
+				ref="video"
 
-		@sync="sync"
-	/>
+				:show="show"
+				:episode="episode"
+				:controls="controls"
+				:hide-controls="hideControls"
+
+				@update="pushSync"
+			/>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, PropType, ref } from "vue";
 
 	// Components
 	import Video from "@components/Video.vue";
@@ -22,7 +28,8 @@
 	import RoomMixin from "@mixins/Room";
 
 	// Types
-	import { Room } from "@typings/room";
+	import { Room, RoomSyncData } from "@typings/room";
+	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "RoomVideo",
@@ -35,24 +42,37 @@
 				type: Object as PropType<Room>,
 				required: true
 			},
-			requestingSync: {
+			controls: {
 				type: Boolean,
 				default: false
 			},
-			controls: {
+			hideControls: {
 				type: Boolean,
 				default: false
 			}
 		},
-		emits: [ "sync" ],
-		methods: {
-			sync (isPaused: boolean, timestamp: number) {
-				if (this.isHost) {
-					
-					this.$store.commit("SYNC_ROOM", { playing: !isPaused, currentTime: timestamp });
+		setup () {
 
-					// Propagate to parent Room view
-					this.$emit("sync", isPaused, timestamp);
+			const video = ref<HTMLVideoElement>();
+
+			return {
+				video
+			};
+		},
+		methods: {
+			pushSync (playing: boolean, currentTime: number) {
+				if (this.isHost && this.video) {
+
+					const payload: RoomSyncData = {
+						playing: playing,
+						currentTime: currentTime
+					};
+
+					this.$socket.emit("CLIENT:SYNC_ROOM", payload, (res: SocketResponse<string>) => {
+						if (res.type !== "success") {
+							console.error(res.message);
+						}
+					});
 				}
 			}
 		}

@@ -7,11 +7,9 @@
 				:host="room.host"
 			/>
 		</div>
-		<div v-if="room.data">
-			<!-- This is where RoomVideoController will teleport the video element to -->
-			<div id="room-video-popout-container" />
-		</div>
-		<div v-else id="no-video-message-container">
+		<!-- This is where RoomVideoController will teleport the video element to -->
+		<div id="room-video-popout-container" />
+		<div v-if="!room.data" id="no-video-message-container">
 			<p class="faded">Waiting for host</p>
 		</div>
 		<div

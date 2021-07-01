@@ -301,13 +301,15 @@
 
 					const roomVideoContainer = document.getElementById("room-video-and-chat-container");
 
+					this.isFullscreen = true;
+
 					if (roomVideoContainer) {
 						roomVideoContainer.requestFullscreen();
 					} else if (this.videoContainer) {
 						this.videoContainer.requestFullscreen();
+					} else {
+						this.isFullscreen = false;
 					}
-
-					this.isFullscreen = true;
 				}
 			},
 			togglePlayPause () {

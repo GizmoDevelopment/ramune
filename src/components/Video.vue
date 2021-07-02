@@ -33,7 +33,7 @@
 			</transition>
 			<transition name="slide">
 				<div
-					v-if="!isVolumeTrayVisible"
+					v-if="isVolumeTrayVisible"
 					id="volume-tray"
 					class="video-control-tray"
 					@mouseleave="isVolumeTrayVisible = false"

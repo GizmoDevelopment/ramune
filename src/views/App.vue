@@ -208,7 +208,7 @@
 	.slide-enter-from,
 	.slide-leave-to {
 		opacity: 0;
-		transform: translateY(1em);
+		transform: translateY(1rem);
 	}
 
 	.heading {

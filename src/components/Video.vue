@@ -536,7 +536,8 @@
 	#progress-bar {
 		height: 100%;
 		background-color: var(--primary-color);
-		transition: .3s width ease	;
+		transition: .3s width ease;
+		overflow: hidden;
 	}
 
 	/* Timestamp & Duration */

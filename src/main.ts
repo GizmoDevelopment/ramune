@@ -19,11 +19,6 @@ import Tooltip from "./directives/tooltip";
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 
-/**
- * !!! NOTE !!!
- * REMOVE PATCH-PACKAGE ONCE VUE-SOCKET.IO OFFICIALLY SUPPORTS VUE 3
- */
-
 if (typeof SOCKET_ENDPOINT === "string") {
 
 	createApp(App)

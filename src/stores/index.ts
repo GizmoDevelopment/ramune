@@ -7,6 +7,9 @@ import { Show, ShowHusk } from "@typings/show";
 import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
 import { State } from "@typings/vuex";
 
+// Constants
+const DEV = import.meta.env.DEV;
+
 export default createStore<State>({
 	state () {
 		return {
@@ -65,5 +68,8 @@ export default createStore<State>({
 			state.isLoadingRoomData = newState;
 		}
 	},
-	plugins: [ createLogger() ] // !!! REMOVE BEFORE PROD
+	plugins: [ createLogger({
+		logActions: !!DEV,
+		logMutations: !!DEV
+	}) ]
 });

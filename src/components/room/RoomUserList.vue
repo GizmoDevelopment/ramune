@@ -63,6 +63,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
+		flex-wrap: wrap;
 		height: 3em;
 	}
 
@@ -74,7 +75,7 @@
 	.user:first-child {
 		margin-left: 0;
 	}
-	
+
 	.user img {
 		border-radius: 100%;
 		width: auto;

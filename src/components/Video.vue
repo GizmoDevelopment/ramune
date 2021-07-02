@@ -79,8 +79,9 @@
 					<span id="video-timestamp">{{ videoCurrentTimestamp }}</span>
 					<div
 						id="progress-bar-container"
+						ref="progressBarContainer"
 						:class="{ 'selectable-progress-bar': controls }"
-						@click="changeVideoProgress"
+						@click="progressBarSeek"
 					>
 						<div
 							id="progress-bar"
@@ -203,11 +204,13 @@
 
 			const
 				video = ref<HTMLVideoElement>(),
-				videoContainer = ref<HTMLDivElement>();
+				videoContainer = ref<HTMLDivElement>(),
+				progressBarContainer = ref<HTMLDivElement>();
 
 			return {
 				video,
-				videoContainer
+				videoContainer,
+				progressBarContainer
 			};
 		},
 		data () {
@@ -338,15 +341,18 @@
 
 				this.isBuffering = false;
 			},
-			changeVideoProgress (e: MouseEvent) {
-				if (this.video && e.target && this.controls) {
+			progressBarSeek (e: MouseEvent) {
+				if (this.video && this.progressBarContainer && this.controls) {
 
 					const
-						{ offsetX } = e,
-						width = (e.target as HTMLElement).clientWidth,
-						duration = this.video.duration;
+						x = e.clientX - (e.pageX - e.offsetX),
+						width = this.progressBarContainer.clientWidth,
+						duration = this.video.duration,
+						finalWidth = (x / width) * duration;
 
-					this.video.currentTime = (offsetX / width) * duration;
+					if (!isNaN(finalWidth)) {
+						this.video.currentTime = finalWidth;
+					}
 				}
 			},
 			updateVideoDuration () {
@@ -517,7 +523,6 @@
 		flex: 1;
 		height: .5rem;
 		background-color: var(--text-color);
-
 	}
 
 	.selectable-progress-bar {

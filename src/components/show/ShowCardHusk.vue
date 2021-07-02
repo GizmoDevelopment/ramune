@@ -3,10 +3,6 @@
 		<div id="poster" class="husk-dark" />
 		<div id="information">
 			<p id="title" class="husk-dark">Example Anime Title</p>
-			<div id="details">
-				<div id="rating" class="husk-dark">10/10</div>
-				<p id="season-count" class="husk-dark">50 Seaons</p>
-			</div>
 		</div>
 	</div>
 </template>
@@ -38,13 +34,13 @@
 		user-select: none;
 	}
 
-	#information, #details {
+	#information {
 		background: transparent;
 	}
 
 	#poster {
 		width: 170px;
-		height: calc(170px * 1.5);	
+		height: calc(170px * 1.5);
 	}
 
 	#information {
@@ -59,17 +55,6 @@
 		margin-top: 5px;
 		margin-bottom: 5px;
 		height: 18px;
-	}
-
-	#details {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	#details p {
-		margin: 0;
 	}
 
 </style>

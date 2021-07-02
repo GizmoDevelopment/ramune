@@ -228,7 +228,7 @@
 				mouseClickChecker: 0,
 				volume: 1,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
-				selectedSubtitleLanguage: "en"
+				selectedSubtitleLanguage: "en" as string | null
 			};
 		},
 		computed: {
@@ -390,17 +390,21 @@
 			},
 			setSubtitleLanguage (code: string) {
 
-				this.selectedSubtitleLanguage = code;
+				if (this.selectedSubtitleLanguage === code) {
+					this.selectedSubtitleLanguage = null;
+				} else {
+					this.selectedSubtitleLanguage = code;
+				}
 
 				if (this.video) {
 
 					const tracks = this.video.textTracks;
 
-					for (let i = 0; i <= tracks.length; i++) {
+					for (let i = 0; i < tracks.length; i++) {
 
 						const track = tracks[i];
 
-						track.mode = track.id === code ? "showing" : "disabled";
+						track.mode = track.id === this.selectedSubtitleLanguage ? "showing" : "disabled";
 					}
 				}
 			},

@@ -1,12 +1,8 @@
 <template>
-	<!--<router-link
-		:to="`/shows/${ show.id }`"
-		class="anchor-without-decoration"
-	>-->
-	<div id="container">
-		<div id="poster-container">
+	<div class="show-container">
+		<div class="show-poster-container">
 			<img
-				id="poster"
+				class="show-poster"
 				:src="show.poster_url"
 				draggable="false"
 			>
@@ -14,15 +10,10 @@
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
-		<div id="information">
-			<p id="title">{{ show.title }}</p>
-			<div id="details">
-				<!-- <ShowScoreLabel :score="show.score" /> -->
-				<!-- <p id="season-count">{{ seasonCount }}</p> -->
-			</div>
+		<div class="show-information">
+			<p class="show-title">{{ show.title }}</p>
 		</div>
 	</div>
-	<!--</router-link>-->
 </template>
 
 <script lang="ts">
@@ -54,13 +45,12 @@
 
 <style scoped>
 
-	#container {
+	.show-container {
 		max-width: 170px;
 		padding: 5px 5px 2px 5px;
-		border-radius: 5px;
 	}
 
-	#poster-container {
+	.show-poster-container {
 		position: relative;
 		display: block;
 		width: 170px;
@@ -68,7 +58,7 @@
 		margin-bottom: .3em;
 	}
 
-	#poster {
+	.show-poster {
 		width: inherit;
 		height: inherit;
 		background-color: var(--container-background-color);
@@ -79,13 +69,13 @@
 		font-size: 4em;
 	}
 
-	#information {
+	.show-information {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 5px;
 	}
 
-	#title {
+	.show-title {
 		word-wrap: normal;
 		font-size: 18px;
 		font-weight: 500;
@@ -93,18 +83,6 @@
 		margin-top: 0;
 		margin-bottom: 5px;
 		height: calc(18px * 2);
-	}
-
-	#details {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	#details p {
-		font-weight: 300;
-		margin: 0;
 	}
 
 </style>

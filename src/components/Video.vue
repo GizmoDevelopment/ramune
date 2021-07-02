@@ -33,7 +33,7 @@
 			</transition>
 			<transition name="slide">
 				<div
-					v-if="isVolumeTrayVisible"
+					v-if="!isVolumeTrayVisible"
 					id="volume-tray"
 					class="video-control-tray"
 					@mouseleave="isVolumeTrayVisible = false"
@@ -642,12 +642,56 @@
 		justify-content: center;
 	}
 
-	/* Can we please, for the love of God, incorporate a standard for this */
-	#volume-tray input::-ms-fill-lower,
-	#volume-tray input::-moz-range-progress,
-	#volume-tray input::-webkit-slider-runnable-track
-	{
-		background: var(--primary-color);
+</style>
+
+
+<style lang="scss" scoped>
+
+	// Cause SASS doesn't support global CSS variables?
+	@function variable ($variable-name) {
+		@return var(--#{ $variable-name });
+	}
+
+	// Can we please, for the love of God, incorporate a standard for this
+	// Also, for some reason, I cannot combine these together? What the fuck?
+
+	@mixin track () {
+		background: variable(container-hover-color);
+		height: .6rem;
+		border-radius: 1rem;
+		overflow: hidden;
+	}
+
+	@mixin progress () {
+		background: variable(primary-color);
+		height: .6rem;
+		border-radius: 1rem;
+	}
+
+	@mixin thumb () {
+		background: variable(text-color);
+		width: 1.1rem;
+		height: 1.1rem;
+		border: none;
+		border-radius: 50%;
+	}
+
+	input {
+
+		background-color: transparent;
+		padding: .1rem 0 .1rem 0; // Allows the thumb to look like a perfect oversized circle
+
+		// Firefox
+		&::-moz-range-track { @include track }
+		&::-moz-range-progress { @include progress }
+		&::-moz-range-thumb { @include thumb }
+
+		// Safari/Chrome/Edge
+		&::-webkit-slider-runnable-track { @include progress }
+		&::-webkit-slider-container { @include track }
+		&::-webkit-slider-thumb { @include thumb }
+
+
 	}
 
 </style>

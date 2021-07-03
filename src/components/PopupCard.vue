@@ -128,7 +128,7 @@
 		padding-bottom: 1em;
 		padding-left: 1em;
 		padding-right: 1em;
-		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .75);
+		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
 	}
 
 	#popup-title-bar {

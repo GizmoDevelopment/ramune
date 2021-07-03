@@ -48,6 +48,6 @@ export async function getShow (showId: string): Promise<Show|null> {
 	}
 }
 
-export function getStreamURL(showId: string, episodeId: number): string {
-	return `${ SHOW_CDN_ENDPOINT }/shows/${ showId }/episodes/${ episodeId }.mp4`;
+export function getStreamURL (showId: string, episodeId: number): string {
+	return `${ SHOW_CDN_ENDPOINT }/shows/${ showId }/episodes/${ episodeId }/${ episodeId }.mp4`;
 }

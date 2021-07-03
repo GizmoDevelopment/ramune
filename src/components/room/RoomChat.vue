@@ -12,15 +12,25 @@
 				</div>
 			</div>
 			<div id="chat-input-container">
-				<span v-if="shouldMessageInputPlaceholderBeVisible" id="empty-chat-input-label">Click here or press '/' to start typing</span>
-				<span
+				<!--<span v-if="shouldMessageInputPlaceholderBeVisible" id="empty-chat-input-label">Click here or press '/' to start typing</span>-->
+				<!--<span
 					id="chat-input"
 					ref="input"
 					class="input"
 					role="textbox"
 					contenteditable
 					@input="handleChatInput"
-				/>
+				/>-->
+				<form @submit.prevent="prepareMessage">
+					<input
+						id="chat-input"
+						ref="input"
+						v-model="messageContent"
+						class="input"
+						type="text"
+						placeholder="Click here or press '/' to start typing"
+					>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -87,6 +97,10 @@
 					this.messageContent = (e.target as HTMLSpanElement)?.textContent?.slice(0, 300) || "";
 				}
 			},
+			prepareMessage () {
+				this.input?.blur();
+				this.sendMessage();
+			},
 			sendMessage () {
 				if (this.input) {
 
@@ -94,7 +108,7 @@
 
 					if (content.trim().length > 0) {
 
-						this.input.textContent = "";
+						// this.input.textContent = "";
 						this.messageContent = "";
 
 						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {

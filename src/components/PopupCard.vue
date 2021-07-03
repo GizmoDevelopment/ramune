@@ -10,11 +10,11 @@
 		<transition name="slide-content">
 			<div
 				v-if="visible"
-				id="content-container"
+				class="popup-positioner"
 				@click="$emit('dismiss')"
 			>
 				<div
-					id="content"
+					class="popup-container"
 					:style="alignment"
 					@click.stop
 				>
@@ -97,19 +97,16 @@
 		opacity: 0;
 	}
 
-	.overlay, #content-container {
+	.overlay, .popup-positioner {
 		position: fixed;
 		z-index: 20;
 	}
 
-	#content-container {
+	.popup-positioner {
 		width: 100%;
 		height: 100%;
 		top: 0;
 		left: 0;
-	}
-
-	#content-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -117,7 +114,7 @@
 		overflow-y: auto;
 	}
 
-	#content {
+	.popup-container {
 		margin-top: 5%;
 		margin-bottom: 20px;
 		width: auto;
@@ -131,6 +128,7 @@
 		padding-bottom: 1em;
 		padding-left: 1em;
 		padding-right: 1em;
+		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .75);
 	}
 
 	#popup-title-bar {
@@ -164,7 +162,7 @@
 			margin-right: 1em;
 		}
 
-		#content {
+		.popup-container {
 			width: 90%;
 		}
 

@@ -178,6 +178,7 @@
 		padding-bottom: 1em;
 		padding-left: 2em;
 		padding-right: 2em;
+		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .75);
 	}
 
 	@media only screen and (max-width: 1250px) {

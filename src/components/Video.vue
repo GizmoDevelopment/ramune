@@ -591,7 +591,7 @@
 
 	.video-control-tray {
 		position: absolute;
-		bottom: 4rem;
+		bottom: 3.8rem;
 		background-color: var(--container-background-color);
 		border-radius: var(--card-border-radius);
 		pointer-events: visible;

@@ -456,7 +456,7 @@
 		background: variable(text-color);
 		width: 1.1rem;
 		height: 1.1rem;
-		border: none;
+		border: 2px solid variable(text-color);
 		border-radius: 50%;
 		cursor: pointer;
 	}

@@ -25,7 +25,10 @@
 			"@assets/*": ["assets/*"],
 			"@mixins/*": ["mixins/*"],
 			"@renderers/*": ["renderers/*"]
-		}
+		},
+		"plugins": [
+			{ "name": "@vuedx/typescript-plugin-vue" }
+		]
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

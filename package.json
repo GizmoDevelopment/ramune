@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-	"postinstall": "patch-package"
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -26,6 +26,7 @@
     "@typescript-eslint/parser": "^4.28.0",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.1.2",
+    "@vuedx/typescript-plugin-vue": "^0.7.4",
     "eslint": "^7.29.0",
     "eslint-plugin-vue": "^7.11.1",
     "sass": "^1.35.1",

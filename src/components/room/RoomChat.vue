@@ -12,7 +12,11 @@
 						</div>
 					</div>
 				</div>
-				<form id="chat-input-container" @submit.prevent="sendMessage">
+				<form
+					v-show="!isFullscreen || isFocusedOnInput"
+					id="chat-input-container"
+					@submit.prevent="sendMessage"
+				>
 					<textarea
 						id="chat-input"
 						ref="input"
@@ -25,11 +29,14 @@
 						spellcheck="true"
 						wrap="hard"
 						:disabled="!allowInput"
+						@focus="isFocusedOnInput = true"
+						@blur="isFocusedOnInput = false"
 					/>
 					<button class="primary-button icon-button" type="submit">
 						<ArrowUp />
 					</button>
 				</form>
+				<div v-if="isFullscreen && !isFocusedOnInput" id="empty-chat-input" />
 			</div>
 		</div>
 	</div>
@@ -78,7 +85,9 @@
 			return {
 				messageContent: "",
 				messages: [] as Message[],
-				allowInput: true
+				allowInput: true,
+				isFullscreen: false,
+				isFocusedOnInput: false
 			};
 		},
 		computed: {
@@ -151,8 +160,13 @@
 						case "/":
 
 							if (document.activeElement !== input) {
+
 								e.preventDefault();
-								input.focus();
+								this.isFocusedOnInput = true;
+
+								this.$nextTick(() => {
+									if (input) input.focus();
+								});
 							}
 
 							break;
@@ -178,6 +192,8 @@
 					} else { // Ended
 						this.teleportToElement(this.chat, this.chatContainer);
 					}
+
+					this.isFullscreen = fullscreenElement !== null;
 				}
 			}
 		},
@@ -192,6 +208,16 @@
 
 <style scoped>
 
+	.fade-leave-active,
+	.fade-enter-active {
+		opacity: 0;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		transition: opacity .3s ease;
+	}
+
 	#overlay {
 		width: 100%;
 		height: 100%;
@@ -199,7 +225,7 @@
 		left: 0;
 		position: fixed;
 		pointer-events: none;
-		z-index: 1337;
+		z-index: 1;
 	}
 
 	#chat-container {
@@ -246,6 +272,10 @@
 		padding: .4rem .6rem .4rem .6rem;
 		resize: none;
 		overflow: hidden;
+	}
+
+	#empty-chat-input {
+		height: 38px;
 	}
 
 </style>

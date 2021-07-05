@@ -592,6 +592,7 @@
 		background-color: var(--container-background-color);
 		border-radius: var(--card-border-radius);
 		pointer-events: visible;
+		z-index: 5; /* To go above chat messages */
 	}
 
 	/* Subtitle Tray */

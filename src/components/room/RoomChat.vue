@@ -84,8 +84,12 @@
 				const { input } = this;
 
 				if (input) {
+
 					input.style.height = "0px";
-					input.style.height = Math.max(36, input.scrollHeight) + "px";
+
+					this.$nextTick(() => {
+						if (input) input.style.height = Math.max(36, input.scrollHeight) + "px";
+					});
 				}
 			}
 		},
@@ -119,7 +123,6 @@
 
 							if (res.type === "success") {
 								this.messages.push(res.data);
-								input.style.height = "0px"; // Dirty fix, because sometimes the input won't resize (?)
 							} else {
 								console.error(res.message);
 							}

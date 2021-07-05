@@ -6,7 +6,6 @@ import { Show, ShowHusk } from "@typings/show";
 
 // Constants
 const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
-const SHOW_CDN_ENDPOINT = import.meta.env.VITE_SHOW_CDN_ENDPOINT;
 
 /**
  * Fetches all available shows
@@ -46,8 +45,4 @@ export async function getShow (showId: string): Promise<Show|null> {
 		console.error(err);
 		return null;
 	}
-}
-
-export function getStreamURL (showId: string, episodeId: number): string {
-	return `${ SHOW_CDN_ENDPOINT }/shows/${ showId }/episodes/${ episodeId }/${ episodeId }.mp4`;
 }

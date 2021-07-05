@@ -17,10 +17,10 @@ export interface Season {
 export interface Episode {
     id: number;
 	title: string;
-    thumbnail_url: string;
-	subtitles: Subtitles[];
 	duration: number;
+    thumbnail_url: string;
 	stream_url: string;
+	subtitles: Subtitles[];
 	data: EpisodeData;
 }
 

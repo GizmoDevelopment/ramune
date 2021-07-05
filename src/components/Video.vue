@@ -107,7 +107,7 @@
 			controlslist="nodownload"
 			preload="auto"
 
-			:src="url"
+			:src="episode.stream_url"
 			:poster="episode.thumbnail_url"
 			:volume="volume"
 
@@ -158,8 +158,8 @@
 	import VolumeLow from "@assets/icons/volume-low.svg?component";
 	import VolumeMedium from "@assets/icons/volume-medium.svg?component";
 	import VolumeHigh from "@assets/icons/volume-high.svg?component";
+
 	// Utils
-	import { getStreamURL } from "@utils/api";
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
@@ -235,9 +235,6 @@
 			};
 		},
 		computed: {
-			url (): string {
-				return getStreamURL(this.show.id, this.episode.id);
-			},
 			videoCurrentTimestamp (): string {
 				return formatTimestamp(this.currentVideoTime);
 			},

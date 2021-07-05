@@ -22,7 +22,7 @@
 	import { defineComponent, ref } from "vue";
 
 	// Mixins
-	import MainMixin from "@mixins/main";
+	import MainMixin from "@mixins/Main";
 
 	export default defineComponent({
 		name: "Input",

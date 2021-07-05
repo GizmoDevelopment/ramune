@@ -47,8 +47,8 @@
 	import ArrowUp from "@assets/icons/arrow-up.svg?component";
 
 	// Mixins
+	import MainMixin from "@mixins/Main";
 	import RoomMixin from "@mixins/Room";
-	import MainMixin from "@mixins/main";
 
 	// Types
 	import { SocketResponse } from "@typings/main";

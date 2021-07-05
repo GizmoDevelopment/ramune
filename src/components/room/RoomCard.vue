@@ -19,7 +19,7 @@
 	import RoomUserList from "@components/room/RoomUserList.vue";
 
 	// Mixins
-	import MainMixin from "@mixins/main";
+	import MainMixin from "@mixins/Main";
 
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg?component";

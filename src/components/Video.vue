@@ -359,7 +359,7 @@
 			},
 			handleKeypress (e: KeyboardEvent) {
 				// Only process keys if user isn't focused on any inputs/spans
-				if (this.video && document.activeElement && ![ "SPAN", "INPUT" ].includes(document.activeElement.tagName)) {
+				if (this.video && document.activeElement && ![ "SPAN", "INPUT", "TEXTAREA" ].includes(document.activeElement.tagName)) {
 					switch (e.code) {
 						case "ArrowLeft":
 							this.video.currentTime -= 15;

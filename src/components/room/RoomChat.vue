@@ -1,34 +1,36 @@
 <template>
-	<div id="overlay">
-		<div id="chat-container">
-			<div id="chat-message-container">
-				<div v-for="(message, index) in messages" :key="index">
-					<div v-if="messages[index - 1]?.user?.id === message.user.id">
-						<ChatMessage :message="message" repeating />
-					</div>
-					<div v-else>
-						<ChatMessage :message="message" />
+	<div ref="chatContainer">
+		<div id="overlay" ref="chat">
+			<div id="chat-container">
+				<div id="chat-message-container">
+					<div v-for="(message, index) in messages" :key="index">
+						<div v-if="messages[index - 1]?.user?.id === message.user.id">
+							<ChatMessage :message="message" repeating />
+						</div>
+						<div v-else>
+							<ChatMessage :message="message" />
+						</div>
 					</div>
 				</div>
+				<form id="chat-input-container" @submit.prevent="sendMessage">
+					<textarea
+						id="chat-input"
+						ref="input"
+						v-model="messageContent"
+						class="input"
+						placeholder="Click here or press '/' to start typing"
+						maxlength="500"
+						cols="28"
+						rows="1"
+						spellcheck="true"
+						wrap="hard"
+						:disabled="!allowInput"
+					/>
+					<button class="primary-button icon-button" type="submit">
+						<ArrowUp />
+					</button>
+				</form>
 			</div>
-			<form id="chat-input-container" @submit.prevent="sendMessage">
-				<textarea
-					id="chat-input"
-					ref="input"
-					v-model="messageContent"
-					class="input"
-					placeholder="Click here or press '/' to start typing"
-					maxlength="500"
-					cols="28"
-					rows="1"
-					spellcheck="true"
-					wrap="hard"
-					:disabled="!allowInput"
-				/>
-				<button class="primary-button icon-button" type="submit">
-					<ArrowUp />
-				</button>
-			</form>
 		</div>
 	</div>
 </template>
@@ -46,6 +48,7 @@
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
+	import MainMixin from "@mixins/main";
 
 	// Types
 	import { SocketResponse } from "@typings/main";
@@ -57,13 +60,18 @@
 			ChatMessage,
 			ArrowUp
 		},
-		mixins: [ RoomMixin ],
+		mixins: [ MainMixin, RoomMixin ],
 		setup () {
 
-			const input = ref<HTMLTextAreaElement>();
+			const
+				input = ref<HTMLTextAreaElement>(),
+				chat = ref<HTMLDivElement>(),
+				chatContainer = ref<HTMLDivElement>();
 
 			return {
-				input
+				input,
+				chat,
+				chatContainer
 			};
 		},
 		data () {
@@ -95,9 +103,11 @@
 		},
 		mounted () {
 			document.addEventListener("keydown", this.handleKey);
+			document.addEventListener("fullscreenchange", this.teleportToVideo);
 		},
 		beforeUnmount () {
 			document.removeEventListener("keydown", this.handleKey);
+			document.removeEventListener("fullscreenchange", this.teleportToVideo);
 		},
 		methods: {
 			prepareMessage () {
@@ -155,6 +165,18 @@
 
 							break;
 						default:
+					}
+				}
+			},
+			teleportToVideo () {
+				if (this.chat && this.chatContainer) {
+
+					const fullscreenElement = document.fullscreenElement;
+
+					if (fullscreenElement) { // Started
+						this.teleportToElement(this.chat, fullscreenElement as HTMLElement);
+					} else { // Ended
+						this.teleportToElement(this.chat, this.chatContainer);
 					}
 				}
 			}

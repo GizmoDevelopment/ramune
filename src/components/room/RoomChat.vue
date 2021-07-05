@@ -85,7 +85,7 @@
 
 				if (input) {
 					input.style.height = "0px";
-					input.style.height = Math.max(33, input.scrollHeight) + "px";
+					input.style.height = Math.max(36, input.scrollHeight) + "px";
 				}
 			}
 		},
@@ -216,7 +216,7 @@
 
 	#chat-input {
 		flex: 1;
-		min-height: 33px;
+		min-height: 36px;
 		font-size: 1rem;
 		padding: .4rem .6rem .4rem .6rem;
 		resize: none;

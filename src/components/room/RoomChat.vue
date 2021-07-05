@@ -11,27 +11,24 @@
 					</div>
 				</div>
 			</div>
-			<div id="chat-input-container">
-				<!--<span v-if="shouldMessageInputPlaceholderBeVisible" id="empty-chat-input-label">Click here or press '/' to start typing</span>-->
-				<!--<span
+			<form id="chat-input-container" @submit.prevent="sendMessage">
+				<textarea
 					id="chat-input"
 					ref="input"
+					v-model="messageContent"
 					class="input"
-					role="textbox"
-					contenteditable
-					@input="handleChatInput"
-				/>-->
-				<form @submit.prevent="prepareMessage">
-					<input
-						id="chat-input"
-						ref="input"
-						v-model="messageContent"
-						class="input"
-						type="text"
-						placeholder="Click here or press '/' to start typing"
-					>
-				</form>
-			</div>
+					placeholder="Click here or press '/' to start typing"
+					maxlength="500"
+					cols="28"
+					rows="1"
+					spellcheck="true"
+					wrap="hard"
+					:disabled="!allowInput"
+				/>
+				<button class="primary-button icon-button" type="submit">
+					<ArrowUp />
+				</button>
+			</form>
 		</div>
 	</div>
 </template>
@@ -44,6 +41,9 @@
 	// Components
 	import ChatMessage from "@components/ChatMessage.vue";
 
+	// Icons
+	import ArrowUp from "@assets/icons/arrow-up.svg?component";
+
 	// Mixins
 	import RoomMixin from "@mixins/Room";
 
@@ -54,12 +54,13 @@
 	export default defineComponent({
 		name: "RoomChat",
 		components: {
-			ChatMessage
+			ChatMessage,
+			ArrowUp
 		},
 		mixins: [ RoomMixin ],
 		setup () {
 
-			const input = ref<HTMLSpanElement>();
+			const input = ref<HTMLTextAreaElement>();
 
 			return {
 				input
@@ -68,12 +69,24 @@
 		data () {
 			return {
 				messageContent: "",
-				messages: [] as Message[]
+				messages: [] as Message[],
+				allowInput: true
 			};
 		},
 		computed: {
 			shouldMessageInputPlaceholderBeVisible (): boolean {
 				return this.messageContent.length === 0;
+			}
+		},
+		watch: {
+			messageContent () {
+
+				const { input } = this;
+
+				if (input) {
+					input.style.height = "0px";
+					input.style.height = Math.max(33, input.scrollHeight) + "px";
+				}
 			}
 		},
 		mounted () {
@@ -83,54 +96,63 @@
 			document.removeEventListener("keydown", this.handleKey);
 		},
 		methods: {
-			handleChatInput (e: InputEvent) {
-				if (e.inputType === "insertParagraph") { // Enter
-					if (this.input) {
-
-						// Prevent paragraph line-breaking
-						this.input.textContent = this.messageContent;
-						this.input.blur();
-
-						this.sendMessage();
-					}
-				} else {
-					this.messageContent = (e.target as HTMLSpanElement)?.textContent?.slice(0, 300) || "";
-				}
-			},
 			prepareMessage () {
 				this.input?.blur();
 				this.sendMessage();
 			},
 			sendMessage () {
-				if (this.input) {
 
-					const content = this.messageContent;
+				const
+					{ input } = this,
+					content = this.messageContent.trim();
 
-					if (content.trim().length > 0) {
+				if (input) {
 
-						// this.input.textContent = "";
+					input.blur();
+
+					if (content.length > 0) {
+
+						this.allowInput = false;
 						this.messageContent = "";
 
 						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
+
 							if (res.type === "success") {
 								this.messages.push(res.data);
+								input.style.height = "0px"; // Dirty fix, because sometimes the input won't resize (?)
 							} else {
 								console.error(res.message);
 							}
+
+							this.allowInput = true;
 						});
 					}
 				}
 			},
 			handleKey (e: KeyboardEvent) {
-				if (e.key === "/") {
 
-					e.preventDefault();
+				const { input } = this;
 
-					setTimeout(() => {
-						if (this.input && document.activeElement !== this.input) {
-							this.input.focus();
-						}
-					}, 10);
+				if (input) {
+					switch (e.key) {
+						case "/":
+
+							if (document.activeElement !== input) {
+								e.preventDefault();
+								input.focus();
+							}
+
+							break;
+						case "Enter":
+
+							if (document.activeElement === input) {
+								e.preventDefault();
+								this.sendMessage();
+							}
+
+							break;
+						default:
+					}
 				}
 			}
 		},
@@ -161,7 +183,7 @@
 		right: 0;
 		padding-right: 1rem;
 		padding-bottom: 1rem;
-		width: 330px;
+		width: 370px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -172,7 +194,7 @@
 		position: relative;
 	}
 
-	#chat-message-container, #chat-input {
+	#chat-message-container, #chat-input-container {
 		width: 100%;
 	}
 
@@ -180,29 +202,25 @@
 		margin-bottom: 1rem;
 	}
 
-	#chat-input-container span {
-		padding: .4rem .6rem .4rem .6rem;
-		height: auto;
-		font-size: 1rem;
-		display: block;
-		text-align: left;
-	}
-
-	#chat-input {
-		width: 100%;
-		word-wrap: break-word;
+	#chat-input-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-end;
 		pointer-events: auto;
 	}
 
-	#empty-chat-input-label {
-		height: 100%;
-		position: absolute;
-		opacity: .5;
-		top: 0;
-		left: 0;
-		z-index: 2;
-		pointer-events: none;
-		border: 2px solid transparent;
+	#chat-input-container button {
+		margin-left: 5px;
+	}
+
+	#chat-input {
+		flex: 1;
+		min-height: 33px;
+		font-size: 1rem;
+		padding: .4rem .6rem .4rem .6rem;
+		resize: none;
+		overflow: hidden;
 	}
 
 </style>

@@ -18,6 +18,7 @@ import Tooltip from "./directives/tooltip";
 
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
+const DEV = import.meta.env.DEV;
 
 if (typeof SOCKET_ENDPOINT === "string") {
 
@@ -25,7 +26,7 @@ if (typeof SOCKET_ENDPOINT === "string") {
 		.use(Router)
 		.use(Store)
 		.use(new VueSocketIO({
-			debug: true,
+			debug: DEV,
 			connection: SocketIO(SOCKET_ENDPOINT),
 			vuex: {
 				store: Store,

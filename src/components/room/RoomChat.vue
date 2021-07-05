@@ -13,8 +13,8 @@
 					</div>
 				</div>
 				<form
-					v-show="!isFullscreen || isFocusedOnInput"
 					id="chat-input-container"
+					:class="{ 'hidden-chat-input-container': isFullscreen && !isFocusedOnInput }"
 					@submit.prevent="sendMessage"
 				>
 					<textarea
@@ -36,7 +36,6 @@
 						<ArrowUp />
 					</button>
 				</form>
-				<div v-if="isFullscreen && !isFocusedOnInput" id="empty-chat-input" />
 			</div>
 		</div>
 	</div>
@@ -208,16 +207,6 @@
 
 <style scoped>
 
-	.fade-leave-active,
-	.fade-enter-active {
-		opacity: 0;
-	}
-
-	.fade-enter-from,
-	.fade-leave-to {
-		transition: opacity .3s ease;
-	}
-
 	#overlay {
 		width: 100%;
 		height: 100%;
@@ -259,6 +248,8 @@
 		justify-content: center;
 		align-items: flex-end;
 		pointer-events: auto;
+		transition: opacity .3s ease;
+		opacity: 1;
 	}
 
 	#chat-input-container button {
@@ -274,8 +265,8 @@
 		overflow: hidden;
 	}
 
-	#empty-chat-input {
-		height: 38px;
+	.hidden-chat-input-container {
+		opacity: 0 !important;
 	}
 
 </style>

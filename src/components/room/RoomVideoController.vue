@@ -23,6 +23,7 @@
 	import Video from "@components/Video.vue";
 
 	// Mixins
+	import MainMixin from "@mixins/Main";
 	import RoomMixin from "@mixins/Room";
 
 	// Types
@@ -34,7 +35,7 @@
 		components: {
 			Video
 		},
-		mixins: [ RoomMixin ],
+		mixins: [ MainMixin, RoomMixin ],
 		setup () {
 
 			const videoContainer = ref<HTMLDivElement>();
@@ -74,7 +75,7 @@
 					const newParentElement = document.getElementById(this.teleportParent);
 
 					if (newParentElement) {
-						newParentElement.appendChild(this.videoContainer);
+						this.teleportToElement(this.videoContainer, newParentElement);
 					}
 				}
 			},

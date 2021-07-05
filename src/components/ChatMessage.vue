@@ -65,7 +65,7 @@
 		position: relative;
 		background-color: var(--container-background-color);
 		padding: .5rem .7rem .5rem .7rem;
-		border-radius: 1.15rem;
+		border-radius: var(--popup-border-radius);
 		text-align: left;
 		max-width: 100%;
 		overflow-wrap: break-word;

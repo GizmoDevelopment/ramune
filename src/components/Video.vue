@@ -520,6 +520,7 @@
 		flex: 1;
 		height: .5rem;
 		background-color: var(--text-color);
+		overflow: hidden;
 	}
 
 	.selectable-progress-bar {

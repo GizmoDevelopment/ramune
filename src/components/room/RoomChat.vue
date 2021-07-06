@@ -263,6 +263,7 @@
 		padding: .4rem .6rem .4rem .6rem;
 		resize: none;
 		overflow: hidden;
+		margin: 0;
 	}
 
 	.hidden-chat-input-container {

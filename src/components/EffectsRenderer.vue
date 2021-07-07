@@ -1,17 +1,19 @@
 <template>
-	<div v-if="effect" id="effect-container">
-		<div v-if="effect.renderer === 'tsparticles'">
-			<Particles
-				id="tsparticles"
-				:options="effect.data"
-			/>
+	<transition name="effects-fade">
+		<div v-if="effect" id="effect-container">
+			<div v-if="effect.renderer === 'tsparticles'">
+				<Particles
+					id="tsparticles"
+					:options="effect.data"
+				/>
+			</div>
+			<div v-else-if="effect.renderer === 'leaf'">
+				<Leaf
+					:data="effect.data"
+				/>
+			</div>
 		</div>
-		<div v-else-if="effect.renderer === 'leaf'">
-			<Leaf
-				:data="effect.data"
-			/>
-		</div>
-	</div>
+	</transition>
 </template>
 
 <script lang="ts">
@@ -71,6 +73,16 @@
 </script>
 
 <style scoped>
+
+	.effects-fade-enter-active,
+	.effects-fade-leave-active {
+		transition: 4s opacity ease-in-out;
+	}
+
+	.effects-fade-enter-from,
+	.effects-fade-leave-to {
+		opacity: 0;
+	}
 
 	#effect-container {
 		position: fixed;

@@ -17,7 +17,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, PropType } from "vue";
 
 	// Components
 	import Leaf from "@renderers/Leaf.vue";
@@ -34,17 +34,11 @@
 			effects: {
 				type: Object as PropType<EpisodeEffect[]>,
 				required: true
+			},
+			timestamp: {
+				type: Number,
+				default: 0
 			}
-		},
-		setup () {
-
-			const
-				videoElement = document.getElementById("video-player") as HTMLVideoElement | null,
-				video = ref<HTMLVideoElement | null>(videoElement);
-
-			return {
-				video
-			};
 		},
 		data () {
 			return {
@@ -58,33 +52,18 @@
 					: null;
 			}
 		},
-		mounted () {
-			if (this.video) {
-				this.video.addEventListener("timeupdate", this.updateEffects);
-			}
-		},
-		beforeUnmount () {
-			if (this.video) {
-				this.video.removeEventListener("timeupdate", this.updateEffects);
-			}
-		},
-		methods: {
-			updateEffects () {
-				if (this.video) {
+		watch: {
+			timestamp (time: number) {
 
-					const time = this.video.currentTime;
-
-					if (this.effect && time > this.effect.end) {
-						this.currentEffectIndex = -1;
-					}
-
-					this.effects.forEach((effect: EpisodeEffect, index: number) => {
-						if (time >= effect.start && time < effect.end) {
-							this.currentEffectIndex = index;
-						}
-					});
-
+				if (this.effect && time > this.effect.end) {
+					this.currentEffectIndex = -1;
 				}
+
+				this.effects.forEach((effect: EpisodeEffect, index: number) => {
+					if (time >= effect.start && time < effect.end) {
+						this.currentEffectIndex = index;
+					}
+				});
 			}
 		}
 	});
@@ -99,7 +78,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		z-index: 2;
+		z-index: -1;
 	}
 
 </style>

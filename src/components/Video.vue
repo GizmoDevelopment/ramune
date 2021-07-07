@@ -132,7 +132,7 @@
 				>
 			</template>
 		</video>
-		<div v-if="episode.data?.effects?.length > 0">
+		<div v-if="episode.data?.effects?.length > 0 && !isInPopOutMode">
 			<EffectsRenderer
 				:effects="episode.data.effects"
 				:timestamp="currentVideoTime"

@@ -106,6 +106,7 @@
 			playsinline
 			controlslist="nodownload"
 			preload="auto"
+			crossorigin="anonymous"
 
 			:src="episode.stream_url"
 			:poster="episode.thumbnail_url"

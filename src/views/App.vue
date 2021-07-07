@@ -191,7 +191,7 @@
 
 	.view-enter-active,
 	.view-leave-active {
-		transition: .25s opacity ease, .3s transform ease;
+		transition: opacity .25s ease, transform .3s ease;
 	}
 
 	.view-enter-from,

@@ -9,6 +9,7 @@
 			>
 				<img
 					v-tooltip="user.username"
+					class="user-avatar"
 					:src="user.avatar_url"
 				>
 			</div>
@@ -64,11 +65,10 @@
 		justify-content: flex-start;
 		align-items: center;
 		flex-wrap: wrap;
-		height: 3em;
+		height: 3rem;
 	}
 
 	.user {
-		height: 100%;
 		margin-left: -6px;
 	}
 
@@ -76,15 +76,16 @@
 		margin-left: 0;
 	}
 
-	.user img {
-		border-radius: 100%;
-		width: auto;
-		height: 100%;
+	.user-avatar {
+		border-radius: 50%;
+		width: 3rem;
+		height: 3rem;
 	}
 
-	.host img {
+	.host .user-avatar {
 		border: 2px solid var(--primary-color);
-		height: calc(100% - 4px);
+		width: calc(3rem - 4px);
+		height: calc(3rem - 4px);
 	}
 
 </style>

@@ -53,7 +53,7 @@
 	.message-author-avatar {
 		border-radius: 50%;
 		width: 35px;
-		height: auto;
+		height: 35px;
 		margin-left: 1rem;
 	}
 

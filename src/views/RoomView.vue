@@ -5,7 +5,11 @@
 		</button>
 		<h1 class="heading">{{ room.name }}</h1>
 	</div>
-	<RoomUserList :users="room.users" :host="room.host" />
+	<RoomUserList
+		class="user-list"
+		:users="room.users"
+		:host="room.host"
+	/>
 	<br>
 	<!-- This is where RoomVideoController will teleport the video element to -->
 	<div id="room-video-container" />
@@ -108,6 +112,12 @@
 
 	#no-video-message {
 		font-size: 1.5rem;
+	}
+
+	@media only screen and (max-width: 800px) {
+		.user-list {
+			height: 2rem;
+		}
 	}
 
 </style>

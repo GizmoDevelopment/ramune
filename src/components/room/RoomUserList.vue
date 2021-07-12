@@ -50,7 +50,7 @@
 
 	.user-list-enter-active,
 	.user-list-leave-active {
-		transition: opacity .4s ease, transform .4s ease;
+		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
 	}
 
 	.user-list-enter-from,

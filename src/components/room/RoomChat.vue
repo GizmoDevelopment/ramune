@@ -214,7 +214,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.message-fade-leave-active,
 	.message-fade-enter-active {
@@ -237,7 +237,6 @@
 		left: 0;
 		position: fixed;
 		pointer-events: none;
-		z-index: 1;
 	}
 
 	#chat-container {
@@ -276,7 +275,7 @@
 	}
 
 	#chat-input-container button {
-		margin-left: 5px;
+		margin-left: 10px;
 	}
 
 	#chat-input {
@@ -289,8 +288,19 @@
 		margin: 0;
 	}
 
+	#chat-input, #chat-message-container {
+		z-index: 4;
+	}
+
 	.hidden-chat-input-container {
+
 		opacity: 0 !important;
+		pointer-events: none !important;
+
+		* {
+			pointer-events: none;
+		}
+
 	}
 
 </style>

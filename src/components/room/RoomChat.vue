@@ -3,14 +3,16 @@
 		<div id="overlay" ref="chat">
 			<div id="chat-container">
 				<div id="chat-message-container">
-					<div v-for="(message, index) in messages" :key="index">
-						<div v-if="messages[index - 1]?.user?.id === message.user.id">
-							<ChatMessage :message="message" repeating />
+					<transition-group name="message-fade">
+						<div v-for="(message, index) in messages" :key="message.id">
+							<div v-if="messages[index - 1]?.user?.id === message.user.id">
+								<ChatMessage :message="message" repeating />
+							</div>
+							<div v-else>
+								<ChatMessage :message="message" />
+							</div>
 						</div>
-						<div v-else>
-							<ChatMessage :message="message" />
-						</div>
-					</div>
+					</transition-group>
 				</div>
 				<form
 					id="chat-input-container"
@@ -140,7 +142,7 @@
 						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
 
 							if (res.type === "success") {
-								this.messages.push(res.data);
+								this.pushMessageToHistory(res.data);
 							} else {
 								console.error(res.message);
 							}
@@ -194,11 +196,18 @@
 
 					this.isFullscreen = fullscreenElement !== null;
 				}
+			},
+			pushMessageToHistory (msg: Message) {
+				if (this.messages.length >= 20) {
+					this.messages = [ ...this.messages.slice(-19), msg ];
+				} else {
+					this.messages.push(msg);
+				}
 			}
 		},
 		sockets: {
 			"ROOM:MESSAGE" (msg: Message) {
-				this.messages.push(msg);
+				this.pushMessageToHistory(msg);
 			}
 		}
 	});
@@ -206,6 +215,20 @@
 </script>
 
 <style scoped>
+
+	.message-fade-leave-active,
+	.message-fade-enter-active {
+		transition: opacity .4s ease, transform .3s ease;
+	}
+
+	.message-fade-leave-to {
+		opacity: 0;
+	}
+
+	.message-fade-enter-from {
+		opacity: 0;
+		transform: translateY(.5rem);
+	}
 
 	#overlay {
 		width: 100%;

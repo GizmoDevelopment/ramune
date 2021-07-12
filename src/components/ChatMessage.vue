@@ -58,7 +58,7 @@
 	}
 
 	.lonely-message-content {
-		margin-right: calc(35px + 1rem);
+		margin-right: calc(35px + 11px);
 	}
 
 	.message-content, .lonely-message-content {

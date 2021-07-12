@@ -1,20 +1,20 @@
 <template>
-	<div id="episode-container">
-		<div id="thumbnail-container">
-			<img id="episode-thumbnail" :src="episode.thumbnail_url">
-			<div id="episode-info">
-				<div id="episode-index">{{ episode.id }}</div>
-				<div id="episode-duration">{{ formattedDuration }}</div>
+	<div class="episode-container">
+		<div class="thumbnail-container">
+			<img class="episode-thumbnail" :src="episode.thumbnail_url">
+			<div class="episode-info">
+				<div class="episode-index">{{ episode.id }}</div>
+				<div class="episode-duration">{{ formattedDuration }}</div>
 			</div>
 			<div
-				:id="active && 'active' || ''"
+				:class="{ 'active-episode': active }"
 				class="overlay hover-opacity"
 				@click="$emit('play-episode', episode.id)"
 			>
 				<Play class="overlay-play-icon" />
 			</div>
 		</div>
-		<p id="episode-title">{{ episode.title }}</p>
+		<p class="episode-title">{{ episode.title }}</p>
 	</div>
 </template>
 
@@ -61,39 +61,34 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#episode-container {
+	$card-width: 200px;
+	$card-height: calc(#{$card-width} * .56);
+
+	.episode-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
-		width: 200px;
+		width: $card-width;
 		padding: 4px;
 	}
 
-	#thumbnail-container {
+	.thumbnail-container {
 		position: relative;
 		display: block;
-		width: 200px;
-		height: 112px;
+		width: $card-width;
+		height: $card-height;
 	}
 
-	#active {
-		opacity: 1;
-		cursor: pointer;
-	}
-
-	#episode-thumbnail {
+	.episode-thumbnail {
 		width: inherit;
 		height: inherit;
-	}
-
-	#episode-thumbnail {
 		border-radius: var(--card-border-radius);
 	}
 
-	#overlay-container, #episode-info {
+	.overlay-container, .episode-info {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -105,30 +100,50 @@
 		font-size: 4em;
 	}
 
-	#episode-info {
+	.episode-info {
+
+		width: calc(100% - .4rem);
+		height: calc(100% - .4rem);
+		margin: .2rem;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: flex-end;
 
+		* {
+			background-color: var(--overlay-background-color);
+			border-radius: var(--card-border-radius);
+			font-weight: 400;
+			padding: 1px .2rem 1px .2rem;
+		}
 	}
 
-	#episode-info * {
-		background-color: var(--overlay-background-color);
-		border-radius: var(--card-border-radius);
-		margin-left: 5px;
-		margin-right: 5px;
-		margin-bottom: 5px;
-		padding-left: .25em;
-		padding-right: .25em;
-		font-weight: 400;
-	}
-
-	#episode-title {
-		margin-top: 5px;
+	.episode-title {
+		margin-top: 3px;
 		width: calc(100% - 4px);
 		text-align: left;
 		min-height: 40px;
+	}
+
+	.active-episode {
+		opacity: 1;
+		cursor: pointer;
+	}
+
+	@media only screen and (max-width: 700px) {
+
+		$card-width: 150px;
+		$card-height: calc(#{$card-width} * .56);
+
+		.episode-container {
+			width: $card-width;
+		}
+
+		.thumbnail-container {
+			width: $card-width;
+			height: $card-height;
+		}
+
 	}
 
 </style>

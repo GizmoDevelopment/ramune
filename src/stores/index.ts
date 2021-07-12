@@ -19,7 +19,8 @@ export default createStore<State>({
 			room: null,
 			roomVideoTeleportParent: null,
 			isRequestingRoomSync: false,
-			isLoadingRoomData: false
+			isLoadingRoomData: false,
+			connectError: ""
 		};
 	},
 	mutations: {
@@ -66,6 +67,9 @@ export default createStore<State>({
 		},
 		UPDATE_ROOM_DATA_LOADING_STATE (state: State, newState: boolean) {
 			state.isLoadingRoomData = newState;
+		},
+		UPDATE_CONNECT_ERROR (state: State, message: string) {
+			state.connectError = message;
 		}
 	},
 	plugins: [ createLogger({

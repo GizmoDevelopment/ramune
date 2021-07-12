@@ -24,6 +24,9 @@
 					@dismiss="isCreatingRoom = false"
 				/>
 			</div>
+			<div v-else-if="connectError">
+				<h3 class="faded">{{ connectError }}</h3>
+			</div>
 			<div v-else>
 				<LoadingBuffer />
 			</div>
@@ -72,6 +75,9 @@
 		computed: {
 			user () {
 				return this.$store.state.user;
+			},
+			connectError (): string {
+				return this.$store.state.connectError;
 			}
 		},
 		watch: {

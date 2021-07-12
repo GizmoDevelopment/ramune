@@ -43,6 +43,7 @@ export default defineComponent({
 					}
 
 				} else {
+					this.$store.commit("UPDATE_CONNECT_ERROR", res.message);
 					console.error(res.message);
 				}
 			});

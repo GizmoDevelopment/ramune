@@ -14,6 +14,7 @@ export interface State {
 	roomVideoTeleportParent: string | null;
 	isRequestingRoomSync: boolean;
 	isLoadingRoomData: boolean;
+	connectError: string;
 }
 
 declare module "@vue/runtime-core" {
@@ -26,6 +27,7 @@ declare module "@vue/runtime-core" {
 		roomVideoTeleportParent: string | null;
 		isRequestingRoomSync: boolean;
 		isLoadingRoomData: boolean;
+		connectError: string;
     }
 
     interface ComponentCustomProperties {

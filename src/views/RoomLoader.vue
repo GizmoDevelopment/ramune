@@ -8,7 +8,7 @@
 			/>
 		</div>
 		<div v-else-if="status">
-			<h3 class="faded">{{ status }}</h3>
+			<h3 class="faded">{{ connectError || status }}</h3>
 		</div>
 		<div v-else>
 			<LoadingBuffer />
@@ -23,7 +23,7 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	
+
 	// Views
 	import RoomView from "@views/RoomView.vue";
 
@@ -56,6 +56,9 @@
 			},
 			room (): Room | null {
 				return this.$store.state.room;
+			},
+			connectError (): string {
+				return this.$store.state.connectError;
 			}
 		},
 		watch: {

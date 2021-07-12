@@ -2,6 +2,15 @@
 import { User } from "gizmo-api/lib/types";
 import { Show } from "./show";
 
+export interface PartialRoom {
+
+	readonly id: string;
+	readonly name: string;
+
+	host: User;
+	users: User[];
+}
+
 export interface Room {
 
 	readonly id: string;
@@ -10,7 +19,6 @@ export interface Room {
 	host: User;
 	users: User[];
 	data: RoomData | null;
-
 }
 
 export interface RoomData {

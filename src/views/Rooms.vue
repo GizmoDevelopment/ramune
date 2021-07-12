@@ -51,7 +51,7 @@
 	import { clearPageTitle } from "@utils/dom";
 
 	// Types
-	import { Room } from "@typings/room";
+	import { PartialRoom } from "@typings/room";
 	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
@@ -64,7 +64,7 @@
 		},
 		data () {
 			return {
-				rooms: null as Room[] | null,
+				rooms: null as PartialRoom[] | null,
 				isCreatingRoom: false,
 				roomRefreshInterval: 0
 			};
@@ -92,7 +92,7 @@
 		methods: {
 			fetchRooms () {
 				if (this.user) {
-					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SocketResponse<Room[]>) => {
+					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SocketResponse<PartialRoom[]>) => {
 						if (res.type === "success") {
 							this.rooms = res.data;
 						} else {

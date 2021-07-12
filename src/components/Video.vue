@@ -516,6 +516,38 @@
 		z-index: 2;
 	}
 
+	/* Video Controls */
+
+	#video-controls {
+		background-color: var(--container-background-color);
+		position: absolute;
+		width: 100%;
+		height: 3rem;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		z-index: 2;
+	}
+
+	.video-control-button {
+		width: 30px;
+		height: auto;
+		margin-left: .65rem;
+		margin-right: .65rem;
+	}
+
+	.video-control-button {
+		cursor: pointer;
+	}
+
+	#play-pause-button * {
+		width: 100%;
+		height: 100%;
+	}
+
 	/* Progress Bar */
 
 	#progress-bar-container {
@@ -553,38 +585,6 @@
 
 	#video-duration {
 		text-align: left;
-	}
-
-	/* Video Controls */
-
-	#video-controls {
-		background-color: var(--container-background-color);
-		position: absolute;
-		width: 100%;
-		height: 3rem;
-		bottom: 0;
-		left: 0;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		z-index: 2;
-	}
-
-	.video-control-button {
-		width: 30px;
-		height: auto;
-		margin-left: .65rem;
-		margin-right: .65rem;
-	}
-
-	.video-control-button {
-		cursor: pointer;
-	}
-
-	#play-pause-button * {
-		width: 100%;
-		height: 100%;
 	}
 
 	/* Video Control Trays */

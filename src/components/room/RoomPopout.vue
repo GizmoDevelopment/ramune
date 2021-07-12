@@ -1,6 +1,6 @@
 <template>
-	<div id="popout-container">
-		<div id="room-information">
+	<div class="popout-container">
+		<div class="room-information">
 			<RoomUserList
 				id="user-list"
 				:users="room.users"
@@ -8,12 +8,11 @@
 			/>
 		</div>
 		<!-- This is where RoomVideoController will teleport the video element to -->
-		<div id="room-video-popout-container" />
-		<div v-if="!room.data" id="no-video-message-container">
+		<div class="room-video-popout-container" />
+		<div v-if="!room.data" class="no-video-message-container">
 			<p class="faded">Waiting for host</p>
 		</div>
 		<div
-			id="overlay"
 			class="overlay hover-opacity"
 			@click="returnToRoom()"
 		>
@@ -54,9 +53,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#popout-container {
+	.popout-container {
 		position: relative;
 		background-color: var(--container-background-color);
 		border-radius: var(--popup-border-radius);
@@ -65,7 +64,7 @@
 		height: calc(350px * 9/16);
 	}
 
-	#room-video-popout-container, #no-video-message-container {
+	.room-video-popout-container, .no-video-message-container {
 		position: absolute;
 		width: inherit;
 		top: 0;
@@ -80,7 +79,7 @@
 		margin-top: 2px;
 	}
 
-	#room-information {
+	.room-information {
 		position: relative;
 		width: 100%;
 		height: 100%;
@@ -88,25 +87,20 @@
 		z-index: 2;
 	}
 
-	#user-list {
+	.user-list {
 		height: 2em;
 	}
 
-	#overlay {
+	.overlay {
 		border-radius: var(--popup-border-radius);
 		z-index: 3;
-	}
-
-	#overlay button:hover {
-		background-color: var(--primary-color);
-		cursor: pointer;
 	}
 
 </style>
 
 <style>
 
-	#room-video-popout-container video {
+	.room-video-popout-container video {
 		border-radius: var(--popup-border-radius);
 	}
 

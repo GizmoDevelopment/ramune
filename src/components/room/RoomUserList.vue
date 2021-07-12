@@ -1,5 +1,5 @@
 <template>
-	<div id="user-list">
+	<div class="user-list">
 		<transition-group name="user-list">
 			<div
 				v-for="user in users"
@@ -46,7 +46,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.user-list-enter-active,
 	.user-list-leave-active {
@@ -59,7 +59,7 @@
 		transform: translateY(20px);
 	}
 
-	#user-list {
+	.user-list {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -69,23 +69,25 @@
 	}
 
 	.user {
-		margin-left: -6px;
-	}
 
-	.user:first-child {
-		margin-left: 0;
+		height: 100%;
+		margin-left: -6px;
+
+		&:first-child {
+			margin-left: 0;
+		}
 	}
 
 	.user-avatar {
 		border-radius: 50%;
-		width: 3rem;
-		height: 3rem;
+		width: auto;
+		height: 100%;
 	}
 
 	.host .user-avatar {
 		border: 2px solid var(--primary-color);
-		width: calc(3rem - 4px);
-		height: calc(3rem - 4px);
+		width: auto;
+		height: calc(100% - 4px);
 	}
 
 </style>

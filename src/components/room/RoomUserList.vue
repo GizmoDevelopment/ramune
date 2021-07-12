@@ -1,6 +1,6 @@
 <template>
 	<div id="user-list">
-		<transition-group name="list">
+		<transition-group name="user-list">
 			<div
 				v-for="user in users"
 				:key="user.id"
@@ -48,13 +48,13 @@
 
 <style scoped>
 
-	.list-enter-active,
-	.list-leave-active {
-		transition: all .4s ease;
+	.user-list-enter-active,
+	.user-list-leave-active {
+		transition: opacity .4s ease, transform .4s ease;
 	}
 
-	.list-enter-from,
-	.list-leave-to {
+	.user-list-enter-from,
+	.user-list-leave-to {
 		opacity: 0;
 		transform: translateY(20px);
 	}

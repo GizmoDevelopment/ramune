@@ -54,7 +54,7 @@
 		border-radius: 50%;
 		width: 35px;
 		height: 35px;
-		margin-left: 1rem;
+		margin-left: 11px;
 	}
 
 	.lonely-message-content {

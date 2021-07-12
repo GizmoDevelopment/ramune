@@ -65,7 +65,8 @@
 		data () {
 			return {
 				rooms: null as Room[] | null,
-				isCreatingRoom: false
+				isCreatingRoom: false,
+				roomRefreshInterval: 0
 			};
 		},
 		computed: {
@@ -79,8 +80,14 @@
 			}
 		},
 		mounted () {
+
 			clearPageTitle();
+
 			this.fetchRooms();
+			this.roomRefreshInterval = window.setInterval(this.fetchRooms, 2000);
+		},
+		beforeUnmount () {
+			clearInterval(this.roomRefreshInterval);
 		},
 		methods: {
 			fetchRooms () {

@@ -184,8 +184,17 @@
 	@media only screen and (max-width: 1250px) {
 		.show-container {
 			width: 100%;
-			margin-left: 1em;
-			margin-bottom: 1em;
+			margin-left: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.show-container {
+			margin-left: 0;
+			margin-right: 0;
+			padding-left: 1rem;
+			padding-right: 1rem;
 		}
 	}
 

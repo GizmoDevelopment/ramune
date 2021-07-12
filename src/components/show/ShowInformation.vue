@@ -1,14 +1,14 @@
 <template>
 	<div v-if="show">
-		<div id="show-information">
-			<img id="show-poster" :src="show.poster_url">
-			<div id="show-details">
-				<h1 id="show-title" class="heading">{{ show.title }}</h1>
-				<div id="show-stats">
-					<!-- <ShowScoreLabel id="show-score" :score="show.score" /> -->
-					<div id="show-episode-count">{{ episodeCount }} Episodes</div>
+		<div class="show-information">
+			<img class="show-poster" :src="show.poster_url">
+			<div class="show-details">
+				<h1 class="heading show-title">{{ show.title }}</h1>
+				<div class="show-stats">
+					<!-- <ShowScoreLabel class="show-score" :score="show.score" /> -->
+					<div class="show-episode-count">{{ episodeCount }} Episodes</div>
 				</div>
-				<p id="show-description">{{ formattedDescription }}</p>
+				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
 		</div>
 		<ShowSeasonList
@@ -59,40 +59,40 @@
 
 <style scoped>
 
-	#show-information {
+	.show-information {
 		margin-top: 1em;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 	}
 
-	#show-poster {
+	.show-poster {
 		border-radius: var(--card-border-radius);
 		height: 280px;
 		width: auto;
 	}
 
-	#show-details {
+	.show-details {
 		margin-left: 20px;
 	}
 
-	#show-title {
+	.show-title {
 		margin-top: .2em;
 		margin-bottom: 10px;
 	}
 
-	#show-stats {
+	.show-stats {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
-	#show-stats * {
+	.show-stats * {
 		margin-right: 10px;
 	}
 
-	#show-episode-count {
+	.show-episode-count {
 		background-color: var(--primary-color);
 		border: 2px solid var(--primary-color);
 		border-radius: 20px;
@@ -101,10 +101,22 @@
 		font-weight: bold;
 	}
 
-	#show-description {
+	.show-description {
 		text-align: left;
 		font-size: 15px;
 		white-space: pre-line;
+	}
+
+	@media only screen and (max-width: 800px) {
+		.show-poster {
+			height: 190px;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.show-description {
+			display: none;
+		}
 	}
 
 </style>

@@ -8,7 +8,7 @@
 			/>
 		</div>
 		<!-- This is where RoomVideoController will teleport the video element to -->
-		<div class="room-video-popout-container" />
+		<div id="room-video-popout-container" />
 		<div v-if="!room.data" class="no-video-message-container">
 			<p class="faded">Waiting for host</p>
 		</div>
@@ -64,7 +64,7 @@
 		height: calc(350px * 9/16);
 	}
 
-	.room-video-popout-container, .no-video-message-container {
+	#room-video-popout-container, .no-video-message-container {
 		position: absolute;
 		width: inherit;
 		top: 0;
@@ -100,7 +100,7 @@
 
 <style>
 
-	.room-video-popout-container video {
+	#room-video-popout-container video {
 		border-radius: var(--popup-border-radius);
 	}
 

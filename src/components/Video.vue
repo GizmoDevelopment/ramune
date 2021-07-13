@@ -1,20 +1,19 @@
 <template>
 	<div
-		id="video-container"
 		ref="videoContainer"
+		class="video-container"
 		:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
 		@mouseenter="isOverlayVisible = true"
 		@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
 	>
-		<div id="constant-video-overlay">
+		<div class="constant-video-overlay">
 			<div v-if="isBuffering">
 				<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 			</div>
 			<transition name="slide">
 				<div
 					v-if="isSubtitleTrayVisible"
-					id="subtitle-tray"
-					class="video-control-tray"
+					class="video-control-tray subtitle-tray"
 					@mouseleave="isSubtitleTrayVisible = false"
 				>
 					<h3>Subtitles</h3>
@@ -34,8 +33,7 @@
 			<transition name="slide">
 				<div
 					v-if="isVolumeTrayVisible"
-					id="volume-tray"
-					class="video-control-tray"
+					class="video-control-tray volume-tray"
 					@mouseleave="isVolumeTrayVisible = false"
 				>
 					<input
@@ -51,15 +49,14 @@
 		<transition name="fade">
 			<div
 				v-show="(isOverlayVisible && !isMouseStatic) || isSubtitleTrayVisible"
-				id="video-overlay"
+				class="video-overlay"
 			>
-				<div id="video-screen" @click="togglePlayPause(); mouseClickCounter += 1" />
-				<div v-if="!hideControls" id="video-controls">
+				<div class="video-screen" @click="togglePlayPause(); mouseClickCounter += 1" />
+				<div v-if="!hideControls" class="video-controls">
 					<transition name="fade">
 						<div
 							v-if="controls"
-							id="play-pause-button"
-							class="video-control-button"
+							class="video-control-button play-pause-button"
 							@click="togglePlayPause"
 						>
 							<div v-if="isPaused">
@@ -76,10 +73,10 @@
 						<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
 						<VolumeHigh v-if="volume >= .85" class="video-control-button" />
 					</div>
-					<span id="video-timestamp">{{ videoCurrentTimestamp }}</span>
+					<span class="video-timestamp">{{ videoCurrentTimestamp }}</span>
 					<div
-						id="progress-bar-container"
 						ref="progressBarContainer"
+						class="progress-bar-container"
 						:class="{ 'selectable-progress-bar': controls }"
 						@click="progressBarSeek"
 						@mouseenter="isHoveringOverProgressBar = true"
@@ -88,7 +85,7 @@
 					>
 						<div class="progress-bar-overflow">
 							<div
-								id="progress-bar"
+								class="progress-bar"
 								:style="`width: ${ videoProgressPercentage }%`"
 							/>
 						</div>
@@ -100,7 +97,7 @@
 							{{ hoverTimestamp }}
 						</div>
 					</div>
-					<span id="video-duration">{{ videoDurationTimestamp }}</span>
+					<span class="video-duration">{{ videoDurationTimestamp }}</span>
 					<Text
 						v-if="episode.subtitles.length > 0"
 						class="video-control-button"
@@ -112,8 +109,8 @@
 		</transition>
 		<video
 
-			id="video-player"
 			ref="video"
+			class="video-player"
 
 			playsinline
 			controlslist="nodownload"
@@ -494,10 +491,6 @@
 		opacity: 0;
 	}
 
-	.hide-mouse-cursor {
-		cursor: none;
-	}
-
 	.slide-enter-active {
 		transition: opacity .2s ease, transform .4s var(--easing-enter);
 	}
@@ -514,23 +507,23 @@
 
 	/* Video Containers */
 
-	#video-player {
+	.video-player {
 		width: 100%;
 		height: auto;
 	}
 
-	#video-container {
+	.video-container {
 		position: relative;
 		width: 100%;
 		height: auto;
 	}
 
-	#constant-video-overlay {
+	.constant-video-overlay {
 		z-index: 3;
 		pointer-events: none;
 	}
 
-	#constant-video-overlay, #video-overlay {
+	.constant-video-overlay, .video-overlay {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -539,19 +532,23 @@
 		justify-content: center;
 	}
 
-	#video-overlay {
+	.video-overlay {
 		display: flex;
 		flex-direction: column;
 	}
 
-	#video-screen {
+	.video-screen {
 		flex: 1;
 		z-index: 2;
 	}
 
+	.hide-mouse-cursor {
+		cursor: none;
+	}
+
 	/* Video Controls */
 
-	#video-controls {
+	.video-controls {
 		background-color: var(--container-background-color);
 		position: absolute;
 		width: 100%;
@@ -576,21 +573,21 @@
 		cursor: pointer;
 	}
 
-	#play-pause-button * {
+	.play-pause-button * {
 		width: 100%;
 		height: 100%;
 	}
 
 	/* Progress Bar */
 
-	#progress-bar-container {
+	.progress-bar-container {
 		position: relative;
 		flex: 1;
 		height: .5rem;
 		background-color: var(--text-color);
 	}
 
-	#progress-bar-container, #progress-bar, .progress-bar-overflow {
+	.progress-bar-container, .progress-bar, .progress-bar-overflow {
 		border-radius: 1.25rem;
 	}
 
@@ -600,7 +597,7 @@
 		overflow: hidden;
 	}
 
-	#progress-bar {
+	.progress-bar {
 		height: 100%;
 		background-color: var(--primary-color);
 		transition: .3s width ease;
@@ -622,16 +619,16 @@
 
 	/* Timestamp & Duration */
 
-	#video-timestamp, #video-duration {
+	.video-timestamp, .video-duration {
 		margin-left: .5rem;
 		margin-right: .5rem;
 	}
 
-	#video-timestamp {
+	.video-timestamp {
 		text-align: right;
 	}
 
-	#video-duration {
+	.video-duration {
 		text-align: left;
 	}
 
@@ -648,13 +645,13 @@
 
 	/* Subtitle Tray */
 
-	#subtitle-tray {
+	.subtitle-tray {
 		right: .5rem;
 		width: 10rem;
 		padding: 0 0 1rem 0;
 	}
 
-	#subtitle-tray h3 {
+	.subtitle-tray h3 {
 		margin-top: .5rem;
 	}
 
@@ -684,7 +681,7 @@
 
 	/* Volume Tray */
 
-	#volume-tray {
+	.volume-tray {
 		left: .5rem;
 		padding: .6rem;
 		display: flex;

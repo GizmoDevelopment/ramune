@@ -24,7 +24,13 @@
 	const emojis = [
 		"Soulless",
 		"AHHA",
-		"HyperAHHA"
+		"HyperAHHA",
+		"Cheers",
+		"Style",
+		"TrollSuccess",
+		"Scrotum",
+		"Shaft",
+		"Tip"
 	];
 
 	// Types
@@ -73,15 +79,11 @@
 
 <style scoped>
 
-	.content {
-		font-size: 1em;
-	}
-
 	.emoji {
 		width: auto;
-		height: 19px;
+		height: 1em;
 		display: inline-block;
-		vertical-align: top;
+		vertical-align: middle;
 	}
 
 </style>

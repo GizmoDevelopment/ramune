@@ -82,11 +82,23 @@
 						ref="progressBarContainer"
 						:class="{ 'selectable-progress-bar': controls }"
 						@click="progressBarSeek"
+						@mouseenter="isHoveringOverProgressBar = true"
+						@mouseleave="isHoveringOverProgressBar = false"
+						@mousemove="updateHoverTimestamp"
 					>
+						<div class="progress-bar-overflow">
+							<div
+								id="progress-bar"
+								:style="`width: ${ videoProgressPercentage }%`"
+							/>
+						</div>
 						<div
-							id="progress-bar"
-							:style="`width: ${ videoProgressPercentage }%`"
-						/>
+							v-if="isHoveringOverProgressBar"
+							class="progress-bar-timestamp"
+							:style="`left: ${hoverTimestampOffset}px`"
+						>
+							{{ hoverTimestamp }}
+						</div>
 					</div>
 					<span id="video-duration">{{ videoDurationTimestamp }}</span>
 					<Text
@@ -224,6 +236,7 @@
 				isFullscreen: false,
 				isSubtitleTrayVisible: false,
 				isVolumeTrayVisible: false,
+				isHoveringOverProgressBar: false,
 				videoProgressPercentage: 0,
 				currentVideoTime: 0,
 				videoDuration: 0,
@@ -232,6 +245,7 @@
 				mouseChecker: 0,
 				mouseClickChecker: 0,
 				volume: 1,
+				hoverTimestampOffset: 0,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
 				selectedSubtitleLanguage: "en" as string | null
 			};
@@ -248,6 +262,10 @@
 			},
 			isInPopOutMode (): boolean {
 				return this.$route.path.match(/^\/rooms|watch\/.*$/i) === null;
+			},
+			hoverTimestamp (): string {
+				const offset = this.hoverTimestampOffset;
+				return formatTimestamp(this.getProgressBarTimestamp(offset));
 			}
 		},
 		watch: {
@@ -341,17 +359,8 @@
 				this.isBuffering = false;
 			},
 			progressBarSeek (e: MouseEvent) {
-				if (this.video && this.progressBarContainer && this.controls) {
-
-					const
-						x = e.clientX - (e.pageX - e.offsetX),
-						width = this.progressBarContainer.clientWidth,
-						duration = this.video.duration,
-						finalWidth = (x / width) * duration;
-
-					if (!isNaN(finalWidth)) {
-						this.video.currentTime = finalWidth;
-					}
+				if (this.video && this.controls) {
+					this.video.currentTime = this.getProgressBarTimestamp(this.getProgressBarWidth(e));
 				}
 			},
 			updateVideoDuration () {
@@ -426,6 +435,30 @@
 			},
 			doubleClickChecker () {
 				this.mouseClickCounter = 0;
+			},
+			getProgressBarWidth (e: MouseEvent): number {
+				return e.clientX - (e.pageX - e.offsetX);
+			},
+			getProgressBarTimestamp (x: number): number {
+
+				if (this.video && this.progressBarContainer) {
+
+					const
+						width = this.progressBarContainer.clientWidth,
+						duration = this.video.duration,
+						timestamp = (x / width) * duration;
+
+					if (!isNaN(timestamp)) {
+						return timestamp;
+					}
+				}
+
+				return 0;
+			},
+			updateHoverTimestamp (e: MouseEvent) {
+				if (this.isHoveringOverProgressBar) {
+					this.hoverTimestampOffset = this.getProgressBarWidth(e);
+				}
 			}
 		},
 		sockets: {
@@ -551,25 +584,40 @@
 	/* Progress Bar */
 
 	#progress-bar-container {
+		position: relative;
 		flex: 1;
 		height: .5rem;
 		background-color: var(--text-color);
-		overflow: hidden;
 	}
 
-	.selectable-progress-bar {
-		cursor: pointer;
-	}
-
-	#progress-bar-container, #progress-bar {
+	#progress-bar-container, #progress-bar, .progress-bar-overflow {
 		border-radius: 1.25rem;
+	}
+
+	.progress-bar-overflow {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 
 	#progress-bar {
 		height: 100%;
 		background-color: var(--primary-color);
 		transition: .3s width ease;
-		overflow: hidden;
+	}
+
+	.progress-bar-timestamp {
+		position: absolute;
+		transform: translateX(-50%);
+		top: -2rem;
+		padding: .1rem .3rem .1rem .3rem;
+		background-color: var(--background-color);
+		border-radius: var(--card-border-radius);
+		text-align: center;
+	}
+
+	.selectable-progress-bar {
+		cursor: pointer;
 	}
 
 	/* Timestamp & Duration */

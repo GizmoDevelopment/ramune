@@ -73,7 +73,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		z-index: 2;
+		z-index: 4;
 	}
 
 	#empty {

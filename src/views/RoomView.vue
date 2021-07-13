@@ -3,7 +3,7 @@
 		<button class="primary-button icon-button" @click="$emit('leave-room')">
 			<CaretLeft />
 		</button>
-		<h1 class="heading">{{ room.name }}</h1>
+		<EmojiRenderer class="heading" :content="room.name" />
 	</div>
 	<RoomUserList
 		class="user-list"
@@ -44,6 +44,7 @@
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import EmojiRenderer from "@renderers/Emoji.vue";
 
 	// Icons
 	import CaretLeft from "@assets/icons/caret-left.svg?component";
@@ -64,7 +65,8 @@
 			ShowSeasonList,
 			CaretLeft,
 			ShowHeading,
-			LoadingBuffer
+			LoadingBuffer,
+			EmojiRenderer
 		},
 		mixins: [ RoomMixin ],
 		props: {

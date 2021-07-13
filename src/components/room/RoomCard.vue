@@ -1,7 +1,7 @@
 <template>
-	<div id="container" :theme="theme">
-		<div id="title-bar">
-			<h2 id="room-name">{{ room.name }}</h2>
+	<div class="container" :theme="theme">
+		<div class="title-bar">
+			<EmojiRenderer class="room-name" :content="room.name" />
 			<button class="primary-button icon-button" @click="joinRoom()">
 				<CaretRight />
 			</button>
@@ -17,6 +17,7 @@
 
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
+	import EmojiRenderer from "@renderers/Emoji.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";
@@ -32,7 +33,8 @@
 		name: "RoomCard",
 		components: {
 			CaretRight,
-			RoomUserList
+			RoomUserList,
+			EmojiRenderer
 		},
 		mixins: [ MainMixin ],
 		props: {
@@ -65,38 +67,39 @@
 
 <style scoped>
 
-	#container {
+	.container {
 		width: 400px;
 		border-radius: var(--popup-border-radius);
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
-		padding: .75em;
+		padding: .75rem;
 	}
 
-	#title-bar {
+	.title-bar {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 1em;
+		margin-bottom: 1rem;
 	}
 
-	#room-name {
+	.room-name {
 		margin-top: 0;
 		margin-bottom: 0;
+		font-size: 1.5rem;
 	}
 
 	@media only screen and (max-width: 600px) {
 
-		#container {
+		.container {
 			width: 300px;
 		}
 
-		#room-name {
-			font-size: 1em;
+		.room-name {
+			font-size: 1rem;
 		}
 
 	}

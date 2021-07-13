@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<div id="heading-bar">
+		<div class="heading-bar">
 			<h1 class="heading">Rooms</h1>
 			<div v-if="rooms">
 				<button class="primary-button icon-button" @click="isCreatingRoom = true">
@@ -11,8 +11,12 @@
 		</div>
 		<div v-if="user">
 			<div v-if="rooms">
-				<div v-if="rooms.length > 0">
-					<div v-for="room in rooms" :key="room.id">
+				<div v-if="rooms.length > 0" class="room-list">
+					<div
+						v-for="room in rooms"
+						:key="room.id"
+						class="room-card"
+					>
 						<RoomCard :room="room" />
 					</div>
 				</div>
@@ -114,7 +118,7 @@
 
 <style scoped>
 
-	#heading-bar {
+	.heading-bar {
 		width: 100%;
 		display: inline-flex;
 		flex-direction: row;
@@ -124,6 +128,18 @@
 
 	.plus-icon {
 		font-size: 1.2em;
+	}
+
+	.room-list {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.room-card {
+		margin-right: .5rem;
 	}
 
 </style>

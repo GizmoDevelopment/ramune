@@ -93,3 +93,12 @@
 	}
 
 </style>
+
+<style>
+
+	.message-container .emoji {
+		height: 1.4em;
+		margin-top: -.2em;
+	}
+
+</style>

@@ -1,3 +1,21 @@
+declare global {
+	interface Window {
+		twemoji: {
+			parse (element: HTMLElement, options?: TwemojiOptions): void;
+		}
+	}
+}
+
+interface TwemojiOptions {
+	callback?: any;
+	attributes?: any;
+	base?: string;
+	ext?: ".png" | ".svg" | string;
+	className?: string;
+	size?: string | number;
+	folder?: string;
+}
+
 interface BaseResponse {
 	type: "success" | "error";
 	message?: string;
@@ -13,4 +31,4 @@ export interface ErrorResponse extends BaseResponse {
 	message: string;
 }
 
-export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse; 
+export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse;

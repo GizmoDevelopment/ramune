@@ -1,12 +1,16 @@
 <template>
 	<!-- Everything the users input is sanitized on the server already, so dw -->
-	<span class="content" v-html="formattedMessage" />
+	<span
+		ref="text"
+		class="content"
+		v-html="formattedMessage"
+	/>
 </template>
 
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineComponent, ref } from "vue";
 
 	// Variables
 	const emojis = [
@@ -28,16 +32,54 @@
 			content: {
 				type: String,
 				required: true
+			},
+			markdown: {
+				type: Boolean,
+				default: true
 			}
+		},
+		setup () {
+
+			const text = ref<HTMLSpanElement>();
+
+			return {
+				text
+			};
 		},
 		computed: {
 			formattedMessage (): string {
-				return this.content
-					.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false'>")
-					.replace(/(\*\*(.*)\*\*)/g, "<b>$2</b>")
-					.replace(/(\*(.*)\*)/g, "<i>$2</i>")
-					.replace(/(_(.*)_)/g, "<u>$2</u>")
-					.replace(/(~~(.*)~~)/g, "<s>$2</s>");
+
+				let _content = this.content;
+
+				// Custom Emoji
+				_content = _content.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false'>");
+
+				if (this.markdown) {
+					_content = _content
+						.replace(/(\*\*(.*)\*\*)/g, "<b>$2</b>")
+						.replace(/(\*(.*)\*)/g, "<i>$2</i>")
+						.replace(/(_(.*)_)/g, "<u>$2</u>")
+						.replace(/(~~(.*)~~)/g, "<s>$2</s>");
+				}
+
+				return _content;
+			}
+		},
+		beforeUpdate () {
+			this.renderTwemoji();
+		},
+		mounted () {
+			this.renderTwemoji();
+		},
+		methods: {
+			renderTwemoji () {
+				if (this.text) {
+					window.twemoji.parse(this.text, {
+						ext: ".svg",
+						folder: "twemoji",
+						base: "https://cdn.gizmo.moe/assets/"
+					});
+				}
 			}
 		}
 	});

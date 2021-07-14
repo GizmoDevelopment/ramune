@@ -32,7 +32,12 @@
 		},
 		computed: {
 			formattedMessage (): string {
-				return this.content.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false'>");
+				return this.content
+					.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false'>")
+					.replace(/(\*\*(.*)\*\*)/g, "<b>$2</b>")
+					.replace(/(\*(.*)\*)/g, "<i>$2</i>")
+					.replace(/(_(.*)_)/g, "<u>$2</u>")
+					.replace(/(~~(.*)~~)/g, "<s>$2</s>");
 			}
 		}
 	});

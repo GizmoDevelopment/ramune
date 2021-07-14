@@ -28,3 +28,11 @@ export function getCookie (name: string): string | null {
 export function setCookie (name: string, value: string): void {
 	document.cookie = `${ name }=${ encodeURIComponent(value) }`;
 }
+
+export function renderTwemoji (element: HTMLElement): void {
+	window.twemoji.parse(element, {
+		ext: ".svg",
+		folder: "twemoji",
+		base: "https://cdn.gizmo.moe/assets/"
+	});
+}

@@ -12,6 +12,9 @@
 	// Modules
 	import { defineComponent, ref } from "vue";
 
+	// Utils
+	import { renderTwemoji } from "@utils/dom";
+
 	// Variables
 	const emojis = [
 		"Soulless",
@@ -66,21 +69,10 @@
 			}
 		},
 		beforeUpdate () {
-			this.renderTwemoji();
+			if (this.text) renderTwemoji(this.text);
 		},
 		mounted () {
-			this.renderTwemoji();
-		},
-		methods: {
-			renderTwemoji () {
-				if (this.text) {
-					window.twemoji.parse(this.text, {
-						ext: ".svg",
-						folder: "twemoji",
-						base: "https://cdn.gizmo.moe/assets/"
-					});
-				}
-			}
+			if (this.text) renderTwemoji(this.text);
 		}
 	});
 

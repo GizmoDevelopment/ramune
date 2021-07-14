@@ -1,7 +1,7 @@
 <template>
 	<div class="container" :theme="theme">
 		<div class="title-bar">
-			<EmojiRenderer class="room-name" :content="room.name" />
+			<MarkdownRenderer class="room-name" :content="room.name" />
 			<button class="primary-button icon-button" @click="joinRoom()">
 				<CaretRight />
 			</button>
@@ -17,7 +17,7 @@
 
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
-	import EmojiRenderer from "@renderers/Emoji.vue";
+	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";
@@ -34,7 +34,7 @@
 		components: {
 			CaretRight,
 			RoomUserList,
-			EmojiRenderer
+			MarkdownRenderer
 		},
 		mixins: [ MainMixin ],
 		props: {

@@ -1,13 +1,13 @@
 <template>
 	<div v-if="repeating">
 		<div class="message-container">
-			<EmojiRenderer class="lonely-message-content" :content="message.content" />
+			<MarkdownRenderer class="lonely-message-content" :content="message.content" />
 		</div>
 	</div>
 	<div v-else>
 		<div class="message-container">
 			<img class="message-author-avatar" :src="message.user.avatar_url">
-			<EmojiRenderer class="message-content" :content="message.content" />
+			<MarkdownRenderer class="message-content" :content="message.content" />
 		</div>
 	</div>
 </template>
@@ -18,7 +18,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import EmojiRenderer from "@renderers/Emoji.vue";
+	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Types
 	import { Message } from "@typings/message";
@@ -26,7 +26,7 @@
 	export default defineComponent({
 		name: "ChatMessage",
 		components: {
-			EmojiRenderer
+			MarkdownRenderer
 		},
 		props: {
 			message: {

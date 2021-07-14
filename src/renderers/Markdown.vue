@@ -23,7 +23,7 @@
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 
 	export default defineComponent({
-		name: "Emoji",
+		name: "Markdown",
 		props: {
 			content: {
 				type: String,

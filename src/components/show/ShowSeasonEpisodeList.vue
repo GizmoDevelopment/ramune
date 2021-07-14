@@ -3,6 +3,7 @@
 		<h2 class="season-title">Season {{ season.id }}</h2>
 		<div v-if="collapsable">
 			<button
+				aria-label="Display episodes"
 				:class="expanded ? 'expand-button expand-button-active' : 'expand-button'"
 				@click="toggleExpansion()"
 			>

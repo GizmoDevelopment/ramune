@@ -1,8 +1,8 @@
 <template>
 	<header>
-		<div id="content">
-			<div id="navigation">
-				<router-link to="/">
+		<div class="content">
+			<div class="navigation">
+				<router-link to="/" aria-label="Home">
 					<Logo class="logo" />
 				</router-link>
 				<router-link to="/shows">
@@ -20,7 +20,7 @@
 				>
 			</div>
 			<div v-else>
-				<div id="login">
+				<div class="login">
 					<button class="primary-button" @click="isLoggingIn = true">
 						Log In
 					</button>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</header>
-	<div id="empty" />
+	<div class="empty" />
 	<LoginPopup :visible="isLoggingIn" @dismiss="isLoggingIn = false" />
 </template>
 
@@ -76,7 +76,7 @@
 		z-index: 4;
 	}
 
-	#empty {
+	.empty {
 		height: 60px;
 		margin-bottom: 1rem;
 	}
@@ -87,7 +87,7 @@
 		font-size: 20px;
 	}
 
-	#content {
+	.content {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -96,34 +96,34 @@
 	}
 
 	@media only screen and (min-width: 1420px) {
-		#content {
+		.content {
 			width: 1420px;
 		}
 	}
 
 	@media only screen and (max-width: 1420px) {
-		#content {
+		.content {
 			width: 100%;
 			padding-left: 20px;
 			padding-right: 20px;
 		}
 	}
 
-	#navigation, #login {
+	.navigation, .login {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
-	#navigation a {
+	.navigation a {
 		margin: 15px;
 		margin-right: 15px;
 		position: relative;
 	}
 
 	/* Underline every anchor label except for the logo, which has the href for root path */
-	#navigation a:not([href="/"])::after {
+	.navigation a:not([href="/"])::after {
 		content: "";
 		background-color: var(--text-color);
 		position: absolute;
@@ -134,7 +134,7 @@
 		transition: .2s width ease-in-out, .2s left ease-in-out;
 	}
 
-	#navigation a:hover::after {
+	.navigation a:hover::after {
 		width: 100%;
 		left: 0%;
 	}

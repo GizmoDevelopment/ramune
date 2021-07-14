@@ -1,6 +1,6 @@
 <template>
-	<h1 id="show-title" class="heading">{{ show.title }}</h1>
-	<h3 id="episode-title" class="faded">Episode {{ episode.id }} - {{ episode.title }}</h3>
+	<h1 class="heading show-title">{{ show.title }}</h1>
+	<p class="faded episode-title">Episode {{ episode.id }} - {{ episode.title }}</p>
 </template>
 
 <script lang="ts">
@@ -29,13 +29,14 @@
 
 <style scoped>
 
-	#show-title {
+	.show-title {
 		margin-bottom: .1rem;
 	}
 
-	#episode-title {
+	.episode-title {
 		text-align: left;
 		margin-top: 0;
+		font-size: 1.25rem;
 	}
 
 </style>

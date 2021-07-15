@@ -1,5 +1,7 @@
 {
   "name": "ramune",
+  "description": "Watch anime together with your friends.",
+  "license": "MIT",
   "version": "1.1.0",
   "scripts": {
     "dev": "vite",

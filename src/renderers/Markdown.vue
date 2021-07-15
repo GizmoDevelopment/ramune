@@ -82,10 +82,11 @@
 <style>
 
 	.emoji {
-		width: auto;
-		height: 1em;
 		display: inline-block;
 		vertical-align: middle;
+		width: auto;
+		height: 1em;
+		margin-bottom: .2em;
 	}
 
 </style>

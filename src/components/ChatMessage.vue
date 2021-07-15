@@ -42,18 +42,19 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.message-container {
+
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: flex-start;
 		align-items: flex-start;
 		margin-top: .5rem;
-	}
 
-	.message-container * {
-		pointer-events: auto;
+		* {
+			pointer-events: auto;
+		}
 	}
 
 	.message-author-avatar {
@@ -98,7 +99,6 @@
 
 	.message-container .emoji {
 		height: 1.4em;
-		margin-top: -.2em;
 	}
 
 </style>

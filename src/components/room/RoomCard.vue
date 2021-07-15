@@ -27,7 +27,7 @@
 
 	// Types
 	import { SocketResponse } from "@typings/main";
-	import { Room } from "@typings/room";
+	import { PartialRoom, Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomCard",
@@ -39,7 +39,7 @@
 		mixins: [ MainMixin ],
 		props: {
 			room: {
-				type: Object as PropType<Room>,
+				type: Object as PropType<Room | PartialRoom>,
 				required: true
 			}
 		},

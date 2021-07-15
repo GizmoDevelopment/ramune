@@ -68,7 +68,7 @@
 				return _content;
 			}
 		},
-		beforeUpdate () {
+		updated () {
 			if (this.text) renderTwemoji(this.text);
 		},
 		mounted () {

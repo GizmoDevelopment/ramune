@@ -7,7 +7,7 @@
 				@leave-room="leaveRoom()"
 			/>
 		</div>
-		<div v-else-if="status">
+		<div v-else-if="connectError || status">
 			<h3 class="faded">{{ connectError || status }}</h3>
 		</div>
 		<div v-else>
@@ -73,8 +73,12 @@
 
 		},
 		mounted () {
-			if (this.user && this.room?.id !== this.roomId) {
-				this.joinRoom();
+			if (this.user) {
+				if (this.room?.id !== this.roomId) {
+					this.joinRoom();
+				}
+			} else {
+				this.status = "You must be logged in to join a room.";
 			}
 		},
 		beforeUnmount () {

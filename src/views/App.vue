@@ -207,6 +207,14 @@
 
 	/* Animations */
 
+	@keyframes spinning {
+		0% {
+			rotate: 0deg;
+		}
+		100% {
+			rotate: 360deg;
+		}
+	}
 
 	/* Classes */
 

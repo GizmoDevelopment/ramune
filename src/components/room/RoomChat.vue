@@ -34,7 +34,11 @@
 						@focus="isFocusedOnInput = true"
 						@blur="isFocusedOnInput = false"
 					/>
-					<button class="primary-button icon-button" type="submit">
+					<button
+						class="primary-button icon-button"
+						:class="{ 'spinning-button': isMessageSending }"
+						type="submit"
+					>
 						<ArrowUp />
 					</button>
 				</form>
@@ -88,7 +92,8 @@
 				messages: [] as Message[],
 				allowInput: true,
 				isFullscreen: false,
-				isFocusedOnInput: false
+				isFocusedOnInput: false,
+				isMessageSending: false
 			};
 		},
 		computed: {
@@ -137,6 +142,7 @@
 					if (content.length > 0) {
 
 						this.allowInput = false;
+						this.isMessageSending = true;
 						this.messageContent = "";
 
 						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
@@ -148,6 +154,7 @@
 							}
 
 							this.allowInput = true;
+							this.isMessageSending = false;
 						});
 					}
 				}
@@ -216,6 +223,8 @@
 
 <style scoped lang="scss">
 
+	/* Transitions */
+
 	.message-fade-leave-active,
 	.message-fade-enter-active {
 		transition: opacity .4s ease, transform .3s ease;
@@ -229,6 +238,8 @@
 		opacity: 0;
 		transform: translateY(.5rem);
 	}
+
+	/* Chat Window */
 
 	#overlay {
 		width: 100%;
@@ -264,6 +275,8 @@
 		margin-bottom: 1rem;
 	}
 
+	/* Chat Input */
+
 	#chat-input-container {
 		display: flex;
 		flex-direction: row;
@@ -275,7 +288,12 @@
 	}
 
 	#chat-input-container button {
+
 		margin-left: 10px;
+
+		&.spinning-button {
+			animation: spinning 1s ease-in-out infinite;
+		}
 	}
 
 	#chat-input {

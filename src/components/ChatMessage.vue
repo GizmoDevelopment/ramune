@@ -98,7 +98,7 @@
 <style>
 
 	.message-container .emoji {
-		height: 1.4em;
+		height: 1.375em;
 	}
 
 </style>

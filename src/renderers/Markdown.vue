@@ -86,7 +86,7 @@
 		vertical-align: middle;
 		width: auto;
 		height: 1em;
-		margin-bottom: .2em;
+		margin-bottom: .1em;
 	}
 
 </style>

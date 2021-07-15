@@ -90,6 +90,7 @@
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 1.5rem;
+		font-weight: 500;
 	}
 
 	@media only screen and (max-width: 600px) {

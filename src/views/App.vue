@@ -129,6 +129,18 @@
 
 	}
 
+	/* Mixins */
+
+	@mixin light () {
+		background-color: var(--container-background-color);
+		border-color: var(--container-background-color);
+	}
+
+	@mixin dark () {
+		background-color: var(--background-color);
+		border-color: var(--background-color);
+	}
+
 	/* Fonts */
 
 	@font-face {
@@ -195,15 +207,6 @@
 
 	/* Animations */
 
-	/* Globals */
-
-	*[theme=light] {
-		background-color: var(--container-background-color);
-	}
-
-	*[theme=dark] {
-		background-color: var(--background-color);
-	}
 
 	/* Classes */
 
@@ -238,27 +241,19 @@
 		align-content: center;
 	}
 
-	.input, .input[theme=dark] {
+	.input {
+
+		@include light;
+
 		font-family: var(--font);
 		color: var(--text-color);
-		border: 2px solid;
+		border: 2px solid transparent;
 		border-radius: var(--popup-border-radius);
 		font-size: 1.1em;
 		outline: none;
 		padding: .2em .4em .2em .4em;
 		box-sizing: border-box;
 		transition: border-color .2s ease-in-out;
-	}
-
-	.input {
-
-		background-color: var(--container-background-color);
-		border-color: var(--container-background-color);
-
-		&[theme=dark] {
-			background-color: var(--background-color);
-			border-color: var(--background-color);
-		}
 
 		&:focus {
 			border-color: var(--primary-color);
@@ -342,6 +337,16 @@
 			background-color: var(--transparent-hover-color);
 			cursor: pointer;
 		}
+	}
+
+	/* Globals */
+
+	*[theme=light] {
+		@include light;
+	}
+
+	*[theme=dark] {
+		@include dark;
 	}
 
 	/* Layout */

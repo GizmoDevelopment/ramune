@@ -101,7 +101,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
 
 	:root {
 
@@ -128,6 +128,8 @@
 		--easing-leave: cubic-bezier(.67, 0, 1, -.83);
 
 	}
+
+	/* Fonts */
 
 	@font-face {
 		font-family: "Roboto";
@@ -164,30 +166,7 @@
 		font-style: normal;
 	}
 
-	body {
-		margin: 0;
-		background-color: var(--background-color);
-		font-family: var(--font);
-		color: var(--text-color);
-	}
-
-	#content-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-
-	#content {
-		width: 1350px;
-	}
-
-	@media only screen and (max-width: 1400px) {
-		#content {
-			width: 100%;
-			margin-left: 1.5rem;
-			margin-right: 1.5rem;
-		}
-	}
+	/* Transitions */
 
 	.view-enter-active,
 	.view-leave-active {
@@ -214,13 +193,9 @@
 		transform: translateY(1rem);
 	}
 
-	.heading {
-		font-size: 45px;
-		font-weight: bold;
-		text-align: left;
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-	}
+	/* Animations */
+
+	/* Globals */
 
 	*[theme=light] {
 		background-color: var(--container-background-color);
@@ -230,13 +205,10 @@
 		background-color: var(--background-color);
 	}
 
-	.error {
-		margin-top: 0;
-		margin-bottom: 0;
-		color: var(--error-color);
-	}
+	/* Classes */
 
 	.primary-button {
+
 		background-color: var(--primary-color);
 		border-color: var(--primary-color);
 		color: var(--text-color);
@@ -248,34 +220,11 @@
 		font-size: 18px;
 		font-weight: 500;
 		transition: .2s background-color ease-in-out;
-	}
-
-	.primary-button:hover {
-		background-color: var(--primary-hover-color);
-	}
-
-	/*.button {
-		background-color: var(--primary-color);
-		color: var(--text-color);
-		border: 2px solid var(--primary-color);
-		border-radius: var(--popup-border-radius);
-		font-size: 1.5em;
-		transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		padding: 4px;
-	}
-
-	.button:hover {
-		background-color: var(--primary-hover-color);
-		border-color: var(--primary-hover-color);
-	}*/
-
-	.primary-button:hover, .button:hover {
 		cursor: pointer;
+
+		&:hover {
+			background-color: var(--primary-hover-color);
+		}
 	}
 
 	.icon-button {
@@ -302,17 +251,24 @@
 	}
 
 	.input {
+
 		background-color: var(--container-background-color);
 		border-color: var(--container-background-color);
+
+		&[theme=dark] {
+			background-color: var(--background-color);
+			border-color: var(--background-color);
+		}
+
+		&:focus {
+			border-color: var(--primary-color);
+		}
 	}
 
-	.input[theme=dark] {
-		background-color: var(--background-color);
-		border-color: var(--background-color);
-	}
-
-	.input:focus, .input-dark:focus {
-		border-color: var(--primary-color);
+	.error {
+		color: var(--error-color);
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 
 	.faded {
@@ -378,19 +334,55 @@
 	}
 
 	.hover-container {
+
 		transition: .2s background ease-out;
 		border-radius: var(--card-border-radius);
+
+		&:hover {
+			background-color: var(--transparent-hover-color);
+			cursor: pointer;
+		}
 	}
 
-	.hover-container:hover {
-		background-color: var(--transparent-hover-color);
-		cursor: pointer;
+	/* Layout */
+
+	body {
+		margin: 0;
+		background-color: var(--background-color);
+		font-family: var(--font);
+		color: var(--text-color);
 	}
 
 	#app {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
+	}
+
+	#content-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	#content {
+		width: 1350px;
+	}
+
+	@media only screen and (max-width: 1400px) {
+		#content {
+			width: 100%;
+			margin-left: 1.5rem;
+			margin-right: 1.5rem;
+		}
+	}
+
+	.heading {
+		font-size: 45px;
+		font-weight: bold;
+		text-align: left;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	@media only screen and (max-width: 800px) {

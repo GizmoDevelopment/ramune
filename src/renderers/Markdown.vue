@@ -25,7 +25,8 @@
 		"TrollSuccess",
 		"Scrotum",
 		"Shaft",
-		"Tip"
+		"Tip",
+		"Booba"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

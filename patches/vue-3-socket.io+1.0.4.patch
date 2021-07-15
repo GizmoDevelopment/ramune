@@ -1,5 +1,5 @@
 diff --git a/node_modules/vue-3-socket.io/index.d.ts b/node_modules/vue-3-socket.io/index.d.ts
-index dea7b6b..8ad0be2 100644
+index dea7b6b..31413a5 100644
 --- a/node_modules/vue-3-socket.io/index.d.ts
 +++ b/node_modules/vue-3-socket.io/index.d.ts
 @@ -1,63 +1,43 @@
@@ -95,4 +95,3 @@ index dea7b6b..8ad0be2 100644
 +	constructor(options: VueSocketOptions);
 +	install: (app: App) => void;
  }
-\ No newline at end of file

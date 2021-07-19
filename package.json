@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "gizmo-api": "^1.0.9",
-    "particles.vue3": "^1.12.2",
+    "particles.vue3": "^1.14.2",
     "patch-package": "^6.4.7",
     "socket.io-client": "^4.1.2",
     "tippy.js": "^6.3.1",
@@ -22,14 +22,14 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/node": "^14.17.3",
+    "@types/node": "^16.3.3",
     "@types/socket.io": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.1.2",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
-    "eslint": "^7.29.0",
+    "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.11.1",
     "sass": "^1.35.1",
     "typescript": "^4.3.4",

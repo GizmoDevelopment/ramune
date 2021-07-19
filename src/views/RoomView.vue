@@ -7,8 +7,9 @@
 	</div>
 	<RoomUserList
 		class="user-list"
-		:users="room.users"
-		:host="room.host"
+		:room="room"
+		@ctx-promote-to-host="promoteUserIdToHost"
+		@ctx-kick="kickUserId"
 	/>
 	<br>
 	<!-- This is where RoomVideoController will teleport the video element to -->
@@ -56,6 +57,7 @@
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
+	import { SocketResponse } from "@typings/main";
 	import { Room } from "@typings/room";
 
 	export default defineComponent({
@@ -87,6 +89,20 @@
 		},
 		beforeUnmount () {
 			this.toggleRoomControllerState(null);
+		},
+		methods: {
+			kickUserId (userId: string) {
+				if (this.isHost) {
+					this.$socket.emit("CLIENT:KICK_USER", userId, (res: SocketResponse<string>) => {
+						if (res.type !== "success") {
+							console.error(res.message);
+						}
+					});
+				}
+			},
+			promoteUserIdToHost (userId: string) {
+				//
+			}
 		},
 		sockets: {
 			"ROOM:USER_JOIN" () {

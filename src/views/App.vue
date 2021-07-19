@@ -218,10 +218,7 @@
 
 	/* Classes */
 
-	.primary-button {
-
-		background-color: var(--primary-color);
-		border-color: var(--primary-color);
+	.primary-button, .secondary-button {
 		color: var(--text-color);
 		border: 0;
 		border-radius: 10px;
@@ -232,10 +229,30 @@
 		font-weight: 500;
 		transition: .2s background-color ease-in-out, .2s opacity ease;
 		cursor: pointer;
+	}
+
+	.primary-button {
+
+		background-color: var(--primary-color);
+		border-color: var(--primary-color);
 
 		&:hover {
 			background-color: var(--primary-hover-color);
 		}
+	}
+
+	.secondary-button {
+
+		@include light;
+
+		&:hover {
+			background-color: var(--background-color);
+		}
+
+		&[theme=dark]:hover {
+			background-color: var(--container-background-color);
+		}
+
 	}
 
 	.icon-button {

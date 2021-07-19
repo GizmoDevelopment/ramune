@@ -5,13 +5,29 @@
 				v-for="user in users"
 				:key="user.id"
 				class="user"
-				:class="{ host: isHost(user) }"
+				:class="{ host: isUserHost(user) }"
 			>
-				<img
-					v-tooltip="user.username"
-					class="user-avatar"
-					:src="user.avatar_url"
-				>
+				<template v-if="isHost">
+					<ContextMenu
+						:identifier="user.id"
+						:items="[ 'Promote to Host', 'Kick' ]"
+						@ctx-promote-to-host="userId => $emit('ctx-promote-to-host', userId)"
+						@ctx-kick="userId => $emit('ctx-kick', userId)"
+					>
+						<img
+							v-tooltip="user.username"
+							class="user-avatar"
+							:src="user.avatar_url"
+						>
+					</ContextMenu>
+				</template>
+				<template v-else>
+					<img
+						v-tooltip="user.username"
+						class="user-avatar"
+						:src="user.avatar_url"
+					>
+				</template>
 			</div>
 		</transition-group>
 	</div>
@@ -22,23 +38,39 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Components
+	import ContextMenu from "@components/ContextMenu.vue";
+
+	// Mixins
+	import RoomMixin from "@mixins/Room";
+
 	// Types
 	import { User } from "gizmo-api/lib/types";
+	import { Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomUserList",
+		components: {
+			ContextMenu
+		},
+		mixins: [ RoomMixin ],
 		props: {
-			users: {
-				type: Array as PropType<User[]>,
-				required: true
-			},
-			host: {
-				type: Object as PropType<User>,
+			room: {
+				type: Object as PropType<Room>,
 				required: true
 			}
 		},
+		emits: [ "ctx-promote-to-host", "ctx-kick" ],
+		computed: {
+			users (): User[] {
+				return this.room.users;
+			},
+			host (): User {
+				return this.room.host;
+			}
+		},
 		methods: {
-			isHost (user: User) {
+			isUserHost (user: User) {
 				return user.id === this.host.id;
 			}
 		}
@@ -76,18 +108,18 @@
 		&:first-child {
 			margin-left: 0;
 		}
-	}
 
-	.user-avatar {
-		border-radius: 50%;
-		width: auto;
-		height: 100%;
+		.user-avatar {
+			width: auto;
+			height: 100%;
+			border-radius: 50%;
+		}
 	}
 
 	.host .user-avatar {
-		border: 2px solid var(--primary-color);
 		width: auto;
 		height: calc(100% - 4px);
+		border: 2px solid var(--primary-color);
 	}
 
 </style>

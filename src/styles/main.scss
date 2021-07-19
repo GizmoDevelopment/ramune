@@ -1,0 +1,4 @@
+// Cause SASS doesn't support global CSS variables?
+@function variable ($variable-name) {
+	@return var(--#{ $variable-name });
+}

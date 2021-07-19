@@ -442,10 +442,7 @@
 
 <style lang="scss">
 
-	// Cause SASS doesn't support global CSS variables?
-	@function variable ($variable-name) {
-		@return var(--#{ $variable-name });
-	}
+	@import "@styles/main.scss";
 
 	// Can we please, for the love of God, incorporate a standard for this
 	// Also, for some reason, I cannot combine these together? What the fuck?

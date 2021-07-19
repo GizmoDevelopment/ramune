@@ -16,7 +16,7 @@
     "patch-package": "^6.4.7",
     "socket.io-client": "^4.1.2",
     "tippy.js": "^6.3.1",
-    "vue": "^3.1.2",
+    "vue": "^3.1.5",
     "vue-3-socket.io": "^1.0.4",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
@@ -33,9 +33,9 @@
     "eslint-plugin-vue": "^7.11.1",
     "sass": "^1.35.1",
     "typescript": "^4.3.4",
-    "vite": "^2.3.8",
+    "vite": "^2.4.2",
     "vite-svg-loader": "^2.1.0",
     "vue-eslint-parser": "^7.6.0",
-    "vue-tsc": "^0.2.1"
+    "vue-tsc": "^0.2.0"
   }
 }

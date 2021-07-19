@@ -4,14 +4,14 @@
 		<input
 
 			ref="input"
+			v-model="value"
+
 			class="input"
 
 			:type="type"
 			:theme="theme"
 			:placeholder="placeholder"
 			:maxlength="limit"
-
-			@input="inputChange"
 		>
 	</div>
 </template>
@@ -58,17 +58,19 @@
 				input
 			};
 		},
+		data () {
+			return {
+				value: ""
+			};
+		},
+		watch: {
+			value (newValue: string) {
+				this.$emit("update", newValue);
+			}
+		},
 		mounted () {
 			if (this.input && this.autofocus) {
 				this.input.focus();
-			}
-		},
-		methods: {
-			inputChange (e: Event) {
-
-				const target = <HTMLInputElement>e.target;
-
-				this.$emit("update", target.value || target.placeholder);
 			}
 		}
 	});

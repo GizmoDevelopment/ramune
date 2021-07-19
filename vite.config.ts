@@ -17,7 +17,8 @@ export default defineConfig({
 			"@utils": path.resolve(__dirname, "./src/utils"),
 			"@assets": path.resolve(__dirname, "./src/assets"),
 			"@mixins": path.resolve(__dirname, "./src/mixins"),
-			"@renderers": path.resolve(__dirname, "./src/renderers")
+			"@renderers": path.resolve(__dirname, "./src/renderers"),
+			"@styles": path.resolve(__dirname, "./src/styles")
 		}
 	}
 });

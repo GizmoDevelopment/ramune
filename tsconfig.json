@@ -24,7 +24,8 @@
 			"@utils/*": ["utils/*"],
 			"@assets/*": ["assets/*"],
 			"@mixins/*": ["mixins/*"],
-			"@renderers/*": ["renderers/*"]
+			"@renderers/*": ["renderers/*"],
+			"@styles/*": ["styles/*"]
 		},
 		"plugins": [
 			{ "name": "@vuedx/typescript-plugin-vue" }

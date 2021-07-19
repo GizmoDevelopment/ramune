@@ -273,14 +273,14 @@
 		}
 	}
 
+	.faded {
+		color: var(--faded-text-color);
+	}
+
 	.error {
 		color: var(--error-color);
 		margin-top: 0;
 		margin-bottom: 0;
-	}
-
-	.faded {
-		color: var(--faded-text-color);
 	}
 
 	.icon {

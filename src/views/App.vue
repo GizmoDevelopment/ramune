@@ -249,6 +249,11 @@
 		align-content: center;
 	}
 
+	.disabled-button {
+		opacity: .5;
+		cursor: default;
+	}
+
 	.input {
 
 		@include light;

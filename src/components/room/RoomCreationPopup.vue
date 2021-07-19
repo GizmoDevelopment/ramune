@@ -34,7 +34,13 @@
 			</div>
 		</div>
 		<div v-if="!debounce">
-			<button class="primary-button" @click="createRoom">Create</button>
+			<button
+				class="primary-button"
+				:class="{ 'disabled-button': isCreateButtonDisabled }"
+				@click="createRoom"
+			>
+				Create
+			</button>
 		</div>
 	</PopupCard>
 </template>
@@ -77,11 +83,12 @@
 		emits: [ "dismiss", "create-room" ],
 		data () {
 			return {
-				roomName: "Anime night",
+				roomName: "",
 				roomPreviewObject: null as Room | null,
 				roomOptions: { name: "" } as RoomOptions,
 				debounce: false,
-				status: ""
+				status: "",
+				isCreateButtonDisabled: true
 			};
 		},
 		computed: {
@@ -91,11 +98,10 @@
 		},
 		watch: {
 			visible (newState: boolean) {
-				if (newState) {
-					this.status = "";
-				}
+				if (newState) this.status = "";
 			},
-			roomName () {
+			roomName (newName: string) {
+				this.isCreateButtonDisabled = newName.trim().length === 0;
 				this.updateRoomPreview();
 			}
 		},
@@ -125,28 +131,29 @@
 				this.$emit("dismiss");
 			},
 			createRoom () {
+				if (!this.isCreateButtonDisabled) {
 
-				this.debounce = true;
+					this.debounce = true;
 
-				this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
-					if (res.type === "success") {
+					this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
+						if (res.type === "success") {
 
-						this.$store.commit("JOIN_ROOM", res.data);
-						this.$emit("dismiss");
+							this.$store.commit("JOIN_ROOM", res.data);
+							this.$emit("dismiss");
 
-						setTimeout(() => {
-							this.$router.push(`/rooms/${ res.data.id }`);
-						}, 100);
+							setTimeout(() => {
+								this.$router.push(`/rooms/${ res.data.id }`);
+							}, 100);
 
-					} else {
+						} else {
 
-						this.debounce = false;
-						this.status = res.message;
+							this.debounce = false;
+							this.status = res.message;
 
-						console.error(res.message);
-					}
-				});
-
+							console.error(res.message);
+						}
+					});
+				}
 			}
 		}
 	});

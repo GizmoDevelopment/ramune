@@ -6,7 +6,7 @@
 				<CaretRight />
 			</button>
 		</div>
-		<RoomUserList :users="room.users" :host="room.host" />
+		<UserList :users="room.users" :host="room.host" />
 	</div>
 </template>
 
@@ -16,7 +16,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import RoomUserList from "@components/room/RoomUserList.vue";
+	import UserList from "@components/UserList.vue";
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Mixins
@@ -33,7 +33,7 @@
 		name: "RoomCard",
 		components: {
 			CaretRight,
-			RoomUserList,
+			UserList,
 			MarkdownRenderer
 		},
 		mixins: [ MainMixin ],

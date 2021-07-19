@@ -1,7 +1,7 @@
 <template>
 	<div class="popout-container">
 		<div class="room-information">
-			<RoomUserList
+			<UserList
 				id="user-list"
 				:users="room.users"
 				:host="room.host"
@@ -27,7 +27,7 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import RoomUserList from "@components/room/RoomUserList.vue";
+	import UserList from "@components/UserList.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -35,7 +35,7 @@
 	export default defineComponent({
 		name: "RoomPopout",
 		components: {
-			RoomUserList,
+			UserList,
 		},
 		mixins: [ RoomMixin ],
 		mounted () {

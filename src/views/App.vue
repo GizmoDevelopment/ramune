@@ -87,7 +87,13 @@
 				this.$store.commit("USER_JOIN_ROOM", user);
 			},
 			"ROOM:USER_LEAVE" (user: User) {
+
 				this.$store.commit("USER_LEAVE_ROOM", user);
+
+				if (user.id === this.user?.id) {
+					this.$store.commit("LEAVE_ROOM");
+					this.$router.push("/rooms");
+				}
 			},
 			"ROOM:UPDATE" (room: Room) {
 				this.$store.commit("UPDATE_ROOM", room);

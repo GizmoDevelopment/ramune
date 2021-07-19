@@ -101,9 +101,7 @@
 				this.leaving = true;
 
 				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
-					if (res.type === "success") {
-						this.$router.push("/rooms");
-					} else {
+					if (res.type !== "success") {
 						console.error(res.message);
 						this.leaving = false;
 					}

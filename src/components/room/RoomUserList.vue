@@ -80,6 +80,8 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/main.scss";
+
 	.user-list-enter-active,
 	.user-list-leave-active {
 		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
@@ -118,8 +120,8 @@
 
 	.host .user-avatar {
 		width: auto;
-		height: calc(100% - 4px);
-		border: 2px solid var(--primary-color);
+		height: calc(100% - 6px);
+		border: 3px solid variable(--primary-color);
 	}
 
 </style>

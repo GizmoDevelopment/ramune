@@ -230,7 +230,7 @@
 		padding-right: 20px;
 		font-size: 18px;
 		font-weight: 500;
-		transition: .2s background-color ease-in-out;
+		transition: .2s background-color ease-in-out, .2s opacity ease;
 		cursor: pointer;
 
 		&:hover {

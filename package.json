@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "gizmo-api": "^1.0.9",
-    "particles.vue3": "^1.12.2",
+    "particles.vue3": "^1.14.2",
     "patch-package": "^6.4.7",
     "socket.io-client": "^4.1.2",
     "tippy.js": "^6.3.1",

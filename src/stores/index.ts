@@ -38,7 +38,7 @@ export default createStore<State>({
 		},
 		USER_JOIN_ROOM (state: State, user: User) {
 			if (state.room) {
-				state.room.users.push(user);
+				state.room.users = state.room.users.filter(({ id }) => id !== user.id).concat(user);
 			}
 		},
 		USER_LEAVE_ROOM (state: State, user: User) {

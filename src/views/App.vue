@@ -335,9 +335,7 @@
 
 	.husk, .husk-dark {
 		color: transparent;
-		border: none !important;
 		user-select: none;
-		border-radius: var(--card-border-radius);
 	}
 
 	.husk {

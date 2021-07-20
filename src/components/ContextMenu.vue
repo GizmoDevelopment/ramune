@@ -101,6 +101,7 @@
 	.context-menu-positioner {
 
 		position: absolute;
+		z-index: 10;
 
 		.context-menu-platter {
 

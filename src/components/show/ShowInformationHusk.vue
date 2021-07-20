@@ -61,8 +61,7 @@
 	}
 
 	.show-episode-count {
-		background-color: variable(primary-color);
-		border: 2px solid variable(primary-color);
+		border: 2px solid transparent;
 		border-radius: 20px;
 		padding-left: 8px;
 		padding-right: 8px;

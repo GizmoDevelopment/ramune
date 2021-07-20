@@ -96,7 +96,7 @@
 	.user-list-enter-from,
 	.user-list-leave-to {
 		opacity: 0;
-		transform: translateY(20px);
+		transform: translateY(.5rem);
 	}
 
 	.user-list {

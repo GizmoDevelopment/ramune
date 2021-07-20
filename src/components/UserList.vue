@@ -89,7 +89,7 @@
 	.host .user-avatar {
 		width: auto;
 		height: calc(100% - 6px);
-		border: 3px solid variable(--primary-color);
+		border: 3px solid variable(primary-color);
 	}
 
 </style>

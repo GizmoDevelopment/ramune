@@ -225,6 +225,18 @@
 		}
 	}
 
+	@keyframes gradient {
+		0% {
+			background-position: 0% 0%;
+		}
+		65% {
+			background-position: 100% 0%;
+		}
+		100% {
+			background-position: 0% 0%;
+		}
+	}
+
 	/* Classes */
 
 	.primary-button, .secondary-button {
@@ -335,15 +347,19 @@
 
 	.husk, .husk-dark {
 		color: transparent;
+		border-radius: var(--card-border-radius);
 		user-select: none;
-	}
-
-	.husk {
-		background-color: var(--background-color) !important;
+		animation: gradient 5s ease infinite;
 	}
 
 	.husk-dark {
-		background-color: var(--container-background-color) !important;
+		background: linear-gradient(45deg, var(--background-color), #181818);
+		background-size: 200% 100%;
+	}
+
+	.husk {
+		background: linear-gradient(45deg, var(--container-background-color), #111);
+		background-size: 200% 100%;
 	}
 
 	.overlay {

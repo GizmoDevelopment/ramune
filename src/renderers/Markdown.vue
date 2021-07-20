@@ -26,7 +26,9 @@
 		"Scrotum",
 		"Shaft",
 		"Tip",
-		"Booba"
+		"Booba",
+		"GizmoHeart",
+		"NotSad"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

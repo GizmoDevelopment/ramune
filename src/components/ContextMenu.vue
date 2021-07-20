@@ -1,5 +1,6 @@
 <template>
 	<div
+		ref="holder"
 		class="ghost-element"
 	>
 		<div
@@ -29,7 +30,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, PropType, ref } from "vue";
 
 	export default defineComponent({
 		name: "ContextMenu",
@@ -43,10 +44,31 @@
 				required: true
 			}
 		},
+		setup () {
+
+			const holder = ref<HTMLDivElement>();
+
+			return {
+				holder
+			};
+		},
 		data () {
 			return {
 				isOpen: false
 			};
+		},
+		mounted () {
+			document.addEventListener("click", this.handleOutsideClick);
+		},
+		beforeUnmount () {
+			document.removeEventListener("click", this.handleOutsideClick);
+		},
+		methods: {
+			handleOutsideClick (e: MouseEvent) {
+				if (this.holder && e.target && !this.holder.contains(e.target as HTMLElement)) {
+					this.isOpen = false;
+				}
+			}
 		}
 	});
 

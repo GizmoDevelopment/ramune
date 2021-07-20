@@ -2,11 +2,11 @@
 	<div class="show-container">
 		<div class="show-poster-container">
 			<div
-				class="husk-dark show-poster"
+				class="husk show-poster"
 			/>
 		</div>
 		<div class="show-information">
-			<p class="husk-dark show-title">Kino Show Title</p>
+			<p class="husk show-title">Kino Show Title</p>
 		</div>
 	</div>
 </template>

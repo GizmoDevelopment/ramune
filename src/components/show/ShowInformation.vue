@@ -1,7 +1,7 @@
 <template>
 	<div v-if="show">
 		<div class="show-information">
-			<img class="husk show-poster" :src="show.poster_url">
+			<img class="husk-dark show-poster" :src="show.poster_url">
 			<div class="show-details">
 				<h1 class="heading show-title">{{ show.title }}</h1>
 				<div class="show-stats">

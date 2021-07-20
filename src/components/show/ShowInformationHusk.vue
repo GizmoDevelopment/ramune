@@ -1,12 +1,12 @@
 <template>
 	<div class="show-information">
-		<div class="husk show-poster" />
+		<div class="husk-dark show-poster" />
 		<div class="show-details">
-			<p class="heading husk show-title">XD?????????????????????????????</p>
+			<p class="heading husk-dark show-title">XD?????????????????????????????</p>
 			<div class="show-stats">
-				<div class="husk show-episode-count">420 Episode</div>
+				<div class="husk-dark show-episode-count">420 Episode</div>
 			</div>
-			<p class="husk show-description">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
+			<p class="husk-dark show-description">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
 		</div>
 	</div>
 </template>

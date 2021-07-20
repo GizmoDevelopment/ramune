@@ -57,19 +57,21 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/main.scss";
 
 	.show-information {
-		margin-top: 1em;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
+		margin-top: 1rem;
 	}
 
 	.show-poster {
-		border-radius: var(--card-border-radius);
-		height: 280px;
 		width: auto;
+		height: 280px;
+		border-radius: variable(card-border-radius);
 	}
 
 	.show-details {
@@ -77,33 +79,35 @@
 	}
 
 	.show-title {
-		margin-top: .2em;
+		margin-top: .2rem;
 		margin-bottom: 10px;
 	}
 
 	.show-stats {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-	}
 
-	.show-stats * {
-		margin-right: 10px;
+		* {
+			margin-right: 10px;
+		}
 	}
 
 	.show-episode-count {
-		background-color: var(--primary-color);
-		border: 2px solid var(--primary-color);
+		background-color: variable(primary-color);
+		border: 2px solid variable(primary-color);
 		border-radius: 20px;
 		padding-left: 8px;
 		padding-right: 8px;
 		font-weight: bold;
+		font-size: 1.1rem;
 	}
 
 	.show-description {
+		font-size: 1rem;
 		text-align: left;
-		font-size: 15px;
 		white-space: pre-line;
 	}
 

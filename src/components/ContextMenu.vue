@@ -119,6 +119,7 @@
 				border-radius: 0;
 				width: 100%;
 				text-align: left;
+				transition: background-color .3s ease;
 			}
 		}
 	}

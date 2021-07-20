@@ -267,7 +267,7 @@
 		@include light;
 
 		&:hover {
-			background-color: var(--background-color);
+			background-color: var(--container-hover-color);
 		}
 
 		&[theme=dark]:hover {

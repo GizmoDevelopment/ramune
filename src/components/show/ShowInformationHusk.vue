@@ -1,12 +1,12 @@
 <template>
-	<div id="show-information">
-		<div id="show-artwork" class="husk" />
-		<div id="show-details">
-			<h1 id="show-title" class="heading husk">This is an empty title</h1>
-			<div id="show-stats">
-				<div id="show-episode-count" class="husk">420 Episode</div>
+	<div class="show-information">
+		<div class="husk show-poster" />
+		<div class="show-details">
+			<p class="heading husk show-title">XD?????????????????????????????</p>
+			<div class="show-stats">
+				<div class="husk show-episode-count">420 Episode</div>
 			</div>
-			<p id="show-description" class="husk">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
+			<p class="husk show-description">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
 		</div>
 	</div>
 </template>
@@ -22,54 +22,71 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#show-information {
-		margin-top: 1em;
+	@import "@styles/main.scss";
+
+	.show-information {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
+		margin-top: 1rem;
 	}
 
-	#show-artwork {
-		border-radius: var(--card-border-radius);
-		min-width: 186px;
+	.show-poster {
+		min-width: calc(280px * .65);
 		height: 280px;
+		border-radius: variable(card-border-radius);
 	}
 
-	#show-details {
+	.show-details {
 		margin-left: 20px;
 	}
 
-	#show-title {
-		margin-top: .2em;
+	.show-title {
+		margin-top: .2rem;
 		margin-bottom: 10px;
 	}
 
-	#show-stats {
+	.show-stats {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
+
+		* {
+			margin-right: 10px;
+		}
 	}
 
-	#show-stats * {
-		margin-right: 10px;
-	}
-
-	#show-episode-count {
-		background-color: var(--primary-color);
-		border: 2px solid var(--primary-color);
+	.show-episode-count {
+		background-color: variable(primary-color);
+		border: 2px solid variable(primary-color);
 		border-radius: 20px;
-		padding-left: 6px;
-		padding-right: 6px;
+		padding-left: 8px;
+		padding-right: 8px;
+		font-weight: bold;
+		font-size: 1.1rem;
 	}
 
-	#show-description {
+	.show-description {
+		font-size: 1.5rem;
 		text-align: left;
-		font-size: 15px;
 		white-space: pre-line;
-		letter-spacing: 15px;
+	}
+
+	@media only screen and (max-width: 800px) {
+		.show-poster {
+			min-width: calc(190px * .65);
+			height: 190px;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.show-description {
+			display: none;
+		}
 	}
 
 </style>

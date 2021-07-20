@@ -110,6 +110,7 @@
 <style lang="scss">
 
 	@import "@styles/main.scss";
+	@import "@styles/mixins.scss";
 
 	:root {
 
@@ -298,6 +299,17 @@
 		}
 	}
 
+	.heading {
+
+		@include text-wrap;
+
+		font-size: 45px;
+		font-weight: bold;
+		text-align: left;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
 	.faded {
 		color: var(--faded-text-color);
 	}
@@ -469,14 +481,6 @@
 			margin-left: 1.5rem;
 			margin-right: 1.5rem;
 		}
-	}
-
-	.heading {
-		font-size: 45px;
-		font-weight: bold;
-		text-align: left;
-		margin-top: 1rem;
-		margin-bottom: 1rem;
 	}
 
 	@media only screen and (max-width: 800px) {

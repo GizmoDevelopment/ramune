@@ -1,0 +1,6 @@
+@mixin text-wrap {
+	overflow-wrap: break-word;
+	word-break: break-word;
+	white-space: break-spaces;
+	hyphens: auto;
+}

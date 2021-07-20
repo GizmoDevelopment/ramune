@@ -44,6 +44,8 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/mixins.scss";
+
 	.message-container {
 
 		display: flex;
@@ -69,16 +71,15 @@
 	}
 
 	.message-content, .lonely-message-content {
+
+		@include text-wrap;
+
 		position: relative;
 		max-width: 100%;
 		padding: .5rem .7rem .5rem .7rem;
 		background-color: var(--container-background-color);
 		border-radius: var(--popup-border-radius);
 		text-align: left;
-		overflow-wrap: break-word;
-		word-break: break-word;
-		white-space: break-spaces;
-		hyphens: auto;
 	}
 
 	.message-content:before {

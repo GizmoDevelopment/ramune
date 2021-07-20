@@ -101,7 +101,13 @@
 				}
 			},
 			promoteUserIdToHost (userId: string) {
-				//
+				if (this.isHost) {
+					this.$socket.emit("CLIENT:UPDATE_ROOM", { hostId: userId }, (res: SocketResponse<string>) => {
+						if (res.type !== "success") {
+							console.error(res.message);
+						}
+					});
+				}
 			}
 		},
 		sockets: {

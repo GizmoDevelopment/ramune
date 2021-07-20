@@ -3,24 +3,26 @@
 		class="ghost-element"
 	>
 		<div
-			class="ghost-element"
+			class="ghost-slot"
 			@contextmenu.prevent="isOpen = !isOpen"
 			@click.prevent="isOpen = !isOpen"
 		>
 			<slot />
 		</div>
-		<div v-if="isOpen" class="context-menu-positioner">
-			<div class="context-menu-platter">
-				<button
-					v-for="(item, index) in items"
-					:key="index"
-					class="secondary-button context-menu-button"
-					@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
-				>
-					{{ item }}
-				</button>
+		<transition name="context-menu-slide">
+			<div v-if="isOpen" class="context-menu-positioner">
+				<div class="context-menu-platter">
+					<button
+						v-for="(item, index) in items"
+						:key="index"
+						class="secondary-button context-menu-button"
+						@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
+					>
+						{{ item }}
+					</button>
+				</div>
 			</div>
-		</div>
+		</transition>
 	</div>
 </template>
 
@@ -54,9 +56,24 @@
 
 	@import "@styles/main.scss";
 
-	.ghost-element {
+	.context-menu-slide-enter-active,
+	.context-menu-slide-leave-active {
+		transition: opacity .2s ease, transform .3s ease;
+	}
+
+	.context-menu-slide-enter-from,
+	.context-menu-slide-leave-to {
+		opacity: 0;
+		transform: translateY(.2rem);
+	}
+
+	.ghost-element, .ghost-slot {
 		width: inherit;
 		height: inherit;
+	}
+
+	.ghost-slot {
+		cursor: pointer;
 	}
 
 	.context-menu-positioner {

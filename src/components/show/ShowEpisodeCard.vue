@@ -1,7 +1,7 @@
 <template>
 	<div class="episode-container">
 		<div class="thumbnail-container">
-			<img class="episode-thumbnail" :src="episode.thumbnail_url">
+			<img class="husk episode-thumbnail" :src="episode.thumbnail_url">
 			<div class="episode-info">
 				<div class="episode-index">{{ episode.id }}</div>
 				<div class="episode-duration">{{ formattedDuration }}</div>

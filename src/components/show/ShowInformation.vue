@@ -1,7 +1,7 @@
 <template>
 	<div v-if="show">
 		<div class="show-information">
-			<img class="show-poster" :src="show.poster_url">
+			<img class="husk show-poster" :src="show.poster_url">
 			<div class="show-details">
 				<h1 class="heading show-title">{{ show.title }}</h1>
 				<div class="show-stats">
@@ -70,6 +70,7 @@
 
 	.show-poster {
 		width: auto;
+		min-width: calc(280px * .65);
 		height: 280px;
 		border-radius: variable(card-border-radius);
 	}
@@ -113,6 +114,7 @@
 
 	@media only screen and (max-width: 800px) {
 		.show-poster {
+			min-width: calc(190px * .65);
 			height: 190px;
 		}
 	}

@@ -13,7 +13,6 @@
     "axios": "^0.21.1",
     "gizmo-api": "^1.0.9",
     "particles.vue3": "^1.14.2",
-    "patch-package": "^6.4.7",
     "socket.io-client": "^4.1.2",
     "tippy.js": "^6.3.1",
     "vue": "^3.1.5",
@@ -25,17 +24,18 @@
     "@types/node": "^16.3.3",
     "@types/socket.io": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "@vitejs/plugin-vue": "^1.2.3",
+    "@typescript-eslint/parser": "^4.28.4",
+    "@vitejs/plugin-vue": "^1.2.5",
     "@vue/compiler-sfc": "^3.1.5",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
     "eslint": "^7.31.0",
     "eslint-plugin-vue": "^7.11.1",
-    "sass": "^1.35.1",
-    "typescript": "^4.3.4",
+    "patch-package": "^6.4.7",
+    "sass": "^1.35.2",
+    "typescript": "^4.3.5",
     "vite": "^2.4.2",
     "vite-svg-loader": "^2.1.0",
     "vue-eslint-parser": "^7.6.0",
-    "vue-tsc": "^0.2.0"
+    "vue-tsc": "^0.2.1"
   }
 }

@@ -11,8 +11,8 @@
 					<ContextMenu
 						:identifier="user.id"
 						:items="[ 'Promote to Host', 'Kick' ]"
-						@ctx-promote-to-host="userId => $emit('ctx-promote-to-host', userId)"
-						@ctx-kick="userId => $emit('ctx-kick', userId)"
+						@ctx-promote-to-host="promoteUserIdToHost"
+						@ctx-kick="kickUserId"
 					>
 						<img
 							v-tooltip="user.username"
@@ -72,6 +72,12 @@
 		methods: {
 			isUserHost (user: User) {
 				return user.id === this.host.id;
+			},
+			promoteUserIdToHost (userId: number) {
+				this.$emit("ctx-promote-to-host", userId);
+			},
+			kickUserId (userId: number) {
+				this.$emit("ctx-kick", userId);
 			}
 		}
 	});

@@ -1,9 +1,10 @@
 <template>
 	<div class="karaoke-holder">
 		<transition name="lyrics-appear">
-			<div v-if="currentLyricsId.length" class="karaoke-container">
-				<transition name="lyrics-line-slide">
-					{{ currentLine }}
+			<!-- TODO: Implement transitions for lines -->
+			<div v-if="currentLyricsId.length && currentLine.length > 0" class="karaoke-container">
+				<transition name="lyrics-line-slide" mode="out-in">
+					<span>{{ currentLine }}</span>
 				</transition>
 			</div>
 		</transition>
@@ -20,7 +21,7 @@
 
 	// Types
 	import { Lyrics } from "@typings/show";
-	import { FormattedLyrics, Line, TimedLine } from "@typings/lyrics";
+	import { FormattedLyrics } from "@typings/lyrics";
 
 	export default defineComponent({
 		name: "Karaoke",
@@ -64,16 +65,17 @@
 
 						this.currentLyricsId = formattedLyrics.id;
 
-						formattedLyrics.lines.forEach((line: TimedLine | Line) => {
+						for (let line of formattedLyrics.lines) {
 
 							// TODO: Add support for TimedLine
 							if (typeof line.content === "string") {
-								if ((formattedLyrics.start + line.start) >= timestamp) {
+								if (timestamp >= (formattedLyrics.start + line.start)) {
 									this.currentLine = line.content;
+									break;
 								}
 							}
 
-						});
+						}
 
 					} else if (this.currentLyricsId === formattedLyrics.id) {
 						this.currentLyricsId = "";
@@ -95,8 +97,6 @@
 				const newLyrics: FormattedLyrics[] = [];
 
 				lyrics.forEach((lyrics: Lyrics) => {
-
-					console.log(lyrics.id);
 
 					const formattedLyricsName = this.getCachedFormattedLyricsName(lyrics);
 
@@ -167,8 +167,8 @@
 	.karaoke-container {
 		background-color: variable(container-background-color);
 		border-radius: variable(card-border-radius);
-		padding: .3rem .5rem .3rem .5rem;
-		font-size: 1.5em;
+		padding: .5rem 1rem .5rem 1rem;
+		font-size: 1.7em;
 	}
 
 </style>

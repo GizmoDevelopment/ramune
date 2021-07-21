@@ -73,7 +73,7 @@ export default createStore<State>({
 		UPDATE_CONNECT_ERROR (state: State, message: string) {
 			state.connectError = message;
 		},
-		CACHE_FORMATTED_LYRICS(state: State, { showId, lyrics }: { showId: string, lyrics: FormattedLyrics }) {
+		CACHE_FORMATTED_LYRICS (state: State, { showId, lyrics }: { showId: string, lyrics: FormattedLyrics }) {
 			state.cachedFormattedLyrics[`${showId}-${lyrics.id}`] = lyrics;
 		}
 	},

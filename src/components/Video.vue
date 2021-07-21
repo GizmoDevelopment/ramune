@@ -1,151 +1,153 @@
 <template>
-	<div
-		ref="videoContainer"
-		class="video-container"
-		:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
-		@mouseenter="isOverlayVisible = true"
-		@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
-	>
-		<div v-if="room && isFullscreen" class="constant-video-overlay">
-			<UserList
-				class="overlay-user-list"
-				:users="room.users"
-				:host="room.host"
-			/>
-			<div v-if="isBuffering">
-				<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
-			</div>
-			<transition name="slide">
-				<div
-					v-if="isSubtitleTrayVisible"
-					class="video-control-tray subtitle-tray"
-					@mouseleave="isSubtitleTrayVisible = false"
-				>
-					<h3>Subtitles</h3>
-					<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
-						<button
-							class="subtitle-language-button"
-							@click="setSubtitleLanguage(`${ subtitle.code }`)"
-						>
-							<template v-if="subtitle.code === selectedSubtitleLanguage">
-								<Checkmark />
-							</template>
-							{{ subtitle.language }}
-						</button>
-					</div>
-				</div>
-			</transition>
-			<transition name="slide">
-				<div
-					v-if="isVolumeTrayVisible"
-					class="video-control-tray volume-tray"
-					@mouseleave="isVolumeTrayVisible = false"
-				>
-					<input
-						v-model="volume"
-						type="range"
-						min="0"
-						max="1"
-						step=".01"
-					>
-				</div>
-			</transition>
-		</div>
-		<transition name="fade">
-			<div
-				v-show="(isOverlayVisible && !isMouseStatic) || isSubtitleTrayVisible"
-				class="video-overlay"
-			>
-				<div class="video-screen" @click="togglePlayPause(); mouseClickCounter += 1" />
-				<div v-if="!hideControls" class="video-controls">
-					<transition name="fade">
-						<div
-							v-if="controls"
-							class="video-control-button play-pause-button"
-							@click="togglePlayPause"
-						>
-							<div v-if="isPaused">
-								<Play />
-							</div>
-							<div v-else>
-								<Pause />
-							</div>
-						</div>
-					</transition>
-					<div @click="toggleVolumeTray">
-						<VolumeOff v-if="volume == 0" class="video-control-button" />
-						<VolumeLow v-if="volume > 0 && volume < .45" class="video-control-button" />
-						<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
-						<VolumeHigh v-if="volume >= .85" class="video-control-button" />
-					</div>
-					<span class="video-timestamp">{{ videoCurrentTimestamp }}</span>
-					<div
-						ref="progressBarContainer"
-						class="progress-bar-container"
-						:class="{ 'selectable-progress-bar': controls }"
-						@click="progressBarSeek"
-						@mouseenter="isHoveringOverProgressBar = true"
-						@mouseleave="isHoveringOverProgressBar = false"
-						@mousemove="updateHoverTimestamp"
-					>
-						<div class="progress-bar-overflow">
-							<div
-								class="progress-bar"
-								:style="`width: ${ videoProgressPercentage }%`"
-							/>
-						</div>
-						<div
-							v-if="isHoveringOverProgressBar"
-							class="progress-bar-timestamp"
-							:style="`left: ${hoverTimestampOffset}px`"
-						>
-							{{ hoverTimestamp }}
-						</div>
-					</div>
-					<span class="video-duration">{{ videoDurationTimestamp }}</span>
-					<Text
-						v-if="episode.subtitles.length > 0"
-						class="video-control-button"
-						@click="toggleSubtitleTray"
-					/>
-					<Resize class="video-control-button" @click="toggleFullscreen" />
-				</div>
-			</div>
-		</transition>
-		<video
-
-			ref="video"
-			class="video-player"
-
-			playsinline
-			controlslist="nodownload"
-			preload="auto"
-			crossorigin="anonymous"
-
-			:src="episode.stream_url"
-			:poster="episode.thumbnail_url"
-			:volume="volume"
-
-			@seeked="updateVideoTime(); pushSync();"
-			@seeking="updateVideoTime(); pushSync();"
-			@pause="pushSync"
-			@play="pushSync()"
-			@timeupdate="updateVideoTime"
-			@waiting="isBuffering = true"
-			@durationchange="updateVideoDuration"
-			@volumechange="updateVolume"
+	<div>
+		<div
+			ref="videoContainer"
+			class="video-container"
+			:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
+			@mouseenter="isOverlayVisible = true"
+			@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
 		>
-			<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
-				<track
-					:id="subtitle.code"
-					kind="subtitles"
-					:srclang="subtitle.code"
-					:label="subtitle.language"
-					:src="subtitle.url"
-					:default="subtitle.code === 'en'"
+			<div v-if="room && isFullscreen" class="constant-video-overlay">
+				<UserList
+					class="overlay-user-list"
+					:users="room.users"
+					:host="room.host"
+				/>
+				<div v-if="isBuffering">
+					<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
+				</div>
+				<transition name="slide">
+					<div
+						v-if="isSubtitleTrayVisible"
+						class="video-control-tray subtitle-tray"
+						@mouseleave="isSubtitleTrayVisible = false"
+					>
+						<h3>Subtitles</h3>
+						<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
+							<button
+								class="subtitle-language-button"
+								@click="setSubtitleLanguage(`${ subtitle.code }`)"
+							>
+								<template v-if="subtitle.code === selectedSubtitleLanguage">
+									<Checkmark />
+								</template>
+								{{ subtitle.language }}
+							</button>
+						</div>
+					</div>
+				</transition>
+				<transition name="slide">
+					<div
+						v-if="isVolumeTrayVisible"
+						class="video-control-tray volume-tray"
+						@mouseleave="isVolumeTrayVisible = false"
+					>
+						<input
+							v-model="volume"
+							type="range"
+							min="0"
+							max="1"
+							step=".01"
+						>
+					</div>
+				</transition>
+			</div>
+			<transition name="fade">
+				<div
+					v-show="(isOverlayVisible && !isMouseStatic) || isSubtitleTrayVisible"
+					class="video-overlay"
 				>
-			</template>
-		</video>
+					<div class="video-screen" @click="togglePlayPause(); mouseClickCounter += 1" />
+					<div v-if="!hideControls" class="video-controls">
+						<transition name="fade">
+							<div
+								v-if="controls"
+								class="video-control-button play-pause-button"
+								@click="togglePlayPause"
+							>
+								<div v-if="isPaused">
+									<Play />
+								</div>
+								<div v-else>
+									<Pause />
+								</div>
+							</div>
+						</transition>
+						<div @click="toggleVolumeTray">
+							<VolumeOff v-if="volume == 0" class="video-control-button" />
+							<VolumeLow v-if="volume > 0 && volume < .45" class="video-control-button" />
+							<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
+							<VolumeHigh v-if="volume >= .85" class="video-control-button" />
+						</div>
+						<span class="video-timestamp">{{ videoCurrentTimestamp }}</span>
+						<div
+							ref="progressBarContainer"
+							class="progress-bar-container"
+							:class="{ 'selectable-progress-bar': controls }"
+							@click="progressBarSeek"
+							@mouseenter="isHoveringOverProgressBar = true"
+							@mouseleave="isHoveringOverProgressBar = false"
+							@mousemove="updateHoverTimestamp"
+						>
+							<div class="progress-bar-overflow">
+								<div
+									class="progress-bar"
+									:style="`width: ${ videoProgressPercentage }%`"
+								/>
+							</div>
+							<div
+								v-if="isHoveringOverProgressBar"
+								class="progress-bar-timestamp"
+								:style="`left: ${hoverTimestampOffset}px`"
+							>
+								{{ hoverTimestamp }}
+							</div>
+						</div>
+						<span class="video-duration">{{ videoDurationTimestamp }}</span>
+						<Text
+							v-if="episode.subtitles.length > 0"
+							class="video-control-button"
+							@click="toggleSubtitleTray"
+						/>
+						<Resize class="video-control-button" @click="toggleFullscreen" />
+					</div>
+				</div>
+			</transition>
+			<video
+
+				ref="video"
+				class="video-player"
+
+				playsinline
+				controlslist="nodownload"
+				preload="auto"
+				crossorigin="anonymous"
+
+				:src="episode.stream_url"
+				:poster="episode.thumbnail_url"
+				:volume="volume"
+
+				@seeked="updateVideoTime(); pushSync();"
+				@seeking="updateVideoTime(); pushSync();"
+				@pause="pushSync"
+				@play="pushSync()"
+				@timeupdate="updateVideoTime"
+				@waiting="isBuffering = true"
+				@durationchange="updateVideoDuration"
+				@volumechange="updateVolume"
+			>
+				<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
+					<track
+						:id="subtitle.code"
+						kind="subtitles"
+						:srclang="subtitle.code"
+						:label="subtitle.language"
+						:src="subtitle.url"
+						:default="subtitle.code === 'en'"
+					>
+				</template>
+			</video>
+		</div>
 		<div v-if="episode.data.effects && !isInPopOutMode">
 			<EffectsRenderer
 				:effects="episode.data.effects"

@@ -25,7 +25,8 @@ export interface Episode {
 }
 
 export interface EpisodeData {
-	effects: EpisodeEffect[];
+	effects?: EpisodeEffect[];
+	lyrics?: Lyrics[];
 }
 
 export interface EpisodeEffect {
@@ -38,5 +39,10 @@ export interface EpisodeEffect {
 export interface Subtitles {
 	code: string;
 	language: string;
+	url: string;
+}
+
+export interface Lyrics {
+	start: number;
 	url: string;
 }

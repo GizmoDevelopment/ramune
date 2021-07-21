@@ -108,6 +108,7 @@
 			position: relative;
 			background-color: variable(container-background-color);
 			border-radius: variable(card-border-radius);
+			min-width: 11rem;
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;
 			display: flex;

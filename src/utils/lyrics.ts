@@ -20,8 +20,6 @@ function convertTimestampToSeconds (timestamp: string): number {
 
 export async function formatLyrics (lyrics: Lyrics): Promise<FormattedLyrics> {
 
-	console.log("FORMATTING " + lyrics.id);
-
 	const
 		rawLyrics: string = (await axios.get(lyrics.url))?.data,
 		_lyrics: FormattedLyrics = {

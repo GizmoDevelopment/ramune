@@ -1,9 +1,8 @@
 export interface FormattedLyrics {
 	id: string;
-	showId: string;
 	start: number;
 	end: number;
-	lines: TimedLine|Line[];
+	lines: Array<TimedLine | Line>;
 }
 
 export interface Line {

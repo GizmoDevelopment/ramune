@@ -43,6 +43,7 @@ export interface Subtitles {
 }
 
 export interface Lyrics {
+	id: string;
 	start: number;
 	url: string;
 }

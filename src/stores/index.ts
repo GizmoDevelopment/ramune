@@ -6,6 +6,7 @@ import { User, AuthenticatedUser } from "gizmo-api/lib/types";
 import { Show, ShowHusk } from "@typings/show";
 import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
 import { State } from "@typings/vuex";
+import { FormattedLyrics } from "@typings/lyrics";
 
 // Constants
 const DEV = import.meta.env.DEV;
@@ -15,6 +16,7 @@ export default createStore<State>({
 		return {
 			shows: new Map(),
 			cachedShowList: [],
+			cachedFormattedLyrics: {},
 			user: null,
 			room: null,
 			roomVideoTeleportParent: null,
@@ -70,6 +72,9 @@ export default createStore<State>({
 		},
 		UPDATE_CONNECT_ERROR (state: State, message: string) {
 			state.connectError = message;
+		},
+		CACHE_FORMATTED_LYRICS(state: State, lyrics: FormattedLyrics) {
+			state.cachedFormattedLyrics[`${lyrics.showId}-${lyrics.id}`] = lyrics;
 		}
 	},
 	plugins: [ createLogger({

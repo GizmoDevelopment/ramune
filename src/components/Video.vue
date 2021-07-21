@@ -6,7 +6,12 @@
 		@mouseenter="isOverlayVisible = true"
 		@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
 	>
-		<div class="constant-video-overlay">
+		<div v-if="room && isFullscreen" class="constant-video-overlay">
+			<UserList
+				class="overlay-user-list"
+				:users="room.users"
+				:host="room.host"
+			/>
 			<div v-if="isBuffering">
 				<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 			</div>
@@ -158,6 +163,7 @@
 	// Components
 	import EffectsRenderer from "@components/EffectsRenderer.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import UserList from "@components/UserList.vue";
 
 	// Icons
 	import Play from "@assets/icons/play.svg?component";
@@ -175,7 +181,7 @@
 
 	// Types
 	import { Episode, Show } from "@typings/show";
-	import { RoomSyncData } from "@typings/room";
+	import { Room, RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",
@@ -190,7 +196,8 @@
 			VolumeOff,
 			VolumeLow,
 			VolumeMedium,
-			VolumeHigh
+			VolumeHigh,
+			UserList
 		},
 		props: {
 			show: {
@@ -263,6 +270,9 @@
 			hoverTimestamp (): string {
 				const offset = this.hoverTimestampOffset;
 				return formatTimestamp(this.getProgressBarTimestamp(offset));
+			},
+			room (): Room | null {
+				return this.$store.state.room;
 			}
 		},
 		watch: {
@@ -687,6 +697,16 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+	}
+
+	/* Overlay */
+
+	.overlay-user-list {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 2.5rem;
+		margin: .5rem;
 	}
 
 </style>

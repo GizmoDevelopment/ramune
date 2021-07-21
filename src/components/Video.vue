@@ -152,6 +152,12 @@
 				:timestamp="currentVideoTime"
 			/>
 		</div>
+		<div v-if="episode.data.lyrics && !isInPopOutMode">
+			<KaraokeRenderer
+				:lyrics="episode.data.lyrics"
+				:timestamp="currentVideoTime"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -161,9 +167,12 @@
 	import { defineComponent, PropType, ref } from "vue";
 
 	// Components
-	import EffectsRenderer from "@components/EffectsRenderer.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import UserList from "@components/UserList.vue";
+
+	// Renderers
+	import EffectsRenderer from "@renderers/Effects.vue";
+	import KaraokeRenderer from "@renderers/Karaoke.vue";
 
 	// Icons
 	import Play from "@assets/icons/play.svg?component";
@@ -197,7 +206,8 @@
 			VolumeLow,
 			VolumeMedium,
 			VolumeHigh,
-			UserList
+			UserList,
+			KaraokeRenderer
 		},
 		props: {
 			show: {

@@ -21,14 +21,14 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
-	// Components
+	// Renderers
 	import Leaf from "@renderers/Leaf.vue";
 
 	// Types
 	import { EpisodeEffect } from "@typings/show";
 
 	export default defineComponent({
-		name: "EffectsRenderer",
+		name: "Effects",
 		components: {
 			Leaf
 		},

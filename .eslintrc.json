@@ -51,6 +51,9 @@
 			{
 				"singleline": 2
 			}
+		],
+		"vue/script-setup-uses-vars": [
+			"off"
 		]
     },
 	"overrides": [

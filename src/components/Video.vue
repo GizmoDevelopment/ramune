@@ -154,6 +154,7 @@
 		</div>
 		<div v-if="episode.data.lyrics && !isInPopOutMode">
 			<KaraokeRenderer
+				:show-id="show.id"
 				:lyrics="episode.data.lyrics"
 				:timestamp="currentVideoTime"
 			/>

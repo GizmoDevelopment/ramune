@@ -397,10 +397,10 @@
 				if (this.video && document.activeElement && ![ "SPAN", "INPUT", "TEXTAREA" ].includes(document.activeElement.tagName)) {
 					switch (e.code) {
 						case "ArrowLeft":
-							this.video.currentTime -= 15;
+							this.video.currentTime -= 5;
 							break;
 						case "ArrowRight":
-							this.video.currentTime += 15;
+							this.video.currentTime += 5;
 							break;
 						case "Space":
 							this.togglePlayPause();

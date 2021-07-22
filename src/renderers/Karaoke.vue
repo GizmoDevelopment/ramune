@@ -5,7 +5,7 @@
 			<div class="lyrics-container">
 				<transition name="lyrics-line-slide" mode="out-in">
 					<span :key="currentLineIndex">
-						<b v-if="isTitleLine">{{ currentLine }}</b>
+						<template v-if="isTitleLine">{{ currentLine }}</template>
 						<i v-else>{{ currentLine }}</i>
 					</span>
 				</transition>
@@ -15,9 +15,6 @@
 </template>
 
 <script lang="ts">
-
-	// TODO: Implement transitions for lines
-	// TODO: Position in the subtitle field so it works in fullscreen
 
 	// Modules
 	import { defineComponent, PropType } from "vue";
@@ -103,7 +100,7 @@
 						}
 
 						if (!didPickLine) {
-							if ((timestamp - parsedLyrics.start) < 6) {
+							if ((timestamp - parsedLyrics.start) < 5) {
 								this.isTitleLine = true;
 								this.currentLine = `${ parsedLyrics.artist } - ${ parsedLyrics.title }`;
 							} else {
@@ -166,12 +163,13 @@
 
 	.lyrics-appear-enter-active,
 	.lyrics-appear-leave-active {
-		transition: opacity .5s ease;
+		transition: opacity .4s ease, transform .3s ease-in-out;
 	}
 
 	.lyrics-appear-enter-from,
 	.lyrics-appear-leave-to {
 		opacity: 0;
+		transform: translateY(.4rem) scale(98%);
 	}
 
 	.lyrics-line-slide-enter-active,
@@ -181,12 +179,12 @@
 
 	.lyrics-line-slide-enter-from {
 		opacity: 0;
-		transform: translateY(.2em);
+		transform: translateY(.2rem);
 	}
 
 	.lyrics-line-slide-leave-to {
 		opacity: 0;
-		transform: translateY(-.2em);
+		transform: translateY(-.2rem);
 	}
 
 	.karaoke-holder {

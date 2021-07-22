@@ -1,8 +1,8 @@
 <template>
 	<div ref="chatContainer">
-		<div id="overlay" ref="chat">
-			<div id="chat-container">
-				<div id="chat-message-container">
+		<div ref="chat" class="chat-overlay">
+			<div class="chat-container">
+				<div class="chat-message-container">
 					<transition-group name="message-fade">
 						<div v-for="(message, index) in messages" :key="message.id">
 							<div v-if="messages[index - 1]?.user?.id === message.user.id">
@@ -15,15 +15,14 @@
 					</transition-group>
 				</div>
 				<form
-					id="chat-input-container"
+					class="chat-input-container"
 					:class="{ 'hidden-chat-input-container': isFullscreen && !isFocusedOnInput }"
 					@submit.prevent="sendMessage"
 				>
 					<textarea
-						id="chat-input"
 						ref="input"
 						v-model="messageContent"
-						class="input"
+						class="input chat-input"
 						placeholder="Click here or press '/' to start typing"
 						maxlength="500"
 						cols="28"
@@ -241,7 +240,7 @@
 
 	/* Chat Window */
 
-	#overlay {
+	.chat-overlay {
 		width: 100%;
 		height: 100%;
 		top: 0;
@@ -250,7 +249,7 @@
 		pointer-events: none;
 	}
 
-	#chat-container {
+	.chat-container {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -263,21 +262,21 @@
 		justify-content: flex-end;
 	}
 
-	#chat-container * {
+	.chat-container * {
 		position: relative;
 	}
 
-	#chat-message-container, #chat-input-container {
+	.chat-message-container, .chat-input-container {
 		width: 100%;
 	}
 
-	#chat-message-container {
+	.chat-message-container {
 		margin-bottom: 1rem;
 	}
 
 	/* Chat Input */
 
-	#chat-input-container {
+	.chat-input-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -287,7 +286,7 @@
 		opacity: 1;
 	}
 
-	#chat-input-container button {
+	.chat-input-container button {
 
 		margin-left: 10px;
 
@@ -296,7 +295,7 @@
 		}
 	}
 
-	#chat-input {
+	.chat-input {
 		flex: 1;
 		min-height: 36px;
 		font-size: 1rem;
@@ -306,7 +305,7 @@
 		margin: 0;
 	}
 
-	#chat-input, #chat-message-container {
+	.chat-input, .chat-message-container {
 		z-index: 4;
 	}
 

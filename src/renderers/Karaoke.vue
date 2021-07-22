@@ -4,7 +4,10 @@
 			<MusicNote />
 			<div class="lyrics-container">
 				<transition name="lyrics-line-slide" mode="out-in">
-					<span :key="currentLineIndex"><i>{{ currentLine }}</i></span>
+					<span :key="currentLineIndex">
+						<b v-if="isTitleLine">{{ currentLine }}</b>
+						<i v-else>{{ currentLine }}</i>
+					</span>
 				</transition>
 			</div>
 		</div>
@@ -55,9 +58,10 @@
 		data () {
 			return {
 				parsedLyrics: [] as ParsedLyrics[],
+				currentLyricsId: "",
 				currentLine: "",
 				currentLineIndex: 0,
-				currentLyricsId: ""
+				isTitleLine: false
 			};
 		},
 		computed: {
@@ -86,6 +90,8 @@
 								if (timestamp >= (parsedLyrics.start + line.start)) {
 
 									didPickLine = true;
+
+									this.isTitleLine = false;
 									this.currentLine = line.content;
 									this.currentLineIndex = lineCounter;
 
@@ -97,7 +103,12 @@
 						}
 
 						if (!didPickLine) {
-							this.currentLine = "";
+							if ((timestamp - parsedLyrics.start) < 6) {
+								this.isTitleLine = true;
+								this.currentLine = `${ parsedLyrics.artist } - ${ parsedLyrics.title }`;
+							} else {
+								this.currentLine = "";
+							}
 						}
 
 					} else if (this.currentLyricsId === parsedLyrics.id) {

@@ -3,7 +3,7 @@
 		<transition name="lyrics-appear">
 			<div v-if="currentLyricsId.length && currentLine.length > 0" class="karaoke-container">
 				<transition name="lyrics-line-slide" mode="out-in">
-					<span>{{ currentLine }}</span>
+					<span :key="currentLineIndex">{{ currentLine }}</span>
 				</transition>
 			</div>
 		</transition>
@@ -49,6 +49,7 @@
 			return {
 				parsedLyrics: [] as ParsedLyrics[],
 				currentLine: "",
+				currentLineIndex: 0,
 				currentLyricsId: ""
 			};
 		},
@@ -65,7 +66,9 @@
 				this.parsedLyrics.forEach((parsedLyrics: ParsedLyrics) => {
 					if (timestamp >= parsedLyrics.start && timestamp < parsedLyrics.end) {
 
-						let didPickLine = false;
+						let
+							didPickLine = false,
+							lineCounter = 0;
 
 						this.currentLyricsId = parsedLyrics.id;
 
@@ -77,11 +80,13 @@
 
 									didPickLine = true;
 									this.currentLine = line.content;
+									this.currentLineIndex = lineCounter;
 
 									break;
 								}
 							}
 
+							lineCounter++;
 						}
 
 						if (!didPickLine) {
@@ -153,17 +158,17 @@
 
 	.lyrics-line-slide-enter-active,
 	.lyrics-line-slide-leave-active {
-		transition: opacity .15s ease, transform .2s ease;
+		transition: opacity .1s ease, transform .15s ease;
 	}
 
 	.lyrics-line-slide-enter-from {
 		opacity: 0;
-		transform: translateY(-.3em);
+		transform: translateY(.3em);
 	}
 
 	.lyrics-line-slide-leave-to {
 		opacity: 0;
-		transform: translateY(.3em);
+		transform: translateY(-.3em);
 	}
 
 	.karaoke-holder {
@@ -176,10 +181,15 @@
 	}
 
 	.karaoke-container {
+
 		background-color: variable(container-background-color);
 		border-radius: variable(card-border-radius);
 		padding: .5rem 1rem .5rem 1rem;
 		font-size: 1.7em;
+
+		span {
+			display: inline-block;
+		}
 	}
 
 </style>

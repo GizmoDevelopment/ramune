@@ -1,13 +1,14 @@
 <template>
-	<div class="karaoke-holder">
-		<transition name="lyrics-appear">
-			<div v-if="currentLyricsId.length && currentLine.length > 0" class="karaoke-container">
+	<transition name="lyrics-appear">
+		<div v-if="currentLyricsId.length && currentLine.length > 0" class="karaoke-holder">
+			<MusicNote />
+			<div class="lyrics-container">
 				<transition name="lyrics-line-slide" mode="out-in">
-					<span :key="currentLineIndex">{{ currentLine }}</span>
+					<span :key="currentLineIndex"><i>{{ currentLine }}</i></span>
 				</transition>
 			</div>
-		</transition>
-	</div>
+		</div>
+	</transition>
 </template>
 
 <script lang="ts">
@@ -18,6 +19,9 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Icons
+	import MusicNote from "@assets/icons/music-note.svg?component";
+
 	// Utils
 	import { formatLyrics } from "@utils/lyrics";
 
@@ -27,6 +31,9 @@
 
 	export default defineComponent({
 		name: "Karaoke",
+		components: {
+			MusicNote
+		},
 		props: {
 			showId: {
 				type: String,
@@ -163,29 +170,35 @@
 
 	.lyrics-line-slide-enter-from {
 		opacity: 0;
-		transform: translateY(.3em);
+		transform: translateY(.2em);
 	}
 
 	.lyrics-line-slide-leave-to {
 		opacity: 0;
-		transform: translateY(-.3em);
+		transform: translateY(-.2em);
 	}
 
 	.karaoke-holder {
-		margin-top: .5rem;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.karaoke-container {
 
 		background-color: variable(container-background-color);
 		border-radius: variable(card-border-radius);
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+
+		svg {
+			height: 2em;
+		}
+	}
+
+	.lyrics-container {
+
 		padding: .5rem 1rem .5rem 1rem;
-		font-size: 1.7em;
+		font-size: 2em;
 
 		span {
 			display: inline-block;

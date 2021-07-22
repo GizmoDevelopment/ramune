@@ -16,11 +16,15 @@
 				<div class="popup-title-bar">
 					<Close class="popup-close-button" @click="$emit('dismiss')" />
 				</div>
-				<div v-if="show">
+				<div v-if="show" class="show-information">
 					<ShowInformation
 						:show="show"
 					/>
-					<img class="show-banner" :src="show.banner_url">
+					<img
+						class="show-banner"
+						:src="show.banner_url"
+						draggable="false"
+					>
 				</div>
 				<div v-else-if="error">
 					<Error :text="error" />
@@ -187,7 +191,8 @@
 		padding-right: 2em;
 		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
 
-		div {
+		.show-information div {
+			position: relative;
 			z-index: 2;
 		}
 	}
@@ -217,13 +222,18 @@
 		align-items: center;
 	}
 
+	/* Close Button */
+
 	.popup-close-button {
 		height: 2em;
+		z-index: 2;
 	}
 
 	.popup-close-button:hover {
 		cursor: pointer;
 	}
+
+	/* Show Banner */
 
 	.show-banner {
 		position: absolute;
@@ -234,7 +244,7 @@
 		border-top-left-radius: variable(popup-border-radius);
 		border-top-right-radius: variable(popup-border-radius);
 		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-		opacity: .15;
+		opacity: .1;
 		z-index: 1;
 	}
 

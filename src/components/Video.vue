@@ -53,6 +53,15 @@
 						>
 					</div>
 				</transition>
+				<div v-if="episode.data.lyrics && !isInPopOutMode">
+					<KaraokeRenderer
+						class="karaoke"
+						:show-id="show.id"
+						:episode-id="episode.id"
+						:lyrics="episode.data.lyrics"
+						:timestamp="currentVideoTime"
+					/>
+				</div>
 			</div>
 			<transition name="fade">
 				<div
@@ -153,14 +162,6 @@
 		<div v-if="episode.data.effects && !isInPopOutMode">
 			<EffectsRenderer
 				:effects="episode.data.effects"
-				:timestamp="currentVideoTime"
-			/>
-		</div>
-		<div v-if="episode.data.lyrics && !isInPopOutMode">
-			<KaraokeRenderer
-				:show-id="show.id"
-				:episode-id="episode.id"
-				:lyrics="episode.data.lyrics"
 				:timestamp="currentVideoTime"
 			/>
 		</div>
@@ -723,6 +724,12 @@
 		left: 0;
 		height: 2.5rem;
 		margin: .5rem;
+	}
+
+	.karaoke {
+		position: absolute;
+		bottom: 3.7rem;
+		left: .7rem;
 	}
 
 </style>

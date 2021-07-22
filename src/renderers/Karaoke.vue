@@ -190,7 +190,7 @@
 	.karaoke-holder {
 
 		background-color: variable(container-background-color);
-		border-radius: variable(card-border-radius);
+		border-radius: variable(popup-border-radius);
 		padding-left: 1rem;
 		padding-right: 1rem;
 

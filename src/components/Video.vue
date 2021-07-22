@@ -529,7 +529,7 @@
 	.slide-enter-from,
 	.slide-leave-to {
 		opacity: 0;
-		transform: translateY(.5em);
+		transform: translateY(.5em) scaleX(95%);
 	}
 
 	/* Video Containers */

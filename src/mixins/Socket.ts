@@ -9,6 +9,9 @@ import { setCookie } from "@utils/dom";
 
 export default defineComponent({
 	computed: {
+		isConnected (): boolean {
+			return this.$socket.connected;
+		},
 		room (): Room | null {
 			return this.$store.state.room;
 		}

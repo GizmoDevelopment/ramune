@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="isConnected">
 		<h1 class="heading">Online users</h1>
 		<div class="online-user-list">
 			<div
@@ -19,6 +19,9 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Mixins
+	import Socket from "@mixins/Socket";
+
 	// Utils
 	import { clearPageTitle } from "@utils/dom";
 
@@ -28,6 +31,7 @@
 
 	export default defineComponent({
 		name: "Home",
+		mixins: [ Socket ],
 		data () {
 			return {
 				onlineUsers: [] as User[]

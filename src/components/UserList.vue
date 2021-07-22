@@ -61,6 +61,10 @@
 		transform: translateY(.5rem);
 	}
 
+	.user-list-move {
+		transition: transform .3s ease;
+	}
+
 	.user-list {
 		display: flex;
 		flex-direction: row;

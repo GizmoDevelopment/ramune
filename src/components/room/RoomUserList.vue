@@ -1,6 +1,6 @@
 <template>
 	<div class="user-list">
-		<transition-group name="user-list">
+		<transition-group name="room-user-list">
 			<div
 				v-for="user in users"
 				:key="user.id"
@@ -88,15 +88,19 @@
 
 	@import "@styles/main.scss";
 
-	.user-list-enter-active,
-	.user-list-leave-active {
+	.room-user-list-enter-active,
+	.room-user-list-leave-active {
 		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
 	}
 
-	.user-list-enter-from,
-	.user-list-leave-to {
+	.room-user-list-enter-from,
+	.room-user-list-leave-to {
 		opacity: 0;
 		transform: translateY(.5rem);
+	}
+
+	.room-user-list-move {
+		transition: transform .3s ease;
 	}
 
 	.user-list {

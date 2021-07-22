@@ -10,8 +10,11 @@ function convertTimestampToSeconds (timestamp: string): number {
 	let time = 0;
 
 	timestamp.split(":").reverse().forEach((num, index) => {
-		if (typeof parseInt(num) === "number") {
-			time += parseInt(num) * Math.pow(60, index);
+
+		const _num = Number(num);
+
+		if (!isNaN(_num)) {
+			time += _num * Math.pow(60, index);
 		}
 	});
 

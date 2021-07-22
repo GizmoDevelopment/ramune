@@ -1,12 +1,12 @@
 <template>
-	<transition name="fade-overlay">
+	<transition name="fade-show-popup-overlay">
 		<div
 			v-if="showId"
 			class="overlay"
 			@click="$emit('dismiss')"
 		/>
 	</transition>
-	<transition name="slide-content">
+	<transition name="slide-show-popup">
 		<div
 			v-if="showId"
 			class="content-container"
@@ -132,13 +132,13 @@
 		background: var(--overlay-background-color);
 	}
 
-	.fade-overlay-enter-active,
-	.fade-overlay-leave-active {
+	.fade-show-popup-overlay-enter-active,
+	.fade-show-popup-overlay-leave-active {
 		transition: opacity .3s ease-in-out;
 	}
 
-	.fade-overlay-enter-from,
-	.fade-overlay-leave-to {
+	.fade-show-popup-overlay-enter-from,
+	.fade-show-popup-overlay-leave-to {
 		opacity: 0;
 	}
 
@@ -150,17 +150,17 @@
 		overflow-y: auto;
 	}
 
-	.slide-content-enter-active {
+	.slide-show-popup-enter-active {
 		transition: transform .45s var(--easing-enter), opacity .25s ease
 	}
 
-	.slide-content-leave-active {
+	.slide-show-popup-leave-active {
 		transition: transform .3s var(--easing-leave), opacity .25s ease
 	}
 
-	.slide-content-enter-from,
-	.slide-content-leave-to {
-		transform: translateY(6rem);
+	.slide-show-popup-enter-from,
+	.slide-show-popup-leave-to {
+		transform: translateY(4rem) scale(98%);
 		opacity: 0;
 	}
 

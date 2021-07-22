@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<transition name="fade-overlay">
+		<transition name="fade-popup-overlay">
 			<div
 				v-if="visible"
 				class="overlay"
 				@click="$emit('dismiss')"
 			/>
 		</transition>
-		<transition name="slide-content">
+		<transition name="slide-popup">
 			<div
 				v-if="visible"
 				class="popup-positioner"
@@ -73,27 +73,27 @@
 
 <style scoped>
 
-	.fade-overlay-enter-active,
-	.fade-overlay-leave-active {
+	.fade-popup-overlay-enter-active,
+	.fade-popup-overlay-leave-active {
 		transition: opacity .3s ease-in-out;
 	}
 
-	.fade-overlay-enter-from,
-	.fade-overlay-leave-to {
+	.fade-popup-overlay-enter-from,
+	.fade-popup-overlay-leave-to {
 		opacity: 0;
 	}
 
-	.slide-content-enter-active {
+	.slide-popup-enter-active {
 		transition: transform .45s var(--easing-enter), opacity .25s ease
 	}
 
-	.slide-content-leave-active {
+	.slide-popup-leave-active {
 		transition: transform .3s var(--easing-leave), opacity .25s ease
 	}
 
-	.slide-content-enter-from,
-	.slide-content-leave-to {
-		transform: translateY(6rem);
+	.slide-popup-enter-from,
+	.slide-popup-leave-to {
+		transform: translateY(4rem) scale(98%);
 		opacity: 0;
 	}
 

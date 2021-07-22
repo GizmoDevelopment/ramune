@@ -66,6 +66,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		margin-top: 1rem;
+		padding-bottom: 1.5rem;
 	}
 
 	.show-poster {
@@ -107,7 +108,7 @@
 	}
 
 	.show-description {
-		font-size: 1rem;
+		font-size: 1.2rem;
 		text-align: left;
 		white-space: pre-line;
 	}

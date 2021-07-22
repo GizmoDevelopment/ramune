@@ -20,6 +20,7 @@
 					<ShowInformation
 						:show="show"
 					/>
+					<img class="show-banner" :src="show.banner_url">
 				</div>
 				<div v-else-if="error">
 					<Error :text="error" />
@@ -115,7 +116,35 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/main.scss";
+
+	/* Transitions */
+
+	.fade-show-popup-overlay-enter-active,
+	.fade-show-popup-overlay-leave-active {
+		transition: opacity .3s ease-in-out;
+	}
+
+	.fade-show-popup-overlay-enter-from,
+	.fade-show-popup-overlay-leave-to {
+		opacity: 0;
+	}
+
+	.slide-show-popup-enter-active {
+		transition: transform .45s variable(easing-enter), opacity .25s ease
+	}
+
+	.slide-show-popup-leave-active {
+		transition: transform .3s variable(easing-leave), opacity .25s ease
+	}
+
+	.slide-show-popup-enter-from,
+	.slide-show-popup-leave-to {
+		transform: translateY(4rem) scale(98%);
+		opacity: 0;
+	}
 
 	/* Overlay & Container */
 
@@ -129,17 +158,7 @@
 	}
 
 	.overlay {
-		background: var(--overlay-background-color);
-	}
-
-	.fade-show-popup-overlay-enter-active,
-	.fade-show-popup-overlay-leave-active {
-		transition: opacity .3s ease-in-out;
-	}
-
-	.fade-show-popup-overlay-enter-from,
-	.fade-show-popup-overlay-leave-to {
-		opacity: 0;
+		background: variable(overlay-background-color);
 	}
 
 	.content-container {
@@ -150,26 +169,14 @@
 		overflow-y: auto;
 	}
 
-	.slide-show-popup-enter-active {
-		transition: transform .45s var(--easing-enter), opacity .25s ease
-	}
-
-	.slide-show-popup-leave-active {
-		transition: transform .3s var(--easing-leave), opacity .25s ease
-	}
-
-	.slide-show-popup-enter-from,
-	.slide-show-popup-leave-to {
-		transform: translateY(4rem) scale(98%);
-		opacity: 0;
-	}
-
 	.show-container {
+
+		position: relative;
 		margin-top: 5%;
 		margin-bottom: 20px;
 		width: 1100px;
-		background-color: var(--container-background-color);
-		border-radius: var(--popup-border-radius);
+		background-color: variable(container-background-color);
+		border-radius: variable(popup-border-radius);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -179,6 +186,10 @@
 		padding-left: 2em;
 		padding-right: 2em;
 		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
+
+		div {
+			z-index: 2;
+		}
 	}
 
 	@media only screen and (max-width: 1250px) {
@@ -212,6 +223,25 @@
 
 	.popup-close-button:hover {
 		cursor: pointer;
+	}
+
+	.show-banner {
+		position: absolute;
+		width: 100%;
+		height: auto;
+		left: 0;
+		top: 0;
+		border-top-left-radius: variable(popup-border-radius);
+		border-top-right-radius: variable(popup-border-radius);
+		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+		opacity: .15;
+		z-index: 1;
+	}
+
+	@media only screen and (max-width: 1200px) {
+		.show-banner {
+			display: none;
+		}
 	}
 
 </style>

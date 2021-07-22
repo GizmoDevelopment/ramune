@@ -11,7 +11,7 @@ function convertTimestampToSeconds (timestamp: string): number {
 
 	timestamp.split(":").reverse().forEach((num, index) => {
 		if (typeof parseInt(num) === "number") {
-			time += index > 0 ? parseInt(num) * (index * 60) : parseInt(num);
+			time += parseInt(num) * Math.pow(60, index);
 		}
 	});
 

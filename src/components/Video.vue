@@ -282,7 +282,8 @@
 				return this.$store.state.isRequestingRoomSync;
 			},
 			isInPopOutMode (): boolean {
-				return this.$route.path.match(/^\/rooms|watch\/.*$/i) === null;
+				console.log(this.$route.path, this.$route.path.match(/^\/rooms|watch\/.*$/i));
+				return this.$route.path.match(/^\/watch\/.+|\/rooms\/.+$/i) === null;
 			},
 			hoverTimestamp (): string {
 				const offset = this.hoverTimestampOffset;

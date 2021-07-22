@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Types
 import { Lyrics } from "@typings/show";
-import { FormattedLyrics, Line } from "@typings/lyrics";
+import { ParsedLyrics, Line } from "@typings/lyrics";
 
 function convertTimestampToSeconds (timestamp: string): number {
 
@@ -18,11 +18,11 @@ function convertTimestampToSeconds (timestamp: string): number {
 	return time;
 }
 
-export async function formatLyrics (lyrics: Lyrics): Promise<FormattedLyrics> {
+export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 
 	const
 		rawLyrics: string = (await axios.get(lyrics.url))?.data,
-		_lyrics: FormattedLyrics = {
+		_lyrics: ParsedLyrics = {
 			id: lyrics.id,
 			start: lyrics.start,
 			end: 0,

@@ -1,4 +1,4 @@
-export interface FormattedLyrics {
+export interface ParsedLyrics {
 	id: string;
 	start: number;
 	end: number;

@@ -23,7 +23,7 @@
 
 	// Types
 	import { Lyrics } from "@typings/show";
-	import { FormattedLyrics } from "@typings/lyrics";
+	import { ParsedLyrics } from "@typings/lyrics";
 
 	export default defineComponent({
 		name: "Karaoke",
@@ -47,14 +47,14 @@
 		},
 		data () {
 			return {
-				formattedLyrics: [] as FormattedLyrics[],
+				parsedLyrics: [] as ParsedLyrics[],
 				currentLine: "",
 				currentLyricsId: ""
 			};
 		},
 		computed: {
-			cachedFormattedLyrics (): Record<string, FormattedLyrics> {
-				return this.$store.state.cachedFormattedLyrics;
+			cachedParsedLyrics (): Record<string, ParsedLyrics> {
+				return this.$store.state.cachedParsedLyrics;
 			}
 		},
 		watch: {
@@ -62,18 +62,18 @@
 				this.reloadLyrics(lyrics);
 			},
 			timestamp (timestamp: number) {
-				this.formattedLyrics.forEach((formattedLyrics: FormattedLyrics) => {
-					if (timestamp >= formattedLyrics.start && timestamp < formattedLyrics.end) {
+				this.parsedLyrics.forEach((parsedLyrics: ParsedLyrics) => {
+					if (timestamp >= parsedLyrics.start && timestamp < parsedLyrics.end) {
 
 						let didPickLine = false;
 
-						this.currentLyricsId = formattedLyrics.id;
+						this.currentLyricsId = parsedLyrics.id;
 
-						for (let line of formattedLyrics.lines) {
+						for (let line of parsedLyrics.lines) {
 
 							// TODO: Add support for TimedLine
 							if (typeof line.content === "string") {
-								if (timestamp >= (formattedLyrics.start + line.start)) {
+								if (timestamp >= (parsedLyrics.start + line.start)) {
 
 									didPickLine = true;
 									this.currentLine = line.content;
@@ -88,7 +88,7 @@
 							this.currentLine = "";
 						}
 
-					} else if (this.currentLyricsId === formattedLyrics.id) {
+					} else if (this.currentLyricsId === parsedLyrics.id) {
 						this.currentLyricsId = "";
 					}
 				});
@@ -100,29 +100,29 @@
 			}
 		},
 		methods: {
-			getCachedFormattedLyricsName (lyrics: Lyrics): string {
+			getCachedParsedLyricsName (lyrics: Lyrics): string {
 				return `${this.showId}-${lyrics.id}`;
 			},
 			reloadLyrics (lyrics: Lyrics[]) {
 
-				const newLyrics: FormattedLyrics[] = [];
+				const newLyrics: ParsedLyrics[] = [];
 
 				lyrics.forEach((lyrics: Lyrics) => {
 
-					const formattedLyricsName = this.getCachedFormattedLyricsName(lyrics);
+					const parsedLyricsName = this.getCachedParsedLyricsName(lyrics);
 
-					if (formattedLyricsName in this.cachedFormattedLyrics) {
-						newLyrics.push(this.cachedFormattedLyrics[formattedLyricsName]);
+					if (parsedLyricsName in this.cachedParsedLyrics) {
+						newLyrics.push(this.cachedParsedLyrics[parsedLyricsName]);
 					} else {
 
 						const
 							_showId = this.showId,
 							_episodeId = this.episodeId;
 
-						formatLyrics(lyrics).then((formattedLyrics: FormattedLyrics) => {
+						formatLyrics(lyrics).then((parsedLyrics: ParsedLyrics) => {
 							if (this.showId === _showId && this.episodeId === _episodeId) {
-								this.$store.commit("CACHE_FORMATTED_LYRICS", { showId: this.showId, lyrics: formattedLyrics });
-								this.formattedLyrics.push(formattedLyrics);
+								this.$store.commit("CACHE_FORMATTED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
+								this.parsedLyrics.push(parsedLyrics);
 							}
 						}).catch(err => {
 							console.error(err);
@@ -130,7 +130,7 @@
 					}
 				});
 
-				this.formattedLyrics = newLyrics;
+				this.parsedLyrics = newLyrics;
 			}
 		}
 	});

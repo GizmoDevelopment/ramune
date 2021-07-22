@@ -15,3 +15,19 @@ export function formatTimestamp (timestamp: number): string {
 
 	return `${ minutes }:${ seconds > 9 ? "" : 0 }${ seconds }`;
 }
+
+export function convertTimestampToSeconds (timestamp: string): number {
+
+	let time = 0;
+
+	timestamp.split(":").reverse().forEach((num, index) => {
+
+		const _num = Number(num);
+
+		if (!isNaN(_num)) {
+			time += _num * Math.pow(60, index);
+		}
+	});
+
+	return time;
+}

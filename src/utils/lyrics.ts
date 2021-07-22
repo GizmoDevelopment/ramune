@@ -1,25 +1,12 @@
 // Modules
 import axios from "axios";
 
+// Utils
+import { convertTimestampToSeconds } from "@utils/essentials";
+
 // Types
 import { Lyrics } from "@typings/show";
 import { ParsedLyrics, Line } from "@typings/lyrics";
-
-function convertTimestampToSeconds (timestamp: string): number {
-
-	let time = 0;
-
-	timestamp.split(":").reverse().forEach((num, index) => {
-
-		const _num = Number(num);
-
-		if (!isNaN(_num)) {
-			time += _num * Math.pow(60, index);
-		}
-	});
-
-	return time;
-}
 
 export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 

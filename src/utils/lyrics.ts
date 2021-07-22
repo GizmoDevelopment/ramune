@@ -24,6 +24,8 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 		rawLyrics: string = (await axios.get(lyrics.url))?.data,
 		_lyrics: ParsedLyrics = {
 			id: lyrics.id,
+			title: "",
+			artist: "",
 			start: lyrics.start,
 			end: 0,
 			lines: []
@@ -47,6 +49,16 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 				case "length":
 
 					_lyrics.end = _lyrics.start + convertTimestampToSeconds(lineValue);
+
+					break;
+				case "ar":
+
+					_lyrics.artist = lineValue.trim();
+
+					break;
+				case "ti":
+
+					_lyrics.title = lineValue.trim();
 
 					break;
 				default:

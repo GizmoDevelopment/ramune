@@ -7,12 +7,14 @@
 			@mouseenter="isOverlayVisible = true"
 			@mouseleave="isOverlayVisible = false; isVolumeTrayVisible = false; isSubtitleTrayVisible = false"
 		>
-			<div v-if="room && isFullscreen" class="constant-video-overlay">
-				<UserList
-					class="overlay-user-list"
-					:users="room.users"
-					:host="room.host"
-				/>
+			<div class="constant-video-overlay">
+				<div v-if="room && isFullscreen">
+					<UserList
+						class="overlay-user-list"
+						:users="room.users"
+						:host="room.host"
+					/>
+				</div>
 				<div v-if="isBuffering">
 					<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 				</div>

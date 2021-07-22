@@ -722,8 +722,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		height: 2.5rem;
-		margin: .5rem;
+		height: 2.25rem;
+		margin: 1rem;
 	}
 
 	.karaoke {

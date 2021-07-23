@@ -54,7 +54,6 @@
 		},
 		data () {
 			return {
-				// parsedLyrics: [] as ParsedLyrics[],
 				currentLyricsId: "",
 				currentLine: "",
 				currentLineIndex: 0,
@@ -190,8 +189,8 @@
 
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
-		padding-left: 1rem;
-		padding-right: 1rem;
+		padding-left: 1em;
+		padding-right: 1em;
 
 		display: flex;
 		flex-direction: row;
@@ -210,6 +209,19 @@
 
 		span {
 			display: inline-block;
+			font-size: 1em;
+		}
+	}
+
+	@media only screen and (max-width: 1100px) {
+		.karaoke-holder {
+			font-size: 10px;
+		}
+	}
+
+	@media only screen and (max-width: 750px) {
+		.karaoke-holder {
+			font-size: 5px;
 		}
 	}
 

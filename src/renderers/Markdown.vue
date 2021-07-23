@@ -28,7 +28,8 @@
 		"Tip",
 		"Booba",
 		"GizmoHeart",
-		"NotSad"
+		"NotSad",
+		"Agony"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

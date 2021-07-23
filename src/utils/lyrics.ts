@@ -16,8 +16,7 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 			id: lyrics.id,
 			title: "",
 			artist: "",
-			start: lyrics.start,
-			end: 0,
+			length: 0,
 			lines: []
 		};
 
@@ -38,7 +37,7 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 			switch (lineName) {
 				case "length":
 
-					_lyrics.end = _lyrics.start + convertTimestampToSeconds(lineValue);
+					_lyrics.length = convertTimestampToSeconds(lineValue);
 
 					break;
 				case "ar":

@@ -2,8 +2,7 @@ export interface ParsedLyrics {
 	id: string;
 	title: string;
 	artist: string;
-	start: number;
-	end: number;
+	length: number;
 	lines: Array<TimedLine | Line>;
 }
 

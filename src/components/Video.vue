@@ -589,8 +589,15 @@
 		z-index: 2;
 	}
 
+	@media only screen and (max-width: 800px) {
+		.video-controls {
+			height: 2rem;
+			font-size: 10px;
+		}
+	}
+
 	.video-control-button {
-		width: 30px;
+		width: 2em;
 		height: auto;
 		margin-left: .65rem;
 		margin-right: .65rem;

@@ -1,13 +1,13 @@
 <template>
 	<div v-if="repeating">
 		<div class="message-container">
-			<MarkdownRenderer class="lonely-message-content" :content="message.content" />
+			<MarkdownRenderer class="message-content repeating-message-content" :content="message.content" />
 		</div>
 	</div>
 	<div v-else>
 		<div class="message-container">
 			<img class="message-author-avatar" :src="message.user.avatar_url">
-			<MarkdownRenderer class="message-content" :content="message.content" />
+			<MarkdownRenderer class="message-content first-message-content" :content="message.content" />
 		</div>
 	</div>
 </template>
@@ -66,11 +66,7 @@
 		margin-left: 11px;
 	}
 
-	.lonely-message-content {
-		margin-right: calc(35px + 11px);
-	}
-
-	.message-content, .lonely-message-content {
+	.message-content {
 
 		@include text-wrap;
 
@@ -82,7 +78,7 @@
 		text-align: left;
 	}
 
-	.message-content:before {
+	.first-message-content:before {
 		content: "";
 		position: absolute;
 		right: -5px;
@@ -94,12 +90,24 @@
 		border-right: 0;
 	}
 
+	.repeating-message-content {
+		margin-right: calc(35px + 11px);
+	}
+
 </style>
 
-<style>
+<style lang="scss">
 
-	.message-container .emoji {
-		height: 1.375em;
+	.message-container {
+
+		.emoji {
+			height: 1.375em;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
 	}
 
 </style>

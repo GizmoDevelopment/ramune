@@ -44,8 +44,8 @@
 				required: true
 			},
 			lyrics: {
-				type: Object as PropType<Lyrics[]>,
-				required: true
+				type: Array as PropType<Lyrics[]>,
+				default: () => []
 			},
 			timestamp: {
 				type: Number,
@@ -54,7 +54,7 @@
 		},
 		data () {
 			return {
-				parsedLyrics: [] as ParsedLyrics[],
+				// parsedLyrics: [] as ParsedLyrics[],
 				currentLyricsId: "",
 				currentLine: "",
 				currentLineIndex: 0,
@@ -62,7 +62,7 @@
 			};
 		},
 		computed: {
-			cachedParsedLyrics (): Record<string, ParsedLyrics> {
+			cachedParsedLyrics (): Record<string, ParsedLyrics | undefined> {
 				return this.$store.state.cachedParsedLyrics;
 			}
 		},
@@ -71,45 +71,51 @@
 				this.reloadLyrics(lyrics);
 			},
 			timestamp (timestamp: number) {
-				this.parsedLyrics.forEach((parsedLyrics: ParsedLyrics) => {
-					if (timestamp >= parsedLyrics.start && timestamp < parsedLyrics.end) {
 
-						let
-							didPickLine = false,
-							lineCounter = 0;
+				this.lyrics.forEach((lyrics: Lyrics) => {
 
-						this.currentLyricsId = parsedLyrics.id;
+					const parsedLyrics = this.cachedParsedLyrics[this.getCachedParsedLyricsName(lyrics)];
 
-						for (let line of parsedLyrics.lines) {
+					if (parsedLyrics) {
+						if (timestamp >= lyrics.start && timestamp < (lyrics.start + parsedLyrics.length)) {
 
-							// TODO: Add support for TimedLine
-							if (typeof line.content === "string") {
-								if (timestamp >= (parsedLyrics.start + line.start)) {
+							let
+								didPickLine = false,
+								lineCounter = 0;
 
-									didPickLine = true;
+							this.currentLyricsId = parsedLyrics.id;
 
-									this.isTitleLine = false;
-									this.currentLine = line.content;
-									this.currentLineIndex = lineCounter;
+							for (let line of parsedLyrics.lines) {
 
-									break;
+								// TODO: Add support for TimedLine
+								if (typeof line.content === "string") {
+									if (timestamp >= (lyrics.start + line.start)) {
+
+										didPickLine = true;
+
+										this.isTitleLine = false;
+										this.currentLine = line.content;
+										this.currentLineIndex = lineCounter;
+
+										break;
+									}
+								}
+
+								lineCounter++;
+							}
+
+							if (!didPickLine) {
+								if ((timestamp - lyrics.start) < 5) {
+									this.isTitleLine = true;
+									this.currentLine = `${ parsedLyrics.artist } - ${ parsedLyrics.title }`;
+								} else {
+									this.currentLine = "";
 								}
 							}
 
-							lineCounter++;
+						} else if (this.currentLyricsId === parsedLyrics.id) {
+							this.currentLyricsId = "";
 						}
-
-						if (!didPickLine) {
-							if ((timestamp - parsedLyrics.start) < 5) {
-								this.isTitleLine = true;
-								this.currentLine = `${ parsedLyrics.artist } - ${ parsedLyrics.title }`;
-							} else {
-								this.currentLine = "";
-							}
-						}
-
-					} else if (this.currentLyricsId === parsedLyrics.id) {
-						this.currentLyricsId = "";
 					}
 				});
 			}
@@ -124,16 +130,11 @@
 				return `${this.showId}-${lyrics.id}`;
 			},
 			reloadLyrics (lyrics: Lyrics[]) {
-
-				const newLyrics: ParsedLyrics[] = [];
-
 				lyrics.forEach((lyrics: Lyrics) => {
 
 					const parsedLyricsName = this.getCachedParsedLyricsName(lyrics);
 
-					if (parsedLyricsName in this.cachedParsedLyrics) {
-						newLyrics.push(this.cachedParsedLyrics[parsedLyricsName]);
-					} else {
+					if (!this.cachedParsedLyrics[parsedLyricsName]) {
 
 						const
 							_showId = this.showId,
@@ -142,15 +143,13 @@
 						formatLyrics(lyrics).then((parsedLyrics: ParsedLyrics) => {
 							if (this.showId === _showId && this.episodeId === _episodeId) {
 								this.$store.commit("CACHE_FORMATTED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
-								this.parsedLyrics.push(parsedLyrics);
 							}
 						}).catch(err => {
 							console.error(err);
 						});
 					}
-				});
 
-				this.parsedLyrics = newLyrics;
+				});
 			}
 		}
 	});

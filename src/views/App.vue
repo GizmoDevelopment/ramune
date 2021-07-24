@@ -91,13 +91,8 @@
 				this.$store.commit("USER_LEAVE_ROOM", user);
 
 				if (user.id === this.user?.id) {
-
 					this.$store.commit("LEAVE_ROOM");
 					this.$router.push("/rooms");
-
-					setTimeout(() => {
-						this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", null);
-					}, 50);
 				}
 			},
 			"ROOM:UPDATE" (room: Room) {

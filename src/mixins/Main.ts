@@ -10,7 +10,7 @@ export default defineComponent({
 	},
 	methods: {
 		teleportToElement (element: HTMLElement, parent: HTMLElement) {
-			parent.innerHTML = "";
+			element.parentElement?.removeChild(element);
 			parent.appendChild(element);
 		}
 	}

@@ -9,7 +9,7 @@ import { State } from "@typings/vuex";
 import { ParsedLyrics } from "@typings/lyrics";
 
 // Constants
-const DEV = import.meta.env.DEV;
+// const DEV = import.meta.env.DEV;
 
 export default createStore<State>({
 	state () {
@@ -19,7 +19,7 @@ export default createStore<State>({
 			cachedParsedLyrics: {},
 			user: null,
 			room: null,
-			roomVideoTeleportParent: null,
+			roomVideoTeleportParent: "room-video-container",
 			isRequestingRoomSync: false,
 			isLoadingRoomData: false,
 			connectError: ""
@@ -60,6 +60,7 @@ export default createStore<State>({
 		},
 		UPDATE_ROOM_CONTROLLER_STATE (state: State, newState: string | null) {
 			state.roomVideoTeleportParent = newState;
+			console.log(`ROOM CONTROLLER - ${newState}`);
 		},
 		CACHE_SHOW_LIST (state: State, newShowList: ShowHusk[]) {
 			state.cachedShowList = newShowList;

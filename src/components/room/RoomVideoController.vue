@@ -44,13 +44,8 @@
 				videoContainer
 			};
 		},
-		data () {
-			return {
-				teleportParent: "room-video-container" as string | null
-			};
-		},
 		computed: {
-			savedTeleportParent (): string | null {
+			teleportParent (): string | null {
 				return this.$store.state.roomVideoTeleportParent;
 			},
 			allowControls (): boolean {
@@ -58,9 +53,6 @@
 			}
 		},
 		watch: {
-			savedTeleportParent (newState: string | null) {
-				this.teleportParent = newState;
-			},
 			teleportParent () {
 				this.updateVideoParent();
 			}

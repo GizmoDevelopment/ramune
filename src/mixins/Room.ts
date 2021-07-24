@@ -35,7 +35,7 @@ export default defineComponent({
 			return this.room.host.id === this.user?.id;
 		},
 		isViewingRoom (): boolean {
-			return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
+			return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
 		}
 	},
 	methods: {

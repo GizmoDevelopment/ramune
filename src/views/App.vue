@@ -61,7 +61,7 @@
 				return this.$store.state.user;
 			},
 			isViewingRoom (): boolean {
-				return this.$route.path.match(/^\/rooms\/.*$/i) !== null;
+				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
 			}
 		},
 		async mounted () {

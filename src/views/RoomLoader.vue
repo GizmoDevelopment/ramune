@@ -82,7 +82,7 @@
 			}
 		},
 		beforeUnmount () {
-			if (this.leaving) {
+			if (this.room && this.leaving) {
 				this.$store.commit("LEAVE_ROOM");
 			}
 		},

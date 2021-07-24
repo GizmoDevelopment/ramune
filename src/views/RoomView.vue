@@ -84,8 +84,14 @@
 			}
 		},
 		mounted () {
-			this.toggleRoomControllerState("room-video-container");
+
 			setPageTitle(`Ramune — ${ this.room.name }`);
+
+			this.toggleRoomControllerState(null);
+
+			this.$nextTick(() => {
+				this.toggleRoomControllerState("room-video-container");
+			});
 		},
 		methods: {
 			kickUserId (userId: string) {

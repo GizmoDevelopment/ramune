@@ -87,9 +87,6 @@
 			this.toggleRoomControllerState("room-video-container");
 			setPageTitle(`Ramune — ${ this.room.name }`);
 		},
-		beforeUnmount () {
-			this.toggleRoomControllerState(null);
-		},
 		methods: {
 			kickUserId (userId: string) {
 				if (this.isHost) {

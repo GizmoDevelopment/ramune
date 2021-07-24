@@ -102,8 +102,8 @@
 
 				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
 					if (res.type !== "success") {
-						console.error(res.message);
 						this.leaving = false;
+						console.error(res.message);
 					}
 				});
 			}

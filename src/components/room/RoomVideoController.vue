@@ -1,15 +1,17 @@
 <template>
 	<div id="room-video-and-chat-container" ref="videoContainer">
-		<div v-if="show && episode">
-			<Video
+		<div v-if="show && episode && teleportParentExists">
+			<teleport :to="`#${teleportParent}`">
+				<Video
 
-				:show="show"
-				:episode="episode"
-				:controls="isHost"
-				:hide-controls="!allowControls"
+					:show="show"
+					:episode="episode"
+					:controls="isHost"
+					:hide-controls="!allowControls"
 
-				@update="pushSync"
-			/>
+					@update="pushSync"
+				/>
+			</teleport>
 		</div>
 	</div>
 </template>
@@ -50,27 +52,12 @@
 			},
 			allowControls (): boolean {
 				return this.teleportParent === "room-video-container";
+			},
+			teleportParentExists (): boolean {
+				return this.teleportParent !== null && document.getElementById(this.teleportParent) !== null;
 			}
-		},
-		watch: {
-			teleportParent () {
-				this.updateVideoParent();
-			}
-		},
-		mounted () {
-			this.updateVideoParent();
 		},
 		methods: {
-			updateVideoParent () {
-				if (this.videoContainer && this.teleportParent) {
-
-					const newParentElement = document.getElementById(this.teleportParent);
-
-					if (newParentElement) {
-						this.teleportToElement(this.videoContainer, newParentElement);
-					}
-				}
-			},
 			pushSync (playing: boolean, currentTime: number) {
 				if (this.isHost) {
 

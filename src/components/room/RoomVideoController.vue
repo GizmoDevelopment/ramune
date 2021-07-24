@@ -62,12 +62,17 @@
 		},
 		methods: {
 			updateVideoParent () {
-				if (this.teleportParent && this.videoContainer) {
+				if (this.videoContainer) {
+					if (this.teleportParent) {
 
-					const newParentElement = document.getElementById(this.teleportParent);
+						const newParentElement = document.getElementById(this.teleportParent);
 
-					if (newParentElement) {
-						this.teleportToElement(this.videoContainer, newParentElement);
+						if (newParentElement) {
+							this.teleportToElement(this.videoContainer, newParentElement);
+						}
+
+					} else {
+						this.videoContainer.parentElement?.removeChild(this.videoContainer);
 					}
 				}
 			},

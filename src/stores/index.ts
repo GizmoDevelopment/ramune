@@ -78,7 +78,7 @@ export default createStore<State>({
 		}
 	},
 	plugins: [ createLogger({
-		logActions: !!DEV,
-		logMutations: !!DEV
+		logActions: true,
+		logMutations: true
 	}) ]
 });

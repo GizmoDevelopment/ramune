@@ -39,7 +39,7 @@
 		},
 		mixins: [ RoomMixin ],
 		mounted () {
-			this.toggleRoomControllerState("room-video-popout-container");
+			if (this.room) this.toggleRoomControllerState("room-video-popout-container");
 		},
 		beforeUnmount () {
 			this.toggleRoomControllerState(null);

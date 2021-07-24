@@ -29,7 +29,7 @@ export default createStore<State>({
 		CACHE_SHOW (state: State, show: Show) {
 			state.shows.set(show.id, show);
 		},
-		UPDATE_USER(state: State, user: AuthenticatedUser) {
+		UPDATE_USER (state: State, user: AuthenticatedUser) {
 			state.user = user;
 		},
 		JOIN_ROOM (state: State, room: Room) {
@@ -48,7 +48,7 @@ export default createStore<State>({
 				state.room.users = state.room.users.filter(({ id }) => id !== user.id);
 			}
 		},
-		UPDATE_ROOM(state: State, data: UpdatableRoomProperties) {
+		UPDATE_ROOM (state: State, data: UpdatableRoomProperties) {
 			if (state.room) {
 				state.room = { ...state.room, ...data };
 			}

@@ -15,20 +15,18 @@ import Store from "./stores";
 
 // Directives
 import Tooltip from "./directives/tooltip";
-import { devtools } from "./directives/devtools";
 
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
-// const DEV = import.meta.env.DEV;
+const DEV = import.meta.env.DEV;
 
 if (typeof SOCKET_ENDPOINT === "string") {
 
 	createApp(App)
-		.use(devtools)
 		.use(Router)
 		.use(Store)
 		.use(new VueSocketIO({
-			debug: true,
+			debug: DEV,
 			connection: SocketIO(SOCKET_ENDPOINT),
 			vuex: {
 				store: Store,

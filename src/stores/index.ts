@@ -9,7 +9,7 @@ import { State } from "@typings/vuex";
 import { ParsedLyrics } from "@typings/lyrics";
 
 // Constants
-// const DEV = import.meta.env.DEV;
+const DEV = import.meta.env.DEV;
 
 export default createStore<State>({
 	state () {
@@ -78,7 +78,7 @@ export default createStore<State>({
 		}
 	},
 	plugins: [ createLogger({
-		logActions: true,
-		logMutations: true
+		logActions: DEV,
+		logMutations: DEV
 	}) ]
 });

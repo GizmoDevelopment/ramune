@@ -95,11 +95,9 @@
 					this.$store.commit("LEAVE_ROOM");
 					this.$router.push("/rooms");
 
-					const videoElement = document.getElementById("room-video-and-chat-container");
-
-					if (videoElement) {
-						videoElement.innerHTML = "";
-					}
+					setTimeout(() => {
+						this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", null);
+					}, 50);
 				}
 			},
 			"ROOM:UPDATE" (room: Room) {

@@ -19,7 +19,7 @@ export default createStore<State>({
 			cachedParsedLyrics: {},
 			user: null,
 			room: null,
-			roomVideoTeleportParent: "room-video-container",
+			roomVideoTeleportParent: null,
 			isRequestingRoomSync: false,
 			isLoadingRoomData: false,
 			connectError: ""

@@ -87,7 +87,8 @@
 
 			setPageTitle(`Ramune — ${ this.room.name }`);
 
-			this.toggleRoomControllerState(null);
+			// Fix for component re-mounting during testing
+			this.toggleRoomControllerState("content");
 
 			this.$nextTick(() => {
 				this.toggleRoomControllerState("room-video-container");

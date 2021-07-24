@@ -91,8 +91,15 @@
 				this.$store.commit("USER_LEAVE_ROOM", user);
 
 				if (user.id === this.user?.id) {
+
 					this.$store.commit("LEAVE_ROOM");
 					this.$router.push("/rooms");
+
+					const videoElement = document.getElementById("room-video-and-chat-container");
+
+					if (videoElement) {
+						videoElement.innerHTML = "";
+					}
 				}
 			},
 			"ROOM:UPDATE" (room: Room) {

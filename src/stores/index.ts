@@ -60,7 +60,6 @@ export default createStore<State>({
 		},
 		UPDATE_ROOM_CONTROLLER_STATE (state: State, newState: string | null) {
 			state.roomVideoTeleportParent = newState;
-			console.log(`ROOM CONTROLLER - ${newState}`);
 		},
 		CACHE_SHOW_LIST (state: State, newShowList: ShowHusk[]) {
 			state.cachedShowList = newShowList;

@@ -84,7 +84,7 @@
 			}
 		},
 		mounted () {
-			if (this.room) this.toggleRoomControllerState("room-video-container");
+			this.toggleRoomControllerState("room-video-container");
 			setPageTitle(`Ramune — ${ this.room.name }`);
 		},
 		beforeUnmount () {

@@ -19,7 +19,7 @@
 				<div v-if="isBuffering">
 					<LoadingBuffer :size="isInPopOutMode ? 'small' : 'normal'" />
 				</div>
-				<transition name="slide">
+				<transition name="video-platter-slide">
 					<div
 						v-if="isSubtitleTrayVisible"
 						class="video-control-tray subtitle-tray"
@@ -514,7 +514,7 @@
 	.video-platter-slide-enter-from,
 	.video-platter-slide-leave-to {
 		opacity: 0;
-		transform: translateY(.5em) scaleX(95%);
+		transform: translateY(.5em) scale(90%);
 	}
 
 	/* Video Containers */

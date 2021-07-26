@@ -497,7 +497,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/main.scss";
 
 	/* Transitions */
 
@@ -512,7 +514,7 @@
 	}
 
 	.slide-enter-active {
-		transition: opacity .2s ease, transform .4s var(--easing-enter);
+		transition: opacity .2s ease, transform .4s variable(easing-enter);
 	}
 
 	.slide-leave-active {
@@ -552,11 +554,6 @@
 		justify-content: center;
 	}
 
-	.video-overlay {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.video-screen {
 		flex: 1;
 		z-index: 2;
@@ -569,7 +566,7 @@
 	/* Video Controls */
 
 	.video-controls {
-		background-color: var(--container-background-color);
+		background-color: variable(container-background-color);
 		position: absolute;
 		width: 100%;
 		height: 3rem;
@@ -594,9 +591,6 @@
 		height: auto;
 		margin-left: .65rem;
 		margin-right: .65rem;
-	}
-
-	.video-control-button {
 		cursor: pointer;
 	}
 
@@ -611,10 +605,12 @@
 		position: relative;
 		flex: 1;
 		height: .5rem;
-		background-color: var(--text-color);
+		background-color: variable(text-color);
 	}
 
-	.progress-bar-container, .progress-bar, .progress-bar-overflow {
+	.progress-bar-container,
+	.progress-bar,
+	.progress-bar-overflow {
 		border-radius: 1.25rem;
 	}
 
@@ -626,7 +622,7 @@
 
 	.progress-bar {
 		height: 100%;
-		background-color: var(--primary-color);
+		background-color: variable(primary-color);
 		transition: .3s width ease;
 	}
 
@@ -635,8 +631,8 @@
 		transform: translateX(-50%);
 		top: -2rem;
 		padding: .1rem .3rem .1rem .3rem;
-		background-color: var(--background-color);
-		border-radius: var(--card-border-radius);
+		background-color: variable(background-color);
+		border-radius: variable(card-border-radius);
 		text-align: center;
 	}
 
@@ -664,8 +660,8 @@
 	.video-control-tray {
 		position: absolute;
 		bottom: 3.8rem;
-		background-color: var(--container-background-color);
-		border-radius: var(--card-border-radius);
+		background-color: variable(container-background-color);
+		border-radius: variable(card-border-radius);
 		pointer-events: visible;
 		z-index: 5; /* To go above chat messages */
 	}
@@ -673,20 +669,22 @@
 	/* Subtitle Tray */
 
 	.subtitle-tray {
+
 		right: .5rem;
 		width: 10rem;
 		padding: 0 0 1rem 0;
-	}
 
-	.subtitle-tray h3 {
-		margin-top: .5rem;
+		h3 {
+			margin-top: .5rem;
+		}
 	}
 
 	.subtitle-language-button {
+
 		background: none;
 		border: none;
 		font-weight: 100;
-		color: var(--text-color);
+		color: variable(text-color);
 		font-size: 1.1rem;
 		font-weight: lighter;
 		border-radius: 0;
@@ -695,15 +693,15 @@
 		padding: .2rem 0 .2rem 0;
 		transition: background-color .3s ease;
 		cursor: pointer;
-	}
 
-	.subtitle-language-button svg {
-		position: absolute;
-		left: 1rem;
-	}
+		&:hover {
+			background-color: variable(container-hover-color);
+		}
 
-	.subtitle-language-button:hover {
-		background-color: var(--container-hover-color);
+		svg {
+			position: absolute;
+			left: 1rem;
+		}
 	}
 
 	/* Volume Tray */

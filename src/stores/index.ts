@@ -15,8 +15,8 @@ export default createStore<State>({
 	state () {
 		return {
 			shows: new Map(),
+			parsedLyrics: new Map(),
 			cachedShowList: [],
-			cachedParsedLyrics: {},
 			user: null,
 			room: null,
 			roomVideoTeleportParent: null,
@@ -73,8 +73,8 @@ export default createStore<State>({
 		UPDATE_CONNECT_ERROR (state: State, message: string) {
 			state.connectError = message;
 		},
-		CACHE_FORMATTED_LYRICS (state: State, { showId, lyrics }: { showId: string, lyrics: ParsedLyrics }) {
-			state.cachedParsedLyrics[`${showId}-${lyrics.id}`] = lyrics;
+		CACHE_PARSED_LYRICS (state: State, { showId, lyrics }: { showId: string, lyrics: ParsedLyrics }) {
+			state.parsedLyrics.set(`${showId}-${lyrics.id}`, lyrics);
 		}
 	},
 	plugins: [ createLogger({

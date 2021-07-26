@@ -61,8 +61,8 @@
 			};
 		},
 		computed: {
-			cachedParsedLyrics (): Record<string, ParsedLyrics | undefined> {
-				return this.$store.state.cachedParsedLyrics;
+			cachedParsedLyrics (): Map<string, ParsedLyrics> {
+				return this.$store.state.parsedLyrics;
 			}
 		},
 		watch: {
@@ -73,7 +73,7 @@
 
 				this.lyrics.forEach((lyrics: Lyrics) => {
 
-					const parsedLyrics = this.cachedParsedLyrics[this.getCachedParsedLyricsName(lyrics)];
+					const parsedLyrics = this.cachedParsedLyrics.get(this.getCachedParsedLyricsName(lyrics));
 
 					if (parsedLyrics) {
 						if (timestamp >= lyrics.start && timestamp < (lyrics.start + parsedLyrics.length)) {
@@ -133,7 +133,7 @@
 
 					const parsedLyricsName = this.getCachedParsedLyricsName(lyrics);
 
-					if (!this.cachedParsedLyrics[parsedLyricsName]) {
+					if (!this.cachedParsedLyrics.has(parsedLyricsName)) {
 
 						const
 							_showId = this.showId,
@@ -141,7 +141,7 @@
 
 						formatLyrics(lyrics).then((parsedLyrics: ParsedLyrics) => {
 							if (this.showId === _showId && this.episodeId === _episodeId) {
-								this.$store.commit("CACHE_FORMATTED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
+								this.$store.commit("CACHE_PARSED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
 							}
 						}).catch(err => {
 							console.error(err);

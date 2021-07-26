@@ -9,8 +9,8 @@ import { ParsedLyrics } from "@typings/lyrics";
 
 export interface State {
     shows: Map<string, Show>;
+	parsedLyrics: Map<string, ParsedLyrics>;
 	cachedShowList: ShowHusk[];
-	cachedParsedLyrics: Record<string, ParsedLyrics>;
 	user: AuthenticatedUser | null;
 	room: Room | null;
 	roomVideoTeleportParent: string | null;
@@ -23,8 +23,8 @@ declare module "@vue/runtime-core" {
 
     export interface State {
         shows: Map<string, Show>;
+		parsedLyrics: Map<string, ParsedLyrics>;
 		cachedShowList: ShowHusk[];
-		cachedParsedLyrics: Record<string, ParsedLyrics>;
 		user: AuthenticatedUser | null;
 		room: Room | null;
 		roomVideoTeleportParent: string | null;

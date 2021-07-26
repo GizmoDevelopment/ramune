@@ -240,13 +240,13 @@
 
 	.view-enter-active,
 	.view-leave-active {
-		transition: opacity .25s ease, transform .3s ease;
+		transition: opacity .25s ease, transform .25s ease;
 	}
 
 	.view-enter-from,
 	.view-leave-to {
 		opacity: 0;
-		transform: translateY(1rem) scale(99%);
+		transform: translateY(.5rem) scale(99%);
 	}
 
 	.popout-slide-enter-active {
@@ -260,7 +260,7 @@
 	.popout-slide-enter-from,
 	.popout-slide-leave-to {
 		opacity: 0;
-		transform: translateY(1rem) scale(95%);
+		transform: translateY(2rem) scale(95%);
 	}
 
 	.fade-enter-active,

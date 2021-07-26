@@ -1,47 +1,45 @@
 <template>
-	<div ref="chatContainer">
-		<div ref="chat" class="chat-overlay">
-			<div class="chat-container">
-				<div class="chat-message-container">
-					<transition-group name="message-fade">
-						<div v-for="(message, index) in messages" :key="message.id">
-							<div v-if="messages[index - 1]?.user?.id === message.user.id">
-								<ChatMessage :message="message" repeating />
-							</div>
-							<div v-else>
-								<ChatMessage :message="message" />
-							</div>
+	<div ref="chat" class="chat-overlay">
+		<div class="chat-container">
+			<div class="chat-message-container">
+				<transition-group name="message-fade">
+					<div v-for="(message, index) in messages" :key="message.id">
+						<div v-if="messages[index - 1]?.user?.id === message.user.id">
+							<ChatMessage :message="message" repeating />
 						</div>
-					</transition-group>
-				</div>
-				<form
-					class="chat-input-container"
-					:class="{ 'hidden-chat-input-container': isFullscreen && !isFocusedOnInput }"
-					@submit.prevent="sendMessage"
-				>
-					<textarea
-						ref="input"
-						v-model="messageContent"
-						class="input chat-input"
-						placeholder="Click here or press '/' to start typing"
-						maxlength="500"
-						cols="28"
-						rows="1"
-						spellcheck="true"
-						wrap="hard"
-						:disabled="!allowInput"
-						@focus="isFocusedOnInput = true"
-						@blur="isFocusedOnInput = false"
-					/>
-					<button
-						class="primary-button icon-button"
-						:class="{ 'spinning-button': isMessageSending }"
-						type="submit"
-					>
-						<ArrowUp />
-					</button>
-				</form>
+						<div v-else>
+							<ChatMessage :message="message" />
+						</div>
+					</div>
+				</transition-group>
 			</div>
+			<form
+				class="chat-input-container"
+				:class="{ 'hidden-chat-input-container': isFullscreen && !isFocusedOnInput }"
+				@submit.prevent="sendMessage"
+			>
+				<textarea
+					ref="input"
+					v-model="messageContent"
+					class="input chat-input"
+					placeholder="Click here or press '/' to start typing"
+					maxlength="500"
+					cols="28"
+					rows="1"
+					spellcheck="true"
+					wrap="hard"
+					:disabled="!allowInput"
+					@focus="isFocusedOnInput = true"
+					@blur="isFocusedOnInput = false"
+				/>
+				<button
+					class="primary-button icon-button"
+					:class="{ 'spinning-button': isMessageSending }"
+					type="submit"
+				>
+					<ArrowUp />
+				</button>
+			</form>
 		</div>
 	</div>
 </template>
@@ -58,7 +56,6 @@
 	import ArrowUp from "@assets/icons/arrow-up.svg?component";
 
 	// Mixins
-	import MainMixin from "@mixins/Main";
 	import RoomMixin from "@mixins/Room";
 
 	// Types
@@ -71,18 +68,16 @@
 			ChatMessage,
 			ArrowUp
 		},
-		mixins: [ MainMixin, RoomMixin ],
+		mixins: [ RoomMixin ],
 		setup () {
 
 			const
 				input = ref<HTMLTextAreaElement>(),
-				chat = ref<HTMLDivElement>(),
-				chatContainer = ref<HTMLDivElement>();
+				chat = ref<HTMLDivElement>();
 
 			return {
 				input,
-				chat,
-				chatContainer
+				chat
 			};
 		},
 		data () {
@@ -117,11 +112,11 @@
 		},
 		mounted () {
 			document.addEventListener("keydown", this.handleKey);
-			document.addEventListener("fullscreenchange", this.teleportToVideo);
+			document.addEventListener("fullscreenchange", this.updateFullscreenState);
 		},
 		beforeUnmount () {
 			document.removeEventListener("keydown", this.handleKey);
-			document.removeEventListener("fullscreenchange", this.teleportToVideo);
+			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
 		},
 		methods: {
 			prepareMessage () {
@@ -189,19 +184,11 @@
 					}
 				}
 			},
-			teleportToVideo () {
-				if (this.chat && this.chatContainer) {
+			updateFullscreenState () {
 
-					const fullscreenElement = document.fullscreenElement;
+				const fullscreenElement = document.fullscreenElement;
 
-					if (fullscreenElement) { // Started
-						this.teleportToElement(this.chat, fullscreenElement as HTMLElement);
-					} else { // Ended
-						this.teleportToElement(this.chat, this.chatContainer);
-					}
-
-					this.isFullscreen = fullscreenElement !== null;
-				}
+				this.isFullscreen = !!fullscreenElement;
 			},
 			pushMessageToHistory (msg: Message) {
 				if (this.messages.length >= 20) {

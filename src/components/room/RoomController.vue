@@ -1,30 +1,30 @@
 <template>
-	<div ref="videoContainer">
-		<div v-if="show && episode && teleportParentExists">
-			<teleport :to="`#${teleportParent}`">
-				<Video
+	<div v-if="show && episode && videoTeleportParent">
+		<teleport :to="`#${videoTeleportParent}`" :disabled="!videoTeleportParentExists">
+			<Video
 
-					:show="show"
-					:episode="episode"
-					:controls="isHost"
-					:hide-controls="!allowControls"
+				:show="show"
+				:episode="episode"
+				:controls="isHost"
+				:hide-controls="!allowControls"
 
-					@update="pushSync"
-				/>
-			</teleport>
-		</div>
-		<!--<RoomChat :room="room" /> -->
+				@update="pushSync"
+			/>
+		</teleport>
 	</div>
+	<teleport :to="`#${chatTeleportParent}`" :disabled="!chatTeleportParent">
+		<RoomChat :room="room" />
+	</teleport>
 </template>
 
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, ref } from "vue";
+	import { defineComponent } from "vue";
 
 	// Components
 	import Video from "@components/Video.vue";
-	// import RoomChat from "@components/room/RoomChat.vue";
+	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -37,27 +37,31 @@
 		name: "RoomController",
 		components: {
 			Video,
-			// RoomChat
+			RoomChat
 		},
 		mixins: [ RoomMixin ],
-		setup () {
-
-			const videoContainer = ref<HTMLDivElement>();
-
+		data () {
 			return {
-				videoContainer
+				isFullscreen: false,
+				chatTeleportParent: null as string | null
 			};
 		},
 		computed: {
-			teleportParent (): string | null {
+			videoTeleportParent (): string | null {
 				return this.$store.state.roomVideoTeleportParent;
 			},
 			allowControls (): boolean {
-				return this.teleportParent === "room-video-container";
+				return this.videoTeleportParent === "room-video-container";
 			},
-			teleportParentExists (): boolean {
-				return this.teleportParent !== null && document.getElementById(this.teleportParent) !== null;
+			videoTeleportParentExists (): boolean {
+				return this.videoTeleportParent !== null && document.getElementById(this.videoTeleportParent) !== null;
 			}
+		},
+		mounted () {
+			document.addEventListener("fullscreenchange", this.updateFullscreenState);
+		},
+		beforeUnmount () {
+			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
 		},
 		methods: {
 			pushSync (playing: boolean, currentTime: number) {
@@ -74,6 +78,13 @@
 						}
 					});
 				}
+			},
+			updateFullscreenState () {
+
+				const fullscreenElement = document.fullscreenElement;
+
+				this.chatTeleportParent = fullscreenElement?.id || null;
+				this.isFullscreen = !!fullscreenElement;
 			}
 		}
 	});

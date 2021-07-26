@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<div
+			id="video-container"
 			ref="videoContainer"
 			class="video-container"
 			:class="{ 'hide-mouse-cursor': isOverlayVisible && isMouseStatic }"
@@ -315,6 +316,7 @@
 
 			document.addEventListener("keydown", this.handleKeypress);
 			document.addEventListener("mousemove", this.updateMousePosition);
+			document.addEventListener("fullscreenchange", this.updateFullscreenState);
 
 			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
 			this.mouseClickChecker = window.setInterval(this.doubleClickChecker, 400);
@@ -327,6 +329,7 @@
 
 			document.removeEventListener("keydown", this.handleKeypress);
 			document.removeEventListener("mousemove", this.updateMousePosition);
+			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
 
 			clearInterval(this.mouseChecker);
 			clearInterval(this.mouseClickChecker);
@@ -341,20 +344,15 @@
 					this.$emit("update", !this.video.paused, this.video.currentTime);
 				}
 			},
+			updateFullscreenState () {
+				this.isFullscreen = document.fullscreenElement !== null;
+			},
 			toggleFullscreen () {
 				if (document.fullscreenElement) {
 					document.exitFullscreen();
-					this.isFullscreen = false;
 				} else {
-
-					const roomVideoContainer = document.getElementById("room-video-and-chat-container");
-
-					if (roomVideoContainer) {
-						roomVideoContainer.requestFullscreen();
-						this.isFullscreen = true;
-					} else if (this.videoContainer) {
+					if (this.videoContainer) {
 						this.videoContainer.requestFullscreen();
-						this.isFullscreen = true;
 					}
 				}
 			},
@@ -420,9 +418,6 @@
 				setTimeout(() => {
 					this.isMouseStatic = (this.lastMousePosition === currentPosition) && this.isOverlayVisible;
 				}, 2000);
-			},
-			updateFullscreenState () {
-				this.isFullscreen = document.fullscreenElement !== null;
 			},
 			setSubtitleLanguage (code: string) {
 

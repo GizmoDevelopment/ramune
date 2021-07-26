@@ -50,6 +50,11 @@
 			RoomPopout
 		},
 		mixins: [ Socket ],
+		data () {
+			return {
+				cacheCleaner: 0
+			};
+		},
 		computed: {
 			room (): Room | null {
 				return this.$store.state.room;
@@ -63,6 +68,8 @@
 		},
 		async mounted () {
 
+			this.cacheCleaner = window.setInterval(this.cleanCache, 600000);
+
 			const token = getCookie("GIZMO_TOKEN");
 
 			if (token) {
@@ -73,6 +80,51 @@
 				}
 			}
 
+		},
+		unmounted () {
+			clearInterval(this.cacheCleaner);
+		},
+		methods: {
+			cleanCache () {
+
+				const
+					shows = this.$store.state.shows,
+					parsedLyrics = this.$store.state.parsedLyrics;
+
+				if (shows.size > 20) {
+
+					const amountToClean = Math.floor(parsedLyrics.size / 2);
+					let index = 0;
+
+					shows.forEach((_, key: string) => {
+
+						if (index < amountToClean) {
+							shows.delete(key);
+						}
+
+						index++;
+					});
+
+					this.$store.commit("REPLACE_SHOW_CACHE", shows);
+				}
+
+				if (parsedLyrics.size > 40) {
+
+					const amountToClean = Math.floor(parsedLyrics.size / 2);
+					let index = 0;
+
+					parsedLyrics.forEach((_, key: string) => {
+
+						if (index < amountToClean) {
+							parsedLyrics.delete(key);
+						}
+
+						index++;
+					});
+
+					this.$store.commit("REPLACE_PARSED_LYRICS_CACHE", parsedLyrics);
+				}
+			}
 		},
 		sockets: {
 			connect () {

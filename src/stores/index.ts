@@ -75,6 +75,12 @@ export default createStore<State>({
 		},
 		CACHE_PARSED_LYRICS (state: State, { showId, lyrics }: { showId: string, lyrics: ParsedLyrics }) {
 			state.parsedLyrics.set(`${showId}-${lyrics.id}`, lyrics);
+		},
+		REPLACE_SHOW_CACHE (state: State, newShowCache: Map<string, Show>) {
+			state.shows = newShowCache;
+		},
+		REPLACE_PARSED_LYRICS_CACHE (state: State, newParsedLyricsCache: Map<string, ParsedLyrics>) {
+			state.parsedLyrics = newParsedLyricsCache;
 		}
 	},
 	plugins: [ createLogger({

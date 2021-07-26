@@ -7,7 +7,7 @@
 				:host="room.host"
 			/>
 		</div>
-		<!-- This is where RoomVideoController will teleport the video element to -->
+		<!-- This is where RoomController will teleport the video element to -->
 		<div id="room-video-popout-container" />
 		<div v-if="!room.data" class="no-video-message-container">
 			<p class="faded">Waiting for host</p>
@@ -39,7 +39,7 @@
 		},
 		mixins: [ RoomMixin ],
 		mounted () {
-			this.toggleRoomControllerState("room-video-popout-container");
+			this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", "room-video-popout-container");
 		},
 		methods: {
 			returnToRoom () {

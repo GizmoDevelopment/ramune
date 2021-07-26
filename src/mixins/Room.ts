@@ -37,10 +37,5 @@ export default defineComponent({
 		isViewingRoom (): boolean {
 			return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
 		}
-	},
-	methods: {
-		toggleRoomControllerState (state: string | null) {
-			this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", state);
-		}
 	}
 });

@@ -7,10 +7,5 @@ export default defineComponent({
 			type: String,
 			default: "light"
 		}
-	},
-	methods: {
-		teleportToElement (element: HTMLElement, parent: HTMLElement) {
-			parent.appendChild(element);
-		}
 	}
 });

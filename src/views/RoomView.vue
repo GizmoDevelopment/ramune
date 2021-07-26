@@ -12,7 +12,7 @@
 		@ctx-kick="kickUserId"
 	/>
 	<br>
-	<!-- This is where RoomVideoController will teleport the video element to -->
+	<!-- This is where RoomController will teleport the video element to -->
 	<div id="room-video-container" />
 	<div v-if="show && episode">
 		<ShowHeading
@@ -87,7 +87,7 @@
 
 			setPageTitle(`Ramune — ${ this.room.name }`);
 
-			this.toggleRoomControllerState("room-video-container");
+			this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
 		},
 		methods: {
 			kickUserId (userId: string) {

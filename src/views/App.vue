@@ -8,7 +8,7 @@
 				</transition>
 			</router-view>
 		</div>
-		<div id="room-popout-container">
+		<div class="room-popout-container">
 			<transition name="slide" mode="out-in">
 				<div v-if="room && !isViewingRoom">
 					<RoomPopout :room="room" />
@@ -16,8 +16,7 @@
 			</transition>
 		</div>
 		<div v-if="room">
-			<RoomVideoController :room="room" />
-			<RoomChat :room="room" />
+			<RoomController :room="room" />
 		</div>
 	</div>
 </template>
@@ -33,9 +32,8 @@
 
 	// Components
 	import Header from "@components/Header.vue";
-	import RoomVideoController from "@components/room/RoomVideoController.vue";
+	import RoomController from "@components/room/RoomController.vue";
 	import RoomPopout from "@components/room/RoomPopout.vue";
-	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Utils
 	import { getCookie } from "@utils/dom";
@@ -48,9 +46,8 @@
 		name: "App",
 		components: {
 			Header,
-			RoomVideoController,
-			RoomPopout,
-			RoomChat
+			RoomController,
+			RoomPopout
 		},
 		mixins: [ Socket ],
 		computed: {
@@ -523,7 +520,7 @@
 		padding-bottom: 5px;
 	}
 
-	#room-popout-container {
+	.room-popout-container {
 		position: fixed;
 		left: 0;
 		bottom: 0;

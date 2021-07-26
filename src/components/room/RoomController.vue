@@ -1,5 +1,5 @@
 <template>
-	<div id="room-video-and-chat-container" ref="videoContainer">
+	<div ref="videoContainer">
 		<div v-if="show && episode && teleportParentExists">
 			<teleport :to="`#${teleportParent}`">
 				<Video
@@ -13,6 +13,7 @@
 				/>
 			</teleport>
 		</div>
+		<!--<RoomChat :room="room" /> -->
 	</div>
 </template>
 
@@ -23,9 +24,9 @@
 
 	// Components
 	import Video from "@components/Video.vue";
+	// import RoomChat from "@components/room/RoomChat.vue";
 
 	// Mixins
-	import MainMixin from "@mixins/Main";
 	import RoomMixin from "@mixins/Room";
 
 	// Types
@@ -33,11 +34,12 @@
 	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
-		name: "RoomVideoController",
+		name: "RoomController",
 		components: {
-			Video
+			Video,
+			// RoomChat
 		},
-		mixins: [ MainMixin, RoomMixin ],
+		mixins: [ RoomMixin ],
 		setup () {
 
 			const videoContainer = ref<HTMLDivElement>();

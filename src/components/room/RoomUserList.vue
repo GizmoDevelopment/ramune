@@ -4,6 +4,7 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
+				v-tooltip="user.username"
 				class="user"
 				:class="{ host: isUserHost(user) }"
 			>
@@ -15,7 +16,6 @@
 						@ctx-kick="kickUserId"
 					>
 						<img
-							v-tooltip="user.username"
 							class="user-avatar"
 							:src="user.avatar_url"
 						>
@@ -23,7 +23,6 @@
 				</template>
 				<template v-else>
 					<img
-						v-tooltip="user.username"
 						class="user-avatar"
 						:src="user.avatar_url"
 					>

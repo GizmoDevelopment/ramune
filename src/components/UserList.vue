@@ -4,11 +4,11 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
+				v-tooltip="user.username"
 				class="user"
 				:class="{ host: isHost(user) }"
 			>
 				<img
-					v-tooltip="user.username"
 					class="user-avatar"
 					:src="user.avatar_url"
 				>

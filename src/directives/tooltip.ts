@@ -1,17 +1,20 @@
 // Modules
 import { Directive, DirectiveBinding } from "vue";
-import tippy from "tippy.js";
-
-// Styles
-import "tippy.js/animations/shift-away.css";
 
 export default {
 	mounted (el: HTMLElement, binding: DirectiveBinding<string>) {
 
-		tippy(el, {
-			content: binding.value,
-			animation: "shift-away"
-		});
+		el.classList.add("tooltip-container");
+		el.style.position = "relative";
 
+		const tooltipContainer = document.createElement("div");
+		tooltipContainer.classList.add("tooltip");
+
+		const tooltipContent = document.createElement("div");
+		tooltipContent.classList.add("tooltip-content");
+		tooltipContent.innerHTML = binding.value;
+
+		tooltipContainer.appendChild(tooltipContent);
+		el.appendChild(tooltipContainer);
 	}
 } as Directive;

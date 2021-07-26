@@ -194,7 +194,7 @@
 	.view-enter-from,
 	.view-leave-to {
 		opacity: 0;
-		transform: translateY(1rem);
+		transform: translateY(1rem) scale(99%);
 	}
 
 	.slide-enter-active {
@@ -208,7 +208,7 @@
 	.slide-enter-from,
 	.slide-leave-to {
 		opacity: 0;
-		transform: translateY(1rem);
+		transform: translateY(1rem) scale(95%);
 	}
 
 	/* Animations */

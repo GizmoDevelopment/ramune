@@ -1,5 +1,5 @@
-// Modules
-import axios from "axios";
+// Utils
+import { http } from "@utils/essentials";
 
 // Types
 import { Show, ShowHusk } from "@typings/show";
@@ -13,7 +13,7 @@ const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
 export async function getShows (): Promise<ShowHusk[]> {
 	try {
 
-		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows`);
+		const { data: response } = await http.get(`${ SHOW_ENDPOINT }/shows`);
 
 		if (response.type === "success" && response.data) {
 			return response.data;
@@ -33,7 +33,7 @@ export async function getShows (): Promise<ShowHusk[]> {
 export async function getShow (showId: string): Promise<Show|null> {
 	try {
 
-		const { data: response } = await axios.get(`${ SHOW_ENDPOINT }/shows/${ showId }`);
+		const { data: response } = await http.get(`${ SHOW_ENDPOINT }/shows/${ showId }`);
 
 		if (response.type === "success" && response.data) {
 			return response.data;

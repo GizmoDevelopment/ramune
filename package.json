@@ -10,7 +10,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "gizmo-api": "^1.0.9",
     "particles.vue3": "^1.15.0",
     "socket.io-client": "^4.1.3",

@@ -1,3 +1,9 @@
+// Types
+interface FetchResponse {
+	data: any;
+	text: string;
+}
+
 /**
  * @param input String to modify (e.g. "%NUM% tree%S%") -> "3 trees" | "1 tree"
  */
@@ -31,3 +37,28 @@ export function convertTimestampToSeconds (timestamp: string): number {
 
 	return time;
 }
+
+async function fetchRequest (method: "GET" | "POST", url: string): Promise<FetchResponse> {
+
+	const
+		res = await fetch(url, { method }),
+		text = await res.text(),
+		result: FetchResponse = {
+			data: {},
+			text
+		};
+
+	try {
+		result.data = JSON.parse(text);
+	} catch {
+		result.data = {};
+	}
+
+	return result;
+}
+
+export const http = {
+	get (url: string): Promise<FetchResponse> {
+		return fetchRequest("GET", url);
+	}
+};

@@ -9,7 +9,7 @@
 			</router-view>
 		</div>
 		<div class="room-popout-container">
-			<transition name="slide" mode="out-in">
+			<transition name="popout-slide" mode="out-in">
 				<div v-if="room && !isViewingRoom">
 					<RoomPopout :room="room" />
 				</div>
@@ -249,18 +249,28 @@
 		transform: translateY(1rem) scale(99%);
 	}
 
-	.slide-enter-active {
+	.popout-slide-enter-active {
 		transition: opacity .2s ease, transform .4s var(--easing-enter);
 	}
 
-	.slide-leave-active {
+	.popout-slide-leave-active {
 		transition: opacity .35s ease, transform .25s var(--easing-leave);
 	}
 
-	.slide-enter-from,
-	.slide-leave-to {
+	.popout-slide-enter-from,
+	.popout-slide-leave-to {
 		opacity: 0;
 		transform: translateY(1rem) scale(95%);
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: .3s opacity ease;
+	}
+
+	.fade-leave-to,
+	.fade-enter-from {
+		opacity: 0;
 	}
 
 	/* Animations */
@@ -580,5 +590,11 @@
 		margin-left: 15px;
 		margin-bottom: 15px;
 	}
+
+</style>
+
+<style lang="scss">
+
+	@import "@styles/tooltip.scss";
 
 </style>

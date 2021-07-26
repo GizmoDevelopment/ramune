@@ -39,7 +39,7 @@
 						</div>
 					</div>
 				</transition>
-				<transition name="slide">
+				<transition name="video-platter-slide">
 					<div
 						v-if="isVolumeTrayVisible"
 						class="video-control-tray volume-tray"
@@ -503,26 +503,16 @@
 
 	/* Transitions */
 
-	.fade-enter-active,
-	.fade-leave-active {
-		transition: .3s opacity ease;
-	}
-
-	.fade-leave-to,
-	.fade-enter-from {
-		opacity: 0;
-	}
-
-	.slide-enter-active {
+	.video-platter-slide-enter-active {
 		transition: opacity .2s ease, transform .4s variable(easing-enter);
 	}
 
-	.slide-leave-active {
+	.video-platter-slide-leave-active {
 		transition: opacity .25s ease, transform .3s ease;
 	}
 
-	.slide-enter-from,
-	.slide-leave-to {
+	.video-platter-slide-enter-from,
+	.video-platter-slide-leave-to {
 		opacity: 0;
 		transform: translateY(.5em) scaleX(95%);
 	}

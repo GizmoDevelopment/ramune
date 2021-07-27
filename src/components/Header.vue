@@ -40,6 +40,9 @@
 	// Components
 	import LoginPopup from "@components/LoginPopup.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Icons
 	import Logo from "@assets/icons/logo.svg?component";
 
@@ -49,15 +52,11 @@
 			Logo,
 			LoginPopup
 		},
+		mixins: [ MainMixin ],
 		data () {
 			return {
 				isLoggingIn: false
 			};
-		},
-		computed: {
-			user () {
-				return this.$store.state.user.user;
-			}
 		}
 	});
 

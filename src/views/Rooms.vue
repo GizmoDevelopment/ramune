@@ -51,6 +51,9 @@
 	import RoomCard from "@components/room/RoomCard.vue";
 	import RoomCreationPopup from "@components/room/RoomCreationPopup.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Icons
 	import Plus from "@assets/icons/plus.svg?component";
 
@@ -69,6 +72,7 @@
 			Plus,
 			RoomCreationPopup
 		},
+		mixins: [ MainMixin ],
 		data () {
 			return {
 				rooms: null as PartialRoom[] | null,
@@ -77,9 +81,6 @@
 			};
 		},
 		computed: {
-			user () {
-				return this.$store.state.user.user;
-			},
 			connectError (): string {
 				return this.$store.state.generic.connectError;
 			}

@@ -28,6 +28,7 @@
 	import { getAuthenticatedUser } from "gizmo-api";
 
 	// Mixins
+	import MainMixin from "@mixins/Main";
 	import SocketMixin from "@mixins/Socket";
 
 	// Components
@@ -49,19 +50,13 @@
 			RoomController,
 			RoomPopout
 		},
-		mixins: [ SocketMixin ],
+		mixins: [ MainMixin, SocketMixin ],
 		data () {
 			return {
 				cacheCleaner: 0
 			};
 		},
 		computed: {
-			room (): Room | null {
-				return this.$store.state.room.room;
-			},
-			user (): AuthenticatedUser | null {
-				return this.$store.state.user.user;
-			},
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
 			}

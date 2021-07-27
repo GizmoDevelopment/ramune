@@ -178,6 +178,9 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import UserList from "@components/UserList.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Renderers
 	import EffectsRenderer from "@renderers/Effects.vue";
 	import KaraokeRenderer from "@renderers/Karaoke.vue";
@@ -198,7 +201,7 @@
 
 	// Types
 	import { Episode, Show } from "@typings/show";
-	import { Room, RoomSyncData } from "@typings/room";
+	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",
@@ -217,6 +220,7 @@
 			UserList,
 			KaraokeRenderer
 		},
+		mixins: [ MainMixin ],
 		props: {
 			show: {
 				type: Object as PropType<Show>,
@@ -288,9 +292,6 @@
 			hoverTimestamp (): string {
 				const offset = this.hoverTimestampOffset;
 				return formatTimestamp(this.getProgressBarTimestamp(offset));
-			},
-			room (): Room | null {
-				return this.$store.state.room.room;
 			}
 		},
 		watch: {

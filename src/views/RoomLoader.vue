@@ -24,6 +24,9 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Views
 	import RoomView from "@views/RoomView.vue";
 
@@ -38,6 +41,7 @@
 			LoadingBuffer,
 			RoomView
 		},
+		mixins: [ MainMixin ],
 		props: {
 			roomId: {
 				type: String,
@@ -51,12 +55,6 @@
 			};
 		},
 		computed: {
-			user (): AuthenticatedUser | null {
-				return this.$store.state.user.user;
-			},
-			room (): Room | null {
-				return this.$store.state.room.room;
-			},
 			connectError (): string {
 				return this.$store.state.generic.connectError;
 			}

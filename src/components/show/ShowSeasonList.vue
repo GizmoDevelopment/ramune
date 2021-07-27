@@ -19,10 +19,12 @@
 	// Components
 	import ShowSeasonEpisodeList from "@components/show/ShowSeasonEpisodeList.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Types
 	import { Show } from "@typings/show";
 	import { Room } from "@typings/room";
-	import { AuthenticatedUser } from "gizmo-api/lib/types";
 	import { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
@@ -30,6 +32,7 @@
 		components: {
 			ShowSeasonEpisodeList
 		},
+		mixins: [ MainMixin ],
 		props: {
 			show: {
 				type: Object as PropType<Show>,
@@ -45,12 +48,6 @@
 			}
 		},
 		computed: {
-			room (): Room | null {
-				return this.$store.state.room.room;
-			},
-			user (): AuthenticatedUser | null {
-				return this.$store.state.user.user;
-			},
 			isHost (): boolean {
 				return this.room?.host?.id === this.user?.id;
 			}

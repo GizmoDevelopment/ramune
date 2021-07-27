@@ -8,6 +8,11 @@ import { SocketResponse } from "@typings/main";
 import { setCookie } from "@utils/dom";
 
 export default defineComponent({
+	computed: {
+		room (): Room | null {
+			return this.$store.state.room.room;
+		}
+	},
 	methods: {
 		login (user: AuthenticatedUser) {
 			if (user) {

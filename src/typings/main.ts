@@ -2,9 +2,6 @@ declare global {
 	interface Window {
 		twemoji: {
 			parse (element: HTMLElement, options?: TwemojiOptions): void;
-		},
-		__VUE_DEVTOOLS_GLOBAL_HOOK__: {
-			Vue: any
 		}
 	}
 }

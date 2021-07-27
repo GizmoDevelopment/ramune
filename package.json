@@ -22,7 +22,7 @@
     "@types/node": "^16.4.3",
     "@types/socket.io": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@typescript-eslint/parser": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.5",
     "@vitejs/plugin-vue": "^1.2.5",
     "@vue/compiler-sfc": "^3.1.5",
     "@vuedx/typescript-plugin-vue": "^0.7.4",

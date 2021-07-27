@@ -22,11 +22,11 @@
 	import { defineComponent, ref } from "vue";
 
 	// Mixins
-	import MainMixin from "@mixins/Main";
+	import GenericMixin from "@mixins/GenericMixin";
 
 	export default defineComponent({
 		name: "Input",
-		mixins: [ MainMixin ],
+		mixins: [ GenericMixin ],
 		props: {
 			placeholder: {
 				type: String,

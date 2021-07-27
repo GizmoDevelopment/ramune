@@ -20,7 +20,7 @@
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Mixins
-	import MainMixin from "@mixins/Main";
+	import GenericMixin from "@mixins/GenericMixin";
 
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg?component";
@@ -36,7 +36,7 @@
 			UserList,
 			MarkdownRenderer
 		},
-		mixins: [ MainMixin ],
+		mixins: [ GenericMixin ],
 		props: {
 			room: {
 				type: Object as PropType<Room | PartialRoom>,

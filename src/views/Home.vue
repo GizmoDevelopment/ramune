@@ -1,5 +1,5 @@
 <template>
-	<div v-if="isConnected">
+	<div v-if="$socket.connected">
 		<h1 class="heading">Online users</h1>
 		<div class="online-user-list">
 			<div
@@ -20,7 +20,7 @@
 	import { defineComponent } from "vue";
 
 	// Mixins
-	import Socket from "@mixins/Socket";
+	import SocketMixin from "@mixins/Socket";
 
 	// Utils
 	import { clearPageTitle } from "@utils/dom";
@@ -31,7 +31,7 @@
 
 	export default defineComponent({
 		name: "Home",
-		mixins: [ Socket ],
+		mixins: [ SocketMixin ],
 		data () {
 			return {
 				onlineUsers: [] as User[]
@@ -41,7 +41,7 @@
 
 			clearPageTitle();
 
-			this.$socket.emit("CLIENT:FETCH_ONLINE_USERS", (res: SocketResponse<User[]>) => {
+			this.$socket.client.emit("CLIENT:FETCH_ONLINE_USERS", (res: SocketResponse<User[]>) => {
 				if (res.type === "success") {
 					this.onlineUsers = res.data;
 				} else {

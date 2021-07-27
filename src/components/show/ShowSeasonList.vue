@@ -61,7 +61,7 @@
 
 					this.$store.commit("UPDATE_ROOM_DATA_LOADING_STATE", true);
 
-					this.$socket.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SocketResponse<Room>) => {
+					this.$socket.client.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SocketResponse<Room>) => {
 						if (res.type !== "success") {
 							console.error(res.message);
 						}
@@ -73,7 +73,7 @@
 				} else {
 
 					if (this.room) {
-						this.$socket.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SocketResponse<Room>) => {
+						this.$socket.client.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
 								this.$store.commit("LEAVE_ROOM");
 							} else {

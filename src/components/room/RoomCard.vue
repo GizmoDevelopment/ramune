@@ -49,7 +49,7 @@
 					if (this.$store.state.room?.id === this.room.id) {
 						this.$router.push(`/rooms/${ this.room.id }`);
 					} else {
-						this.$socket.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
+						this.$socket.client.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
 								this.$store.commit("JOIN_ROOM", res.data);
 								this.$router.push(`/rooms/${ res.data.id }`);

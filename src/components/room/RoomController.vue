@@ -72,7 +72,7 @@
 						currentTime: currentTime
 					};
 
-					this.$socket.emit("CLIENT:SYNC_ROOM", payload, (res: SocketResponse<string>) => {
+					this.$socket.client.emit("CLIENT:SYNC_ROOM", payload, (res: SocketResponse<string>) => {
 						if (res.type !== "success") {
 							console.error(res.message);
 						}

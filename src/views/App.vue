@@ -28,7 +28,7 @@
 	import { getAuthenticatedUser } from "gizmo-api";
 
 	// Mixins
-	import Socket from "@mixins/Socket";
+	import SocketMixin from "@mixins/Socket";
 
 	// Components
 	import Header from "@components/Header.vue";
@@ -49,7 +49,7 @@
 			RoomController,
 			RoomPopout
 		},
-		mixins: [ Socket ],
+		mixins: [ SocketMixin ],
 		data () {
 			return {
 				cacheCleaner: 0
@@ -64,6 +64,13 @@
 			},
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
+			}
+		},
+		watch: {
+			user (user: AuthenticatedUser | null) {
+				if (user) {
+					this.$socket.client.open();
+				}
 			}
 		},
 		async mounted () {

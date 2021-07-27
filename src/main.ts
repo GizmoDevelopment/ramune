@@ -1,7 +1,7 @@
 // Modules
 import { createApp } from "vue";
-import VueSocketIO from "vue-3-socket.io";
-import SocketIO from "socket.io-client";
+import VueSocketIO from "vue-socket.io-extended";
+import { io } from "socket.io-client";
 import Particles from "particles.vue3";
 
 // Vue
@@ -18,22 +18,16 @@ import Tooltip from "./directives/tooltip";
 
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
-const DEV = import.meta.env.DEV;
+
+// Variables
+const ioInstance = io(SOCKET_ENDPOINT);
 
 if (typeof SOCKET_ENDPOINT === "string") {
 
 	createApp(App)
 		.use(Router)
 		.use(Store)
-		.use(new VueSocketIO({
-			debug: DEV,
-			connection: SocketIO(SOCKET_ENDPOINT),
-			vuex: {
-				store: Store,
-				actionPrefix: "SOCKET_",
-				mutationPrefix: "SOCKET_",
-			}
-		}))
+		.use(VueSocketIO, ioInstance)
 		.use(Particles)
 		.directive("tooltip", Tooltip)
 		.mount("#app");

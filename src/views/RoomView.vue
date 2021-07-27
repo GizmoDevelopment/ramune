@@ -92,7 +92,7 @@
 		methods: {
 			kickUserId (userId: string) {
 				if (this.isHost) {
-					this.$socket.emit("CLIENT:KICK_USER", userId, (res: SocketResponse<string>) => {
+					this.$socket.client.emit("CLIENT:KICK_USER", userId, (res: SocketResponse<string>) => {
 						if (res.type !== "success") {
 							console.error(res.message);
 						}
@@ -101,7 +101,7 @@
 			},
 			promoteUserIdToHost (userId: string) {
 				if (this.isHost) {
-					this.$socket.emit("CLIENT:UPDATE_ROOM", { hostId: userId }, (res: SocketResponse<string>) => {
+					this.$socket.client.emit("CLIENT:UPDATE_ROOM", { hostId: userId }, (res: SocketResponse<string>) => {
 						if (res.type !== "success") {
 							console.error(res.message);
 						}

@@ -102,7 +102,7 @@
 		methods: {
 			fetchRooms () {
 				if (this.user) {
-					this.$socket.emit("CLIENT:FETCH_ROOMS", (res: SocketResponse<PartialRoom[]>) => {
+					this.$socket.client.emit("CLIENT:FETCH_ROOMS", (res: SocketResponse<PartialRoom[]>) => {
 						if (res.type === "success") {
 							this.rooms = res.data;
 						} else {

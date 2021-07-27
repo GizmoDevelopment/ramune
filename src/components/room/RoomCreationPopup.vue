@@ -135,7 +135,7 @@
 
 					this.debounce = true;
 
-					this.$socket.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
+					this.$socket.client.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
 						if (res.type === "success") {
 
 							this.$store.commit("JOIN_ROOM", res.data);

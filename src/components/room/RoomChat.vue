@@ -139,7 +139,7 @@
 						this.isMessageSending = true;
 						this.messageContent = "";
 
-						this.$socket.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
+						this.$socket.client.emit("CLIENT:SEND_MESSAGE", { content }, (res: SocketResponse<Message>) => {
 
 							if (res.type === "success") {
 								this.pushMessageToHistory(res.data);

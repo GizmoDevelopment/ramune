@@ -88,7 +88,7 @@
 		},
 		methods: {
 			joinRoom () {
-				this.$socket.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SocketResponse<Room>) => {
+				this.$socket.client.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
 						this.$store.commit("JOIN_ROOM", res.data);
 					} else {
@@ -100,7 +100,7 @@
 
 				this.leaving = true;
 
-				this.$socket.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
+				this.$socket.client.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
 					if (res.type !== "success") {
 						this.leaving = false;
 						console.error(res.message);

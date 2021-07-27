@@ -45,7 +45,7 @@
 	import { login } from "gizmo-api";
 
 	// Mixins
-	import Socket from "@mixins/Socket";
+	import SocketMixin from "@mixins/Socket";
 
 	// Components
 	import PopupCard from "@components/PopupCard.vue";
@@ -59,7 +59,7 @@
 			Error,
 			LoadingBuffer
 		},
-		mixins: [ Socket ],
+		mixins: [ SocketMixin ],
 		props: {
 			visible: {
 				type: Boolean,

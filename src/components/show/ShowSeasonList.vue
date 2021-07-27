@@ -1,5 +1,5 @@
 <template>
-	<div id="season-container">
+	<div class="season-container">
 		<div v-for="season in show.seasons" :key="season.id">
 			<ShowSeasonEpisodeList
 				:season="season"
@@ -19,7 +19,7 @@
 	// Components
 	import ShowSeasonEpisodeList from "@components/show/ShowSeasonEpisodeList.vue";
 
-	// Mixins
+	// Mixinsi
 	import MainMixin from "@mixins/Main";
 
 	// Types
@@ -89,7 +89,7 @@
 
 <style scoped>
 
-	#season-container {
+	.season-container {
 		width: 100%;
 	}
 

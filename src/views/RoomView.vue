@@ -61,7 +61,7 @@
 	import { Room } from "@typings/room";
 
 	export default defineComponent({
-		name: "Room",
+		name: "RoomView",
 		components: {
 			RoomUserList,
 			ShowSeasonList,

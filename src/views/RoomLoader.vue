@@ -36,7 +36,7 @@
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
-		name: "Room",
+		name: "RoomLoader",
 		components: {
 			LoadingBuffer,
 			RoomView

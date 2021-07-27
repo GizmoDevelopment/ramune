@@ -33,8 +33,9 @@
 
 	// Components
 	import Header from "@components/Header.vue";
-	import RoomController from "@components/room/RoomController.vue";
-	import RoomPopout from "@components/room/RoomPopout.vue";
+	// Lazy-load room-related components to improve initial load time
+	const RoomController = () => import("@components/room/RoomController.vue");
+	const RoomPopout = () => import("@components/room/RoomPopout.vue");
 
 	// Utils
 	import { getCookie } from "@utils/dom";

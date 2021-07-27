@@ -78,10 +78,10 @@
 		},
 		computed: {
 			user () {
-				return this.$store.state.user;
+				return this.$store.state.user.user;
 			},
 			connectError (): string {
-				return this.$store.state.connectError;
+				return this.$store.state.generic.connectError;
 			}
 		},
 		watch: {

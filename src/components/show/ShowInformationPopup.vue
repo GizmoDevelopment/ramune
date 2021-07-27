@@ -95,7 +95,7 @@
 			async fetchShow () {
 				if (this.showId.length > 0) {
 
-					const cachedShow = this.$store.state.shows.get(this.showId);
+					const cachedShow = this.$store.state.cache.shows.get(this.showId);
 
 					if (cachedShow) {
 						this.show = cachedShow;
@@ -105,7 +105,7 @@
 
 						if (_show) {
 							this.show = _show;
-							this.$store.commit("CACHE_SHOW", _show);
+							this.$store.commit("cache/CACHE_SHOW", _show);
 						} else {
 							this.error = 404;
 						}

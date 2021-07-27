@@ -11,7 +11,7 @@ import App from "@views/App.vue";
 import Router from "./routes";
 
 // Stores
-import Store from "./stores";
+import MainStore from "@stores/main";
 
 // Directives
 import Tooltip from "./directives/tooltip";
@@ -26,7 +26,7 @@ if (typeof SOCKET_ENDPOINT === "string") {
 
 	createApp(App)
 		.use(Router)
-		.use(Store)
+		.use(MainStore)
 		.use(VueSocketIO, ioInstance)
 		.use(Particles)
 		.directive("tooltip", Tooltip)

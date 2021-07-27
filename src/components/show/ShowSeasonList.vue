@@ -46,10 +46,10 @@
 		},
 		computed: {
 			room (): Room | null {
-				return this.$store.state.room;
+				return this.$store.state.room.room;
 			},
 			user (): AuthenticatedUser | null {
-				return this.$store.state.user;
+				return this.$store.state.user.user;
 			},
 			isHost (): boolean {
 				return this.room?.host?.id === this.user?.id;
@@ -59,7 +59,7 @@
 			playEpisode (episodeId: number) {
 				if (this.room && this.user && this.isHost) {
 
-					this.$store.commit("UPDATE_ROOM_DATA_LOADING_STATE", true);
+					this.$store.commit("room/UPDATE_ROOM_DATA_LOADING_STATE", true);
 
 					this.$socket.client.emit("CLIENT:UPDATE_ROOM_DATA", { showId: this.show.id, episodeId }, (res: SocketResponse<Room>) => {
 						if (res.type !== "success") {
@@ -75,7 +75,7 @@
 					if (this.room) {
 						this.$socket.client.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
-								this.$store.commit("LEAVE_ROOM");
+								this.$store.commit("room/LEAVE_ROOM");
 							} else {
 								console.error(res.message);
 							}

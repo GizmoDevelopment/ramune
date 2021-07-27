@@ -93,7 +93,7 @@
 		},
 		computed: {
 			user (): AuthenticatedUser | null {
-				return this.$store.state.user;
+				return this.$store.state.user.user;
 			}
 		},
 		watch: {
@@ -138,7 +138,7 @@
 					this.$socket.client.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
 						if (res.type === "success") {
 
-							this.$store.commit("JOIN_ROOM", res.data);
+							this.$store.commit("room/JOIN_ROOM", res.data);
 							this.$emit("dismiss");
 
 							setTimeout(() => {

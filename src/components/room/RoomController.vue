@@ -48,7 +48,7 @@
 		},
 		computed: {
 			videoTeleportParent (): string | null {
-				return this.$store.state.roomVideoTeleportParent;
+				return this.$store.state.room.roomVideoTeleportParent;
 			},
 			allowControls (): boolean {
 				return this.videoTeleportParent === "room-video-container";

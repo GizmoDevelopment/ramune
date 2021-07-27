@@ -57,10 +57,10 @@
 		},
 		computed: {
 			room (): Room | null {
-				return this.$store.state.room;
+				return this.$store.state.room.room;
 			},
 			user (): AuthenticatedUser | null {
-				return this.$store.state.user;
+				return this.$store.state.user.user;
 			},
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
@@ -94,9 +94,7 @@
 		methods: {
 			cleanCache () {
 
-				const
-					shows = this.$store.state.shows,
-					parsedLyrics = this.$store.state.parsedLyrics;
+				const { shows, parsedLyrics } = this.$store.state.cache;
 
 				if (shows.size > 20) {
 
@@ -112,7 +110,7 @@
 						index++;
 					});
 
-					this.$store.commit("REPLACE_SHOW_CACHE", shows);
+					this.$store.commit("cache/REPLACE_SHOW_CACHE", shows);
 				}
 
 				if (parsedLyrics.size > 40) {
@@ -129,7 +127,7 @@
 						index++;
 					});
 
-					this.$store.commit("REPLACE_PARSED_LYRICS_CACHE", parsedLyrics);
+					this.$store.commit("cache/REPLACE_PARSED_LYRICS_CACHE", parsedLyrics);
 				}
 			}
 		},
@@ -140,23 +138,23 @@
 				}
 			},
 			"ROOM:USER_JOIN" (user: User) {
-				this.$store.commit("USER_JOIN_ROOM", user);
+				this.$store.commit("room/USER_JOIN_ROOM", user);
 			},
 			"ROOM:USER_LEAVE" (user: User) {
 
-				this.$store.commit("USER_LEAVE_ROOM", user);
+				this.$store.commit("room/USER_LEAVE_ROOM", user);
 
 				if (user.id === this.user?.id) {
-					this.$store.commit("LEAVE_ROOM");
+					this.$store.commit("room/LEAVE_ROOM");
 					this.$router.push("/rooms");
 				}
 			},
 			"ROOM:UPDATE" (room: Room) {
-				this.$store.commit("UPDATE_ROOM", room);
+				this.$store.commit("room/UPDATE_ROOM", room);
 			},
 			"ROOM:UPDATE_ROOM_DATA" (roomData: RoomData) {
-				this.$store.commit("UPDATE_ROOM_DATA_LOADING_STATE", false);
-				this.$store.commit("UPDATE_ROOM_DATA", roomData);
+				this.$store.commit("room/UPDATE_ROOM_DATA_LOADING_STATE", false);
+				this.$store.commit("room/UPDATE_ROOM_DATA", roomData);
 			}
 		}
 	});

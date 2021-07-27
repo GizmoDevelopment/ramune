@@ -66,7 +66,7 @@
 		},
 		computed: {
 			showList (): ShowHusk[] {
-				return this.$store.state.cachedShowList;
+				return this.$store.state.cache.showList;
 			}
 		},
 		async mounted () {
@@ -81,7 +81,7 @@
 				this.shows = this.showList;
 			} else {
 				this.shows = await getShows();
-				this.$store.commit("CACHE_SHOW_LIST", this.shows);
+				this.$store.commit("cache/CACHE_SHOW_LIST", this.shows);
 			}
 
 		},

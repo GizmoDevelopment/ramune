@@ -12,7 +12,7 @@ export default defineComponent({
 		login (user: AuthenticatedUser) {
 			if (user) {
 
-				this.$store.commit("UPDATE_USER", user);
+				this.$store.commit("user/UPDATE_USER", user);
 				setCookie("GIZMO_TOKEN", user.token);
 
 				this.loginToSocket(user.token);
@@ -23,22 +23,22 @@ export default defineComponent({
 			this.$socket.client.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
 				if (res.type === "success") {
 
-					this.$store.commit("UPDATE_USER", { ...res.data, token });
+					this.$store.commit("user/UPDATE_USER", { ...res.data, token });
 
 					// Attempt to rejoin saved room
 					if (this.room) {
 						this.$socket.client.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
-								this.$store.commit("JOIN_ROOM", res.data);
+								this.$store.commit("room/JOIN_ROOM", res.data);
 								this.$router.push(`/rooms/${res.data.id}`);
 							} else {
-								this.$store.commit("LEAVE_ROOM");
+								this.$store.commit("room/LEAVE_ROOM");
 							}
 						});
 					}
 
 				} else {
-					this.$store.commit("UPDATE_CONNECT_ERROR", res.message);
+					this.$store.commit("generic/UPDATE_CONNECT_ERROR", res.message);
 					console.error(res.message);
 				}
 			});

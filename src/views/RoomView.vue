@@ -80,14 +80,14 @@
 		emits: [ "leave-room" ],
 		computed: {
 			isLoadingRoomData (): boolean {
-				return this.$store.state.isLoadingRoomData;
+				return this.$store.state.room.isLoadingRoomData;
 			}
 		},
 		mounted () {
 
 			setPageTitle(`Ramune — ${ this.room.name }`);
 
-			this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
+			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
 		},
 		methods: {
 			kickUserId (userId: string) {
@@ -112,7 +112,7 @@
 		sockets: {
 			"ROOM:USER_JOIN" () {
 				if (this.isHost) {
-					this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", true);
+					this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", true);
 				}
 			}
 		}

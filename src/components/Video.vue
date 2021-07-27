@@ -280,7 +280,7 @@
 				return formatTimestamp(this.videoDuration);
 			},
 			isRequestingRoomSync (): boolean {
-				return this.$store.state.isRequestingRoomSync;
+				return this.$store.state.room.isRequestingRoomSync;
 			},
 			isInPopOutMode (): boolean {
 				return this.$route.path.match(/^\/watch\/.+|\/rooms\/.+$/i) === null;
@@ -290,13 +290,13 @@
 				return formatTimestamp(this.getProgressBarTimestamp(offset));
 			},
 			room (): Room | null {
-				return this.$store.state.room;
+				return this.$store.state.room.room;
 			}
 		},
 		watch: {
 			isRequestingRoomSync (newState: boolean) {
 				if (newState) {
-					this.$store.commit("UPDATE_ROOM_SYNC_REQUEST", false);
+					this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", false);
 					this.pushSync();
 				}
 			},

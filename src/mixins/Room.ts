@@ -18,7 +18,7 @@ export default defineComponent({
 	},
 	computed: {
 		user (): AuthenticatedUser | null {
-			return this.$store.state.user;
+			return this.$store.state.user.user;
 		},
 		episode (): Episode | null {
 			return this.show

@@ -78,7 +78,7 @@
 		},
 		async mounted () {
 
-			const cachedShows = this.$store.state.shows;
+			const cachedShows = this.$store.state.cache.shows;
 
 			if (cachedShows.has(this.showId)) {
 

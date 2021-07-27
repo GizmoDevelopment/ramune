@@ -62,7 +62,7 @@
 		},
 		computed: {
 			cachedParsedLyrics (): Map<string, ParsedLyrics> {
-				return this.$store.state.parsedLyrics;
+				return this.$store.state.cache.parsedLyrics;
 			}
 		},
 		watch: {
@@ -141,7 +141,7 @@
 
 						formatLyrics(lyrics).then((parsedLyrics: ParsedLyrics) => {
 							if (this.showId === _showId && this.episodeId === _episodeId) {
-								this.$store.commit("CACHE_PARSED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
+								this.$store.commit("cache/CACHE_PARSED_LYRICS", { showId: this.showId, lyrics: parsedLyrics });
 							}
 						}).catch(err => {
 							console.error(err);

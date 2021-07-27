@@ -52,13 +52,13 @@
 		},
 		computed: {
 			user (): AuthenticatedUser | null {
-				return this.$store.state.user;
+				return this.$store.state.user.user;
 			},
 			room (): Room | null {
-				return this.$store.state.room;
+				return this.$store.state.room.room;
 			},
 			connectError (): string {
-				return this.$store.state.connectError;
+				return this.$store.state.generic.connectError;
 			}
 		},
 		watch: {
@@ -83,14 +83,14 @@
 		},
 		beforeUnmount () {
 			if (this.room && this.leaving) {
-				this.$store.commit("LEAVE_ROOM");
+				this.$store.commit("room/LEAVE_ROOM");
 			}
 		},
 		methods: {
 			joinRoom () {
 				this.$socket.client.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
-						this.$store.commit("JOIN_ROOM", res.data);
+						this.$store.commit("room/JOIN_ROOM", res.data);
 					} else {
 						this.status = res.message;
 					}

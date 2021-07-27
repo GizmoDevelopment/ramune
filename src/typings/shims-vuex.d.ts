@@ -7,31 +7,35 @@ import { Show, ShowHusk } from "@typings/show";
 import { Room } from "@typings/room";
 import { ParsedLyrics } from "@typings/lyrics";
 
-export interface State {
-    shows: Map<string, Show>;
+export interface CacheState {
+	shows: Map<string, Show>;
+	showList: ShowHusk[];
 	parsedLyrics: Map<string, ParsedLyrics>;
-	cachedShowList: ShowHusk[];
-	user: AuthenticatedUser | null;
+}
+
+export interface RoomState {
 	room: Room | null;
 	roomVideoTeleportParent: string | null;
 	isRequestingRoomSync: boolean;
 	isLoadingRoomData: boolean;
+}
+
+export interface UserState {
+	user: AuthenticatedUser | null;
+}
+
+export interface GenericState {
 	connectError: string;
 }
 
 declare module "@vue/runtime-core" {
 
-    export interface State {
-        shows: Map<string, Show>;
-		parsedLyrics: Map<string, ParsedLyrics>;
-		cachedShowList: ShowHusk[];
-		user: AuthenticatedUser | null;
-		room: Room | null;
-		roomVideoTeleportParent: string | null;
-		isRequestingRoomSync: boolean;
-		isLoadingRoomData: boolean;
-		connectError: string;
-    }
+    interface State {
+		cache: CacheState
+		room: RoomState
+		user: UserState
+		generic: GenericState
+	}
 
     interface ComponentCustomProperties {
         $store: Store<State>;

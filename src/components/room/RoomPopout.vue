@@ -39,7 +39,7 @@
 		},
 		mixins: [ RoomMixin ],
 		mounted () {
-			this.$store.commit("UPDATE_ROOM_CONTROLLER_STATE", "room-video-popout-container");
+			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-popout-container");
 		},
 		methods: {
 			returnToRoom () {

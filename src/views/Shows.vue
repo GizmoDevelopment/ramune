@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<h1 class="heading">All Shows</h1>
 		<div
 			v-if="shows.length > 0"

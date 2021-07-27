@@ -1,24 +1,27 @@
 <template>
-	<div v-if="show && episode">
-		<ShowHeading
-			:show="show"
-			:episode="episode"
-		/>
-		<Video
-			:show="show"
-			:episode="episode"
-		/>
-		<ShowSeasonList
-			:show="show"
-			:selected-episode-id="episodeId"
-			collapsable
-		/>
-	</div>
-	<div v-else-if="status">
-		<Error :text="status" />
-	</div>
-	<div v-else>
-		<LoadingBuffer />
+	<div>
+		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
+		<div v-if="show && episode">
+			<ShowHeading
+				:show="show"
+				:episode="episode"
+			/>
+			<Video
+				:show="show"
+				:episode="episode"
+			/>
+			<ShowSeasonList
+				:show="show"
+				:selected-episode-id="episodeId"
+				collapsable
+			/>
+		</div>
+		<div v-else-if="status">
+			<Error :text="status" />
+		</div>
+		<div v-else>
+			<LoadingBuffer />
+		</div>
 	</div>
 </template>
 

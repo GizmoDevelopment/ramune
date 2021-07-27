@@ -1,5 +1,6 @@
 <template>
 	<div v-if="$socket.connected">
+		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<h1 class="heading">Online users</h1>
 		<div class="online-user-list">
 			<div

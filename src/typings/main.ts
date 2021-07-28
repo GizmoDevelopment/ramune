@@ -1,9 +1,20 @@
 declare global {
+
 	interface Window {
 		twemoji: {
 			parse (element: HTMLElement, options?: TwemojiOptions): void;
 		}
 	}
+
+	interface Document {
+		webkitExitFullscreen?: () => Promise<void>
+	}
+
+	interface HTMLElement {
+		webkitRequestFullscreen?: () => Promise<void>
+		webkitEnterFullscreen?: () => Promise<void>
+	}
+
 }
 
 interface TwemojiOptions {

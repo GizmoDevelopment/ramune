@@ -350,10 +350,20 @@
 			},
 			toggleFullscreen () {
 				if (document.fullscreenElement) {
-					document.exitFullscreen();
+					if (document.webkitExitFullscreen) {
+						document.webkitExitFullscreen();
+					} else {
+						document.exitFullscreen();
+					}
 				} else {
 					if (this.videoContainer) {
-						this.videoContainer.requestFullscreen();
+						if (this.videoContainer.webkitRequestFullscreen) {
+							this.videoContainer.webkitRequestFullscreen();
+						} else if (this.videoContainer.webkitEnterFullscreen) {
+							this.videoContainer.webkitEnterFullscreen();
+						} else {
+							this.videoContainer.requestFullscreen();
+						}
 					}
 				}
 			},

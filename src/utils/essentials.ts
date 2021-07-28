@@ -1,4 +1,6 @@
 // Types
+import { range } from "@typings/main";
+
 interface FetchResponse {
 	data: any;
 	text: string;
@@ -62,3 +64,7 @@ export const http = {
 		return fetchRequest("GET", url);
 	}
 };
+
+export function getRandomNumberFromRange (range: range): number {
+	return (Math.random() * (range[1] - range[0])) + range[0];
+}

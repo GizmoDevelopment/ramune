@@ -59,7 +59,7 @@
 						class="karaoke"
 						:show-id="show.id"
 						:episode-id="episode.id"
-						:lyrics="episode.data.lyrics"
+						:data="episode.data.lyrics"
 						:timestamp="currentVideoTime"
 					/>
 				</div>
@@ -160,9 +160,9 @@
 				</template>
 			</video>
 		</div>
-		<div v-if="episode.data.effects && !isInPopOutMode">
-			<EffectsRenderer
-				:effects="episode.data.effects"
+		<div v-if="!isInPopOutMode && !isFullscreen">
+			<LeafRenderer
+				:data="dummy"
 				:timestamp="currentVideoTime"
 			/>
 		</div>
@@ -182,7 +182,7 @@
 	import MainMixin from "@mixins/Main";
 
 	// Renderers
-	import EffectsRenderer from "@renderers/Effects.vue";
+	import LeafRenderer from "@renderers/Leaf.vue";
 	import KaraokeRenderer from "@renderers/Karaoke.vue";
 
 	// Icons
@@ -200,13 +200,15 @@
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
+	import { LeafRendererData } from "@typings/leaf";
+	import { range } from "@typings/main";
 	import { Episode, Show } from "@typings/show";
 	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
 		name: "Video",
 		components: {
-			EffectsRenderer,
+			LeafRenderer,
 			Play,
 			Pause,
 			Resize,
@@ -272,8 +274,20 @@
 				mouseClickChecker: 0,
 				volume: 1,
 				hoverTimestampOffset: 0,
-				lastMousePosition: [ 0, 0 ] as [ number, number ],
-				selectedSubtitleLanguage: "en" as string | null
+				lastMousePosition: [ 0, 0 ] as range,
+				selectedSubtitleLanguage: "en" as string | null,
+				dummy: [{
+					start: 2,
+					end: 28,
+					particle: {
+						color: "#ff0000",
+						shape: "circle",
+						count: 100,
+						opacity: [ 0, .8 ],
+						size: [ 5, 150 ],
+						movementStyle: "sporadic"
+					}
+				}] as LeafRendererData[]
 			};
 		},
 		computed: {

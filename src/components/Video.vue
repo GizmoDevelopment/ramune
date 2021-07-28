@@ -705,6 +705,30 @@
 		}
 	}
 
+	@media only screen and (max-width: 900px) {
+
+		.subtitle-tray {
+
+			width: 7rem;
+			padding-bottom: .3rem;
+
+			h3 {
+				margin-top: .3rem;
+				margin-bottom: .3rem;
+				font-size: 1rem;
+			}
+		}
+
+		.subtitle-language-button {
+
+			font-size: 1rem;
+
+			svg {
+				left: .4rem;
+			}
+		}
+	}
+
 	/* Volume Tray */
 
 	.volume-tray {
@@ -713,6 +737,12 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+	}
+
+	@media only screen and (max-width: 900px) {
+		.volume-tray {
+			padding: .4rem;
+		}
 	}
 
 	/* Overlay */

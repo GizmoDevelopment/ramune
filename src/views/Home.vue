@@ -1,16 +1,20 @@
 <template>
-	<div v-if="$socket.connected">
+	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<h1 class="heading">Online users</h1>
-		<div class="online-user-list">
-			<div
-				v-for="user in onlineUsers"
-				:key="user.id"
-				class="online-user"
-			>
-				<img class="user-avatar" :src="user.avatar_url">
-				<span class="user-name">{{ user.username }}</span>
+		<h1 class="heading">Home</h1>
+		<div v-if="$socket.connected" class="online-user-list-container">
+			<h3 class="heading">Online users</h3>
+			<div v-if="onlineUsers.length > 0" class="online-user-list">
+				<div
+					v-for="user in onlineUsers"
+					:key="user.id"
+					class="online-user"
+				>
+					<img class="user-avatar" :src="user.avatar_url">
+					<span class="user-name">{{ user.username }}</span>
+				</div>
 			</div>
+			<h3 v-else class="faded">No one seems to be online</h3>
 		</div>
 	</div>
 </template>
@@ -44,7 +48,7 @@
 
 			this.$socket.client.emit("CLIENT:FETCH_ONLINE_USERS", (res: SocketResponse<User[]>) => {
 				if (res.type === "success") {
-					this.onlineUsers = res.data;
+					//this.onlineUsers = res.data;
 				} else {
 					console.error(res.message);
 				}
@@ -55,6 +59,13 @@
 </script>
 
 <style scoped lang="scss">
+
+	.online-user-list-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+	}
 
 	.online-user-list {
 		display: flex;

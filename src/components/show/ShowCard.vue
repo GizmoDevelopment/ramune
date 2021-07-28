@@ -43,7 +43,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/mixins.scss";
 
 	.show-container {
 		max-width: 170px;
@@ -56,6 +58,18 @@
 		width: 170px;
 		height: calc(170px * 1.5);
 		margin-bottom: .3em;
+	}
+
+	@media only screen and (max-width: 700px) {
+
+		.show-container {
+			max-width: 115px;
+		}
+
+		.show-poster-container {
+			width: 115px;
+			height: calc(115px * 1.5);
+		}
 	}
 
 	.show-poster {
@@ -76,13 +90,14 @@
 	}
 
 	.show-title {
-		word-wrap: normal;
+
+		@include text-wrap;
+
+		margin-top: 0;
+		margin-bottom: 5px;
 		font-size: 18px;
 		font-weight: 500;
 		text-align: left;
-		margin-top: 0;
-		margin-bottom: 5px;
-		height: calc(18px * 2);
 	}
 
 </style>

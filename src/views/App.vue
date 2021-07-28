@@ -374,11 +374,45 @@
 
 		@include text-wrap;
 
-		font-size: 45px;
+		@at-root h1#{&} {
+			font-size: 2.8rem;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		@at-root h2#{&} {
+			font-size: 2.2rem;
+			margin-top: .8rem;
+			margin-bottom: .8rem;
+		}
+
+		@at-root h3#{&} {
+			font-size: 1.5rem;
+			margin-top: .4rem;
+			margin-bottom: .4rem;
+		}
+
 		font-weight: bold;
 		text-align: left;
-		margin-top: 1rem;
-		margin-bottom: 1rem;
+	}
+
+	@media screen and (max-width: 700px) {
+
+		.heading {
+
+			@at-root h1#{&} {
+				font-size: 2.3rem;
+			}
+
+			@at-root h2#{&} {
+				font-size: 1.9rem;
+			}
+
+			@at-root h3#{&} {
+				font-size: 1.2rem;
+			}
+
+		}
 	}
 
 	.faded {

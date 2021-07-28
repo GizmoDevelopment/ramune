@@ -1,3 +1,6 @@
+// Types
+import { LeafRendererData } from "@typings/leaf";
+
 export interface ShowHusk {
     id: string;
     title: string;
@@ -26,15 +29,8 @@ export interface Episode {
 }
 
 export interface EpisodeData {
-	effects?: EpisodeEffect[];
+	effects?: LeafRendererData[];
 	lyrics?: Lyrics[];
-}
-
-export interface EpisodeEffect {
-	renderer: "tsparticles" | "leaf";
-	data: any;
-	start: number;
-	end: number;
 }
 
 export interface Subtitles {

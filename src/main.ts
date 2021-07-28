@@ -2,7 +2,6 @@
 import { createApp } from "vue";
 import VueSocketIO from "vue-socket.io-extended";
 import { io } from "socket.io-client";
-import Particles from "particles.vue3";
 
 // Vue
 import App from "@views/App.vue";
@@ -28,7 +27,6 @@ if (typeof SOCKET_ENDPOINT === "string") {
 		.use(Router)
 		.use(MainStore)
 		.use(VueSocketIO, ioInstance)
-		.use(Particles)
 		.directive("tooltip", Tooltip)
 		.mount("#app");
 

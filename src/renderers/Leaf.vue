@@ -15,35 +15,7 @@
 	import { getRandomNumberFromRange } from "@utils/essentials";
 
 	// Types
-	import { range } from "@typings/main";
-
-	type LeafRendererParticleShape = "circle";
-	type LeafRendererParticleMovementStyle = "sporadic";
-
-	interface LeafRendererData {
-		start: number
-		end: number
-		particle?: {
-			color: string
-			shape: LeafRendererParticleShape
-			count: number
-			size: number | range
-			opacity?: number | range
-			movementStyle?: LeafRendererParticleMovementStyle
-		}
-	}
-
-	interface LeafRendererInstance {
-		color: string
-		shape: LeafRendererParticleShape
-		size: number
-		opacity: number
-		movementStyle?: LeafRendererParticleMovementStyle
-		position: {
-			x: number
-			y: number
-		}
-	}
+	import { LeafRendererData, LeafRendererInstance } from "@typings/leaf";
 
 	// Variables
 	const FRAME_INTERVAL = (1 / 30) * 1000; // 30 FPS is less stressful than 60 FPS and fast enough for our eyes to perceive motion

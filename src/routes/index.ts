@@ -5,8 +5,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
 import Rooms from "@views/Rooms.vue";
-import RoomLoader from "@views/RoomLoader.vue";
 import Player from "@views/Player.vue";
+const RoomLoader = () => import("@views/RoomLoader.vue");
 
 const router = createRouter({
 	history: createWebHistory(),

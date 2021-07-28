@@ -244,6 +244,7 @@
 		border-top-left-radius: variable(popup-border-radius);
 		border-top-right-radius: variable(popup-border-radius);
 		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 		opacity: .1;
 		z-index: 1;
 	}

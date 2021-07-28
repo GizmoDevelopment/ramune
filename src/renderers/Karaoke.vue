@@ -43,7 +43,7 @@
 				type: Number,
 				required: true
 			},
-			lyrics: {
+			data: {
 				type: Array as PropType<Lyrics[]>,
 				default: () => []
 			},
@@ -66,12 +66,12 @@
 			}
 		},
 		watch: {
-			lyrics (lyrics: Lyrics[]) {
+			data (lyrics: Lyrics[]) {
 				this.reloadLyrics(lyrics);
 			},
 			timestamp (timestamp: number) {
 
-				this.lyrics.forEach((lyrics: Lyrics) => {
+				this.data.forEach((lyrics: Lyrics) => {
 
 					const parsedLyrics = this.cachedParsedLyrics.get(this.getCachedParsedLyricsName(lyrics));
 
@@ -120,8 +120,8 @@
 			}
 		},
 		mounted () {
-			if (this.lyrics.length > 0) {
-				this.reloadLyrics(this.lyrics);
+			if (this.data.length > 0) {
+				this.reloadLyrics(this.data);
 			}
 		},
 		methods: {

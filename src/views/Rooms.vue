@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div v-if="user">
-			<div v-if="rooms">
+			<div v-if="$socket.connected && rooms">
 				<div v-if="rooms.length > 0" class="room-list">
 					<div
 						v-for="room in rooms"

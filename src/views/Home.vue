@@ -39,20 +39,33 @@
 		mixins: [ SocketMixin ],
 		data () {
 			return {
-				onlineUsers: [] as User[]
+				onlineUsers: [] as User[],
+				onlineUsersFetcherInterval: 0
 			};
 		},
 		mounted () {
 
 			clearPageTitle();
+			this.fetchOnlineUsers();
 
-			this.$socket.client.emit("CLIENT:FETCH_ONLINE_USERS", (res: SocketResponse<User[]>) => {
-				if (res.type === "success") {
-					//this.onlineUsers = res.data;
-				} else {
-					console.error(res.message);
-				}
-			});
+			this.onlineUsersFetcherInterval = window.setInterval(() => {
+				this.fetchOnlineUsers();
+			}, 5000);
+
+		},
+		beforeUnmount () {
+			clearInterval(this.onlineUsersFetcherInterval);
+		},
+		methods: {
+			fetchOnlineUsers () {
+				this.$socket.client.emit("CLIENT:FETCH_ONLINE_USERS", (res: SocketResponse<User[]>) => {
+					if (res.type === "success") {
+						this.onlineUsers = res.data;
+					} else {
+						console.error(res.message);
+					}
+				});
+			}
 		}
 	});
 

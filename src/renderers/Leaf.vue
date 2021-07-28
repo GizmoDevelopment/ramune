@@ -1,7 +1,7 @@
 <template>
 	<div v-show="currentData">
 		<transition name="leaf-renderer">
-			<canvas ref="canvas" class="renderer-canvas" />
+			<canvas ref="canvas" class="canvas" />
 		</transition>
 	</div>
 </template>
@@ -196,15 +196,19 @@
 
 	.leaf-renderer-enter-from,
 	.leaf-renderer-leave-to {
-		opacity: 0;
+		.canvas {
+			opacity: .5;
+		}
 	}
 
 	.leaf-renderer-enter-active,
 	.leaf-renderer-leave-active {
-		transition: opacity 2s ease-in-out;
+		.canvas {
+			transition: opacity 2s ease-in-out;
+		}
 	}
 
-	.renderer-canvas {
+	.canvas {
 		position: fixed;
 		width: 100%;
 		height: 100%;

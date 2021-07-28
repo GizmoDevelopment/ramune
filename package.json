@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "postinstall": "patch-package"
+    "serve": "vite preview"
   },
   "dependencies": {
     "gizmo-api": "^1.0.9",

@@ -160,9 +160,9 @@
 				</template>
 			</video>
 		</div>
-		<div v-if="!isInPopOutMode && !isFullscreen">
+		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects">
 			<LeafRenderer
-				:data="dummy"
+				:data="episode.data.effects"
 				:timestamp="currentVideoTime"
 			/>
 		</div>
@@ -200,7 +200,6 @@
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
-	import { LeafRendererData } from "@typings/leaf";
 	import { range } from "@typings/main";
 	import { Episode, Show } from "@typings/show";
 	import { RoomSyncData } from "@typings/room";
@@ -275,19 +274,7 @@
 				volume: 1,
 				hoverTimestampOffset: 0,
 				lastMousePosition: [ 0, 0 ] as range,
-				selectedSubtitleLanguage: "en" as string | null,
-				dummy: [{
-					start: 2,
-					end: 28,
-					particle: {
-						color: "#ff0000",
-						shape: "circle",
-						count: 100,
-						opacity: [ 0, .8 ],
-						size: [ 5, 150 ],
-						movementStyle: "sporadic"
-					}
-				}] as LeafRendererData[]
+				selectedSubtitleLanguage: "en" as string | null
 			};
 		},
 		computed: {

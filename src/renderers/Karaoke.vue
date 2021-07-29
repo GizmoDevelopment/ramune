@@ -129,6 +129,12 @@
 				return `${this.showId}-${lyrics.id}`;
 			},
 			reloadLyrics (lyrics: Lyrics[]) {
+
+				this.currentLyricsId = "";
+				this.currentLine = "";
+				this.currentLineIndex = 0;
+				this.isTitleLine = false;
+
 				lyrics.forEach((lyrics: Lyrics) => {
 
 					const parsedLyricsName = this.getCachedParsedLyricsName(lyrics);

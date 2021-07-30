@@ -2,7 +2,7 @@
 import { range } from "@typings/main";
 
 export type LeafRendererParticleShape = "circle";
-export type LeafRendererParticleMovementStyle = "sporadic";
+export type LeafRendererParticleMovementStyle = "sporadic" | "driftTopRight";
 
 export interface LeafRendererData {
 	start: number

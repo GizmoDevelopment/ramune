@@ -590,6 +590,14 @@
 		}
 	}
 
+	@media only screen and (max-width: 1200px) {
+		#content {
+			width: 100%;
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+	}
+
 	@media only screen and (max-width: 800px) {
 		.heading {
 			font-size: 30px;

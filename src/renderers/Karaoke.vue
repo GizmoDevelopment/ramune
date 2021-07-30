@@ -84,7 +84,7 @@
 
 							this.currentLyricsId = parsedLyrics.id;
 
-							for (let line of parsedLyrics.lines) {
+							for (const line of parsedLyrics.lines) {
 
 								// TODO: Add support for TimedLine
 								if (typeof line.content === "string") {
@@ -130,6 +130,7 @@
 			},
 			reloadLyrics (lyrics: Lyrics[]) {
 
+				// Reset data so old lyrics don't stay on screen
 				this.currentLyricsId = "";
 				this.currentLine = "";
 				this.currentLineIndex = 0;

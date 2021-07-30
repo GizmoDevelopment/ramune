@@ -204,7 +204,7 @@
 
 											this.updateInstancePosition(instance, i, {
 												x: instance.position.x + .2,
-												y: instance.position.y + .1
+												y: instance.position.y + .2
 											});
 
 											break;

@@ -104,7 +104,7 @@
 			height: 1.375em;
 		}
 
-		img {
+		img, video {
 			max-width: 100%;
 			height: auto;
 		}

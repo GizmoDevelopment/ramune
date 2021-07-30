@@ -55,7 +55,14 @@
 		},
 		watch: {
 			data (data: LeafRendererData[]) {
+
 				this.reversedData = data.reverse();
+
+				// Reset data to hide previous effects
+				this.isVisible = false;
+				this.currentData = null;
+				this.renderQueue = [];
+
 			},
 			timestamp (timestamp: number) {
 
@@ -151,6 +158,12 @@
 			this.reversedData = this.data.slice().reverse();
 		},
 		beforeUnmount () {
+
+			// Reset data to hide previous effects
+			this.isVisible = false;
+			this.currentData = null;
+			this.renderQueue = [];
+
 			window.removeEventListener("resize", this.correctCanvasSize);
 		},
 		methods: {

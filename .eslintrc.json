@@ -57,6 +57,14 @@
 		],
 		"vue/script-setup-uses-vars": [
 			"off"
+		],
+		"eqeqeq": [
+			"error",
+			"always"
+		],
+		"vue/eqeqeq": [
+			"error",
+			"always"
 		]
     },
 	"overrides": [

@@ -1,9 +1,11 @@
 <template>
-	<div v-show="currentData">
-		<transition name="leaf-renderer">
-			<canvas ref="canvas" class="canvas" />
-		</transition>
-	</div>
+	<transition name="leaf-renderer">
+		<canvas
+			v-show="isVisible"
+			ref="canvas"
+			class="canvas"
+		/>
+	</transition>
 </template>
 
 <script lang="ts">
@@ -44,6 +46,7 @@
 		data () {
 			return {
 				// Simplifies timestamp match lookup
+				isVisible: false,
 				reversedData: [] as LeafRendererData[],
 				currentData: null as LeafRendererData | null,
 				ctx: null as CanvasRenderingContext2D | null,
@@ -63,15 +66,37 @@
 					const data = this.reversedData[i];
 
 					if (data && timestamp >= data.start && timestamp < data.end) {
+
+						this.isVisible = timestamp < (data.end - 3);
 						this.currentData = data;
+
 						chosenIndex = i;
+
 						break;
 					}
 				}
 
 				// If nothing got picked
 				if (chosenIndex === -1) {
-					this.currentData = null;
+
+					this.isVisible = false;
+
+					if (this.currentData) {
+
+						const lastData = this.currentData;
+
+						setTimeout(() => {
+							// If the same effect was last used in 3s, finish fade-out
+							if (
+								(this.currentData && lastData.start === this.currentData.start && lastData.end === this.currentData.end)
+								&& (this.timestamp > lastData.end || this.timestamp < lastData.start)
+							) {
+								this.currentData = null;
+							}
+						}, 3000);
+					} else {
+						this.currentData = null;
+					}
 				}
 			},
 			currentData (data: LeafRendererData | null) {
@@ -132,9 +157,9 @@
 			animate () {
 				requestAnimationFrame(() => {
 
-					if (this.ctx) {
+					if (this.canvas && this.ctx) {
 
-						const { ctx, renderQueue } = this;
+						const { canvas, ctx, renderQueue } = this;
 
 						for (let i = 0; i <= renderQueue.length; i++) {
 
@@ -155,11 +180,36 @@
 
 								ctx.fill();
 
-								switch (instance.movementStyle) {
-									case "sporadic":
-										this.renderQueue[i] = { ...instance, position: { x: instance.position.x + getRandomNumberFromRange([ -1, 1 ]), y: instance.position.y + getRandomNumberFromRange([ -1, 1 ]) } };
-										break;
-									default:
+								if (instance.position.x >= (canvas.width + instance.size)) {
+									this.updateInstancePosition(instance, i, {
+										x: -1 * instance.size,
+										y: instance.position.y
+									});
+								} else if (instance.position.y >= (canvas.width + instance.size)) {
+									this.updateInstancePosition(instance, i, {
+										x: instance.position.x,
+										y:  -1 * instance.size
+									});
+								} else {
+									switch (instance.movementStyle) {
+										case "sporadic":
+
+											this.updateInstancePosition(instance, i, {
+												x: instance.position.x + getRandomNumberFromRange([ -1, 1 ]),
+												y: instance.position.y + getRandomNumberFromRange([ -1, 1 ])
+											});
+
+											break;
+										case "driftBottomRight":
+
+											this.updateInstancePosition(instance, i, {
+												x: instance.position.x + .2,
+												y: instance.position.y + .1
+											});
+
+											break;
+										default:
+									}
 								}
 							}
 						}
@@ -186,6 +236,15 @@
 					this.canvas.width = Math.floor(innerWidth * devicePixelRatio);
 					this.canvas.height = Math.floor(innerHeight * devicePixelRatio);
 				}
+			},
+			updateInstancePosition (instance: LeafRendererInstance, instanceIndex: number, { x, y }: { x: number, y: number }) {
+				this.renderQueue[instanceIndex] = {
+					...instance,
+					position: {
+						x,
+						y
+					}
+				};
 			}
 		}
 	});
@@ -196,16 +255,12 @@
 
 	.leaf-renderer-enter-from,
 	.leaf-renderer-leave-to {
-		.canvas {
-			opacity: .5;
-		}
+		opacity: 0;
 	}
 
 	.leaf-renderer-enter-active,
 	.leaf-renderer-leave-active {
-		.canvas {
-			transition: opacity 2s ease-in-out;
-		}
+		transition: opacity 3s ease-in-out;
 	}
 
 	.canvas {
@@ -216,5 +271,4 @@
 		left: 0;
 		z-index: -1;
 	}
-
 </style>

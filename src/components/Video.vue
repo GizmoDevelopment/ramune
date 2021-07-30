@@ -86,7 +86,7 @@
 							</div>
 						</transition>
 						<div @click="toggleVolumeTray">
-							<VolumeOff v-if="volume == 0" class="video-control-button" />
+							<VolumeOff v-if="volume === 0" class="video-control-button" />
 							<VolumeLow v-if="volume > 0 && volume < .45" class="video-control-button" />
 							<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
 							<VolumeHigh v-if="volume >= .85" class="video-control-button" />

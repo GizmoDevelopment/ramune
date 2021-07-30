@@ -374,6 +374,11 @@
 
 		@include text-wrap;
 
+		// Defaults
+		font-size: 2.8rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+
 		@at-root h1#{&} {
 			font-size: 2.8rem;
 			margin-top: 1rem;

@@ -93,7 +93,7 @@
 							) {
 								this.currentData = null;
 							}
-						}, 3000);
+						}, 4000);
 					} else {
 						this.currentData = null;
 					}

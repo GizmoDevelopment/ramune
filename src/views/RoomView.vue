@@ -111,9 +111,11 @@
 		},
 		sockets: {
 			"ROOM:USER_JOIN" () {
-				if (this.isHost) {
-					this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", true);
-				}
+				setTimeout(() => {
+					if (this.isHost) {
+						this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", true);
+					}
+				}, 500);
 			}
 		}
 	});

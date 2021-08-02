@@ -494,7 +494,7 @@
 			"ROOM:SYNC" (data: RoomSyncData) {
 				if (this.video) {
 
-					this.lastSyncTimestamp = new Date().getTime() / 1000;
+					this.lastSyncTimestamp = Date.now() / 1000;
 					this.video.currentTime = data.currentTime;
 
 					if (data.playing) {

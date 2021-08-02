@@ -13,7 +13,6 @@
 			<ShowSeasonList
 				:show="show"
 				:selected-episode-id="episodeId"
-				collapsable
 			/>
 		</div>
 		<div v-else-if="status">

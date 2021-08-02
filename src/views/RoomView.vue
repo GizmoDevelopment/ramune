@@ -23,7 +23,6 @@
 			<ShowSeasonList
 				:show="show"
 				:selected-episode-id="episodeId"
-				collapsable
 			/>
 		</div>
 	</div>

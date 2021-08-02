@@ -4,7 +4,7 @@
 			<ShowSeasonEpisodeList
 				:season="season"
 				:selected-episode-id="selectedEpisodeId"
-				:collapsable="collapsable"
+				:expanded="season.id === expandedSeasonId"
 				@play-episode="playEpisode"
 			/>
 		</div>
@@ -42,14 +42,17 @@
 				type: Number,
 				default: 0
 			},
-			collapsable: {
-				type: Boolean,
-				default: false
+			expandedSeasonId: {
+				type: Number,
+				default: -1
 			}
 		},
 		computed: {
 			isHost (): boolean {
 				return this.room?.host?.id === this.user?.id;
+			},
+			shouldCollapse (): boolean {
+				return this.show.seasons.length > 1;
 			}
 		},
 		methods: {

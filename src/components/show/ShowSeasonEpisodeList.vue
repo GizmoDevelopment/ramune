@@ -1,17 +1,16 @@
 <template>
 	<div class="season-info">
 		<h2 class="season-title">Season {{ season.id }}</h2>
-		<div v-if="collapsable">
-			<button
-				aria-label="Display episodes"
-				:class="expanded ? 'expand-button expand-button-active' : 'expand-button'"
-				@click="toggleExpansion()"
-			>
-				<CaretDown />
-			</button>
-		</div>
+		<button
+			aria-label="Display episodes"
+			class="expand-button"
+			:class="{ 'expand-button-active': !collapsed }"
+			@click="toggleExpansion()"
+		>
+			<CaretDown />
+		</button>
 	</div>
-	<div v-if="!collapsable || expanded" class="episode-list-container">
+	<div v-if="!collapsed" class="episode-list-container">
 		<div
 			v-for="episode in season.episodes"
 			:key="episode.id"
@@ -53,7 +52,7 @@
 				type: Number,
 				default: 0
 			},
-			collapsable: {
+			expanded: {
 				type: Boolean,
 				default: false
 			}
@@ -61,12 +60,23 @@
 		emits: [ "play-episode" ],
 		data: () => {
 			return {
-				expanded: false
+				collapsed: false
 			};
+		},
+		watch: {
+			expanded () {
+				this.syncExpansion();
+			}
+		},
+		mounted () {
+			this.syncExpansion();
 		},
 		methods: {
 			toggleExpansion () {
-				this.expanded = !this.expanded;
+				this.collapsed = !this.collapsed;
+			},
+			syncExpansion () {
+				this.collapsed = !this.expanded;
 			},
 			playEpisode (episodeId: number) {
 				this.$emit("play-episode", episodeId);

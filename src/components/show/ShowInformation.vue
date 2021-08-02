@@ -13,6 +13,7 @@
 		</div>
 		<ShowSeasonList
 			:show="show"
+			:expanded-season-id="1"
 		/>
 	</div>
 </template>

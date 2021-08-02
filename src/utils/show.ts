@@ -1,5 +1,5 @@
 // Types
-import { Episode, Show } from "@typings/show";
+import { Episode, Season, Show } from "@typings/show";
 
 export function getEpisodeById (show: Show, episodeId: number): Episode | null {
 
@@ -18,4 +18,22 @@ export function getEpisodeById (show: Show, episodeId: number): Episode | null {
 	}
 
 	return _episode;
+}
+
+export function getRelativeEpisodeId (season: Season, episode: Episode): number {
+	return season.episodes.indexOf(episode) + 1;
+}
+
+export function getSeasonFromEpisode (show: Show, episode: Episode): Season | null {
+
+	let _season: Season | null = null;
+
+	for (const season of show.seasons) {
+		if (season.episodes.includes(episode)) {
+			_season = season;
+			break;
+		}
+	}
+
+	return _season;
 }

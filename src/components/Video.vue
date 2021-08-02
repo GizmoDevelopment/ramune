@@ -529,6 +529,17 @@
 		transform: translateY(.5em) scale(90%);
 	}
 
+	/* Subtitles & Captions */
+
+	video {
+		&::cue {
+			font-family: variable(font);
+			// Becomes hard-to-read without the background
+			// background: transparent;
+			// text-shadow: -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000, 1px 1px 2px #000;
+		}
+	}
+
 	/* Video Containers */
 
 	.video-player {

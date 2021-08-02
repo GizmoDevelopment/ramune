@@ -198,10 +198,10 @@
 										x: -1 * instance.size,
 										y: instance.position.y
 									});
-								} else if (instance.position.y >= (canvas.width + instance.size)) {
+								} else if (instance.position.y >= (canvas.height + instance.size)) {
 									this.updateInstancePosition(instance, i, {
 										x: instance.position.x,
-										y:  -1 * instance.size
+										y: -1 * instance.size
 									});
 								} else {
 									switch (instance.movementStyle) {

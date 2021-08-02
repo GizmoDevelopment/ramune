@@ -29,6 +29,7 @@ interface TwemojiOptions {
 
 interface BaseResponse {
 	type: "success" | "error";
+	protocol?: string;
 	message?: string;
 }
 

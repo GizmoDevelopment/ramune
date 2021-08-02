@@ -132,6 +132,9 @@
 					this.loginToSocket(this.user.token);
 				}
 			},
+			exception (msg: any) {
+				console.error(msg);
+			},
 			"ROOM:USER_JOIN" (user: User) {
 				this.$store.commit("room/USER_JOIN_ROOM", user);
 			},

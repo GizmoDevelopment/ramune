@@ -12,11 +12,12 @@
 	</div>
 	<div v-if="!collapsed" class="episode-list-container">
 		<div
-			v-for="episode in season.episodes"
+			v-for="(episode, index) in season.episodes"
 			:key="episode.id"
 			class="episode-container"
 		>
 			<ShowEpisodeCard
+				:id="index + 1"
 				:episode="episode"
 				:active="episode.id === selectedEpisodeId"
 				@play-episode="playEpisode"

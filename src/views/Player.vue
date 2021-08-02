@@ -4,6 +4,7 @@
 		<div v-if="show && episode">
 			<ShowHeading
 				:show="show"
+				:season="season"
 				:episode="episode"
 			/>
 			<Video
@@ -37,12 +38,12 @@
 	import ShowHeading from "@components/show/ShowHeading.vue";
 
 	// Utils
-	import { getEpisodeById } from "@utils/show";
+	import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
 	import { getShow } from "@utils/api";
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
-	import { Show, Episode } from "@typings/show";
+	import { Show, Episode, Season } from "@typings/show";
 
 	export default defineComponent({
 		name: "Player",
@@ -66,6 +67,7 @@
 		data () {
 			return {
 				show: null as Show | null,
+				season: null as Season | null,
 				episode: null as Episode | null,
 				status: "" as string | number
 			};
@@ -106,7 +108,13 @@
 		methods: {
 			setEpisode (episodeId: number) {
 				if (this.show) {
+
 					this.episode = getEpisodeById(this.show, episodeId);
+
+					if (this.episode) {
+						this.season = getSeasonFromEpisode(this.show, this.episode);
+					}
+
 					setPageTitle(`${ this.show.title } — Episode ${ episodeId }`);
 				}
 			}

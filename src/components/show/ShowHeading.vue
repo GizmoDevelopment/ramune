@@ -1,6 +1,6 @@
 <template>
 	<h1 class="heading show-title">{{ show.title }}</h1>
-	<p class="faded episode-title">Episode {{ episode.id }} - {{ episode.title }}</p>
+	<p class="faded episode-title">Episode {{ id }} - {{ episode.title }}</p>
 </template>
 
 <script lang="ts">
@@ -8,8 +8,11 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Utils
+	import { getRelativeEpisodeId } from "@utils/show";
+
 	// Types
-	import { Episode, Show } from "@typings/show";
+	import { Episode, Season, Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowHeading",
@@ -18,9 +21,18 @@
 				type: Object as PropType<Show>,
 				required: true
 			},
+			season: {
+				type: Object as PropType<Season>,
+				required: true
+			},
 			episode: {
 				type: Object as PropType<Episode>,
 				required: true
+			}
+		},
+		computed: {
+			id (): number {
+				return getRelativeEpisodeId(this.season, this.episode);
 			}
 		}
 	});

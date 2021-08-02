@@ -17,6 +17,7 @@
 	<div v-if="show && episode">
 		<ShowHeading
 			:show="show"
+			:season="season"
 			:episode="episode"
 		/>
 		<div v-if="isHost">

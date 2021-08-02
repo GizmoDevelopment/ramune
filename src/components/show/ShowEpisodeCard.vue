@@ -3,7 +3,7 @@
 		<div class="thumbnail-container">
 			<img class="husk-dark episode-thumbnail" :src="episode.thumbnail_url">
 			<div class="episode-info">
-				<div class="episode-index">{{ episode.id }}</div>
+				<div class="episode-index">{{ id }}</div>
 				<div class="episode-duration">{{ formattedDuration }}</div>
 			</div>
 			<div
@@ -38,6 +38,10 @@
 			Play
 		},
 		props: {
+			id: {
+				type: Number,
+				required: true
+			},
 			episode: {
 				type: Object as PropType<Episode>,
 				required: true

@@ -40,3 +40,10 @@ export function renderTwemoji (element: HTMLElement): void {
 		});
 	}
 }
+
+export function waitForImageLoad (image: HTMLImageElement): Promise<void> {
+	return new Promise((res, rej) => {
+		image.onload = () => res();
+		image.onerror = rej;
+	});
+}

@@ -144,7 +144,6 @@
 							}
 
 							const constructedParticle: LeafRendererInstance = {
-								color: particle.color,
 								shape: particle.shape,
 								opacity: particle.opacity
 									? typeof particle.opacity === "number"
@@ -164,6 +163,10 @@
 									y: Math.random() * this.canvas.height
 								}
 							};
+
+							if (particle.color) {
+								constructedParticle.color = particle.color;
+							}
 
 							if (particle.movementStyle) {
 								constructedParticle.movementStyle = particle.movementStyle;
@@ -222,7 +225,10 @@
 
 							if (instance) {
 
-								ctx.fillStyle = instance.color;
+								if (instance.color) {
+									ctx.fillStyle = instance.color;
+								}
+
 								ctx.globalAlpha = instance.opacity;
 
 								if (instance.image) {

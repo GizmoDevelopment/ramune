@@ -14,7 +14,7 @@ export interface LeafRendererData {
 			y: number | range
 		}
 		count: number
-		color: string
+		color?: string
 		shape: LeafRendererParticleShape
 		opacity?: number | range
 		movementStyle?: LeafRendererParticleMovementStyle
@@ -35,7 +35,7 @@ export interface LeafRendererInstance {
 		x: number
 		y: number
 	}
-	color: string
+	color?: string
 	shape: LeafRendererParticleShape
 	opacity: number
 	movementStyle?: LeafRendererParticleMovementStyle

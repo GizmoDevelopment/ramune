@@ -3,4 +3,6 @@
 	word-break: break-word;
 	white-space: break-spaces;
 	hyphens: auto;
+	-ms-hyphens: auto;
+	-webkit-hyphens: auto;
 }

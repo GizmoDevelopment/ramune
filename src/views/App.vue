@@ -209,6 +209,7 @@
 		src: url("../assets/fonts/Roboto-Bold.ttf");
 		font-weight: 700;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	@font-face {
@@ -216,6 +217,7 @@
 		src: url("../assets/fonts/Roboto-Light.ttf");
 		font-weight: 300;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	@font-face {
@@ -223,6 +225,7 @@
 		src: url("../assets/fonts/Roboto-Medium.ttf");
 		font-weight: 500;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	@font-face {
@@ -230,6 +233,7 @@
 		src: url("../assets/fonts/Roboto-Regular.ttf");
 		font-weight: 400;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	@font-face {
@@ -237,6 +241,7 @@
 		src: url("../assets/fonts/Roboto-Thin.ttf");
 		font-weight: 100;
 		font-style: normal;
+		font-display: swap;
 	}
 
 	/* Transitions */
@@ -280,22 +285,22 @@
 
 	@keyframes spinning {
 		0% {
-			rotate: 0deg;
+			transform: rotate(0turn);
 		}
 		100% {
-			rotate: 360deg;
+			transform: rotate(1turn);
 		}
 	}
 
 	@keyframes gradient {
 		0% {
-			background-position: 0% 0%;
+			background-position: left;
 		}
 		65% {
-			background-position: 100% 0%;
+			background-position: right;
 		}
 		100% {
-			background-position: 0% 0%;
+			background-position: left;
 		}
 	}
 
@@ -450,6 +455,8 @@
 		color: transparent;
 		border-radius: var(--card-border-radius);
 		user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
 		animation: gradient 5s ease infinite;
 	}
 

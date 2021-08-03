@@ -30,7 +30,6 @@ export function setCookie (name: string, value: string): void {
 }
 
 export function renderTwemoji (element: HTMLElement): void {
-
 	// Don't use Twemoji on Apple devices, as they have a pretty good emoji set
 	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple/i) === null) {
 		window.twemoji.parse(element, {

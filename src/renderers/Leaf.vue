@@ -101,7 +101,7 @@
 							) {
 								this.currentData = null;
 							}
-						}, 4000);
+						}, 3000);
 					} else {
 						this.currentData = null;
 					}
@@ -320,7 +320,7 @@
 
 	.leaf-renderer-enter-active,
 	.leaf-renderer-leave-active {
-		transition: opacity 3s ease-in-out;
+		transition: opacity 2s ease-in-out;
 	}
 
 	.canvas {

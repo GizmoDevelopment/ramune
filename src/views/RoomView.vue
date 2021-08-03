@@ -14,7 +14,7 @@
 	<br>
 	<!-- This is where RoomController will teleport the video element to -->
 	<div id="room-video-container" />
-	<div v-if="show && episode">
+	<div v-if="show && season && episode">
 		<ShowHeading
 			:show="show"
 			:season="season"

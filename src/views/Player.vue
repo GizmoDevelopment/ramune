@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<div v-if="show && episode">
+		<div v-if="show && season && episode">
 			<ShowHeading
 				:show="show"
 				:season="season"

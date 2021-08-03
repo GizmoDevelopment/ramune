@@ -34,7 +34,7 @@
 	}
 
 	.show-poster {
-		min-width: calc(280px * .65);
+		min-width: calc(280px * .7);
 		height: 280px;
 		border-radius: variable(card-border-radius);
 	}
@@ -77,7 +77,7 @@
 
 	@media only screen and (max-width: 800px) {
 		.show-poster {
-			min-width: calc(190px * .65);
+			min-width: calc(190px * .7);
 			height: 190px;
 		}
 	}

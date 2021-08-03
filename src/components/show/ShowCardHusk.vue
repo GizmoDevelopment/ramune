@@ -35,7 +35,7 @@
 		position: relative;
 		display: block;
 		width: 170px;
-		height: calc(170px * 1.5);
+		height: calc(170px * 1.42);
 		margin-bottom: .3em;
 	}
 
@@ -47,7 +47,7 @@
 
 		.show-poster-container {
 			width: 115px;
-			height: calc(115px * 1.5);
+			height: calc(115px * 1.42);
 		}
 	}
 

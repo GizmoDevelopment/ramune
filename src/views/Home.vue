@@ -10,7 +10,11 @@
 					:key="user.id"
 					class="online-user"
 				>
-					<img class="user-avatar" :src="user.avatar_url">
+					<img
+						class="user-avatar"
+						:src="user.avatar_url"
+						:alt="`${ user.username }'s profile picture`"
+					>
 					<span class="user-name">{{ user.username }}</span>
 				</div>
 			</div>

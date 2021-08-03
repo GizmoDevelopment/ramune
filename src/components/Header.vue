@@ -17,6 +17,7 @@
 				<img
 					class="user-avatar"
 					:src="user.avatar_url"
+					alt="Your profile picture"
 				>
 			</div>
 			<div v-else>

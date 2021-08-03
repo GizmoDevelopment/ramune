@@ -5,6 +5,7 @@
 				class="show-poster"
 				:src="show.poster_url"
 				draggable="false"
+				alt="Show poster"
 			>
 			<div class="overlay hover-opacity" @click="$emit('select-show', show.id)">
 				<Play class="overlay-play-icon" />

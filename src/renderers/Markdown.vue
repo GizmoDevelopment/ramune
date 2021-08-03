@@ -59,7 +59,7 @@
 				let _content = this.content;
 
 				// Custom Emoji
-				_content = _content.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false'>");
+				_content = _content.replace(emojiReplacer, "<img class='emoji' src='https://cdn.gizmo.moe/assets/emoji/$1.png' draggable='false' alt='$1 emoji'>");
 
 				if (this.markdown) {
 					_content = _content

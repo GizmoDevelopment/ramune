@@ -11,6 +11,7 @@
 				<img
 					class="user-avatar"
 					:src="user.avatar_url"
+					:alt="`${ user.username }'s profile picture`"
 				>
 			</div>
 		</transition-group>

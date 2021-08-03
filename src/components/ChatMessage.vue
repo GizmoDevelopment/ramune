@@ -6,7 +6,11 @@
 	</div>
 	<div v-else>
 		<div class="message-container">
-			<img class="message-author-avatar" :src="message.user.avatar_url">
+			<img
+				class="message-author-avatar"
+				:src="message.user.avatar_url"
+				:alt="`${ message.user.username }'s profile picture`"
+			>
 			<MarkdownRenderer class="message-content first-message-content" :content="message.content" />
 		</div>
 	</div>

@@ -454,9 +454,9 @@
 	.husk, .husk-dark {
 		color: transparent;
 		border-radius: var(--card-border-radius);
-		user-select: none;
-		-webkit-user-select: none;
 		-ms-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
 		animation: gradient 5s ease infinite;
 	}
 

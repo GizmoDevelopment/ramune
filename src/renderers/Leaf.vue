@@ -126,6 +126,10 @@
 
 						for (let i = 0; i <= particle.count; i++) {
 
+							const particleSize = typeof particle.size === "number"
+								? particle.size
+								: getRandomNumberFromRange(particle.size);
+
 							const constructedParticle: LeafRendererInstance = {
 								color: particle.color,
 								shape: particle.shape,
@@ -134,9 +138,10 @@
 										? particle.opacity
 										: getRandomNumberFromRange(particle.opacity)
 									: 1,
-								size: typeof particle.size === "number"
-									? particle.size
-									: getRandomNumberFromRange(particle.size),
+								size: {
+									width: particleSize,
+									height: particleSize
+								},
 								position: {
 									x: Math.random() * this.canvas.width,
 									y: Math.random() * this.canvas.height
@@ -204,13 +209,13 @@
 								ctx.globalAlpha = instance.opacity;
 
 								if (instance.image) {
-									ctx.drawImage(instance.image, 0, 0, instance.image.width, instance.image.height, instance.position.x, instance.position.y, instance.size, instance.size);
+									ctx.drawImage(instance.image, 0, 0, instance.image.width, instance.image.height, instance.position.x, instance.position.y, instance.size.width, instance.size.height);
 								} else {
 
 									switch (instance.shape) {
 										case "circle":
 											ctx.beginPath();
-											ctx.arc(instance.position.x, instance.position.y, instance.size / 2, 0, FULL_RADIUS);
+											ctx.arc(instance.position.x, instance.position.y, instance.size.width / 2, 0, FULL_RADIUS);
 											break;
 										default:
 									}
@@ -218,15 +223,15 @@
 									ctx.fill();
 								}
 
-								if (instance.position.x >= (canvas.width + instance.size)) {
+								if (instance.position.x >= (canvas.width + instance.size.width)) {
 									this.updateInstancePosition(instance, i, {
-										x: -1 * instance.size,
+										x: -1 * instance.size.width,
 										y: instance.position.y
 									});
-								} else if (instance.position.y >= (canvas.height + instance.size)) {
+								} else if (instance.position.y >= (canvas.height + instance.size.height)) {
 									this.updateInstancePosition(instance, i, {
 										x: instance.position.x,
-										y: -1 * instance.size
+										y: -1 * instance.size.height
 									});
 								} else {
 									switch (instance.movementStyle) {

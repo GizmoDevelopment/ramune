@@ -21,7 +21,10 @@ export interface LeafRendererData {
 export interface LeafRendererInstance {
 	color: string
 	shape: LeafRendererParticleShape
-	size: number
+	size: {
+		width: number
+		height: number
+	}
 	opacity: number
 	movementStyle?: LeafRendererParticleMovementStyle
 	image?: HTMLImageElement

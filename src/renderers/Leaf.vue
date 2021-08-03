@@ -15,6 +15,7 @@
 
 	// Utils
 	import { getRandomNumberFromRange } from "@utils/essentials";
+	import { waitForImageLoad } from "@utils/dom";
 
 	// Types
 	import { LeafRendererData, LeafRendererInstance } from "@typings/leaf";
@@ -106,7 +107,7 @@
 					}
 				}
 			},
-			currentData (data: LeafRendererData | null) {
+			async currentData (data: LeafRendererData | null) {
 				if (data) {
 
 					const
@@ -114,8 +115,18 @@
 						{ particle } = data;
 
 					if (this.canvas && particle) {
+
+						let particleImage: HTMLImageElement | null = null;
+
+						if (particle.image) {
+							particleImage = new Image();
+							particleImage.src = particle.image;
+							await waitForImageLoad(particleImage);
+						}
+
 						for (let i = 0; i <= particle.count; i++) {
-							renderQueue.push({
+
+							const constructedParticle: LeafRendererInstance = {
 								color: particle.color,
 								shape: particle.shape,
 								opacity: particle.opacity
@@ -129,9 +140,18 @@
 								position: {
 									x: Math.random() * this.canvas.width,
 									y: Math.random() * this.canvas.height
-								},
-								movementStyle: particle.movementStyle
-							});
+								}
+							};
+
+							if (particle.movementStyle) {
+								constructedParticle.movementStyle = particle.movementStyle;
+							}
+
+							if (particleImage) {
+								constructedParticle.image = particleImage;
+							}
+
+							renderQueue.push(constructedParticle);
 						}
 					}
 
@@ -183,15 +203,20 @@
 								ctx.fillStyle = instance.color;
 								ctx.globalAlpha = instance.opacity;
 
-								switch (instance.shape) {
-									case "circle":
-										ctx.beginPath();
-										ctx.arc(instance.position.x, instance.position.y, instance.size / 2, 0, FULL_RADIUS);
-										break;
-									default:
-								}
+								if (instance.image) {
+									ctx.drawImage(instance.image, 0, 0, instance.image.width, instance.image.height, instance.position.x, instance.position.y, instance.size, instance.size);
+								} else {
 
-								ctx.fill();
+									switch (instance.shape) {
+										case "circle":
+											ctx.beginPath();
+											ctx.arc(instance.position.x, instance.position.y, instance.size / 2, 0, FULL_RADIUS);
+											break;
+										default:
+									}
+
+									ctx.fill();
+								}
 
 								if (instance.position.x >= (canvas.width + instance.size)) {
 									this.updateInstancePosition(instance, i, {

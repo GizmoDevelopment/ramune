@@ -14,6 +14,7 @@ export interface LeafRendererData {
 		size: number | range
 		opacity?: number | range
 		movementStyle?: LeafRendererParticleMovementStyle
+		image?: string
 	}
 }
 
@@ -23,6 +24,7 @@ export interface LeafRendererInstance {
 	size: number
 	opacity: number
 	movementStyle?: LeafRendererParticleMovementStyle
+	image?: HTMLImageElement
 	position: {
 		x: number
 		y: number

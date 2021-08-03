@@ -2,7 +2,7 @@
   "name": "ramune",
   "description": "Watch anime together with your friends.",
   "license": "MIT",
-  "version": "1.3.0",
+  "version": "1.3.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

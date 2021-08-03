@@ -130,6 +130,19 @@
 								? particle.size
 								: getRandomNumberFromRange(particle.size);
 
+							let
+								particleSpeedX = 1,
+								particleSpeedY = 1;
+
+							if (particle.speed) {
+								particleSpeedX = typeof particle.speed.x === "number"
+									? particle.speed.x
+									: getRandomNumberFromRange(particle.speed.x),
+								particleSpeedY = typeof particle.speed.y === "number"
+									? particle.speed.y
+									: getRandomNumberFromRange(particle.speed.y);
+							}
+
 							const constructedParticle: LeafRendererInstance = {
 								color: particle.color,
 								shape: particle.shape,
@@ -141,6 +154,10 @@
 								size: {
 									width: particleSize,
 									height: particleSize
+								},
+								speed: {
+									x: particleSpeedX,
+									y: particleSpeedY
 								},
 								position: {
 									x: Math.random() * this.canvas.width,
@@ -238,16 +255,16 @@
 										case "sporadic":
 
 											this.updateInstancePosition(instance, i, {
-												x: instance.position.x + getRandomNumberFromRange([ -1, 1 ]),
-												y: instance.position.y + getRandomNumberFromRange([ -1, 1 ])
+												x: instance.position.x + getRandomNumberFromRange([ -1, 1 ]) * instance.speed.x,
+												y: instance.position.y + getRandomNumberFromRange([ -1, 1 ]) * instance.speed.y
 											});
 
 											break;
 										case "driftBottomRight":
 
 											this.updateInstancePosition(instance, i, {
-												x: instance.position.x + .2,
-												y: instance.position.y + .2
+												x: instance.position.x + instance.speed.x,
+												y: instance.position.y + instance.speed.y
 											});
 
 											break;

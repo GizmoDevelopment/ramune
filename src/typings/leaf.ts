@@ -8,10 +8,14 @@ export interface LeafRendererData {
 	start: number
 	end: number
 	particle?: {
+		size: number | range
+		speed?: {
+			x: number | range
+			y: number | range
+		}
+		count: number
 		color: string
 		shape: LeafRendererParticleShape
-		count: number
-		size: number | range
 		opacity?: number | range
 		movementStyle?: LeafRendererParticleMovementStyle
 		image?: string
@@ -19,17 +23,21 @@ export interface LeafRendererData {
 }
 
 export interface LeafRendererInstance {
-	color: string
-	shape: LeafRendererParticleShape
-	size: {
-		width: number
-		height: number
-	}
-	opacity: number
-	movementStyle?: LeafRendererParticleMovementStyle
-	image?: HTMLImageElement
 	position: {
 		x: number
 		y: number
 	}
+	size: {
+		width: number
+		height: number
+	}
+	speed: {
+		x: number
+		y: number
+	}
+	color: string
+	shape: LeafRendererParticleShape
+	opacity: number
+	movementStyle?: LeafRendererParticleMovementStyle
+	image?: HTMLImageElement
 }

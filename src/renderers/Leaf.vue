@@ -86,25 +86,8 @@
 
 				// If nothing got picked
 				if (chosenIndex === -1) {
-
 					this.isVisible = false;
-
-					if (this.currentData) {
-
-						const lastData = this.currentData;
-
-						setTimeout(() => {
-							// If the same effect was last used in 3s, finish fade-out
-							if (
-								(this.currentData && lastData.start === this.currentData.start && lastData.end === this.currentData.end)
-								&& (this.timestamp > lastData.end || this.timestamp < lastData.start)
-							) {
-								this.currentData = null;
-							}
-						}, 3000);
-					} else {
-						this.currentData = null;
-					}
+					this.currentData = null;
 				}
 			},
 			async currentData (data: LeafRendererData | null) {
@@ -116,6 +99,7 @@
 
 					if (this.canvas && particle) {
 
+						const particleCount = particle.count;
 						let particleImage: HTMLImageElement | null = null;
 
 						if (particle.image) {
@@ -124,39 +108,18 @@
 							await waitForImageLoad(particleImage);
 						}
 
-						for (let i = 0; i <= particle.count; i++) {
+						for (let i = 0; i < particleCount; i++) {
 
-							const particleSize = typeof particle.size === "number"
-								? particle.size
-								: getRandomNumberFromRange(particle.size);
-
-							let
-								particleSpeedX = 1,
-								particleSpeedY = 1;
-
-							if (particle.speed) {
-								particleSpeedX = typeof particle.speed.x === "number"
-									? particle.speed.x
-									: getRandomNumberFromRange(particle.speed.x),
-								particleSpeedY = typeof particle.speed.y === "number"
-									? particle.speed.y
-									: getRandomNumberFromRange(particle.speed.y);
-							}
-
-							const constructedParticle: LeafRendererInstance = {
+							const instance: LeafRendererInstance = {
 								shape: particle.shape,
-								opacity: particle.opacity
-									? typeof particle.opacity === "number"
-										? particle.opacity
-										: getRandomNumberFromRange(particle.opacity)
-									: 1,
+								opacity: 1,
 								size: {
-									width: particleSize,
-									height: particleSize
+									width: 1,
+									height: 1
 								},
 								speed: {
-									x: particleSpeedX,
-									y: particleSpeedY
+									x: 1,
+									y: 1
 								},
 								position: {
 									x: Math.random() * this.canvas.width,
@@ -164,19 +127,51 @@
 								}
 							};
 
+							const instanceSize = typeof particle.size === "number"
+								? particle.size
+								: getRandomNumberFromRange(particle.size);
+
+							instance.size = {
+								width: instanceSize,
+								height: instanceSize
+							};
+
+							if (particle.speed) {
+
+								instance.speed.x = typeof particle.speed.x === "number"
+									? particle.speed.x
+									: getRandomNumberFromRange(particle.speed.x);
+
+								instance.speed.y = typeof particle.speed.y === "number"
+									? particle.speed.y
+									: getRandomNumberFromRange(particle.speed.y);
+							}
+
 							if (particle.color) {
-								constructedParticle.color = particle.color;
+								instance.color = particle.color;
 							}
 
 							if (particle.movementStyle) {
-								constructedParticle.movementStyle = particle.movementStyle;
+								instance.movementStyle = particle.movementStyle;
+							}
+
+							if (particle.opacity) {
+								if (typeof particle.opacity === "number") {
+									instance.opacity = particle.opacity;
+								} else {
+									instance.opacity = getRandomNumberFromRange(particle.opacity);
+								}
 							}
 
 							if (particleImage) {
-								constructedParticle.image = particleImage;
+								instance.image = particleImage;
 							}
 
-							renderQueue.push(constructedParticle);
+							// No point in keeping invisible particles
+							if (instance.opacity !== 0) {
+								renderQueue.push(instance);
+							}
+
 						}
 					}
 
@@ -217,28 +212,71 @@
 
 					if (this.canvas && this.ctx) {
 
-						const { canvas, ctx, renderQueue } = this;
+						const
+							{ ctx, renderQueue } = this,
+							canvas = ctx.canvas,
+							instanceCount = renderQueue.length;
 
-						for (let i = 0; i <= renderQueue.length; i++) {
+						ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+						for (let i = 0; i < instanceCount; i++) {
 
 							const instance = renderQueue[i];
 
 							if (instance) {
 
-								if (instance.color) {
-									ctx.fillStyle = instance.color;
+								const {
+									size: { width: w, height: h },
+									speed: { x: sX, y: sY }
+								} = instance;
+
+								let {
+									position: { x, y }
+								} = instance;
+
+								// For some reason it doesn't correctly erase the previous particles
+								// ctx.clearRect(x, y, w, h);
+
+								if (x >= (canvas.width + w)) {
+									x = -w;
+								} else if (y >= (canvas.height + h)) {
+									y = -h;
+								} else {
+									switch (instance.movementStyle) {
+										case "sporadic":
+
+											x += getRandomNumberFromRange([ -1, 1 ]) * sX;
+											y += getRandomNumberFromRange([ -1, 1 ]) * sY;
+
+											break;
+										case "driftBottomRight":
+
+											x += sX;
+											y += sY;
+
+											break;
+										default:
+									}
 								}
 
 								ctx.globalAlpha = instance.opacity;
 
+								if (instance.color) {
+									ctx.fillStyle = instance.color;
+								}
+
 								if (instance.image) {
-									ctx.drawImage(instance.image, 0, 0, instance.image.width, instance.image.height, instance.position.x, instance.position.y, instance.size.width, instance.size.height);
+									ctx.drawImage(instance.image, 0, 0, instance.image.width, instance.image.height, x, y, w, h);
 								} else {
 
 									switch (instance.shape) {
 										case "circle":
 											ctx.beginPath();
-											ctx.arc(instance.position.x, instance.position.y, instance.size.width / 2, 0, FULL_RADIUS);
+											ctx.arc(x, y, w / 2, 0, FULL_RADIUS);
+											break;
+										case "square":
+											ctx.beginPath();
+											ctx.rect(x, y, w, h);
 											break;
 										default:
 									}
@@ -246,51 +284,16 @@
 									ctx.fill();
 								}
 
-								if (instance.position.x >= (canvas.width + instance.size.width)) {
-									this.updateInstancePosition(instance, i, {
-										x: -1 * instance.size.width,
-										y: instance.position.y
-									});
-								} else if (instance.position.y >= (canvas.height + instance.size.height)) {
-									this.updateInstancePosition(instance, i, {
-										x: instance.position.x,
-										y: -1 * instance.size.height
-									});
-								} else {
-									switch (instance.movementStyle) {
-										case "sporadic":
-
-											this.updateInstancePosition(instance, i, {
-												x: instance.position.x + getRandomNumberFromRange([ -1, 1 ]) * instance.speed.x,
-												y: instance.position.y + getRandomNumberFromRange([ -1, 1 ]) * instance.speed.y
-											});
-
-											break;
-										case "driftBottomRight":
-
-											this.updateInstancePosition(instance, i, {
-												x: instance.position.x + instance.speed.x,
-												y: instance.position.y + instance.speed.y
-											});
-
-											break;
-										default:
-									}
-								}
+								renderQueue[i].position.x = x;
+								renderQueue[i].position.y = y;
 							}
 						}
 					}
 
 					setTimeout(() => {
-
-						if (this.canvas && this.ctx) {
-							this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-						}
-
 						if (this.currentData) {
 							this.animate();
 						}
-
 					}, FRAME_INTERVAL);
 				});
 			},
@@ -302,15 +305,6 @@
 					this.canvas.width = Math.floor(innerWidth * devicePixelRatio);
 					this.canvas.height = Math.floor(innerHeight * devicePixelRatio);
 				}
-			},
-			updateInstancePosition (instance: LeafRendererInstance, instanceIndex: number, { x, y }: { x: number, y: number }) {
-				this.renderQueue[instanceIndex] = {
-					...instance,
-					position: {
-						x,
-						y
-					}
-				};
 			}
 		}
 	});

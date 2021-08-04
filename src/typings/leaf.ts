@@ -1,7 +1,7 @@
 // Types
 import { range } from "@typings/main";
 
-export type LeafRendererParticleShape = "circle";
+export type LeafRendererParticleShape = "circle" | "square";
 export type LeafRendererParticleMovementStyle = "sporadic" | "driftBottomRight";
 
 export interface LeafRendererData {

@@ -50,16 +50,10 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 				default:
 			}
 		} else {
-
-			const _line: Line = {
+			_lyrics.lines.push({
 				start: convertTimestampToSeconds(`${lineName}:${lineValue}`),
 				content: line.match(/\](.*)/)?.[1] || ""
-			};
-
-			// Ignore possible empty matches
-			if (_line.content.length > 0) {
-				_lyrics.lines.push(_line);
-			}
+			});
 		}
 
 	});

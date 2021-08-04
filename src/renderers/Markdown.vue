@@ -29,7 +29,12 @@
 		"Booba",
 		"GizmoHeart",
 		"NotSad",
-		"Agony"
+		"Agony",
+		"NoBooba",
+		"Bruh",
+		"GizmoMusic",
+		"GizmoMoyai",
+		"Ramune"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

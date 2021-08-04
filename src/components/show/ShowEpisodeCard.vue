@@ -91,8 +91,9 @@
 	}
 
 	.episode-thumbnail {
-		width: inherit;
-		height: inherit;
+		display: block;
+		width: 100%;
+		height: 100%;
 		border-radius: var(--card-border-radius);
 	}
 

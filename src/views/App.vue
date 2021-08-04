@@ -521,6 +521,10 @@
 		@include dark;
 	}
 
+	img {
+		color: transparent;
+	}
+
 	// Can we please, for the love of God, incorporate a standard for this
 	// Also, for some reason, I cannot combine these together? What the fuck?
 

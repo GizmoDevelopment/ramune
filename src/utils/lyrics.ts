@@ -3,7 +3,7 @@ import { convertTimestampToSeconds, http } from "@utils/essentials";
 
 // Types
 import { Lyrics } from "@typings/show";
-import { ParsedLyrics, Line } from "@typings/lyrics";
+import { ParsedLyrics } from "@typings/lyrics";
 
 export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 

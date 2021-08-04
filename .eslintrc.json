@@ -65,7 +65,8 @@
 		"vue/eqeqeq": [
 			"error",
 			"always"
-		]
+		],
+		"prefer-const": "error"
     },
 	"overrides": [
 		{

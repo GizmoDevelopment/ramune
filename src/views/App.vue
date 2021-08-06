@@ -132,7 +132,7 @@
 					this.loginToSocket(this.user.token);
 				}
 			},
-			exception (msg: any) {
+			exception (msg: unknown) {
 				console.error(msg);
 			},
 			"ROOM:USER_JOIN" (user: User) {

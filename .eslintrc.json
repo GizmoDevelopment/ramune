@@ -6,6 +6,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:vue/vue3-recommended",
+        "plugin:vue/vue3-strongly-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
 	"parser": "vue-eslint-parser",
@@ -19,54 +20,35 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab",
-			{
-				"SwitchCase": 1
-			}
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-		"vue/script-indent": [
-			"error",
-			"tab",
-			{
-				"baseIndent": 1,
-				"switchCase": 1
-			}
-		],
-		"vue/html-indent": [
-			"error",
-			"tab"
-		],
-		"vue/singleline-html-element-content-newline": [
-			"off"
-		],
-		"vue/max-attributes-per-line": [
-			"error",
-			{
-				"singleline": 2
-			}
-		],
-		"vue/script-setup-uses-vars": [
-			"off"
-		],
-		"eqeqeq": [
-			"error",
-			"always"
-		],
-		"vue/eqeqeq": [
-			"error",
-			"always"
-		],
-		"prefer-const": "error"
+		"indent": [ "error", "tab", {
+			"SwitchCase": 1
+		}],
+		"brace-style": [ 2, "1tbs", {
+			"allowSingleLine": true
+		}],
+		"prefer-const": "error",
+		"@typescript-eslint/explicit-function-return-type": [ "error", {
+			"allowExpressions": true
+		}],
+		"quotes": "off",
+		"@typescript-eslint/quotes": [ "error" ],
+		"semi": "off",
+		"@typescript-eslint/semi": [ "error" ],
+		"eqeqeq": [ "error", "always" ],
+		"space-before-function-paren": "off",
+		"@typescript-eslint/space-before-function-paren": [ "error" ],
+		"template-curly-spacing": [ "error", "never" ],
+		"vue/script-indent": [ "error", "tab", {
+			"baseIndent": 1,
+			"switchCase": 1
+		}],
+		"vue/html-indent": [ "error", "tab" ],
+		"vue/singleline-html-element-content-newline": "off",
+		"vue/max-attributes-per-line": [ "error", {
+			"singleline": 2
+		}],
+		"vue/script-setup-uses-vars": "off",
+		"vue/eqeqeq": [ "error", "always" ]
     },
 	"overrides": [
 		{

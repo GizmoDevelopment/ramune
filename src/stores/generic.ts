@@ -14,4 +14,4 @@ export default {
 			state.connectError = message;
 		}
 	}
-} as Module<GenericState, any>;
+} as Module<GenericState, unknown>;

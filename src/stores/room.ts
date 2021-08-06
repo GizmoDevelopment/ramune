@@ -51,4 +51,4 @@ export default {
 			state.isLoadingRoomData = newState;
 		}
 	}
-} as Module<RoomState, any>;
+} as Module<RoomState, unknown>;

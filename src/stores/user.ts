@@ -15,4 +15,4 @@ export default {
 			state.user = user;
 		}
 	}
-} as Module<UserState, any>;
+} as Module<UserState, unknown>;

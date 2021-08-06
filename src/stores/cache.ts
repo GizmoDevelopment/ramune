@@ -30,4 +30,4 @@ export default {
 			state.parsedLyrics = newParsedLyricsCache;
 		}
 	}
-} as Module<CacheState, any>;
+} as Module<CacheState, unknown>;

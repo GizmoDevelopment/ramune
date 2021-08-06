@@ -18,13 +18,19 @@ declare global {
 }
 
 interface TwemojiOptions {
-	callback?: any;
-	attributes?: any;
-	base?: string;
-	ext?: ".png" | ".svg" | string;
-	className?: string;
-	size?: string | number;
-	folder?: string;
+	callback?: (icon: string, options: TwemojiCallbackOptions) => string
+	attributes?: () => Record<string, unknown>
+	base?: string
+	ext?: ".png" | ".svg" | string
+	className?: string
+	size?: string | number
+	folder?: string
+}
+
+interface TwemojiCallbackOptions {
+	base: string
+	size: string
+	ext: string
 }
 
 interface BaseResponse {

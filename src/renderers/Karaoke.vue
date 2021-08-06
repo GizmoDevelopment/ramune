@@ -106,7 +106,7 @@
 							if (!didPickLine) {
 								if ((timestamp - lyrics.start) < 5) {
 									this.isTitleLine = true;
-									this.currentLine = `${ parsedLyrics.artist } - ${ parsedLyrics.title }`;
+									this.currentLine = `${parsedLyrics.artist} - ${parsedLyrics.title}`;
 								} else {
 									this.currentLine = "";
 								}

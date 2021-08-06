@@ -4,7 +4,7 @@
 		<div class="show-details">
 			<p class="heading husk-dark show-title">XD?????????????????????????????</p>
 			<div class="show-stats">
-				<div class="husk-dark show-episode-count">420 Episode</div>
+				<div class="husk-dark show-episode-count">1702 Episodes</div>
 			</div>
 			<p class="husk-dark show-description">"Jarvis, log on discord, then take the man with a high rank from the server Gizmo, make sure that he especially has an anime pfp. Good, now send a pipebomb to his home adress and write that its a pack from the Slovenian Government on it." </p>
 		</div>

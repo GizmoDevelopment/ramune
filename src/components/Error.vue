@@ -28,16 +28,16 @@
 		},
 		methods: {
 			formatError () {
-				if (typeof this.text === "number" && this.text > 0) {
+				if (typeof this.text === "number") {
 					switch (this.text) {
 						case 404:
 							this.label = "Not found :(";
 							break;
 						default:
-							this.label = `${ this.text }`;
+							this.label = `${this.text}`;
 					}
 				} else {
-					this.label = `${ this.text }`;
+					this.label = this.text;
 				}
 			}
 		}

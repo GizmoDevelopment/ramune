@@ -64,7 +64,7 @@
 		emits: [ "dismiss" ],
 		computed: {
 			alignment (): string {
-				return `{ align-items: ${ this.align }; }`;
+				return `{ align-items: ${this.align}; }`;
 			}
 		}
 	});

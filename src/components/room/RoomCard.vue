@@ -47,12 +47,12 @@
 			joinRoom () {
 				if (this.room.id !== "") { // Don't join from dummy room cards
 					if (this.$store.state.room.room?.id === this.room.id) {
-						this.$router.push(`/rooms/${ this.room.id }`);
+						this.$router.push(`/rooms/${this.room.id}`);
 					} else {
 						this.$socket.client.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
 							if (res.type === "success") {
 								this.$store.commit("room/JOIN_ROOM", res.data);
-								this.$router.push(`/rooms/${ res.data.id }`);
+								this.$router.push(`/rooms/${res.data.id}`);
 							} else {
 								console.error(res.message);
 							}

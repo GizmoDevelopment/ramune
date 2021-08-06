@@ -85,7 +85,7 @@
 		},
 		mounted () {
 
-			setPageTitle(`Ramune — ${ this.room.name }`);
+			setPageTitle(`Ramune — ${this.room.name}`);
 
 			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
 		},

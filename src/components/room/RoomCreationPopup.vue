@@ -142,7 +142,7 @@
 							this.$emit("dismiss");
 
 							setTimeout(() => {
-								this.$router.push(`/rooms/${ res.data.id }`);
+								this.$router.push(`/rooms/${res.data.id}`);
 							}, 100);
 
 						} else {

@@ -21,7 +21,7 @@ export function formatTimestamp (timestamp: number): string {
 		minutes = Math.floor(timestamp / 60),
 		seconds = Math.floor(timestamp - (minutes * 60));
 
-	return `${ minutes }:${ seconds > 9 ? "" : 0 }${ seconds }`;
+	return `${minutes}:${seconds > 9 ? "" : 0}${seconds}`;
 }
 
 export function convertTimestampToSeconds (timestamp: string): number {

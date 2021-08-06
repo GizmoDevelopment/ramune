@@ -43,7 +43,7 @@
 		},
 		methods: {
 			returnToRoom () {
-				this.$router.push(`/rooms/${ this.room.id }`);
+				this.$router.push(`/rooms/${this.room.id}`);
 			}
 		}
 	});

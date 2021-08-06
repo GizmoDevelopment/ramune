@@ -115,7 +115,7 @@
 						this.season = getSeasonFromEpisode(this.show, this.episode);
 					}
 
-					setPageTitle(`${ this.show.title } — Episode ${ episodeId }`);
+					setPageTitle(`${this.show.title} — Episode ${episodeId}`);
 				}
 			}
 		}

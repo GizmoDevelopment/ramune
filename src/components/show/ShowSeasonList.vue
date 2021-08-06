@@ -68,7 +68,7 @@
 					});
 
 					// Don't make the user wait to transition back to the room
-					this.$router.push(`/rooms/${ this.room?.id }`);
+					this.$router.push(`/rooms/${this.room?.id}`);
 
 				} else {
 
@@ -82,7 +82,7 @@
 						});
 					}
 
-					this.$router.push(`/watch/${ this.show.id }/${ episodeId }`);
+					this.$router.push(`/watch/${this.show.id}/${episodeId}`);
 				}
 			}
 		}

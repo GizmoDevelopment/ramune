@@ -26,7 +26,7 @@ export function getCookie (name: string): string | null {
 }
 
 export function setCookie (name: string, value: string): void {
-	document.cookie = `${ name }=${ encodeURIComponent(value) }; domain=.gizmo.moe; expires=${ new Date(Date.now() + (60 * 60 * 24 * 365 * 1000)).toUTCString() }; secure=true; samesite=lax`;
+	document.cookie = `${name}=${encodeURIComponent(value)}; domain=.gizmo.moe; expires=${new Date(Date.now() + (60 * 60 * 24 * 365 * 1000)).toUTCString()}; secure=true; samesite=lax`;
 }
 
 export function renderTwemoji (element: HTMLElement): void {
@@ -42,7 +42,7 @@ export function renderTwemoji (element: HTMLElement): void {
 
 export function waitForImageLoad (image: HTMLImageElement): Promise<void> {
 	return new Promise((res, rej) => {
-		image.onload = () => res();
+		image.onload = (): void => res();
 		image.onerror = rej;
 	});
 }

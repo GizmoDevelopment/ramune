@@ -30,15 +30,15 @@ export interface GenericState {
 
 declare module "@vue/runtime-core" {
 
-    interface State {
+	interface State {
 		cache: CacheState
 		room: RoomState
 		user: UserState
 		generic: GenericState
 	}
 
-    interface ComponentCustomProperties {
-        $store: Store<State>;
-    }
+	interface ComponentCustomProperties {
+		$store: Store<State>;
+	}
 
 }

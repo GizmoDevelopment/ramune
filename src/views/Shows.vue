@@ -89,7 +89,7 @@
 			selectShow (showId: string) {
 				if (showId) {
 					this.selectedShowId = showId;
-					this.$router.push(`/shows/${ showId }`);
+					this.$router.push(`/shows/${showId}`);
 				} else {
 					this.selectedShowId = "";
 					this.$router.push("/shows");

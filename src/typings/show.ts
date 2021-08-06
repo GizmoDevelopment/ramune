@@ -2,10 +2,10 @@
 import { LeafRendererData } from "@typings/leaf";
 
 export interface ShowHusk {
-    id: string;
-    title: string;
+	id: string;
+	title: string;
 	description: string;
-    poster_url: string;
+	poster_url: string;
 	banner_url: string;
 }
 
@@ -15,14 +15,14 @@ export interface Show extends ShowHusk {
 
 export interface Season {
 	id: number;
-    episodes: Episode[];
+	episodes: Episode[];
 }
 
 export interface Episode {
-    id: number;
+	id: number;
 	title: string;
 	duration: number;
-    thumbnail_url: string;
+	thumbnail_url: string;
 	stream_url: string;
 	subtitles: Subtitles[];
 	data: EpisodeData;

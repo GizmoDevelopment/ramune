@@ -1,12 +1,12 @@
 // Modules
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, RouteComponent } from "vue-router";
 
 // Views
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
 import Rooms from "@views/Rooms.vue";
 import Player from "@views/Player.vue";
-const RoomLoader = () => import("@views/RoomLoader.vue");
+const RoomLoader = (): Promise<RouteComponent> => import("@views/RoomLoader.vue");
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -32,7 +32,7 @@ const router = createRouter({
 		{
 			path: "/watch/:showId/:episodeId?",
 			component: Player,
-			props: (route) => {
+			props: route => {
 				return {
 					showId: route.params.showId,
 					episodeId: Number(route.params.episodeId)

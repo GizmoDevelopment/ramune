@@ -16,9 +16,8 @@ export function getCookie (name: string): string | null {
 
 	const
 		cookies = document.cookie.split("; "),
-		cookieMatch = new RegExp(`^${name}=`);
-
-	const cookie = cookies.find((cookie: string) => cookie.match(cookieMatch));
+		cookieMatch = new RegExp(`^${name}=`),
+		cookie = cookies.find((cookie: string) => cookie.match(cookieMatch));
 
 	return cookie
 		? decodeURIComponent(cookie.replace(`${name}=`, ""))
@@ -42,7 +41,7 @@ export function renderTwemoji (element: HTMLElement): void {
 
 export function waitForImageLoad (image: HTMLImageElement): Promise<void> {
 	return new Promise((res, rej) => {
-		image.onload = (): void => res();
+		image.onload = () => res();
 		image.onerror = rej;
 	});
 }

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-	"lint": "eslint src/**/*.{js,ts,vue}"
+    "lint": "eslint src/**/*.{js,ts,vue}"
   },
   "dependencies": {
     "gizmo-api": "^1.0.9",
@@ -18,7 +18,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/node": "^16.4.12",
+    "@types/node": "^14.17.9",
     "@types/socket.io": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",

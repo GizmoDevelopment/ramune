@@ -3,34 +3,34 @@ declare global {
 	interface Window {
 		twemoji: {
 			parse (element: HTMLElement, options?: TwemojiOptions): void;
-		}
+		};
 	}
 
 	interface Document {
-		webkitExitFullscreen?: () => Promise<void>
+		webkitExitFullscreen?: () => Promise<void>;
 	}
 
 	interface HTMLElement {
-		webkitRequestFullscreen?: () => Promise<void>
-		webkitEnterFullscreen?: () => Promise<void>
+		webkitRequestFullscreen?: () => Promise<void>;
+		webkitEnterFullscreen?: () => Promise<void>;
 	}
 
 }
 
 interface TwemojiOptions {
-	callback?: (icon: string, options: TwemojiCallbackOptions) => string
-	attributes?: () => Record<string, unknown>
-	base?: string
-	ext?: ".png" | ".svg" | string
-	className?: string
-	size?: string | number
-	folder?: string
+	callback?: (icon: string, options: TwemojiCallbackOptions) => string;
+	attributes?: () => Record<string, unknown>;
+	base?: string;
+	ext?: ".png" | ".svg" | string;
+	className?: string;
+	size?: string | number;
+	folder?: string;
 }
 
 interface TwemojiCallbackOptions {
-	base: string
-	size: string
-	ext: string
+	base: string;
+	size: string;
+	ext: string;
 }
 
 interface BaseResponse {

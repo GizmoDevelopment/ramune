@@ -20,7 +20,7 @@ export default {
 		CACHE_SHOW_LIST (state: CacheState, showList: ShowHusk[]) {
 			state.showList = showList;
 		},
-		CACHE_PARSED_LYRICS (state: CacheState, { showId, lyrics }: { showId: string, lyrics: ParsedLyrics }) {
+		CACHE_PARSED_LYRICS (state: CacheState, { showId, lyrics }: { showId: string; lyrics: ParsedLyrics }) {
 			state.parsedLyrics.set(`${showId}-${lyrics.id}`, lyrics);
 		},
 		REPLACE_SHOW_CACHE (state: CacheState, newShowCache: Map<string, Show>) {

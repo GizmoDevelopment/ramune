@@ -31,10 +31,10 @@ export interface GenericState {
 declare module "@vue/runtime-core" {
 
 	interface State {
-		cache: CacheState
-		room: RoomState
-		user: UserState
-		generic: GenericState
+		cache: CacheState;
+		room: RoomState;
+		user: UserState;
+		generic: GenericState;
 	}
 
 	interface ComponentCustomProperties {

@@ -38,6 +38,14 @@
 		"space-before-function-paren": "off",
 		"@typescript-eslint/space-before-function-paren": [ "error" ],
 		"template-curly-spacing": [ "error", "never" ],
+		"@typescript-eslint/member-delimiter-style": [ "error", {
+			"multiline": {
+				"delimiter": "semi"
+			},
+			"singleline": {
+				"delimiter": "semi"
+			}
+		} ],
 		"vue/script-indent": [ "error", "tab", {
 			"baseIndent": 1,
 			"switchCase": 1

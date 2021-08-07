@@ -538,13 +538,25 @@
 			font-size: 40px;
 			line-height: 100%;
 			background: transparent;
-			text-shadow: #000 2px 2px 10px;
+			text-shadow: #000 3px 3px 10px;
+		}
+
+		&::-webkit-media-text-track-display {
+			margin-top: 1em;
 		}
 	}
 
 	.video-container:fullscreen {
 		video::cue {
-			font-size: 60px;
+			font-size: 50px;
+		}
+	}
+
+	@media only screen and (max-width: 2560px) {
+		.video-container:fullscreen {
+			video::cue {
+				font-size: 55px;
+			}
 		}
 	}
 

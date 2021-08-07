@@ -532,11 +532,19 @@
 	/* Subtitles & Captions */
 
 	video {
+
 		&::cue {
 			font-family: variable(font);
-			// Becomes hard-to-read without the background
-			// background: transparent;
-			// text-shadow: -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000, 1px 1px 2px #000;
+			font-size: 40px;
+			line-height: 100%;
+			background: transparent;
+			text-shadow: #000 2px 2px 10px;
+		}
+	}
+
+	.video-container:fullscreen {
+		video::cue {
+			font-size: 60px;
 		}
 	}
 

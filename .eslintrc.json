@@ -4,10 +4,9 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
+		"@gizmo-dev/eslint-config",
         "plugin:vue/vue3-recommended",
-        "plugin:vue/vue3-strongly-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:vue/vue3-strongly-recommended"
     ],
 	"parser": "vue-eslint-parser",
     "parserOptions": {
@@ -16,36 +15,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "vue",
-        "@typescript-eslint"
+        "vue"
     ],
     "rules": {
-		"indent": [ "error", "tab", {
-			"SwitchCase": 1
-		}],
-		"brace-style": [ 2, "1tbs", {
-			"allowSingleLine": true
-		}],
-		"prefer-const": "error",
-		"@typescript-eslint/explicit-function-return-type": [ "error", {
-			"allowExpressions": true
-		}],
-		"quotes": "off",
-		"@typescript-eslint/quotes": [ "error" ],
-		"semi": "off",
-		"@typescript-eslint/semi": [ "error" ],
-		"eqeqeq": [ "error", "always" ],
-		"space-before-function-paren": "off",
-		"@typescript-eslint/space-before-function-paren": [ "error" ],
-		"template-curly-spacing": [ "error", "never" ],
-		"@typescript-eslint/member-delimiter-style": [ "error", {
-			"multiline": {
-				"delimiter": "semi"
-			},
-			"singleline": {
-				"delimiter": "semi"
-			}
-		} ],
 		"vue/script-indent": [ "error", "tab", {
 			"baseIndent": 1,
 			"switchCase": 1

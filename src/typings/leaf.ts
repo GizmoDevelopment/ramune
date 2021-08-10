@@ -1,5 +1,5 @@
 // Types
-import { range } from "@typings/main";
+import { Range } from "@typings/main";
 
 export type LeafRendererParticleShape = "circle" | "square";
 export type LeafRendererParticleMovementStyle = "sporadic" | "driftBottomRight";
@@ -8,15 +8,15 @@ export interface LeafRendererData {
 	start: number;
 	end: number;
 	particle?: {
-		size: number | range;
+		size: number | Range;
 		speed?: {
-			x: number | range;
-			y: number | range;
+			x: number | Range;
+			y: number | Range;
 		};
 		count: number;
 		color?: string;
 		shape: LeafRendererParticleShape;
-		opacity?: number | range;
+		opacity?: number | Range;
 		movementStyle?: LeafRendererParticleMovementStyle;
 		image?: string;
 	};

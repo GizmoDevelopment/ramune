@@ -1,5 +1,5 @@
 // Types
-import { range } from "@typings/main";
+import { Range } from "@typings/main";
 
 interface FetchResponse {
 	data: Record<string, any>;
@@ -65,6 +65,6 @@ export const http = {
 	}
 };
 
-export function getRandomNumberFromRange (range: range): number {
+export function getRandomNumberFromRange (range: Range): number {
 	return (Math.random() * (range[1] - range[0])) + range[0];
 }

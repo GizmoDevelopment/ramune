@@ -200,7 +200,7 @@
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
-	import { range } from "@typings/main";
+	import { Range } from "@typings/main";
 	import { Episode, Show } from "@typings/show";
 	import { RoomSyncData } from "@typings/room";
 
@@ -273,7 +273,7 @@
 				mouseClickChecker: 0,
 				volume: 1,
 				hoverTimestampOffset: 0,
-				lastMousePosition: [ 0, 0 ] as range,
+				lastMousePosition: [ 0, 0 ] as Range,
 				selectedSubtitleLanguage: "en" as string | null
 			};
 		},

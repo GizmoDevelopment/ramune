@@ -6,6 +6,7 @@ import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
 import Rooms from "@views/Rooms.vue";
 import Player from "@views/Player.vue";
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const RoomLoader = (): Promise<RouteComponent> => import("@views/RoomLoader.vue");
 
 const router = createRouter({

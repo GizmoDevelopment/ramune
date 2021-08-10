@@ -30,7 +30,7 @@ export async function getShows (): Promise<ShowHusk[]> {
 /**
  * Fetches specified show by its ID
  */
-export async function getShow (showId: string): Promise<Show|null> {
+export async function getShow (showId: string): Promise<Show | null> {
 	try {
 
 		const { data: response } = await http.get(`${SHOW_ENDPOINT}/shows/${showId}`);

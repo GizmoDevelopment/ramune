@@ -8,7 +8,7 @@ import { ParsedLyrics } from "@typings/lyrics";
 export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 
 	const
-		{ text: rawLyrics }= await http.get(lyrics.url),
+		{ text: rawLyrics } = await http.get(lyrics.url),
 		_lyrics: ParsedLyrics = {
 			id: lyrics.id,
 			title: "",

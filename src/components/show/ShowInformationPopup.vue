@@ -101,10 +101,17 @@
 						this.show = cachedShow;
 					} else {
 
-						const _show = await getShow(this.showId);
+						const
+							_showId = this.showId,
+							_show = await getShow(_showId);
 
 						if (_show) {
-							this.show = _show;
+
+							// If the user switched shows really fast, the old requested show should just be cached
+							if (this.showId === _showId) {
+								this.show = _show;
+							}
+
 							this.$store.commit("cache/CACHE_SHOW", _show);
 						} else {
 							this.error = 404;

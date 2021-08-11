@@ -92,8 +92,6 @@
 					password: this.password
 				};
 
-				console.log("attempt");
-
 				this.joinRoom(roomOptions).catch(err => {
 					this.debounce = false;
 					this.error = err;

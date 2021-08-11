@@ -2,7 +2,7 @@
 <p align="center" style="font-weight: bold;">Watch anime together with your friends.</p>
 
 <p align="center">
-	<img src="https://api.netlify.com/api/v1/badges/a4c738a0-e2bd-460f-977a-42a18c16e1e1/deploy-status">
+	<a href="https://github.com/GizmoDevelopment/ramune/actions"><img src="https://img.shields.io/github/workflow/status/GizmoDevelopment/ramune/Build?label=Build"></a>
 	<a href="https://discord.gg/DHKjwQY"><img src="https://img.shields.io/discord/246369359705014272?color=%236E85D2&label=Discord&logo=discord&logoColor=white"></a>
 </p>
 

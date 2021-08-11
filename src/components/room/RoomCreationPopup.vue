@@ -111,6 +111,9 @@
 			roomName (newName: string) {
 				this.isCreateButtonDisabled = newName.trim().length === 0;
 				this.updateRoomPreview();
+			},
+			roomPassword () {
+				this.updateRoomPreview();
 			}
 		},
 		mounted () {

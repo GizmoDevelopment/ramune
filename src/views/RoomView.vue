@@ -1,9 +1,12 @@
 <template>
-	<div id="room-title-bar">
+	<div class="room-title-bar">
 		<button class="primary-button icon-button" @click="$emit('leave-room')">
 			<CaretLeft />
 		</button>
-		<MarkdownRenderer class="heading" :content="room.name" />
+		<div class="heading inner-title-bar">
+			<LockClosed v-if="room.locked" class="lock-icon" />
+			<MarkdownRenderer :content="room.name" />
+		</div>
 	</div>
 	<RoomUserList
 		class="user-list"
@@ -13,7 +16,7 @@
 	/>
 	<br>
 	<!-- This is where RoomController will teleport the video element to -->
-	<div id="room-video-container" />
+	<div class="room-video-container" />
 	<div v-if="show && season && episode">
 		<ShowHeading
 			:show="show"
@@ -28,7 +31,7 @@
 		</div>
 	</div>
 	<div v-else>
-		<h3 id="no-video-message" class="faded">Waiting for host</h3>
+		<h3 class="faded no-video-message">Waiting for host</h3>
 		<div v-if="isLoadingRoomData">
 			<LoadingBuffer />
 		</div>
@@ -49,6 +52,7 @@
 
 	// Icons
 	import CaretLeft from "@assets/icons/caret-left.svg?component";
+	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -68,7 +72,8 @@
 			CaretLeft,
 			ShowHeading,
 			LoadingBuffer,
-			MarkdownRenderer
+			MarkdownRenderer,
+			LockClosed
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -122,21 +127,34 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#room-title-bar {
+	.room-title-bar {
+
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+
+		> * {
+			margin-right: 10px;
+		}
+	}
+
+	.no-video-message {
+		font-size: 1.5rem;
+	}
+
+	.inner-title-bar {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
-	#room-title-bar > * {
-		margin-right: 10px;
-	}
-
-	#no-video-message {
-		font-size: 1.5rem;
+	.lock-icon {
+		font-size: .7em;
+		margin-right: .2em;
 	}
 
 	@media only screen and (max-width: 800px) {

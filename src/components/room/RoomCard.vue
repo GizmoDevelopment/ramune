@@ -1,10 +1,13 @@
 <template>
 	<div class="container" :theme="theme">
 		<div class="title-bar">
-			<MarkdownRenderer class="room-name" :content="room.name" />
-			<button class="primary-button icon-button" @click="joinRoom()">
-				<CaretRight />
-			</button>
+			<LockClosed v-if="room.locked" class="lock-icon" />
+			<div class="inner-title-bar">
+				<MarkdownRenderer class="room-name" :content="room.name" />
+				<button class="primary-button icon-button" @click="joinRoom()">
+					<CaretRight />
+				</button>
+			</div>
 		</div>
 		<UserList :users="room.users" :host="room.host" />
 	</div>
@@ -24,6 +27,7 @@
 
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg?component";
+	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Types
 	import { SocketResponse } from "@typings/main";
@@ -34,7 +38,8 @@
 		components: {
 			CaretRight,
 			UserList,
-			MarkdownRenderer
+			MarkdownRenderer,
+			LockClosed
 		},
 		mixins: [ GenericMixin ],
 		props: {
@@ -65,7 +70,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.container {
 		width: 400px;
@@ -86,11 +91,24 @@
 		margin-bottom: 1rem;
 	}
 
+	.inner-title-bar {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
 	.room-name {
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 1.5rem;
 		font-weight: 500;
+	}
+
+	.lock-icon {
+		font-size: 1.3em;
+		margin-right: .3em;
 	}
 
 	@media only screen and (max-width: 600px) {

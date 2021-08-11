@@ -40,15 +40,14 @@
 				/>
 			</div>
 		</div>
-		<div v-if="!debounce">
-			<button
-				class="primary-button"
-				:class="{ 'disabled-button': isCreateButtonDisabled }"
-				@click="createRoom"
-			>
-				Create
-			</button>
-		</div>
+		<button
+			v-if="!debounce"
+			class="primary-button"
+			:class="{ 'disabled-button': isCreateButtonDisabled }"
+			@click="createRoom"
+		>
+			Create
+		</button>
 	</PopupCard>
 </template>
 
@@ -106,7 +105,11 @@
 		},
 		watch: {
 			visible (newState: boolean) {
-				if (newState) this.status = "";
+				if (newState) {
+					this.status = "";
+					this.roomName = "";
+					this.roomPassword = "";
+				}
 			},
 			roomName (newName: string) {
 				this.isCreateButtonDisabled = newName.trim().length === 0;

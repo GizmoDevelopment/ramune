@@ -35,6 +35,11 @@ export interface CreateRoomOptions {
 	password?: string;
 }
 
+export interface JoinRoomOptions {
+	id: string;
+	password?: string;
+}
+
 export interface RoomSyncData {
 	playing: boolean;
 	currentTime: number;

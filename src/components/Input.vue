@@ -1,5 +1,5 @@
 <template>
-	<div id="container">
+	<div class="container">
 		<p v-if="label.length > 0">{{ label }}</p>
 		<input
 
@@ -30,7 +30,7 @@
 		props: {
 			placeholder: {
 				type: String,
-				default: "Placeholder"
+				default: ""
 			},
 			limit: {
 				type: Number,
@@ -77,21 +77,21 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#container {
+	.container {
+
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-	}
 
-	#container p {
-		margin-bottom: .2em;
-		font-size: 1.2em;
-	}
+		p {
+			margin-bottom: .2em;
+			font-size: 1.2em;
+		}
 
-	#container input {
-		width: 100%;
+		input {
+			width: 100%;
+		}
 	}
-
 </style>

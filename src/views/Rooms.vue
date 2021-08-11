@@ -17,7 +17,7 @@
 						:key="room.id"
 						class="room-card"
 					>
-						<RoomCard :room="room" />
+						<RoomCard :room="room" @request-room-password="(roomId) => joinRoomId = roomId" />
 					</div>
 				</div>
 				<div v-else>
@@ -26,6 +26,11 @@
 				<RoomCreationPopup
 					:visible="isCreatingRoom"
 					@dismiss="isCreatingRoom = false"
+				/>
+				<RoomJoinPopup
+					:room-id="joinRoomId"
+					:visible="joinRoomId.length > 0"
+					@dismiss="joinRoomId = ''"
 				/>
 			</div>
 			<div v-else-if="connectError">
@@ -50,6 +55,7 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import RoomCard from "@components/room/RoomCard.vue";
 	import RoomCreationPopup from "@components/room/RoomCreationPopup.vue";
+	import RoomJoinPopup from "@components/room/RoomJoinPopup.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";
@@ -70,14 +76,16 @@
 			LoadingBuffer,
 			RoomCard,
 			Plus,
-			RoomCreationPopup
+			RoomCreationPopup,
+			RoomJoinPopup
 		},
 		mixins: [ MainMixin ],
 		data () {
 			return {
 				rooms: null as PartialRoom[] | null,
 				isCreatingRoom: false,
-				roomRefreshInterval: 0
+				roomRefreshInterval: 0,
+				joinRoomId: ""
 			};
 		},
 		computed: {
@@ -117,7 +125,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.heading-bar {
 		width: 100%;

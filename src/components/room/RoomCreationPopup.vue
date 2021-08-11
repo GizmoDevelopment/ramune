@@ -153,29 +153,30 @@
 				this.$emit("dismiss");
 			},
 			createRoom () {
-				if (!this.isCreateButtonDisabled) {
 
-					this.debounce = true;
+				if (this.isCreateButtonDisabled)
+					return;
 
-					this.$socket.client.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
-						if (res.type === "success") {
+				this.debounce = true;
 
-							this.$store.commit("room/JOIN_ROOM", res.data);
-							this.$emit("dismiss");
+				this.$socket.client.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
+					if (res.type === "success") {
 
-							setTimeout(() => {
-								this.$router.push(`/rooms/${res.data.id}`);
-							}, 100);
+						this.$store.commit("room/JOIN_ROOM", res.data);
+						this.$emit("dismiss");
 
-						} else {
+						setTimeout(() => {
+							this.$router.push(`/rooms/${res.data.id}`);
+						}, 100);
 
-							this.debounce = false;
-							this.status = res.message;
+					} else {
 
-							console.error(res.message);
-						}
-					});
-				}
+						this.debounce = false;
+						this.status = res.message;
+
+						console.error(res.message);
+					}
+				});
 			}
 		}
 	});

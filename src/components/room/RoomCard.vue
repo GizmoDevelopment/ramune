@@ -4,7 +4,7 @@
 			<LockClosed v-if="room.locked" class="lock-icon" />
 			<div class="inner-title-bar">
 				<MarkdownRenderer class="room-name" :content="room.name" />
-				<button class="primary-button icon-button" @click="joinRoom()">
+				<button class="primary-button icon-button" @click="attemptRoomJoin">
 					<CaretRight />
 				</button>
 			</div>
@@ -24,13 +24,13 @@
 
 	// Mixins
 	import GenericMixin from "@mixins/GenericMixin";
+	import RoomMethodsMixin from "@mixins/RoomMethods";
 
 	// Icons
 	import CaretRight from "@assets/icons/caret-right.svg?component";
 	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Types
-	import { SocketResponse } from "@typings/main";
 	import { PartialRoom, Room } from "@typings/room";
 
 	export default defineComponent({
@@ -41,27 +41,22 @@
 			MarkdownRenderer,
 			LockClosed
 		},
-		mixins: [ GenericMixin ],
+		mixins: [ GenericMixin, RoomMethodsMixin ],
 		props: {
 			room: {
 				type: Object as PropType<Room | PartialRoom>,
 				required: true
 			}
 		},
+		emits: [ "request-room-password" ],
 		methods: {
-			joinRoom () {
-				if (this.room.id !== "") { // Don't join from dummy room cards
-					if (this.$store.state.room.room?.id === this.room.id) {
-						this.$router.push(`/rooms/${this.room.id}`);
+			attemptRoomJoin () {
+				// Prevent joining dummy rooms
+				if (this.room.id !== "") {
+					if (this.room.locked) {
+						this.$emit("request-room-password", this.room.id);
 					} else {
-						this.$socket.client.emit("CLIENT:JOIN_ROOM", this.room.id, (res: SocketResponse<Room>) => {
-							if (res.type === "success") {
-								this.$store.commit("room/JOIN_ROOM", res.data);
-								this.$router.push(`/rooms/${res.data.id}`);
-							} else {
-								console.error(res.message);
-							}
-						});
+						this.joinRoom({ id: this.room.id }).catch(err => console.error(err));
 					}
 				}
 			}

@@ -1,13 +1,12 @@
 <template>
 	<PopupCard
-		id="form"
 		title="Create a room"
 		align="left"
 		:visible="visible"
 		@dismiss="clearRoomPopup()"
 	>
 		<div v-if="debounce">
-			<LoadingBuffer id="loading-buffer" size="small" />
+			<LoadingBuffer class="loading-buffer" size="small" />
 		</div>
 		<Error
 			v-if="status && !debounce"
@@ -23,10 +22,18 @@
 				:limit="25"
 				@update="(newRoomName) => roomName = newRoomName"
 			/>
+			<Input
+				type="text"
+				theme="dark"
+				placeholder="hau~hau~ (optional)"
+				label="Password"
+				:limit="50"
+				@update="(newRoomPassword) => roomPassword = newRoomPassword"
+			/>
 		</form>
-		<div id="room-preview-container" class="form-row">
+		<div class="room-preview-container form-row">
 			<p>Preview</p>
-			<div v-if="roomPreviewObject" id="room-preview">
+			<div v-if="roomPreviewObject" class="room-preview">
 				<RoomCard
 					:room="roomPreviewObject"
 					theme="dark"
@@ -62,7 +69,7 @@
 
 	// Types
 	import { SocketResponse } from "@typings/main";
-	import { Room, RoomOptions } from "@typings/room";
+	import { Room, CreateRoomOptions } from "@typings/room";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
@@ -84,8 +91,9 @@
 		data () {
 			return {
 				roomName: "",
+				roomPassword: "",
 				roomPreviewObject: null as Room | null,
-				roomOptions: { name: "" } as RoomOptions,
+				roomOptions: { name: "" } as CreateRoomOptions,
 				debounce: false,
 				status: "",
 				isCreateButtonDisabled: true
@@ -111,14 +119,22 @@
 		methods: {
 			updateRoomPreview () {
 
-				this.roomOptions = {
-					name: this.roomName
-				};
+				if (this.roomPassword) {
+					this.roomOptions = {
+						name: this.roomName,
+						password: this.roomPassword
+					};
+				} else {
+					this.roomOptions = {
+						name: this.roomName
+					};
+				}
 
 				if (this.user) {
 					this.roomPreviewObject = {
 						id: "",
 						name: this.roomName,
+						locked: this.roomPassword.length > 0,
 						host: getUserFromAuthenticatedUser(this.user),
 						users: [ getUserFromAuthenticatedUser(this.user) ],
 						data: null
@@ -160,53 +176,56 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.form {
+
 		width: 100%;
-		display: inline-flex;
-		flex-direction: row;
+		display: flex;
+		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
 		align-content: center;
+
+		* {
+			width: 100%;
+		}
 	}
 
-	.form * {
-		flex: 1;
-	}
+	.room-preview-container {
 
-	#room-preview-container {
 		display: block;
 		width: 100%;
 		margin-bottom: 2em;
+
+		* {
+			margin: 0;
+			margin-bottom: .5em;
+			margin-top: 1em;
+		}
+
+		p {
+			text-align: left;
+			margin-bottom: 0;
+			font-size: 1.1em;
+		}
 	}
 
-	#room-preview-container * {
-		margin: 0;
-		margin-bottom: .5em;
-		margin-top: 1em;
-	}
+	.room-preview {
 
-	#room-preview-container p {
-		text-align: left;
-		margin-bottom: 0;
-		font-size: 1.1em;
-	}
-
-	#room-preview {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		margin-top: .2em;
+
+		> * {
+			width: 100%;
+			margin-top: 0;
+		}
 	}
 
-	#room-preview > * {
-		width: 100%;
-		margin-top: 0;
-	}
-
-	#loading-buffer {
+	.loading-buffer {
 		font-size: 2em;
 	}
 

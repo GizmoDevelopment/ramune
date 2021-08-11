@@ -7,8 +7,10 @@ export interface PartialRoom {
 	readonly id: string;
 	readonly name: string;
 
-	host: User;
-	users: User[];
+	readonly locked: boolean;
+
+	readonly host: User;
+	readonly users: User[];
 }
 
 export interface Room {
@@ -16,7 +18,9 @@ export interface Room {
 	readonly id: string;
 	readonly name: string;
 
-	host: User;
+	readonly locked: boolean;
+
+	readonly host: User;
 	users: User[];
 	data: RoomData | null;
 }
@@ -26,8 +30,9 @@ export interface RoomData {
 	episodeId: number;
 }
 
-export interface RoomOptions {
+export interface CreateRoomOptions {
 	name: string;
+	password?: string;
 }
 
 export interface RoomSyncData {

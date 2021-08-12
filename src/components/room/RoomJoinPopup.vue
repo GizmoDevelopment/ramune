@@ -2,6 +2,7 @@
 	<PopupCard
 		title="Verification"
 		:visible="visible"
+		@dismiss="$emit('dismiss')"
 	>
 		<div v-if="debounce">
 			<LoadingBuffer class="loading-buffer" size="small" />

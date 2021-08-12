@@ -2,6 +2,7 @@
 	<PopupCard
 		title="Create a room"
 		:visible="visible"
+		@dismiss="$emit('dismiss')"
 	>
 		<div v-if="debounce">
 			<LoadingBuffer class="loading-buffer" size="small" />
@@ -86,7 +87,7 @@
 		emits: [ "dismiss" ],
 		data () {
 			return {
-				debounce: false,
+				debounce: true,
 				error: "",
 				roomName: "",
 				roomPassword: "",

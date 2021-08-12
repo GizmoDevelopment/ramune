@@ -8,22 +8,32 @@
 			v-if="error"
 			:text="error"
 		/>
-		<form class="form" @submit.prevent="createRoom">
+		<form
+			id="create-room-form"
+			class="form"
+			@submit.prevent="createRoom"
+		>
 			<Input
+
 				v-model="roomName"
+
 				type="text"
 				theme="dark"
 				placeholder="Anime night"
 				label="Name"
 				autofocus
+
 				:limit="25"
 			/>
 			<Input
+
 				v-model="roomPassword"
+
 				type="password"
 				theme="dark"
 				placeholder="hau~hau~ (optional)"
 				label="Password"
+
 				:limit="50"
 			/>
 		</form>
@@ -37,6 +47,8 @@
 			</div>
 		</div>
 		<button
+			form="create-room-form"
+			type="submit"
 			class="primary-button"
 			:class="{ 'disabled-button': isCreateButtonDisabled }"
 			@click="createRoom"

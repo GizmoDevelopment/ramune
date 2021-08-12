@@ -8,17 +8,26 @@
 			v-if="error"
 			:text="error"
 		/>
-		<form class="form" @submit.prevent="verifyPassword">
+		<form
+			id="join-room-form"
+			class="form"
+			@submit.prevent="verifyPassword"
+		>
 			<Input
+
 				v-model="password"
+
 				type="password"
-				:limit="50"
 				label="Room password"
 				theme="dark"
-				:autofocus="true"
+				autofocus
+
+				:limit="50"
 			/>
 		</form>
 		<button
+			form="join-room-form"
+			type="submit"
 			class="button primary-button"
 			:class="{ 'disabled-button': isJoinButtonDisabled }"
 			@click="verifyPassword"

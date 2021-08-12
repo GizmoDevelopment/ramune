@@ -28,6 +28,10 @@
 		name: "Input",
 		mixins: [ GenericMixin ],
 		props: {
+			modelValue: {
+				type: String,
+				default: ""
+			},
 			placeholder: {
 				type: String,
 				default: ""
@@ -49,7 +53,7 @@
 				default: false
 			}
 		},
-		emits: [ "update" ],
+		emits: [ "update:modelValue" ],
 		setup () {
 
 			const input = ref<HTMLInputElement>();
@@ -64,11 +68,17 @@
 			};
 		},
 		watch: {
-			value (newValue: string) {
-				this.$emit("update", newValue);
+			modelValue (value: string) {
+				this.value = value;
+			},
+			value (value: string) {
+				this.$emit("update:modelValue", value);
 			}
 		},
 		mounted () {
+
+			this.value = this.modelValue;
+
 			if (this.input && this.autofocus) {
 				this.input.focus();
 			}
@@ -94,4 +104,5 @@
 			width: 100%;
 		}
 	}
+
 </style>

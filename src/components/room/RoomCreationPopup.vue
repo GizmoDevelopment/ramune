@@ -14,21 +14,21 @@
 		/>
 		<form class="form" @submit.prevent="createRoom">
 			<Input
+				v-model="roomName"
 				type="text"
 				theme="dark"
 				placeholder="Anime night"
 				label="Name"
 				autofocus
 				:limit="25"
-				@update="(newRoomName) => roomName = newRoomName"
 			/>
 			<Input
+				v-model="roomPassword"
 				type="text"
 				theme="dark"
 				placeholder="hau~hau~ (optional)"
 				label="Password"
 				:limit="50"
-				@update="(newRoomPassword) => roomPassword = newRoomPassword"
 			/>
 		</form>
 		<div class="room-preview-container form-row">

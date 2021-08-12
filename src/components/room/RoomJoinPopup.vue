@@ -12,12 +12,12 @@
 		/>
 		<form class="form" @submit.prevent="verifyPassword">
 			<Input
+				v-model="password"
 				type="password"
 				:limit="50"
 				label="Room password"
 				theme="dark"
 				:autofocus="true"
-				@update="(newPassword) => password = newPassword"
 			/>
 		</form>
 		<button

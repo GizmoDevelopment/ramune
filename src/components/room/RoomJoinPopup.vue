@@ -11,13 +11,14 @@
 		<form
 			id="join-room-form"
 			class="form"
+			autocomplete="off"
 			@submit.prevent="verifyPassword"
 		>
 			<Input
 
 				v-model="password"
 
-				type="password"
+				type="text"
 				label="Room password"
 				theme="dark"
 				autofocus

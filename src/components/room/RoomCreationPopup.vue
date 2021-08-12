@@ -11,6 +11,7 @@
 		<form
 			id="create-room-form"
 			class="form"
+			autocomplete="off"
 			@submit.prevent="createRoom"
 		>
 			<Input
@@ -18,6 +19,7 @@
 				v-model="roomName"
 
 				type="text"
+
 				theme="dark"
 				placeholder="Anime night"
 				label="Name"
@@ -29,7 +31,7 @@
 
 				v-model="roomPassword"
 
-				type="password"
+				type="text"
 				theme="dark"
 				placeholder="hau~hau~ (optional)"
 				label="Password"
@@ -197,6 +199,10 @@
 
 		* {
 			width: 100%;
+		}
+
+		*[label="Password"] input {
+			-webkit-text-security: circle;
 		}
 	}
 

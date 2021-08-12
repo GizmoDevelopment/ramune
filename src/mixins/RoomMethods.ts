@@ -28,6 +28,18 @@ export default defineComponent({
 					});
 				}
 			});
+		},
+		leaveRoom (): Promise<string> {
+			return new Promise((res, rej) => {
+				this.$socket.client.emit("CLIENT:LEAVE_ROOM", (response: SocketResponse<string>) => {
+					if (response.type === "success") {
+						res(response.data);
+					} else {
+						console.error(response.message);
+						rej(response.message);
+					}
+				});
+			});
 		}
 	}
 });

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<teleport to="#app">
 		<transition name="fade-popup-overlay">
 			<div
 				v-if="visible"
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 		</transition>
-	</div>
+	</teleport>
 </template>
 
 <script lang="ts">

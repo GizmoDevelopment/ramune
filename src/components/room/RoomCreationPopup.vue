@@ -4,11 +4,8 @@
 		:visible="visible"
 		@dismiss="$emit('dismiss')"
 	>
-		<div v-if="debounce">
-			<LoadingBuffer class="loading-buffer" size="small" />
-		</div>
 		<Error
-			v-if="error && !debounce"
+			v-if="error"
 			:text="error"
 		/>
 		<form class="form" @submit.prevent="createRoom">
@@ -58,7 +55,6 @@
 	import RoomCard from "@components/room/RoomCard.vue";
 	import PopupCard from "@components/PopupCard.vue";
 	import Input from "@components/Input.vue";
-	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
 
 	// Utils
@@ -75,7 +71,6 @@
 			PopupCard,
 			Input,
 			RoomCard,
-			LoadingBuffer,
 			Error
 		},
 		props: {
@@ -87,7 +82,7 @@
 		emits: [ "dismiss" ],
 		data () {
 			return {
-				debounce: true,
+				debounce: false,
 				error: "",
 				roomName: "",
 				roomPassword: "",

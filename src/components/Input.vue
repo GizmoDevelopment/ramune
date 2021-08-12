@@ -96,6 +96,7 @@
 		align-items: flex-start;
 
 		p {
+			margin-top: .6em;
 			margin-bottom: .2em;
 			font-size: 1.2em;
 		}

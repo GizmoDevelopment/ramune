@@ -4,7 +4,7 @@
 		<div v-if="room">
 			<RoomView
 				:room="room"
-				@leave-room="leaveRoom()"
+				@leave-room="_leaveRoom()"
 			/>
 		</div>
 		<div v-else-if="connectError || status">
@@ -13,6 +13,11 @@
 		<div v-else>
 			<LoadingBuffer />
 		</div>
+		<RoomJoinPopup
+			:room-id="roomId"
+			:visible="joinPopupVisible"
+			@dismiss="joinPopupVisible = false"
+		/>
 	</div>
 </template>
 
@@ -23,25 +28,27 @@
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import RoomJoinPopup from "@components/room/RoomJoinPopup.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";
+	import RoomMethodsMixin from "@mixins/RoomMethods";
 
 	// Views
 	import RoomView from "@views/RoomView.vue";
 
 	// Types
 	import { Room } from "@typings/room";
-	import { SocketResponse } from "@typings/main";
 	import { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "RoomLoader",
 		components: {
 			LoadingBuffer,
-			RoomView
+			RoomView,
+			RoomJoinPopup
 		},
-		mixins: [ MainMixin ],
+		mixins: [ MainMixin, RoomMethodsMixin ],
 		props: {
 			roomId: {
 				type: String,
@@ -51,7 +58,8 @@
 		data () {
 			return {
 				status: "",
-				leaving: false
+				leaving: false,
+				joinPopupVisible: false
 			};
 		},
 		computed: {
@@ -61,7 +69,7 @@
 		},
 		watch: {
 			user (newUser: AuthenticatedUser) {
-				if (newUser) this.joinRoom();
+				if (newUser) this._joinRoom();
 			},
 			room (newRoom: Room | null) {
 				if (!newRoom) {
@@ -72,9 +80,7 @@
 		},
 		mounted () {
 			if (this.user) {
-				if (this.room?.id !== this.roomId) {
-					this.joinRoom();
-				}
+				this._joinRoom();
 			} else {
 				this.status = "You must be logged in to join a room.";
 			}
@@ -85,27 +91,24 @@
 			}
 		},
 		methods: {
-			joinRoom () {
-				this.$socket.client.emit("CLIENT:JOIN_ROOM", this.roomId, (res: SocketResponse<Room>) => {
-					if (res.type === "success") {
-						this.$store.commit("room/JOIN_ROOM", res.data);
-					} else {
-						this.status = res.message;
-					}
+			async _leaveRoom () {
+				this.leaving = true;
+				await this.leaveRoom().catch(err => {
+					this.leaving = false;
+					this.status = err;
 				});
 			},
-			leaveRoom () {
+			async _joinRoom () {
+				this.joinRoom({ id: this.roomId }).catch(err => {
 
-				this.leaving = true;
+					this.status = err;
 
-				this.$socket.client.emit("CLIENT:LEAVE_ROOM", (res: SocketResponse<string>) => {
-					if (res.type !== "success") {
-						this.leaving = false;
-						console.error(res.message);
+					if (err === "The room requires a password.") {
+						this.joinPopupVisible = true;
 					}
 				});
 			}
-		}
+		},
 	});
 
 </script>

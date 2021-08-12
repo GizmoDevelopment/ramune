@@ -67,6 +67,7 @@
 				required: true
 			}
 		},
+		emits: [ "dismiss" ],
 		data () {
 			return {
 				debounce: false,
@@ -92,7 +93,9 @@
 					password: this.password
 				};
 
-				this.joinRoom(roomOptions).catch(err => {
+				this.joinRoom(roomOptions).then(() => {
+					this.$emit("dismiss");
+				}).catch(err => {
 					this.debounce = false;
 					this.error = err;
 				});

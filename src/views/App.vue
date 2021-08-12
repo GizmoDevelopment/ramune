@@ -262,7 +262,7 @@
 	}
 
 	.popout-slide-leave-active {
-		transition: opacity .35s ease, transform .25s var(--easing-leave);
+		transition: opacity .25s ease, transform .15s var(--easing-leave);
 	}
 
 	.popout-slide-enter-from,

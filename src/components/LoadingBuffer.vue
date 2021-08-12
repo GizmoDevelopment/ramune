@@ -32,7 +32,7 @@
 			transform: scale3d(1, .2, 1);
 		}
 		50% {
-			transform: scale3d(1, 1.4, 1) translateY(-30px);
+			transform: scale3d(1, 1.2, 1) translateY(-50px);
 		}
 		100% {
 			transform: scale3d(1, .2, 1) translateY(0px);
@@ -57,7 +57,7 @@
 
 	.small {
 		height: 1em;
-		margin-top: 3em;
+		margin-top: 1em;
 		animation: loading-s 2s ease-in-out infinite;
 	}
 

@@ -1,40 +1,42 @@
 <template>
-	<transition name="fade-show-popup-overlay">
-		<div
-			v-if="showId"
-			class="overlay"
-			@click="$emit('dismiss')"
-		/>
-	</transition>
-	<transition name="slide-show-popup">
-		<div
-			v-if="showId"
-			class="content-container"
-			@click="$emit('dismiss')"
-		>
-			<div class="show-container" @click.stop>
-				<div class="popup-title-bar">
-					<Close class="popup-close-button" @click="$emit('dismiss')" />
-				</div>
-				<div v-if="show" class="show-information">
-					<ShowInformation
-						:show="show"
-					/>
-					<img
-						class="show-banner"
-						:src="show.banner_url"
-						draggable="false"
-					>
-				</div>
-				<div v-else-if="error">
-					<Error :text="error" />
-				</div>
-				<div v-else>
-					<ShowInformationHusk />
+	<teleport to="#app">
+		<transition name="fade-show-popup-overlay">
+			<div
+				v-if="showId"
+				class="overlay"
+				@click="$emit('dismiss')"
+			/>
+		</transition>
+		<transition name="slide-show-popup">
+			<div
+				v-if="showId"
+				class="content-container"
+				@click="$emit('dismiss')"
+			>
+				<div class="show-container" @click.stop>
+					<div class="popup-title-bar">
+						<Close class="popup-close-button" @click="$emit('dismiss')" />
+					</div>
+					<div v-if="show" class="show-information">
+						<ShowInformation
+							:show="show"
+						/>
+						<img
+							class="show-banner"
+							:src="show.banner_url"
+							draggable="false"
+						>
+					</div>
+					<div v-else-if="error">
+						<Error :text="error" />
+					</div>
+					<div v-else>
+						<ShowInformationHusk />
+					</div>
 				</div>
 			</div>
-		</div>
-	</transition>
+		</transition>
+	</teleport>
 </template>
 
 <script lang="ts">

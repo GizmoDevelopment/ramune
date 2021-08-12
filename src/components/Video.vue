@@ -416,6 +416,9 @@
 						case "KeyF":
 							this.toggleFullscreen();
 							break;
+						case "Digit0":
+							this.video.currentTime = 0;
+							break;
 						default:
 					}
 				}

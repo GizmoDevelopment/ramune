@@ -135,6 +135,7 @@
 				preload="auto"
 				crossorigin="anonymous"
 
+				:class="{ 'popped-out': isInPopOutMode }"
 				:src="episode.stream_url"
 				:poster="episode.thumbnail_url"
 				:volume="volume"
@@ -561,6 +562,11 @@
 				font-size: 55px;
 			}
 		}
+	}
+
+	.popped-out::cue {
+		font-size: 12px;
+		text-shadow: #000 0 0 2px;
 	}
 
 	/* Video Containers */

@@ -8,6 +8,7 @@
 
 			class="input"
 
+			:alt="label"
 			:type="type"
 			:theme="theme"
 			:placeholder="placeholder"

@@ -7,7 +7,7 @@
 			<LoadingBuffer class="loading-buffer" size="small" />
 		</div>
 		<Error
-			v-if="error"
+			v-if="error && !debounce"
 			:text="error"
 		/>
 		<form class="form" @submit.prevent="verifyPassword">
@@ -21,7 +21,6 @@
 			/>
 		</form>
 		<button
-			v-if="!debounce"
 			class="button primary-button"
 			:class="{ 'disabled-button': isJoinButtonDisabled }"
 			@click="verifyPassword"
@@ -77,7 +76,7 @@
 		},
 		computed: {
 			isJoinButtonDisabled (): boolean {
-				return this.password.length === 0;
+				return this.password.length === 0 || this.debounce;
 			}
 		},
 		methods: {

@@ -1,16 +1,14 @@
 <template>
 	<PopupCard
 		title="Create a room"
-		align="left"
 		:visible="visible"
-		@dismiss="clearRoomPopup()"
 	>
 		<div v-if="debounce">
 			<LoadingBuffer class="loading-buffer" size="small" />
 		</div>
 		<Error
-			v-if="status && !debounce"
-			:text="status"
+			v-if="error && !debounce"
+			:text="error"
 		/>
 		<form class="form" @submit.prevent="createRoom">
 			<Input
@@ -24,14 +22,14 @@
 			/>
 			<Input
 				v-model="roomPassword"
-				type="text"
+				type="password"
 				theme="dark"
 				placeholder="hau~hau~ (optional)"
 				label="Password"
 				:limit="50"
 			/>
 		</form>
-		<div class="room-preview-container form-row">
+		<div class="room-preview-container">
 			<p>Preview</p>
 			<div v-if="roomPreviewObject" class="room-preview">
 				<RoomCard
@@ -41,7 +39,6 @@
 			</div>
 		</div>
 		<button
-			v-if="!debounce"
 			class="primary-button"
 			:class="{ 'disabled-button': isCreateButtonDisabled }"
 			@click="createRoom"
@@ -86,33 +83,29 @@
 				default: false
 			}
 		},
-		emits: [ "dismiss", "create-room" ],
+		emits: [ "dismiss" ],
 		data () {
 			return {
+				debounce: false,
+				error: "",
 				roomName: "",
 				roomPassword: "",
-				roomPreviewObject: null as Room | null,
-				roomOptions: { name: "" } as CreateRoomOptions,
-				debounce: false,
-				status: "",
-				isCreateButtonDisabled: true
+				roomPreviewObject: null as Room | null
 			};
 		},
 		computed: {
 			user (): AuthenticatedUser | null {
 				return this.$store.state.user.user;
+			},
+			isCreateButtonDisabled (): boolean {
+				return this.roomName.trim().length === 0 || this.debounce;
 			}
 		},
 		watch: {
 			visible (newState: boolean) {
-				if (newState) {
-					this.status = "";
-					this.roomName = "";
-					this.roomPassword = "";
-				}
+				if (newState) this.clearRoomPopup();
 			},
-			roomName (newName: string) {
-				this.isCreateButtonDisabled = newName.trim().length === 0;
+			roomName () {
 				this.updateRoomPreview();
 			},
 			roomPassword () {
@@ -124,18 +117,6 @@
 		},
 		methods: {
 			updateRoomPreview () {
-
-				if (this.roomPassword) {
-					this.roomOptions = {
-						name: this.roomName,
-						password: this.roomPassword
-					};
-				} else {
-					this.roomOptions = {
-						name: this.roomName
-					};
-				}
-
 				if (this.user) {
 					this.roomPreviewObject = {
 						id: "",
@@ -149,8 +130,12 @@
 
 			},
 			clearRoomPopup () {
+
+				this.error = "";
+				this.roomName = "";
+				this.roomPassword = "";
+
 				this.updateRoomPreview();
-				this.$emit("dismiss");
 			},
 			createRoom () {
 
@@ -159,7 +144,15 @@
 
 				this.debounce = true;
 
-				this.$socket.client.emit("CLIENT:CREATE_ROOM", this.roomOptions, (res: SocketResponse<Room>) => {
+				const roomOptions: CreateRoomOptions = {
+					name: this.roomName
+				};
+
+				if (this.roomPassword) {
+					roomOptions.password = this.roomPassword;
+				}
+
+				this.$socket.client.emit("CLIENT:CREATE_ROOM", roomOptions, (res: SocketResponse<Room>) => {
 					if (res.type === "success") {
 
 						this.$store.commit("room/JOIN_ROOM", res.data);
@@ -172,7 +165,7 @@
 					} else {
 
 						this.debounce = false;
-						this.status = res.message;
+						this.error = res.message;
 
 						console.error(res.message);
 					}

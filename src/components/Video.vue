@@ -60,7 +60,7 @@
 						:show-id="show.id"
 						:episode-id="episode.id"
 						:data="episode.data.lyrics"
-						:timestamp="currentVideoTime"
+						:timestamp="currentTime"
 					/>
 				</div>
 			</div>
@@ -115,7 +115,7 @@
 								{{ hoverTimestamp }}
 							</div>
 						</div>
-						<span class="video-duration">{{ videoDurationTimestamp }}</span>
+						<span class="video-duration">{{ durationTimestamp }}</span>
 						<Text
 							v-if="episode.subtitles.length > 0"
 							class="video-control-button"
@@ -140,13 +140,13 @@
 				:poster="episode.thumbnail_url"
 				:volume="volume"
 
-				@seeked="updateVideoTime(); pushSync();"
-				@seeking="updateVideoTime(); pushSync();"
-				@pause="pushSync"
-				@play="pushSync()"
-				@timeupdate="updateVideoTime"
+				@seeked="updateCurrentTime(); pushSync()"
+				@seeking="updateCurrentTime(); pushSync()"
+				@pause="updatePlaybackState"
+				@play="updatePlaybackState"
+				@timeupdate="updateCurrentTime"
 				@waiting="isBuffering = true"
-				@durationchange="updateVideoDuration"
+				@durationchange="updateDuration"
 				@volumechange="updateVolume"
 			>
 				<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
@@ -164,7 +164,7 @@
 		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects">
 			<LeafRenderer
 				:data="episode.data.effects"
-				:timestamp="currentVideoTime"
+				:timestamp="currentTime"
 			/>
 		</div>
 	</div>
@@ -257,33 +257,42 @@
 		},
 		data () {
 			return {
+
+				// Player
 				isPaused: true,
-				isOverlayVisible: false,
 				isBuffering: false,
-				isMouseStatic: false,
 				isFullscreen: false,
+				currentTime: 0,
+				duration: 0,
+				volume: 1,
+
+				// Overlay
+				isOverlayVisible: false,
+				isMouseStatic: false,
+
+				// Trays
+				selectedSubtitleLanguage: "en" as string | null,
 				isSubtitleTrayVisible: false,
 				isVolumeTrayVisible: false,
+
+				// Progress Bar
 				isHoveringOverProgressBar: false,
 				videoProgressPercentage: 0,
-				currentVideoTime: 0,
-				videoDuration: 0,
-				lastSyncTimestamp: 0,
+				hoverTimestampOffset: 0,
+
+				// Gestures
 				mouseClickCounter: 0,
 				mouseChecker: 0,
 				mouseClickChecker: 0,
-				volume: 1,
-				hoverTimestampOffset: 0,
-				lastMousePosition: [ 0, 0 ] as Range,
-				selectedSubtitleLanguage: "en" as string | null
+				lastMousePosition: [ 0, 0 ] as Range
 			};
 		},
 		computed: {
 			videoCurrentTimestamp (): string {
-				return formatTimestamp(this.currentVideoTime);
+				return formatTimestamp(this.currentTime);
 			},
-			videoDurationTimestamp (): string {
-				return formatTimestamp(this.videoDuration);
+			durationTimestamp (): string {
+				return formatTimestamp(this.duration);
 			},
 			isRequestingRoomSync (): boolean {
 				return this.$store.state.room.isRequestingRoomSync;
@@ -297,6 +306,9 @@
 			}
 		},
 		watch: {
+			isPaused () {
+				this.pushSync();
+			},
 			isRequestingRoomSync (newState: boolean) {
 				if (newState) {
 					this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", false);
@@ -341,14 +353,37 @@
 		methods: {
 			pushSync () {
 				if (this.video) {
-
-					this.isPaused = this.video.paused;
-
 					this.$emit("update", !this.video.paused, this.video.currentTime);
+				} else { // Fallback to saved data
+					this.$emit("update", !this.isPaused, this.currentTime);
+					console.error("No video element found while attempting to push sync.");
+				}
+			},
+			updatePlaybackState () {
+				if (this.video) {
+					this.isPaused = this.video.paused;
 				}
 			},
 			updateFullscreenState () {
 				this.isFullscreen = document.fullscreenElement !== null;
+			},
+			updateDuration () {
+				if (this.video) {
+					this.duration = this.video.duration;
+				}
+			},
+			updateVolume () {
+				if (this.video) {
+					this.volume = this.video.volume;
+				}
+			},
+			updateHoverTimestamp (e: MouseEvent) {
+				if (this.isHoveringOverProgressBar) {
+					this.hoverTimestampOffset = this.getProgressBarWidth(e);
+				}
+			},
+			updateMousePosition (e: MouseEvent) {
+				this.lastMousePosition = [ e.screenX, e.screenY ];
 			},
 			toggleFullscreen () {
 				if (document.fullscreenElement) {
@@ -378,7 +413,7 @@
 					}
 				}
 			},
-			updateVideoTime () {
+			updateCurrentTime () {
 				if (this.video) {
 
 					const
@@ -386,7 +421,7 @@
 						durationInSeconds = this.video.duration;
 
 					this.videoProgressPercentage = (timeInSeconds / durationInSeconds) * 100;
-					this.currentVideoTime = timeInSeconds;
+					this.currentTime = timeInSeconds;
 				}
 
 				this.isBuffering = false;
@@ -396,13 +431,8 @@
 					this.video.currentTime = this.getProgressBarTimestamp(this.getProgressBarWidth(e));
 				}
 			},
-			updateVideoDuration () {
-				if (this.video) {
-					this.videoDuration = this.video.duration;
-				}
-			},
 			handleKeypress (e: KeyboardEvent) {
-				// Only process keys if user isn't focused on any inputs/spans
+				// Only process keys if user isn't focused on any inputs/spans/textareas
 				if (this.video && document.activeElement && ![ "SPAN", "INPUT", "TEXTAREA" ].includes(document.activeElement.tagName)) {
 					switch (e.code) {
 						case "ArrowLeft":
@@ -423,9 +453,6 @@
 						default:
 					}
 				}
-			},
-			updateMousePosition (e: MouseEvent) {
-				this.lastMousePosition = [ e.screenX, e.screenY ];
 			},
 			checkForStaticMouse () {
 
@@ -458,11 +485,6 @@
 			toggleSubtitleTray () {
 				this.isSubtitleTrayVisible = !this.isSubtitleTrayVisible;
 			},
-			updateVolume () {
-				if (this.video) {
-					this.volume = this.video.volume;
-				}
-			},
 			toggleVolumeTray () {
 				this.isVolumeTrayVisible = !this.isVolumeTrayVisible;
 			},
@@ -487,18 +509,12 @@
 				}
 
 				return 0;
-			},
-			updateHoverTimestamp (e: MouseEvent) {
-				if (this.isHoveringOverProgressBar) {
-					this.hoverTimestampOffset = this.getProgressBarWidth(e);
-				}
 			}
 		},
 		sockets: {
 			"ROOM:SYNC" (data: RoomSyncData) {
 				if (this.video) {
 
-					this.lastSyncTimestamp = Date.now() / 1000;
 					this.video.currentTime = data.currentTime;
 
 					if (data.playing) {

@@ -52,3 +52,8 @@ export interface ErrorResponse extends BaseResponse {
 export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 export type Range = [ number, number ];
+
+export interface Theme {
+	primary: string;
+	primaryHover: string;
+}

@@ -29,7 +29,7 @@ export interface GenericState {
 }
 
 export interface SettingsState {
-	themeColor: string;
+	theme: string;
 	karaoke: boolean;
 	effects: boolean;
 }

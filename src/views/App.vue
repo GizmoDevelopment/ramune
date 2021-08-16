@@ -42,6 +42,7 @@
 	// Types
 	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
+	import { Theme } from "@typings/main";
 
 	export default defineComponent({
 		name: "App",
@@ -59,6 +60,9 @@
 		computed: {
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
+			},
+			theme (): Theme {
+				return this.$store.getters["settings/theme"];
 			}
 		},
 		watch: {
@@ -83,7 +87,7 @@
 			}
 
 		},
-		unmounted () {
+		beforeUnmount () {
 			clearInterval(this.cacheCleaner);
 		},
 		methods: {
@@ -174,8 +178,8 @@
 		--container-background-color: rgb(31, 31, 31);
 		--container-hover-color: #494949;
 		--background-color: #0D0D0D;
-		--primary-color: hsl(200, 90%, 60%);
-		--primary-hover-color: hsl(200, 90%, 40%);
+		--primary-color: v-bind(theme.primary);
+		--primary-hover-color: v-bind(theme.primaryHover);
 		--transparent-hover-color: rgba(13, 13, 13, .5);
 		--error-color: hsl(0, 95%, 60%);
 

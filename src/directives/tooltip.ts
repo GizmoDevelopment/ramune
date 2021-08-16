@@ -16,5 +16,8 @@ export default {
 
 		tooltipContainer.appendChild(tooltipContent);
 		el.appendChild(tooltipContainer);
+	},
+	updated (el: HTMLElement) {
+		el.classList.add("tooltip-container");
 	}
 } as Directive;

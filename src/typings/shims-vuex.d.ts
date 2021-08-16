@@ -30,6 +30,8 @@ export interface GenericState {
 
 export interface SettingsState {
 	themeColor: string;
+	karaoke: boolean;
+	effects: boolean;
 }
 
 declare module "@vue/runtime-core" {

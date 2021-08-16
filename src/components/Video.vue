@@ -54,7 +54,7 @@
 						>
 					</div>
 				</transition>
-				<div v-if="episode.data.lyrics && !isInPopOutMode">
+				<div v-if="episode.data.lyrics && !isInPopOutMode && isKaraokeEnabled">
 					<KaraokeRenderer
 						class="karaoke"
 						:show-id="show.id"
@@ -161,7 +161,7 @@
 				</template>
 			</video>
 		</div>
-		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects">
+		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects && areEffectsEnabled">
 			<LeafRenderer
 				:data="episode.data.effects"
 				:timestamp="currentTime"
@@ -288,6 +288,12 @@
 			};
 		},
 		computed: {
+			isKaraokeEnabled (): boolean {
+				return this.$store.state.settings.karaoke;
+			},
+			areEffectsEnabled (): boolean {
+				return this.$store.state.settings.effects;
+			},
 			videoCurrentTimestamp (): string {
 				return formatTimestamp(this.currentTime);
 			},

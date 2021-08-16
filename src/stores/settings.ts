@@ -12,8 +12,8 @@ export default {
 		};
 	},
 	mutations: {
-		UPDATE_THEME_COLOR (_state: SettingsState, color: string) {
-			_state.themeColor = color;
+		UPDATE_THEME_COLOR (state: SettingsState, color: string) {
+			state.themeColor = color;
 		},
 		UPDATE_KARAOKE_STATE (_state: SettingsState, state: boolean) {
 			_state.karaoke = state;

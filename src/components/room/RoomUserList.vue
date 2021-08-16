@@ -4,31 +4,30 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
+				v-memo="[ isHost ]"
 				v-tooltip="user.username"
 				class="user"
 				:class="{ host: isUserHost(user) }"
 			>
-				<template v-if="isHost && user.id !== host.id">
-					<ContextMenu
-						:identifier="user.id"
-						:items="[ 'Promote to Host', 'Kick' ]"
-						@ctx-promote-to-host="promoteUserIdToHost"
-						@ctx-kick="kickUserId"
-					>
-						<img
-							class="user-avatar"
-							:src="user.avatar_url"
-							:alt="`${ user.username }'s profile picture`"
-						>
-					</ContextMenu>
-				</template>
-				<template v-else>
+				<ContextMenu
+					v-if="isHost && user.id !== host.id"
+					:identifier="user.id"
+					:items="[ 'Promote to Host', 'Kick' ]"
+					@ctx-promote-to-host="promoteUserIdToHost"
+					@ctx-kick="kickUserId"
+				>
 					<img
 						class="user-avatar"
 						:src="user.avatar_url"
 						:alt="`${ user.username }'s profile picture`"
 					>
-				</template>
+				</ContextMenu>
+				<img
+					v-else
+					class="user-avatar"
+					:src="user.avatar_url"
+					:alt="`${ user.username }'s profile picture`"
+				>
 			</div>
 		</transition-group>
 	</div>

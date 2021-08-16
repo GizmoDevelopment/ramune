@@ -28,6 +28,10 @@ export interface GenericState {
 	connectError: string;
 }
 
+export interface SettingsState {
+	themeColor: string;
+}
+
 declare module "@vue/runtime-core" {
 
 	interface State {
@@ -35,6 +39,7 @@ declare module "@vue/runtime-core" {
 		room: RoomState;
 		user: UserState;
 		generic: GenericState;
+		settings: SettingsState;
 	}
 
 	interface ComponentCustomProperties {

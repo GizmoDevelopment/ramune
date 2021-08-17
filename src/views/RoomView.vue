@@ -36,6 +36,13 @@
 			<LoadingBuffer />
 		</div>
 	</div>
+	<PopupCard
+		:visible="!$socket.connected"
+		:dismissable="false"
+		:transparent="true"
+	>
+		<LoadingBuffer />
+	</PopupCard>
 </template>
 
 <script lang="ts">
@@ -48,6 +55,7 @@
 	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import PopupCard from "@components/PopupCard.vue";
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Icons
@@ -73,7 +81,8 @@
 			ShowHeading,
 			LoadingBuffer,
 			MarkdownRenderer,
-			LockClosed
+			LockClosed,
+			PopupCard
 		},
 		mixins: [ RoomMixin ],
 		props: {

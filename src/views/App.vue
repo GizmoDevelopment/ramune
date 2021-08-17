@@ -231,7 +231,6 @@
 		opacity: 0;
 	}
 
-
 	/* Globals */
 
 	*[variant=light] {

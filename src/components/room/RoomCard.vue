@@ -53,7 +53,7 @@
 			attemptRoomJoin () {
 				// Prevent joining dummy rooms
 				if (this.room.id !== "") {
-					if (this.room.locked) {
+					if (this.room.locked && this.$store.state.room.room?.id !== this.room.id) {
 						this.$emit("request-room-password", this.room.id);
 					} else {
 						this.joinRoom({ id: this.room.id }).catch(err => console.error(err));

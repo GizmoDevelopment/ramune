@@ -50,7 +50,7 @@
 		props: {
 			title: {
 				type: String,
-				required: true
+				default: ""
 			},
 			visible: {
 				type: Boolean,

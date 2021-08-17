@@ -29,16 +29,19 @@ export default defineComponent({
 				}
 			});
 		},
-		leaveRoom (): Promise<string> {
-			return new Promise((res, rej) => {
+		leaveRoom (): Promise<void> {
+			return new Promise(res => {
+
+				this.$router.push("/rooms");
+
+				// Don't trap the user in a room if the socket doesn't respond
 				this.$socket.client.emit("CLIENT:LEAVE_ROOM", (response: SocketResponse<string>) => {
-					if (response.type === "success") {
-						res(response.data);
-					} else {
+					if (response.type === "error") {
 						console.error(response.message);
-						rej(response.message);
 					}
 				});
+
+				res();
 			});
 		}
 	}

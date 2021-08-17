@@ -139,12 +139,11 @@
 				this.$store.commit("room/USER_JOIN_ROOM", user);
 			},
 			"ROOM:USER_LEAVE" (user: User) {
-
-				this.$store.commit("room/USER_LEAVE_ROOM", user);
-
-				if (user.id === this.user?.id) {
-					this.$store.commit("room/LEAVE_ROOM");
+				if (user.id === this.user?.id && this.room) {
 					this.$router.push("/rooms");
+					this.$store.commit("room/LEAVE_ROOM");
+				} else {
+					this.$store.commit("room/USER_LEAVE_ROOM", user);
 				}
 			},
 			"ROOM:UPDATE" (room: Room) {

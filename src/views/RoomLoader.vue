@@ -91,12 +91,9 @@
 			}
 		},
 		methods: {
-			async _leaveRoom () {
+			_leaveRoom () {
 				this.leaving = true;
-				await this.leaveRoom().catch(err => {
-					this.leaving = false;
-					this.status = err;
-				});
+				this.leaveRoom();
 			},
 			async _joinRoom () {
 				this.joinRoom({ id: this.roomId }).catch(err => {

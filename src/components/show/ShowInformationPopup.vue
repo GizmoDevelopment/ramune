@@ -1,42 +1,24 @@
 <template>
-	<teleport to="#app">
-		<transition name="fade-show-popup-overlay">
-			<div
-				v-if="showId"
-				class="overlay"
-				@click="$emit('dismiss')"
-			/>
-		</transition>
-		<transition name="slide-show-popup">
-			<div
-				v-if="showId"
-				class="content-container"
-				@click="$emit('dismiss')"
-			>
-				<div class="show-container" @click.stop>
-					<div class="popup-title-bar">
-						<Close class="popup-close-button" @click="$emit('dismiss')" />
-					</div>
-					<div v-if="show" class="show-information">
-						<ShowInformation
-							:show="show"
-						/>
-						<img
-							class="show-banner"
-							:src="show.banner_url"
-							draggable="false"
-						>
-					</div>
-					<div v-else-if="error">
-						<Error :text="error" />
-					</div>
-					<div v-else>
-						<ShowInformationHusk />
-					</div>
-				</div>
+	<PopupCard
+		:visible="showId.length > 0"
+		:floating-title-bar="true"
+		@dismiss="$emit('dismiss')"
+	>
+		<div class="show-container">
+			<div v-if="show" class="show-information">
+				<ShowInformation
+					:show="show"
+				/>
+				<img
+					class="show-banner"
+					:src="show.banner_url"
+					draggable="false"
+				>
 			</div>
-		</transition>
-	</teleport>
+			<Error v-else-if="error" :text="error" />
+			<ShowInformationHusk v-else />
+		</div>
+	</PopupCard>
 </template>
 
 <script lang="ts">
@@ -48,9 +30,7 @@
 	import Error from "@components/Error.vue";
 	import ShowInformation from "@components/show/ShowInformation.vue";
 	import ShowInformationHusk from "@components/show/ShowInformationHusk.vue";
-
-	// Icons
-	import Close from "@assets/icons/close.svg?component";
+	import PopupCard from "@components/PopupCard.vue";
 
 	// Utils
 	import { getShow } from "@utils/api";
@@ -62,10 +42,10 @@
 	export default defineComponent({
 		name: "ShowInformationPopup",
 		components: {
-			Close,
 			Error,
 			ShowInformation,
-			ShowInformationHusk
+			ShowInformationHusk,
+			PopupCard
 		},
 		props: {
 			showId: {
@@ -133,72 +113,13 @@
 
 	@import "@styles/main.scss";
 
-	/* Transitions */
-
-	.fade-show-popup-overlay-enter-active,
-	.fade-show-popup-overlay-leave-active {
-		transition: opacity .3s ease-in-out;
-	}
-
-	.fade-show-popup-overlay-enter-from,
-	.fade-show-popup-overlay-leave-to {
-		opacity: 0;
-	}
-
-	.slide-show-popup-enter-active {
-		transition: transform .45s variable(easing-enter), opacity .25s ease
-	}
-
-	.slide-show-popup-leave-active {
-		transition: transform .3s variable(easing-leave), opacity .25s ease
-	}
-
-	.slide-show-popup-enter-from,
-	.slide-show-popup-leave-to {
-		transform: translateY(4rem) scale(98%);
-		opacity: 0;
-	}
-
 	/* Overlay & Container */
-
-	.overlay, .content-container {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 20;
-	}
-
-	.overlay {
-		background: variable(overlay-background-color);
-	}
-
-	.content-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: flex-start;
-		overflow-y: auto;
-	}
 
 	.show-container {
 
 		position: relative;
-		margin-top: 5%;
-		margin-bottom: 20px;
 		width: 1100px;
-		background-color: variable(container-background-color);
-		border-radius: variable(popup-border-radius);
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		padding-top: 1em;
-		padding-bottom: 1em;
-		padding-left: 2em;
-		padding-right: 2em;
-		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
+		padding: 2em 1em 0 1em;
 
 		.show-information div {
 			position: relative;
@@ -209,47 +130,19 @@
 	@media only screen and (max-width: 1250px) {
 		.show-container {
 			width: 100%;
-			margin-left: 1rem;
-			margin-bottom: 1rem;
+			padding-left: 0;
+			padding-right: 0;
 		}
-	}
-
-	@media only screen and (max-width: 600px) {
-		.show-container {
-			margin-left: 0;
-			margin-right: 0;
-			padding-left: 1rem;
-			padding-right: 1rem;
-		}
-	}
-
-	.popup-title-bar {
-		width: calc(100% + 1em); /* Push into padding so the close button sits properly in the corner */
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-items: center;
-	}
-
-	/* Close Button */
-
-	.popup-close-button {
-		height: 2em;
-		z-index: 2;
-	}
-
-	.popup-close-button:hover {
-		cursor: pointer;
 	}
 
 	/* Show Banner */
 
 	.show-banner {
 		position: absolute;
-		width: 100%;
+		width: calc(1100px + 2em + 2em);
 		height: auto;
-		left: 0;
-		top: 0;
+		left: -1em;
+		top: -1em;
 		border-top-left-radius: variable(popup-border-radius);
 		border-top-right-radius: variable(popup-border-radius);
 		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
@@ -258,7 +151,7 @@
 		z-index: 1;
 	}
 
-	@media only screen and (max-width: 1200px) {
+	@media only screen and (max-width: 1250px) {
 		.show-banner {
 			display: none;
 		}

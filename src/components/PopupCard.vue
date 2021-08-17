@@ -19,7 +19,11 @@
 					:style="alignment"
 					@click.stop
 				>
-					<div v-if="title || dismissable" class="popup-title-bar">
+					<div
+						v-if="title || dismissable"
+						class="popup-title-bar"
+						:class="{ 'floating-title-bar': floatingTitleBar }"
+					>
 						<h2>{{ title }}</h2>
 						<Close
 							v-if="dismissable"
@@ -70,6 +74,10 @@
 				default: true
 			},
 			transparent: {
+				type: Boolean,
+				default: false
+			},
+			floatingTitleBar: {
 				type: Boolean,
 				default: false
 			}
@@ -135,6 +143,7 @@
 	}
 
 	.popup-container {
+		position: relative;
 		margin-top: 5%;
 		margin-bottom: 20px;
 		width: auto;
@@ -158,6 +167,14 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2em;
+		z-index: 2;
+	}
+
+	.floating-title-bar {
+		position: absolute;
+		width: calc(100% - 2em);
+		top: 1em;
+		left: 1em;
 	}
 
 	.popup-title-bar h2 {
@@ -176,16 +193,16 @@
 		cursor: pointer;
 	}
 
-	@media only screen and (max-width: 500px) {
-
-		.popup-title-bar h2 {
-			margin-right: 1em;
-		}
-
+	@media only screen and (max-width: 1250px) {
 		.popup-container {
 			width: 90%;
 		}
+	}
 
+	@media only screen and (max-width: 500px) {
+		.popup-title-bar h2 {
+			margin-right: 1em;
+		}
 	}
 
 	.transparent-popup {

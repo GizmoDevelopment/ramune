@@ -20,7 +20,7 @@
 
 				type="text"
 				label="Room password"
-				theme="dark"
+				variant="dark"
 				autofocus
 
 				:limit="50"

@@ -10,7 +10,7 @@
 
 			:alt="label"
 			:type="type"
-			:theme="theme"
+			:variant="variant"
 			:placeholder="placeholder"
 			:maxlength="limit"
 		>

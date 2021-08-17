@@ -1,5 +1,5 @@
 <template>
-	<div class="container" :theme="theme">
+	<div class="container" :variant="variant">
 		<div class="title-bar">
 			<LockClosed v-if="room.locked" class="lock-icon" />
 			<div class="inner-title-bar">

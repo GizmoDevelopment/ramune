@@ -9,7 +9,7 @@
 			<input
 				v-model="username"
 				class="input"
-				theme="dark"
+				variant="dark"
 				type="text"
 				name="username"
 				placeholder="Username / E-mail"
@@ -17,7 +17,7 @@
 			<input
 				v-model="password"
 				class="input"
-				theme="dark"
+				variant="dark"
 				type="password"
 				name="password"
 				placeholder="Password"

@@ -20,7 +20,7 @@
 
 				type="text"
 
-				theme="dark"
+				variant="dark"
 				placeholder="Anime night"
 				label="Name"
 				autofocus
@@ -32,7 +32,7 @@
 				v-model="roomPassword"
 
 				type="text"
-				theme="dark"
+				variant="dark"
 				placeholder="hau~hau~ (optional)"
 				label="Password"
 
@@ -44,7 +44,7 @@
 			<div v-if="roomPreviewObject" class="room-preview">
 				<RoomCard
 					:room="roomPreviewObject"
-					theme="dark"
+					variant="dark"
 				/>
 			</div>
 		</div>

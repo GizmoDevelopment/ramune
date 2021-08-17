@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
 	props: {
-		theme: {
+		variant: {
 			type: String,
 			default: "light"
 		}

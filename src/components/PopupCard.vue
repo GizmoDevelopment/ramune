@@ -4,23 +4,28 @@
 			<div
 				v-if="visible"
 				class="overlay"
-				@click="$emit('dismiss')"
+				@click="dismiss"
 			/>
 		</transition>
 		<transition name="slide-popup">
 			<div
 				v-if="visible"
 				class="popup-positioner"
-				@click="$emit('dismiss')"
+				@click="dismiss"
 			>
 				<div
 					class="popup-container"
+					:class="{ 'transparent-popup': transparent }"
 					:style="alignment"
 					@click.stop
 				>
-					<div id="popup-title-bar">
+					<div v-if="title || dismissable" class="popup-title-bar">
 						<h2>{{ title }}</h2>
-						<Close class="popup-close-button" @click="$emit('dismiss')" />
+						<Close
+							v-if="dismissable"
+							class="popup-close-button"
+							@click="dismiss"
+						/>
 					</div>
 					<slot />
 				</div>
@@ -59,12 +64,27 @@
 					"center",
 					"right"
 				].includes(prop)
+			},
+			dismissable: {
+				type: Boolean,
+				default: true
+			},
+			transparent: {
+				type: Boolean,
+				default: false
 			}
 		},
 		emits: [ "dismiss" ],
 		computed: {
 			alignment (): string {
 				return `{ align-items: ${this.align}; }`;
+			}
+		},
+		methods: {
+			dismiss () {
+				if (this.dismissable) {
+					this.$emit("dismiss");
+				}
 			}
 		}
 	});
@@ -131,7 +151,7 @@
 		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
 	}
 
-	#popup-title-bar {
+	.popup-title-bar {
 		width: 100%; /* Push into padding so the close button sits properly in the corner */
 		display: flex;
 		flex-direction: row;
@@ -140,7 +160,7 @@
 		margin-bottom: 2em;
 	}
 
-	#popup-title-bar h2 {
+	.popup-title-bar h2 {
 		flex: 1;
 		margin-top: 0;
 		margin-bottom: 0;
@@ -158,7 +178,7 @@
 
 	@media only screen and (max-width: 500px) {
 
-		#popup-title-bar h2 {
+		.popup-title-bar h2 {
 			margin-right: 1em;
 		}
 
@@ -166,6 +186,11 @@
 			width: 90%;
 		}
 
+	}
+
+	.transparent-popup {
+		background-color: transparent !important;
+		box-shadow: none !important;
 	}
 
 </style>

@@ -1,0 +1,20 @@
+@keyframes spinning {
+	0% {
+		transform: rotate(0turn);
+	}
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: left;
+	}
+	65% {
+		background-position: right;
+	}
+	100% {
+		background-position: left;
+	}
+}

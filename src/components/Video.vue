@@ -29,7 +29,7 @@
 						<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
 							<button
 								class="subtitle-language-button"
-								@click="setSubtitleLanguage(`${ subtitle.code }`)"
+								@click="setSubtitleLanguage(`${subtitle.code}`)"
 							>
 								<template v-if="subtitle.code === selectedSubtitleLanguage">
 									<Checkmark />
@@ -104,7 +104,7 @@
 							<div class="progress-bar-overflow">
 								<div
 									class="progress-bar"
-									:style="`width: ${ videoProgressPercentage }%`"
+									:style="`width: ${videoProgressPercentage}%`"
 								/>
 							</div>
 							<div
@@ -133,15 +133,14 @@
 				playsinline
 				controlslist="nodownload"
 				preload="auto"
-				crossorigin="anonymous"
 
 				:class="{ 'popped-out': isInPopOutMode }"
 				:src="episode.stream_url"
 				:poster="episode.thumbnail_url"
 				:volume="volume"
 
-				@seeked="updateCurrentTime(); pushSync()"
-				@seeking="updateCurrentTime(); pushSync()"
+				@seeked="updateCurrentTime(); pushSync();"
+				@seeking="updateCurrentTime(); pushSync();"
 				@pause="updatePlaybackState"
 				@play="updatePlaybackState"
 				@timeupdate="updateCurrentTime"
@@ -149,17 +148,20 @@
 				@durationchange="updateDuration"
 				@volumechange="updateVolume"
 			>
-				<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
-					<track
-						:id="subtitle.code"
-						kind="subtitles"
-						:srclang="subtitle.code"
-						:label="subtitle.language"
-						:src="subtitle.url"
-						:default="subtitle.code === 'en'"
-					>
-				</template>
+				<!--
+					<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
+						<track
+							:id="subtitle.code"
+							kind="subtitles"
+							:srclang="subtitle.code"
+							:label="subtitle.language"
+							:src="subtitle.url"
+							:default="subtitle.code === 'en'"
+						>
+					</template>
+				-->
 			</video>
+			<div class="subtitle-container" ref="assContainer" />
 		</div>
 		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects && areEffectsEnabled">
 			<LeafRenderer
@@ -174,6 +176,7 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
+	import ASS from "assjs";
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -202,7 +205,7 @@
 
 	// Types
 	import { Range } from "@typings/main";
-	import { Episode, Show } from "@typings/show";
+	import { Episode, Show, Subtitles } from "@typings/show";
 	import { RoomSyncData } from "@typings/room";
 
 	export default defineComponent({
@@ -247,12 +250,14 @@
 			const
 				video = ref<HTMLVideoElement>(),
 				videoContainer = ref<HTMLDivElement>(),
-				progressBarContainer = ref<HTMLDivElement>();
+				progressBarContainer = ref<HTMLDivElement>(),
+				assContainer = ref<HTMLDivElement>();
 
 			return {
 				video,
 				videoContainer,
-				progressBarContainer
+				progressBarContainer,
+				assContainer
 			};
 		},
 		data () {
@@ -271,7 +276,7 @@
 				isMouseStatic: false,
 
 				// Trays
-				selectedSubtitleLanguage: "en" as string | null,
+				selectedSubtitleLanguage: null as string | null,
 				isSubtitleTrayVisible: false,
 				isVolumeTrayVisible: false,
 
@@ -284,7 +289,12 @@
 				mouseClickCounter: 0,
 				mouseChecker: 0,
 				mouseClickChecker: 0,
-				lastMousePosition: [ 0, 0 ] as Range
+				lastMousePosition: [ 0, 0 ] as Range,
+
+				// Subtitles
+				subtitles: {} as Record<string, string>,
+
+				ass: null as any
 			};
 		},
 		computed: {
@@ -331,9 +341,18 @@
 				if (count >= 2) {
 					this.toggleFullscreen();
 				}
+			},
+			episode () {
+				this.subtitles = {};
+				this.fetchSubtitles();
+			},
+			isFullscreen () {
+				this.updateASSRenderer();
 			}
 		},
-		mounted () {
+		async mounted () {
+
+			window.addEventListener("resize", this.updateASSRenderer);
 
 			document.addEventListener("keydown", this.handleKeypress);
 			document.addEventListener("mousemove", this.updateMousePosition);
@@ -345,8 +364,13 @@
 			if (this.video) {
 				this.volume = this.video.volume;
 			}
+
+			await this.fetchSubtitles();
+			this.setSubtitleLanguage("en");
 		},
 		beforeUnmount () {
+
+			window.removeEventListener("resize", this.updateASSRenderer);
 
 			document.removeEventListener("keydown", this.handleKeypress);
 			document.removeEventListener("mousemove", this.updateMousePosition);
@@ -355,6 +379,9 @@
 			clearInterval(this.mouseChecker);
 			clearInterval(this.mouseClickChecker);
 
+			if (this.ass) {
+				this.ass.destroy();
+			}
 		},
 		methods: {
 			pushSync () {
@@ -469,22 +496,20 @@
 				}, 2000);
 			},
 			setSubtitleLanguage (code: string) {
+				if (this.subtitles[code]) {
 
-				if (this.selectedSubtitleLanguage === code) {
-					this.selectedSubtitleLanguage = null;
-				} else {
-					this.selectedSubtitleLanguage = code;
-				}
+					if (this.selectedSubtitleLanguage === code) {
+						this.selectedSubtitleLanguage = null;
+					} else {
+						this.selectedSubtitleLanguage = code;
+					}
 
-				if (this.video) {
+					if (this.ass) {
+						this.ass.destroy();
+					}
 
-					const tracks = this.video.textTracks;
-
-					for (let i = 0; i < tracks.length; i++) {
-
-						const track = tracks[i];
-
-						track.mode = track.id === this.selectedSubtitleLanguage ? "showing" : "disabled";
+					if (this.selectedSubtitleLanguage && this.video && this.assContainer) {
+						this.ass = new ASS(this.subtitles[code], this.video, { container: this.assContainer });
 					}
 				}
 			},
@@ -515,6 +540,33 @@
 				}
 
 				return 0;
+			},
+			async fetchSubtitles () {
+
+				const
+					_subtitles: Record<string, string> = {},
+					subtitlePromises: Promise<string | void>[] = [];
+
+				if (this.episode) {
+					this.episode.subtitles.forEach((subtitles: Subtitles) => {
+						subtitlePromises.push(
+							fetch(subtitles.url.replace("vtt", "ass")).then(res => res.text()).then((text: string) => {
+								_subtitles[subtitles.code] = text;
+							}).catch(err => {
+								console.error(err);
+							})
+						);
+					});
+				}
+
+				await Promise.all(subtitlePromises);
+
+				this.subtitles = _subtitles;
+			},
+			updateASSRenderer () {
+				if (this.ass) {
+					this.ass.resize();
+				}
 			}
 		},
 		sockets: {
@@ -602,6 +654,15 @@
 		position: relative;
 		width: 100%;
 		height: auto;
+	}
+
+	.subtitle-container {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		pointer-events: none;
 	}
 
 	.constant-video-overlay {

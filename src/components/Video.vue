@@ -276,7 +276,7 @@
 				isMouseStatic: false,
 
 				// Trays
-				selectedSubtitleLanguage: null as string | null,
+				selectedSubtitleLanguage: "en" as string | null,
 				isSubtitleTrayVisible: false,
 				isVolumeTrayVisible: false,
 
@@ -344,13 +344,14 @@
 			},
 			episode () {
 				this.subtitles = {};
-				this.fetchSubtitles();
+				this.destroyASSRenderer();
+				this.initASSRenderer();
 			},
 			isFullscreen () {
 				this.updateASSRenderer();
 			}
 		},
-		async mounted () {
+		mounted () {
 
 			window.addEventListener("resize", this.updateASSRenderer);
 
@@ -365,8 +366,9 @@
 				this.volume = this.video.volume;
 			}
 
-			await this.fetchSubtitles();
-			this.setSubtitleLanguage("en");
+			this.$nextTick(() => {
+				this.initASSRenderer();
+			});
 		},
 		beforeUnmount () {
 
@@ -504,13 +506,16 @@
 						this.selectedSubtitleLanguage = code;
 					}
 
-					if (this.ass) {
-						this.ass.destroy();
-					}
+					this.destroyASSRenderer();
 
-					if (this.selectedSubtitleLanguage && this.video && this.assContainer) {
-						this.ass = new ASS(this.subtitles[code], this.video, { container: this.assContainer });
+					if (this.selectedSubtitleLanguage) {
+						this.loadSubtitleLanguage(code);
 					}
+				}
+			},
+			loadSubtitleLanguage (code: string) {
+				if (this.subtitles[code] && this.video && this.assContainer) {
+					this.ass = new ASS(this.subtitles[code], this.video, { container: this.assContainer });
 				}
 			},
 			toggleSubtitleTray () {
@@ -566,6 +571,20 @@
 			updateASSRenderer () {
 				if (this.ass) {
 					this.ass.resize();
+				}
+			},
+			destroyASSRenderer () {
+				if (this.ass) {
+					this.ass.destroy();
+					this.ass = null;
+				}
+			},
+			async initASSRenderer () {
+
+				await this.fetchSubtitles();
+
+				if (this.selectedSubtitleLanguage) {
+					this.loadSubtitleLanguage(this.selectedSubtitleLanguage);
 				}
 			}
 		},

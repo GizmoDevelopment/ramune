@@ -3,7 +3,12 @@
 		<div class="content">
 			<div class="navigation">
 				<router-link to="/" aria-label="Home">
-					<Logo class="logo" />
+					<img
+						v-if="shouldDisplayHanyuu"
+						class="secret-logo"
+						:src="Hanyuu"
+					>
+					<Logo v-else class="logo" />
 				</router-link>
 				<router-link to="/shows">
 					Shows
@@ -45,6 +50,7 @@
 	import MainMixin from "@mixins/Main";
 
 	// Icons
+	import Hanyuu from "@assets/images/hanyuu.webp";
 	import Logo from "@assets/icons/logo.svg?component";
 
 	export default defineComponent({
@@ -56,8 +62,14 @@
 		mixins: [ MainMixin ],
 		data () {
 			return {
-				isLoggingIn: false
+				isLoggingIn: false,
+				Hanyuu: Hanyuu
 			};
+		},
+		computed: {
+			shouldDisplayHanyuu (): boolean {
+				return this.$store.state.generic.shouldDisplayHanyuu;
+			}
 		}
 	});
 
@@ -144,7 +156,11 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		height: 25px;
+		height: 1.3em;
+	}
+
+	.secret-logo {
+		height: 2em;
 	}
 
 	.user-container {

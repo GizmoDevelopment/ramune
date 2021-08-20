@@ -26,6 +26,7 @@ export interface UserState {
 
 export interface GenericState {
 	connectError: string;
+	shouldDisplayHanyuu: boolean;
 }
 
 export interface SettingsState {

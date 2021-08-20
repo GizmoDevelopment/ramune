@@ -6,7 +6,8 @@ export default {
 	namespaced: true,
 	state () {
 		return {
-			connectError: ""
+			connectError: "",
+			shouldDisplayHanyuu: Math.floor(Math.random() * 40) === 34
 		};
 	},
 	mutations: {

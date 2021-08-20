@@ -1,5 +1,15 @@
 <template>
-	<Logo class="logo" :class="{ small: size === 'small', normal: size === 'normal' }" />
+	<img
+		v-if="shouldDisplayHanyuu"
+		class="logo"
+		:class="{ small: size === 'small', normal: size === 'normal' }"
+		:src="Hanyuu"
+	>
+	<Logo
+		v-else
+		class="logo"
+		:class="{ small: size === 'small', normal: size === 'normal' }"
+	/>
 </template>
 
 <script lang="ts">
@@ -8,6 +18,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Icons
+	import Hanyuu from "@assets/images/hanyuu.webp";
 	import Logo from "@assets/icons/logo.svg?component";
 
 	export default defineComponent({
@@ -19,6 +30,16 @@
 			size: {
 				type: String as PropType<"small" | "normal">,
 				default: "normal"
+			}
+		},
+		data () {
+			return {
+				Hanyuu: Hanyuu
+			};
+		},
+		computed: {
+			shouldDisplayHanyuu (): boolean {
+				return this.$store.state.generic.shouldDisplayHanyuu;
 			}
 		}
 	});

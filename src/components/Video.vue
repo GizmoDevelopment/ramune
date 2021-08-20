@@ -563,13 +563,6 @@
 					this.rendererASS = new window.SubtitlesOctopus({
 						video: this.video,
 						subContent: this.subtitles[this.selectedSubtitleLanguage || "en"] || "",
-						fonts: [
-							"/fonts/Roboto-Bold.ttf",
-							"/fonts/Roboto-Light.ttf",
-							"/fonts/Roboto-Medium.ttf",
-							"/fonts/Roboto-Regular.ttf",
-							"/fonts/Roboto-Thin.ttf",
-						],
 						workerUrl: "/libass/subtitles-octopus-worker.js",
 						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
 						debug: DEV

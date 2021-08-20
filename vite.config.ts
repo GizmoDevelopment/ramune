@@ -21,5 +21,13 @@ export default defineConfig({
 			"@styles": path.resolve(__dirname, "./src/styles"),
 			"@stores": path.resolve(__dirname, "./src/stores")
 		}
+	},
+	server: {
+		fs: {
+			allow: [
+				"..",
+				"libass"
+			]
+		}
 	}
 });

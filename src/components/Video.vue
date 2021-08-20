@@ -161,7 +161,6 @@
 					</template>
 				-->
 			</video>
-			<div class="subtitle-container" ref="assContainer" />
 		</div>
 		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects && areEffectsEnabled">
 			<LeafRenderer
@@ -176,7 +175,6 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
-	import ASS from "assjs";
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -204,9 +202,12 @@
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
-	import { Range } from "@typings/main";
+	import { Range, SubtitlesOctopus } from "@typings/main";
 	import { Episode, Show, Subtitles } from "@typings/show";
 	import { RoomSyncData } from "@typings/room";
+
+	// Constants
+	const DEV = import.meta.env.DEV;
 
 	export default defineComponent({
 		name: "Video",
@@ -250,14 +251,12 @@
 			const
 				video = ref<HTMLVideoElement>(),
 				videoContainer = ref<HTMLDivElement>(),
-				progressBarContainer = ref<HTMLDivElement>(),
-				assContainer = ref<HTMLDivElement>();
+				progressBarContainer = ref<HTMLDivElement>();
 
 			return {
 				video,
 				videoContainer,
-				progressBarContainer,
-				assContainer
+				progressBarContainer
 			};
 		},
 		data () {
@@ -294,7 +293,7 @@
 				// Subtitles
 				subtitles: {} as Record<string, string>,
 
-				ass: null as any
+				rendererASS: null as SubtitlesOctopus | null
 			};
 		},
 		computed: {
@@ -344,16 +343,10 @@
 			},
 			episode () {
 				this.subtitles = {};
-				this.destroyASSRenderer();
-				this.initASSRenderer();
-			},
-			isFullscreen () {
-				this.updateASSRenderer();
+				this.initializeASSSubtitles();
 			}
 		},
 		mounted () {
-
-			window.addEventListener("resize", this.updateASSRenderer);
 
 			document.addEventListener("keydown", this.handleKeypress);
 			document.addEventListener("mousemove", this.updateMousePosition);
@@ -366,13 +359,9 @@
 				this.volume = this.video.volume;
 			}
 
-			this.$nextTick(() => {
-				this.initASSRenderer();
-			});
+			this.initializeASSRenderer();
 		},
 		beforeUnmount () {
-
-			window.removeEventListener("resize", this.updateASSRenderer);
 
 			document.removeEventListener("keydown", this.handleKeypress);
 			document.removeEventListener("mousemove", this.updateMousePosition);
@@ -381,8 +370,8 @@
 			clearInterval(this.mouseChecker);
 			clearInterval(this.mouseClickChecker);
 
-			if (this.ass) {
-				this.ass.destroy();
+			if (this.rendererASS) {
+				this.rendererASS.dispose();
 			}
 		},
 		methods: {
@@ -498,24 +487,22 @@
 				}, 2000);
 			},
 			setSubtitleLanguage (code: string) {
-				if (this.subtitles[code]) {
+				if (this.selectedSubtitleLanguage === code) {
 
-					if (this.selectedSubtitleLanguage === code) {
-						this.selectedSubtitleLanguage = null;
-					} else {
-						this.selectedSubtitleLanguage = code;
+					this.selectedSubtitleLanguage = null;
+
+					if (this.rendererASS) {
+						this.rendererASS.freeTrack();
 					}
 
-					this.destroyASSRenderer();
-
-					if (this.selectedSubtitleLanguage) {
-						this.loadSubtitleLanguage(code);
-					}
+				} else {
+					this.selectedSubtitleLanguage = code;
+					this.loadSubtitleLanguage(code);
 				}
 			},
 			loadSubtitleLanguage (code: string) {
-				if (this.subtitles[code] && this.video && this.assContainer) {
-					this.ass = new ASS(this.subtitles[code], this.video, { container: this.assContainer });
+				if (this.rendererASS && this.subtitles[code]) {
+					this.rendererASS.setTrack(this.subtitles[code]);
 				}
 			},
 			toggleSubtitleTray () {
@@ -568,18 +555,28 @@
 
 				this.subtitles = _subtitles;
 			},
-			updateASSRenderer () {
-				if (this.ass) {
-					this.ass.resize();
+			async initializeASSRenderer () {
+
+				await this.initializeASSSubtitles();
+
+				if (this.video) {
+					this.rendererASS = new window.SubtitlesOctopus({
+						video: this.video,
+						subContent: this.subtitles[this.selectedSubtitleLanguage || "en"] || "",
+						fonts: [
+							"/fonts/Roboto-Bold.ttf",
+							"/fonts/Roboto-Light.ttf",
+							"/fonts/Roboto-Medium.ttf",
+							"/fonts/Roboto-Regular.ttf",
+							"/fonts/Roboto-Thin.ttf",
+						],
+						workerUrl: "/libass/subtitles-octopus-worker.js",
+						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
+						debug: DEV
+					});
 				}
 			},
-			destroyASSRenderer () {
-				if (this.ass) {
-					this.ass.destroy();
-					this.ass = null;
-				}
-			},
-			async initASSRenderer () {
+			async initializeASSSubtitles () {
 
 				await this.fetchSubtitles();
 

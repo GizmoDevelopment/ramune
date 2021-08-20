@@ -1,9 +1,8 @@
 declare global {
 
 	interface Window {
-		twemoji: {
-			parse (element: HTMLElement, options?: TwemojiOptions): void;
-		};
+		twemoji: { parse (element: HTMLElement, options?: TwemojiOptions): void };
+		SubtitlesOctopus: typeof SubtitlesOctopus;
 	}
 
 	interface Document {
@@ -15,6 +14,30 @@ declare global {
 		webkitEnterFullscreen?: () => Promise<void>;
 	}
 
+}
+
+export declare class SubtitlesOctopus {
+
+	constructor (options: SubtitlesOctopusOptions);
+
+	setTrackByUrl (url: string): void;
+	setTrack (content: string): void;
+	freeTrack (): void;
+	dispose (): void;
+	setCurrentTime (currentTime: number): void;
+}
+
+interface SubtitlesOctopusOptions {
+
+	workerUrl: string;
+
+	video?: HTMLVideoElement;
+	canvas?: HTMLCanvasElement;
+	subUrl?: string;
+	subContent?: string;
+	legacyWorkerUrl?: string;
+	debug?: boolean;
+	fonts?: string[];
 }
 
 interface TwemojiOptions {

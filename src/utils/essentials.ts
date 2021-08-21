@@ -53,7 +53,7 @@ async function fetchRequest (method: "GET" | "POST", url: string): Promise<Fetch
 	try {
 		result.data = JSON.parse(text);
 	} catch (err) {
-		console.error(err);
+		console.error(`Error on for ${method} request on ${url}`, err);
 		result.data = {};
 	}
 

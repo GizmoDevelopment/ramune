@@ -23,7 +23,7 @@
 	import { defineComponent, ref } from "vue";
 
 	// Mixins
-	import GenericMixin from "@mixins/GenericMixin";
+	import GenericMixin from "@mixins/Generic";
 
 	export default defineComponent({
 		name: "Input",

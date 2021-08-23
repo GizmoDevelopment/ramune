@@ -3,37 +3,60 @@ import { Episode, Season, Show } from "@typings/show";
 
 export function getEpisodeById (show: Show, episodeId: number): Episode | null {
 
-	let _episode: Episode | null = null;
+	let accumulativeLength = 0;
 
-	for (const { episodes } of show.seasons) {
+	for (let i = 0; i <= show.seasons.length; i++) {
 
-		if (_episode) break;
+		const season = show.seasons[i];
 
-		for (const episode of episodes) {
-			if (episode.id === episodeId) {
-				_episode = episode;
-				break;
+		if (season) {
+
+			const _accumulativeLength = accumulativeLength;
+			accumulativeLength += season.episodes.length;
+
+			if (episodeId <= accumulativeLength) {
+				return season.episodes[episodeId - _accumulativeLength - 1];
 			}
 		}
 	}
 
-	return _episode;
+	return null;
 }
 
 export function getRelativeEpisodeId (season: Season, episode: Episode): number {
 	return season.episodes.indexOf(episode) + 1;
 }
 
-export function getSeasonFromEpisode (show: Show, episode: Episode): Season | null {
+export function getSeasonFromEpisodeId (show: Show, episodeId: number): Season | null {
 
-	let _season: Season | null = null;
+	let accumulativeLength = 0;
 
-	for (const season of show.seasons) {
-		if (season.episodes.includes(episode)) {
-			_season = season;
-			break;
+	for (let i = 0; i <= show.seasons.length; i++) {
+
+		const season = show.seasons[i];
+
+		if (season) {
+
+			accumulativeLength += season.episodes.length;
+
+			if (episodeId <= accumulativeLength) {
+				return season;
+			}
 		}
 	}
 
-	return _season;
+	return null;
+}
+
+export function getSeasonFromEpisode (show: Show, episode: Episode): Season | null {
+	return getSeasonFromEpisodeId(show, episode.id);
+}
+
+export function getSeasonIndexFromEpisodeId (show: Show, episodeId: number): number | null {
+
+	const season = getSeasonFromEpisodeId(show, episodeId);
+
+	return season
+		? season.id - 1
+		: null;
 }

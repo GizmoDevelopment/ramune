@@ -23,7 +23,7 @@
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Mixins
-	import GenericMixin from "@mixins/GenericMixin";
+	import GenericMixin from "@mixins/Generic";
 	import RoomMethodsMixin from "@mixins/RoomMethods";
 
 	// Icons

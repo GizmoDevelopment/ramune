@@ -24,9 +24,9 @@
 			:episode="episode"
 		/>
 		<div v-if="isHost">
-			<ShowSeasonList
+			<ShowEpisodePicker
 				:show="show"
-				:selected-episode-id="episodeId"
+				:current-episode-id="episodeId"
 			/>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 
 	// Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
-	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
+	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import PopupCard from "@components/PopupCard.vue";
@@ -76,7 +76,7 @@
 		name: "RoomView",
 		components: {
 			RoomUserList,
-			ShowSeasonList,
+			ShowEpisodePicker,
 			CaretLeft,
 			ShowHeading,
 			LoadingBuffer,

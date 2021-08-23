@@ -4,6 +4,7 @@
 		:class="{ 'dropdown-active': isOpen }"
 		:variant="variant"
 		@click="isOpen = !isOpen"
+		@mouseleave="isOpen = isOpen ? !isOpen : isOpen"
 	>
 		<div class="dropdown-currently-selected">
 			<p class="dropdown-currently-selected-label">{{ entries[currentIndex] }}</p>

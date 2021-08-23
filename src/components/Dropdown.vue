@@ -155,4 +155,8 @@
 		transition: background-color .3s ease;
 	}
 
+	.dropdown-entry-active {
+		background-color: variable(container-hover-color);
+	}
+
 </style>

@@ -1,15 +1,16 @@
 @import "@styles/main.scss";
 @import "@styles/mixins.scss";
 
-.primary-button, .secondary-button {
+.primary-button,
+.secondary-button {
 	color: variable(text-color);
+	font-size: 18px;
+	font-weight: 500;
 	border: 0;
 	border-radius: 10px;
 	padding: 5px;
 	padding-left: 20px;
 	padding-right: 20px;
-	font-size: 18px;
-	font-weight: 500;
 	transition: .2s background-color ease-in-out, .2s opacity ease;
 	cursor: pointer;
 }
@@ -30,10 +31,6 @@
 
 	&:hover {
 		background-color: variable(container-hover-color);
-	}
-
-	&[variant=dark]:hover {
-		background-color: variable(container-background-color);
 	}
 
 }

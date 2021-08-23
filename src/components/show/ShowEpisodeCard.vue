@@ -13,7 +13,7 @@
 			<div
 				:class="{ 'active-episode': active }"
 				class="overlay hover-opacity"
-				@click="$emit('play-episode', episode.id)"
+				@click="$emit('select-episode', episode.id)"
 			>
 				<Play class="overlay-play-icon" />
 			</div>
@@ -55,7 +55,7 @@
 				default: false
 			}
 		},
-		emits: [ "play-episode" ],
+		emits: [ "select-episode" ],
 		computed: {
 			formattedDuration (): string {
 				if (this.episode.duration) {

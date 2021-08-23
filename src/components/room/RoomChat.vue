@@ -8,12 +8,7 @@
 						:key="message.id"
 						v-memo="[ messages[index - 1]?.user?.id === message.user.id ]"
 					>
-						<div v-if="messages[index - 1]?.user?.id === message.user.id">
-							<ChatMessage :message="message" repeating />
-						</div>
-						<div v-else>
-							<ChatMessage :message="message" />
-						</div>
+						<ChatMessage :message="message" :repeating="messages[index - 1]?.user?.id === message.user.id" />
 					</div>
 				</transition-group>
 			</div>
@@ -203,11 +198,18 @@
 				this.isFullscreen = !!fullscreenElement;
 			},
 			pushMessageToHistory (msg: Message) {
+
 				if (this.messages.length >= 20) {
 					this.messages = [ ...this.messages.slice(-19), msg ];
 				} else {
 					this.messages.push(msg);
 				}
+
+				setTimeout(() => {
+					if (this?.messages) {
+						this.messages = this.messages.filter(message => message.id !== msg.id);
+					}
+				}, 30000);
 			}
 		},
 		sockets: {
@@ -223,7 +225,10 @@
 
 	/* Transitions */
 
-	.message-fade-leave-active,
+	.message-fade-leave-active {
+		transition: opacity .7s ease-out;
+	}
+
 	.message-fade-enter-active {
 		transition: opacity .4s ease, transform .3s ease;
 	}

@@ -101,17 +101,6 @@
 					this.$router.push(`/rooms/${this.room?.id}`);
 
 				} else {
-
-					if (this.room) {
-						this.$socket.client.emit("CLIENT:LEAVE_ROOM", this.room.id, (res: SocketResponse<Room>) => {
-							if (res.type === "success") {
-								this.$store.commit("room/LEAVE_ROOM");
-							} else {
-								console.error(res.message);
-							}
-						});
-					}
-
 					this.$router.push(`/watch/${this.show.id}/${episodeId}`);
 				}
 			},

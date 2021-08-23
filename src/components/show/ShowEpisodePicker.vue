@@ -1,6 +1,7 @@
 <template>
 	<div class="episode-picker-container">
 		<div v-if="show.seasons.length > 1" class="title-bar">
+			<span class="season-title">Season {{ currentSeason.id }}</span>
 			<Dropdown
 				:entries="seasonList"
 				:current-index="currentSeasonIndex"
@@ -8,6 +9,7 @@
 				@select-index="selectSeason"
 			/>
 		</div>
+		<div v-else class="no-title-bar-spacer" />
 		<div class="episode-list">
 			<ShowEpisodeCard
 				v-for="(episode, index) in currentSeason.episodes"
@@ -127,10 +129,21 @@
 	}
 
 	.title-bar {
+
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-end;
+		justify-content: space-between;
+		align-items: center;
 		margin-bottom: 1rem;
+
+		.season-title {
+			font-weight: bold;
+			font-size: 2rem;
+		}
+	}
+
+	.no-title-bar-spacer {
+		margin-bottom: 3rem;
 	}
 
 	.episode-list {

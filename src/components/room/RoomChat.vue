@@ -3,7 +3,11 @@
 		<div class="chat-container">
 			<div class="chat-message-container">
 				<transition-group name="message-fade">
-					<div v-for="(message, index) in messages" :key="message.id">
+					<div
+						v-for="(message, index) in messages"
+						:key="message.id"
+						v-memo="[ messages[index - 1]?.user?.id === message.user.id ]"
+					>
 						<div v-if="messages[index - 1]?.user?.id === message.user.id">
 							<ChatMessage :message="message" repeating />
 						</div>
@@ -108,6 +112,14 @@
 						if (input) input.style.height = Math.max(36, input.scrollHeight) + "px";
 					});
 				}
+			},
+			isFocusedOnInput (state: boolean) {
+
+				const eventName = state
+					? "CLIENT:START_TYPING"
+					: "CLIENT:STOP_TYPING";
+
+				this.$socket.client.emit(eventName);
 			}
 		},
 		mounted () {

@@ -18,6 +18,7 @@ export interface RoomState {
 	roomVideoTeleportParent: string | null;
 	isRequestingRoomSync: boolean;
 	isLoadingRoomData: boolean;
+	typingUserList: number[];
 }
 
 export interface UserState {

@@ -11,7 +11,8 @@ export default {
 			room: null,
 			roomVideoTeleportParent: null,
 			isRequestingRoomSync: false,
-			isLoadingRoomData: false
+			isLoadingRoomData: false,
+			typingUserList: []
 		};
 	},
 	mutations: {
@@ -49,6 +50,12 @@ export default {
 		},
 		UPDATE_ROOM_DATA_LOADING_STATE (state: RoomState, newState: boolean) {
 			state.isLoadingRoomData = newState;
+		},
+		USER_START_TYPING (state: RoomState, userId: number) {
+			state.typingUserList.push(userId);
+		},
+		USER_STOP_TYPING (state: RoomState, userId: number) {
+			state.typingUserList = state.typingUserList.filter(_userId => _userId !== userId);
 		}
 	}
 } as Module<RoomState, unknown>;

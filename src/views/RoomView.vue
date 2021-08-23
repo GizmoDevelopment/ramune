@@ -130,6 +130,12 @@
 						this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", true);
 					}
 				}, 500);
+			},
+			"ROOM:USER_START_TYPING" (userId: number) {
+				this.$store.commit("room/USER_START_TYPING", userId);
+			},
+			"ROOM:USER_STOP_TYPING" (userId: number) {
+				this.$store.commit("room/USER_STOP_TYPING", userId);
 			}
 		}
 	});

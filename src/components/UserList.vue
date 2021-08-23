@@ -4,9 +4,13 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
+				v-memo="[ isHost, typingUserList.includes(user.id) ]"
 				v-tooltip="user.username"
 				class="user"
-				:class="{ host: isHost(user) }"
+				:class="{
+					host: isHost(user),
+					typing: typingUserList.includes(user.id)
+				}"
 			>
 				<img
 					class="user-avatar"
@@ -38,6 +42,11 @@
 				default: null
 			}
 		},
+		computed: {
+			typingUserList (): number[] {
+				return this.$store.state.room.typingUserList;
+			}
+		},
 		methods: {
 			isHost (user: User) {
 				return user.id === this.host?.id;
@@ -50,6 +59,7 @@
 <style scoped lang="scss">
 
 	@import "@styles/main.scss";
+	@import "@styles/animations.scss";
 
 	.user-list-enter-active,
 	.user-list-leave-active {
@@ -95,6 +105,10 @@
 		width: auto;
 		height: calc(100% - 6px);
 		border: 3px solid variable(primary-color);
+	}
+
+	.typing {
+		animation: jumping 1s ease-in-out infinite;
 	}
 
 </style>

@@ -4,10 +4,13 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
-				v-memo="[ isHost ]"
+				v-memo="[ isHost, typingUserList.includes(user.id) ]"
 				v-tooltip="user.username"
 				class="user"
-				:class="{ host: isUserHost(user) }"
+				:class="{
+					host: isUserHost(user),
+					typing: typingUserList.includes(user.id)
+				}"
 			>
 				<ContextMenu
 					v-if="isHost && user.id !== host.id"
@@ -67,6 +70,9 @@
 			},
 			host (): User {
 				return this.room.host;
+			},
+			typingUserList (): number[] {
+				return this.$store.state.room.typingUserList;
 			}
 		},
 		methods: {
@@ -87,6 +93,7 @@
 <style scoped lang="scss">
 
 	@import "@styles/main.scss";
+	@import "@styles/animations.scss";
 
 	.room-user-list-enter-active,
 	.room-user-list-leave-active {
@@ -132,6 +139,10 @@
 		width: auto;
 		height: calc(100% - 6px);
 		border: 3px solid variable(primary-color);
+	}
+
+	.typing {
+		animation: jumping 1s ease-in-out infinite;
 	}
 
 </style>

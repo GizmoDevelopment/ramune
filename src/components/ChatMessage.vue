@@ -1,18 +1,21 @@
 <template>
-	<div v-if="repeating">
-		<div class="message-container">
-			<MarkdownRenderer class="message-content repeating-message-content" :content="message.content" />
-		</div>
-	</div>
-	<div v-else>
-		<div class="message-container">
+	<div class="message-container">
+		<transition name="fade-message-avatar">
 			<img
+				v-if="!repeating"
 				class="message-author-avatar"
 				:src="message.user.avatar_url"
 				:alt="`${ message.user.username }'s profile picture`"
 			>
-			<MarkdownRenderer class="message-content first-message-content" :content="message.content" />
-		</div>
+		</transition>
+		<MarkdownRenderer
+			class="message-content"
+			:class="{
+				'repeating-message-content': repeating,
+				'first-message-content': !repeating
+			}"
+			:content="message.content"
+		/>
 	</div>
 </template>
 
@@ -49,6 +52,16 @@
 <style scoped lang="scss">
 
 	@import "@styles/mixins.scss";
+
+	.fade-message-avatar-enter-active,
+	.fade-message-avatar-leave-active {
+		transition: .5s opacity ease;
+	}
+
+	.fade-message-avatar-leave-to,
+	.fade-message-avatar-enter-from {
+		opacity: 0;
+	}
 
 	.message-container {
 

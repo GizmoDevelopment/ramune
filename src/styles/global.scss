@@ -122,12 +122,14 @@
 
 .faded {
 	color: variable(faded-text-color);
+	text-align: center;
 }
 
 .error {
 	color: variable(error-color);
 	margin-top: 0;
 	margin-bottom: 0;
+	text-align: center;
 }
 
 .icon {

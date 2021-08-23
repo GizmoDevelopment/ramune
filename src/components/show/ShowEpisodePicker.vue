@@ -37,6 +37,9 @@
 	import MainMixin from "@mixins/Main";
 	import GenericMixin from "@mixins/Generic";
 
+	// Utils
+	import { getSeasonIndexFromEpisodeId } from "@utils/show";
+
 	// Types
 	import { Season, Show } from "@typings/show";
 	import { SocketResponse } from "@typings/main";
@@ -77,7 +80,7 @@
 			show: {
 				immediate: true,
 				handler () {
-					this.currentSeasonIndex = 0;
+					this.currentSeasonIndex = getSeasonIndexFromEpisodeId(this.show, this.currentEpisodeId) || 0;
 					this.seasonList = this.show.seasons.map(season => `Season ${season.id}`);
 				}
 			}

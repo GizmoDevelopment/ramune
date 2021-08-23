@@ -112,8 +112,8 @@
 		font-weight: bold;
 
 		.dropdown-currently-selected-label {
-			margin: 0 1.5rem 0 0;
-			font-size: 1.2rem;
+			margin: 0 1.3rem 0 0;
+			font-size: 1.4rem;
 			user-select: none;
 		}
 	}
@@ -148,9 +148,10 @@
 	.dropdown-entry {
 
 		width: calc(100% - .7rem - .7rem);
-		padding: .2rem .7rem .2rem .7rem;
-		user-select: none;
+		padding: .3rem .7rem .3rem .7rem;
+		font-size: 1.2rem;
 		transition: background-color .3s ease;
+		user-select: none;
 
 		&:hover {
 			background-color: variable(background-color);

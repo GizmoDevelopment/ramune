@@ -11,9 +11,9 @@
 				:show="show"
 				:episode="episode"
 			/>
-			<ShowSeasonList
+			<ShowEpisodePicker
 				:show="show"
-				:selected-episode-id="episodeId"
+				:current-episode-id="episodeId"
 			/>
 		</div>
 		<div v-else-if="status">
@@ -33,9 +33,9 @@
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
-	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
 	import Video from "@components/Video.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
+	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 
 	// Utils
 	import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
@@ -50,9 +50,9 @@
 		components: {
 			LoadingBuffer,
 			Error,
-			ShowSeasonList,
 			Video,
-			ShowHeading
+			ShowHeading,
+			ShowEpisodePicker
 		},
 		props: {
 			showId: {

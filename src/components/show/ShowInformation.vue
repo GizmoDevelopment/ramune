@@ -15,9 +15,9 @@
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
 		</div>
-		<ShowSeasonList
+		<ShowEpisodePicker
 			:show="show"
-			:expanded-season-id="1"
+			:variant="'dark'"
 		/>
 	</div>
 </template>
@@ -28,7 +28,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
-	import ShowSeasonList from "@components/show/ShowSeasonList.vue";
+	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 
 	// Types
 	import { Show, Season } from "@typings/show";
@@ -36,7 +36,7 @@
 	export default defineComponent({
 		name: "ShowInformation",
 		components: {
-			ShowSeasonList
+			ShowEpisodePicker
 		},
 		props: {
 			show: {

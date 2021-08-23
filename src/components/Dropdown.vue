@@ -18,7 +18,7 @@
 			<button
 				v-for="(entry, index) in entries"
 				:key="index"
-				v-memo="[]"
+				v-memo="[ currentIndex === index ]"
 				class="secondary-button dropdown-entry"
 				:variant="variant"
 				:class="{ 'dropdown-entry-active': currentIndex === index }"

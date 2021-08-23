@@ -18,3 +18,15 @@
 		background-position: left;
 	}
 }
+
+@keyframes jumping {
+	0% {
+		transform: scale(1, 1) translateY(0%);
+	}
+	50% {
+		transform: scale(1, 1.2) translateY(-25%);
+	}
+	100% {
+		transform: scale(1, 1) translateY(0%);
+	}
+}

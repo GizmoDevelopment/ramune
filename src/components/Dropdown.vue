@@ -78,7 +78,7 @@
 		display: inline-block;
 		position: relative;
 		cursor: pointer;
-		padding: .5rem .7rem .5rem .7rem;
+		padding: .4rem .7rem .4rem .7rem;
 		border-top: $empty-border;
 	}
 

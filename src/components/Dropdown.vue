@@ -14,17 +14,17 @@
 			class="dropdown-container"
 			:variant="variant"
 		>
-			<span
+			<button
 				v-for="(entry, index) in entries"
 				:key="index"
 				v-memo="[]"
-				class="button dropdown-entry"
-				:class="{ 'dropdown-entry-active': currentIndex === index }"
+				class="secondary-button dropdown-entry"
 				:variant="variant"
+				:class="{ 'dropdown-entry-active': currentIndex === index }"
 				@click="$emit('select-index', index)"
 			>
 				{{ entry }}
-			</span>
+			</button>
 		</div>
 	</div>
 </template>
@@ -146,16 +146,13 @@
 	}
 
 	.dropdown-entry {
-
-		width: calc(100% - .7rem - .7rem);
+		width: 100%;
 		padding: .3rem .7rem .3rem .7rem;
 		font-size: 1.2rem;
-		transition: background-color .3s ease;
+		border-radius: 0;
 		user-select: none;
-
-		&:hover {
-			background-color: variable(background-color);
-		}
+		text-align: left;
+		transition: background-color .3s ease;
 	}
 
 </style>

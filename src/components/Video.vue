@@ -547,7 +547,7 @@
 				if (this.episode) {
 					this.episode.subtitles.forEach((subtitles: Subtitles) => {
 						subtitlePromises.push(
-							fetch(subtitles.url.replace("vtt", "ass")).then(res => res.text()).then((text: string) => {
+							fetch(subtitles.url).then(res => res.text()).then((text: string) => {
 								_subtitles[subtitles.code] = text;
 							}).catch(err => {
 								console.error(err);

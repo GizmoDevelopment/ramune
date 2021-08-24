@@ -814,6 +814,7 @@
 
 		h3 {
 			margin-top: .5rem;
+			text-align: center;
 		}
 	}
 

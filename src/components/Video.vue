@@ -467,6 +467,7 @@
 							break;
 						case "Space":
 							this.togglePlayPause();
+							e.preventDefault(); // Prevents space scrolling
 							break;
 						case "KeyF":
 							this.toggleFullscreen();

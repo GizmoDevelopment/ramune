@@ -1,4 +1,4 @@
-/*
+/*!
 	MIT License
 
 	Copyright (c) 2017-2021 JavascriptSubtitlesOctopus contributors

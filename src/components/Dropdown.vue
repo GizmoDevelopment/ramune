@@ -10,23 +10,26 @@
 			<p class="dropdown-currently-selected-label">{{ entries[currentIndex] }}</p>
 			<CaretDown class="dropdown-icon" :class="{ 'dropdown-icon-active': isOpen }" />
 		</div>
-		<div
-			v-show="isOpen"
-			class="dropdown-container"
-			:variant="variant"
-		>
-			<button
-				v-for="(entry, index) in entries"
-				:key="index"
-				v-memo="[ currentIndex === index ]"
-				class="secondary-button dropdown-entry"
-				:variant="variant"
-				:class="{ 'dropdown-entry-active': currentIndex === index }"
-				@click="$emit('select-index', index)"
-			>
-				{{ entry }}
-			</button>
-		</div>
+		<transition name="dropdown">
+			<div v-show="isOpen" class="dropdown-holder">
+				<div
+					class="dropdown-container dropdown-container-active"
+					:variant="variant"
+				>
+					<button
+						v-for="(entry, index) in entries"
+						:key="index"
+						v-memo="[ currentIndex === index ]"
+						class="secondary-button dropdown-entry"
+						:variant="variant"
+						:class="{ 'dropdown-entry-active': currentIndex === index }"
+						@click="$emit('select-index', index)"
+					>
+						{{ entry }}
+					</button>
+				</div>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -71,8 +74,25 @@
 
 	@import "@styles/main.scss";
 
+	// Variables
 	$empty-border: 2px solid transparent;
 	$filled-border: 2px solid variable(primary-color);
+	$border-transition: .15s ease;
+
+	// Transitions
+
+	.dropdown-enter-from,
+	.dropdown-leave-to {
+		opacity: 0;
+		transform: translateY(-.3em);
+	}
+
+	.dropdown-leave-active,
+	.dropdown-enter-active {
+		transition: opacity $border-transition, transform .2s ease;
+	}
+
+	//
 
 	.dropdown {
 		display: inline-block;
@@ -82,19 +102,26 @@
 		border-top: $empty-border;
 	}
 
-	.dropdown-container {
+	.dropdown-holder {
 		position: absolute;
+		width: calc(100% + 4px); // ? Because border-box doesn't account for the border...?
+		top: 100%;
+		left: -2px; // ? Because border-box doesn't account for the border...?
+		z-index: 2;
+	}
+
+	.dropdown-container {
+		box-sizing: border-box;
 		width: 100%;
 		height: auto;
-		top: 100%;
-		left: -2px; // It is weirdly offset without this
 		display: flex;
 		padding: 0 0 .3rem 0;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
+		border-top: none;
 		border-bottom: $empty-border;
-		z-index: 2;
+		border-radius: 0 0 variable(popup-border-radius) variable(popup-border-radius);
 	}
 
 	.dropdown,
@@ -102,6 +129,23 @@
 		border-radius: variable(popup-border-radius);
 		border-left: $empty-border;
 		border-right: $empty-border;
+		transition: border $border-transition, border-radius $border-transition;
+	}
+
+	.dropdown-active {
+		border-radius: variable(popup-border-radius) variable(popup-border-radius) 0 0;
+		border-top: $filled-border;
+	}
+
+	.dropdown-container-active {
+		border-radius: 0 0 variable(popup-border-radius) variable(popup-border-radius);
+		border-bottom: $filled-border;
+	}
+
+	.dropdown-active,
+	.dropdown-container-active {
+		border-left: $filled-border;
+		border-right: $filled-border;
 	}
 
 	.dropdown-currently-selected {
@@ -113,7 +157,7 @@
 		font-weight: bold;
 
 		.dropdown-currently-selected-label {
-			margin: 0 1.3rem 0 0;
+			margin: 0 1.5rem 0 0;
 			font-size: 1.4rem;
 			user-select: none;
 		}
@@ -125,24 +169,6 @@
 
 	.dropdown-icon-active {
 		transform: rotateX(180deg);
-	}
-
-	.dropdown-active {
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-		border-top: $filled-border;
-	}
-
-	.dropdown-container {
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-		border-bottom: $filled-border;
-	}
-
-	.dropdown-active,
-	.dropdown-container {
-		border-left: $filled-border;
-		border-right: $filled-border;
 	}
 
 	.dropdown-entry {

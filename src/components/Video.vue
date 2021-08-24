@@ -148,7 +148,7 @@
 				@durationchange="updateDuration"
 				@volumechange="updateVolume"
 			>
-				<!--
+				<!-- Superseded by ASS subtitles; fuck WebVTT, no creativity allowed, huh?
 					<template v-for="subtitle in episode.subtitles" :key="subtitle.code">
 						<track
 							:id="subtitle.code"

@@ -75,13 +75,15 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/main.scss";
 
 	header {
 		position: fixed;
 		width: 100%;
 		height: 60px;
-		background-color: var(--container-background-color);
+		background-color: variable(container-background-color);
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -94,7 +96,7 @@
 	}
 
 	a {
-		color: var(--text-color);
+		color: variable(text-color);
 		text-decoration: none;
 		font-size: 20px;
 	}
@@ -121,34 +123,41 @@
 		}
 	}
 
-	.navigation, .login {
+	.navigation,
+	.login {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 	}
 
-	.navigation a {
-		margin: 15px;
-		margin-right: 15px;
-		position: relative;
-	}
+	.navigation {
 
-	/* Underline every anchor label except for the logo, which has the href for root path */
-	.navigation a:not([href="/"])::after {
-		content: "";
-		background-color: var(--text-color);
-		position: absolute;
-		height: 1px;
-		bottom: -1px;
-		width: 0;
-		left: 50%;
-		transition: .2s width ease-in-out, .2s left ease-in-out;
-	}
+		a {
 
-	.navigation a:hover::after {
-		width: 100%;
-		left: 0%;
+			margin: 15px;
+			margin-right: 15px;
+			position: relative;
+
+			// Underline every anchor label except for the logo, which has the href for root path
+			&:not([href="/"])::after {
+				content: "";
+				background-color: variable(text-color);
+				position: absolute;
+				height: 1px;
+				bottom: -1px;
+				width: 0;
+				left: 50%;
+				transition: .2s width ease-in-out, .2s left ease-in-out;
+			}
+
+			// Underline on hover
+			&:hover::after {
+				width: 100%;
+				left: 0%;
+			}
+		}
+
 	}
 
 	.logo {
@@ -164,14 +173,15 @@
 	}
 
 	.user-container {
+
 		display: flex;
 		flex-direction: row;
 		align-content: center;
 		align-items: center;
-	}
 
-	.user-container * {
-		margin-left: 10px;
+		* {
+			margin-left: 10px;
+		}
 	}
 
 	.user-avatar {

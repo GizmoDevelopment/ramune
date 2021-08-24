@@ -24,7 +24,7 @@
 						class="popup-title-bar"
 						:class="{ 'floating-title-bar': floatingTitleBar }"
 					>
-						<h2>{{ title }}</h2>
+						<h2 class="popup-title">{{ title }}</h2>
 						<Close
 							v-if="dismissable"
 							class="popup-close-button"
@@ -99,7 +99,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	// Transitions
 
 	.fade-popup-overlay-enter-active,
 	.fade-popup-overlay-leave-active {
@@ -112,11 +114,11 @@
 	}
 
 	.slide-popup-enter-active {
-		transition: transform .45s var(--easing-enter), opacity .25s ease
+		transition: transform .45s variable(easing-enter), opacity .25s ease
 	}
 
 	.slide-popup-leave-active {
-		transition: transform .3s var(--easing-leave), opacity .25s ease
+		transition: transform .3s variable(easing-leave), opacity .25s ease
 	}
 
 	.slide-popup-enter-from,
@@ -125,7 +127,10 @@
 		opacity: 0;
 	}
 
-	.overlay, .popup-positioner {
+	//
+
+	.overlay,
+	.popup-positioner {
 		position: fixed;
 		z-index: 20;
 	}
@@ -147,8 +152,8 @@
 		margin-top: 5%;
 		margin-bottom: 20px;
 		width: auto;
-		background-color: var(--container-background-color);
-		border-radius: var(--popup-border-radius);
+		background-color: variable(container-background-color);
+		border-radius: variable(popup-border-radius);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -161,13 +166,27 @@
 	}
 
 	.popup-title-bar {
-		width: 100%; /* Push into padding so the close button sits properly in the corner */
+
+		width: 100%; // Push into padding so the close button sits properly in the corner
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 2em;
 		z-index: 2;
+
+		.popup-title {
+			flex: 1;
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-right: 10em;
+			text-align: left;
+		}
+
+		.popup-close-button {
+			height: 2em;
+			cursor: pointer;
+		}
 	}
 
 	.floating-title-bar {
@@ -177,22 +196,6 @@
 		left: 1em;
 	}
 
-	.popup-title-bar h2 {
-		flex: 1;
-		margin-top: 0;
-		margin-bottom: 0;
-		margin-right: 10em;
-		text-align: left;
-	}
-
-	.popup-close-button {
-		height: 2em;
-	}
-
-	.popup-close-button:hover {
-		cursor: pointer;
-	}
-
 	@media only screen and (max-width: 1250px) {
 		.popup-container {
 			width: 90%;
@@ -200,7 +203,7 @@
 	}
 
 	@media only screen and (max-width: 500px) {
-		.popup-title-bar h2 {
+		.popup-title {
 			margin-right: 1em;
 		}
 	}

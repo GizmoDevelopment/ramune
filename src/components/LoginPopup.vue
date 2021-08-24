@@ -5,7 +5,7 @@
 		@dismiss="$emit('dismiss')"
 	>
 		<Error :v-show="error" :text="error" />
-		<form id="form" @submit.prevent="attemptLogin">
+		<form class="form" @submit.prevent="attemptLogin">
 			<input
 				v-model="username"
 				class="input"
@@ -115,22 +115,23 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-	#form {
+	.form {
+
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
 
-	#form * {
-		margin-top: .5em;
-	}
+		* {
+			margin-top: .5em;
+		}
 
-	#form input {
-		width: 100%;
-		font-size: 1.2em;
+		.input {
+			width: 100%;
+			font-size: 1.2em;
+		}
 	}
 
 </style>

@@ -46,7 +46,9 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	// Animations
 
 	@keyframes loading-s {
 		0% {
@@ -72,22 +74,25 @@
 		}
 	}
 
+	//
+
 	.logo {
+
 		width: auto;
 		text-align: center;
 		width: 100%;
-	}
 
-	.small {
-		height: 1em;
-		margin-top: 1em;
-		animation: loading-s 2s ease-in-out infinite;
-	}
+		&.small {
+			height: 1em;
+			margin-top: 1em;
+			animation: loading-s 2s ease-in-out infinite;
+		}
 
-	.normal {
-		height: 5em;
-		margin-top: 15em;
-		animation: loading-n 2s ease-in-out infinite;
+		&.normal {
+			height: 5em;
+			margin-top: 15em;
+			animation: loading-n 2s ease-in-out infinite;
+		}
 	}
 
 </style>

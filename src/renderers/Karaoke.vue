@@ -4,11 +4,19 @@
 			<MusicNote />
 			<div class="lyrics-container">
 				<transition name="lyrics-line-slide" mode="out-in">
-					<div v-if="isTitleLine" :key="currentLineIndex" class="karaoke-title-line">
+					<div
+						v-if="isTitleLine"
+						:key="currentLineIndex"
+						class="karaoke-title-line"
+					>
 						<span class="karaoke-song-title">{{ songTitle }}</span>
 						<span class="karaoke-song-artist">By {{ songArtist }}</span>
 					</div>
-					<span v-else :key="currentLineIndex" class="karaoke-line">
+					<span
+						v-else
+						:key="currentLineIndex"
+						class="karaoke-line"
+					>
 						<i>{{ currentLine }}</i>
 					</span>
 				</transition>

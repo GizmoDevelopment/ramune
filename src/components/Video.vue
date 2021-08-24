@@ -101,11 +101,8 @@
 							@mouseleave="isHoveringOverProgressBar = false"
 							@mousemove="updateHoverTimestamp"
 						>
-							<div class="progress-bar-overflow">
-								<div
-									class="progress-bar"
-									:style="`width: ${videoProgressPercentage}%`"
-								/>
+							<div class="progress-bar-overflow" :style="`background: linear-gradient(90deg, var(--text-color) ${bufferedSectionsPercentage}%, #c7c7c7 ${bufferedSectionsPercentage + 2}%, #c7c7c7 100%)`">
+								<div class="progress-bar" :style="`width: ${videoProgressPercentage}%`" />
 							</div>
 							<div
 								v-if="isHoveringOverProgressBar"
@@ -283,6 +280,8 @@
 				isHoveringOverProgressBar: false,
 				videoProgressPercentage: 0,
 				hoverTimestampOffset: 0,
+				bufferedSectionsChecker: 0,
+				bufferedSectionsPercentage: 0,
 
 				// Gestures
 				mouseClickCounter: 0,
@@ -342,8 +341,11 @@
 				}
 			},
 			episode () {
+
 				this.subtitles = {};
+
 				this.initializeASSSubtitles();
+				this.updateBufferedSections();
 			}
 		},
 		mounted () {
@@ -354,6 +356,7 @@
 
 			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
 			this.mouseClickChecker = window.setInterval(this.doubleClickChecker, 400);
+			this.bufferedSectionsChecker = window.setInterval(this.updateBufferedSections, 1000);
 
 			if (this.video) {
 				this.volume = this.video.volume;
@@ -369,6 +372,7 @@
 
 			clearInterval(this.mouseChecker);
 			clearInterval(this.mouseClickChecker);
+			clearInterval(this.bufferedSectionsChecker);
 
 			if (this.rendererASS) {
 				this.rendererASS.dispose();
@@ -577,6 +581,11 @@
 				if (this.selectedSubtitleLanguage) {
 					this.loadSubtitleLanguage(this.selectedSubtitleLanguage);
 				}
+			},
+			updateBufferedSections () {
+				if (this.video) {
+					this.bufferedSectionsPercentage = (this.video.buffered.end(this.video.buffered.length - 1) / this.video.duration) * 100;
+				}
 			}
 		},
 		sockets: {
@@ -742,7 +751,6 @@
 		position: relative;
 		flex: 1;
 		height: .5rem;
-		background-color: variable(text-color);
 	}
 
 	.progress-bar-container,
@@ -760,7 +768,7 @@
 	.progress-bar {
 		height: 100%;
 		background-color: variable(primary-color);
-		transition: .3s width ease;
+		transition: width .3s ease;
 	}
 
 	.progress-bar-timestamp {

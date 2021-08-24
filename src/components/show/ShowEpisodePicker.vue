@@ -14,7 +14,7 @@
 			<ShowEpisodeCard
 				v-for="(episode, index) in currentSeason.episodes"
 				:id="index + 1"
-				:key="episode.id"
+				:key="`${show.id}-${episode.id}`"
 				v-memo="[ episode.id === currentEpisodeId ]"
 				:episode="episode"
 				:active="episode.id === currentEpisodeId"

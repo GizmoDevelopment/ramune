@@ -5,7 +5,7 @@
   "version": "1.5.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && esbuild ./public/libass/*.js --minify --outdir=dist/libass/",
     "serve": "vite preview",
     "lint": "eslint src/**/*.{js,ts,vue}"
   },
@@ -24,6 +24,7 @@
     "@typescript-eslint/parser": "^4.29.3",
     "@vitejs/plugin-vue": "^1.4.0",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
+    "esbuild": "^0.12.22",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.16.0",
     "sass": "^1.38.1",

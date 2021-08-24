@@ -143,7 +143,6 @@
 	.dropdown-container {
 		border-left: $filled-border;
 		border-right: $filled-border;
-		transition: border .2s ease;
 	}
 
 	.dropdown-entry {

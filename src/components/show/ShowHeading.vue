@@ -1,6 +1,6 @@
 <template>
 	<h1 class="heading show-title">{{ show.title }}</h1>
-	<p class="faded episode-title">Episode {{ id }} - {{ episode.title }}</p>
+	<p class="faded episode-title">Season {{ season.id }} Episode {{ id }} - {{ episode.title }}</p>
 </template>
 
 <script lang="ts">

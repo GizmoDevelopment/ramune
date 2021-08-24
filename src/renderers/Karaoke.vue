@@ -1,12 +1,15 @@
 <template>
 	<transition name="lyrics-appear">
-		<div v-if="currentLyricsId.length && currentLine.length > 0" class="karaoke-holder">
+		<div v-if="currentLyricsId.length && (currentLine.length > 0 || isTitleLine)" class="karaoke-holder">
 			<MusicNote />
 			<div class="lyrics-container">
 				<transition name="lyrics-line-slide" mode="out-in">
-					<span :key="currentLineIndex">
-						<template v-if="isTitleLine">{{ currentLine }}</template>
-						<i v-else>{{ currentLine }}</i>
+					<div v-if="isTitleLine" :key="currentLineIndex" class="karaoke-title-line">
+						<span class="karaoke-song-title">{{ songTitle }}</span>
+						<span class="karaoke-song-artist">By {{ songArtist }}</span>
+					</div>
+					<span v-else :key="currentLineIndex" class="karaoke-line">
+						<i>{{ currentLine }}</i>
 					</span>
 				</transition>
 			</div>
@@ -55,6 +58,8 @@
 		data () {
 			return {
 				currentLyricsId: "",
+				songTitle: "",
+				songArtist: "",
 				currentLine: "",
 				currentLineIndex: 0,
 				isTitleLine: false
@@ -104,9 +109,12 @@
 							}
 
 							if (!didPickLine) {
-								if ((timestamp - lyrics.start) < 5) {
-									this.isTitleLine = true;
-									this.currentLine = `${parsedLyrics.artist} - ${parsedLyrics.title}`;
+
+								this.isTitleLine = (timestamp - lyrics.start) < 5;
+
+								if (this.isTitleLine) {
+									this.songTitle = parsedLyrics.title;
+									this.songArtist = parsedLyrics.artist;
 								} else {
 									this.currentLine = "";
 								}
@@ -133,6 +141,8 @@
 				// Reset data so old lyrics don't stay on screen
 				this.currentLyricsId = "";
 				this.currentLine = "";
+				this.songArtist = "";
+				this.songTitle = "";
 				this.currentLineIndex = 0;
 				this.isTitleLine = false;
 
@@ -196,8 +206,8 @@
 
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
-		padding-left: 1em;
-		padding-right: 1em;
+		padding-left: 1rem;
+		padding-right: 1rem;
 
 		display: flex;
 		flex-direction: row;
@@ -205,7 +215,7 @@
 		align-items: center;
 
 		svg {
-			height: 2em;
+			height: 2rem;
 		}
 	}
 
@@ -214,9 +224,9 @@
 		padding: .5rem 1rem .5rem 1rem;
 		font-size: 2em;
 
-		span {
+		.karaoke-line {
 			display: inline-block;
-			font-size: 1em;
+			font-size: .9em;
 		}
 	}
 
@@ -229,6 +239,26 @@
 	@media only screen and (max-width: 750px) {
 		.karaoke-holder {
 			font-size: 5px;
+		}
+	}
+
+	.karaoke-title-line {
+
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		.karaoke-song-title {
+			font-weight: bold;
+			font-size: .8em;
+			text-align: left;
+		}
+
+		.karaoke-song-artist {
+			font-weight: 400;
+			font-size: .5em;
+			text-align: left;
 		}
 	}
 

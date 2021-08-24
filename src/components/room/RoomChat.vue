@@ -223,7 +223,7 @@
 
 <style scoped lang="scss">
 
-	/* Transitions */
+	// Transitions
 
 	.message-fade-leave-active {
 		transition: opacity .7s ease-out;
@@ -242,7 +242,7 @@
 		transform: translateY(.5rem);
 	}
 
-	/* Chat Window */
+	// Chat Window
 
 	.chat-overlay {
 		width: 100%;
@@ -254,6 +254,7 @@
 	}
 
 	.chat-container {
+
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -264,13 +265,14 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
+
+		* {
+			position: relative;
+		}
 	}
 
-	.chat-container * {
-		position: relative;
-	}
-
-	.chat-message-container, .chat-input-container {
+	.chat-message-container,
+	.chat-input-container {
 		width: 100%;
 	}
 
@@ -278,9 +280,10 @@
 		margin-bottom: 1rem;
 	}
 
-	/* Chat Input */
+	// Chat Input
 
 	.chat-input-container {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -288,14 +291,14 @@
 		pointer-events: auto;
 		transition: opacity .3s ease;
 		opacity: 1;
-	}
 
-	.chat-input-container button {
+		button {
 
-		margin-left: 10px;
+			margin-left: 10px;
 
-		&.spinning-button {
-			animation: spinning 1s ease-in-out infinite;
+			&.spinning-button {
+				animation: spinning 1s ease-in-out infinite;
+			}
 		}
 	}
 
@@ -309,7 +312,8 @@
 		margin: 0;
 	}
 
-	.chat-input, .chat-message-container {
+	.chat-input,
+	.chat-message-container {
 		z-index: 4;
 	}
 

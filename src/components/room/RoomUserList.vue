@@ -95,6 +95,8 @@
 	@import "@styles/main.scss";
 	@import "@styles/animations.scss";
 
+	// Transitions
+
 	.room-user-list-enter-active,
 	.room-user-list-leave-active {
 		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
@@ -109,6 +111,8 @@
 	.room-user-list-move {
 		transition: transform .3s ease;
 	}
+
+	//
 
 	.user-list {
 		display: flex;

@@ -71,6 +71,9 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/main.scss";
+
+	// Variables
 	$card-width: 200px;
 	$card-height: calc(#{$card-width} * .56);
 
@@ -94,10 +97,11 @@
 		display: block;
 		width: 100%;
 		height: 100%;
-		border-radius: var(--card-border-radius);
+		border-radius: variable(card-border-radius);
 	}
 
-	.overlay-container, .episode-info {
+	.overlay-container,
+	.episode-info {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -120,8 +124,8 @@
 		align-items: flex-end;
 
 		* {
-			background-color: var(--overlay-background-color);
-			border-radius: var(--card-border-radius);
+			background-color: variable(overlay-background-color);
+			border-radius: variable(card-border-radius);
 			font-weight: 400;
 			padding: 1px .2rem 1px .2rem;
 		}

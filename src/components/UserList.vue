@@ -61,6 +61,8 @@
 	@import "@styles/main.scss";
 	@import "@styles/animations.scss";
 
+	// Transitions
+
 	.user-list-enter-active,
 	.user-list-leave-active {
 		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
@@ -71,6 +73,8 @@
 		opacity: 0;
 		transform: translateY(.5rem);
 	}
+
+	//
 
 	.user-list-move {
 		transition: transform .3s ease;

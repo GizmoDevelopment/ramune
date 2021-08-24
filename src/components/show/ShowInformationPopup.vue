@@ -113,7 +113,7 @@
 
 	@import "@styles/main.scss";
 
-	/* Overlay & Container */
+	// Overlay & Container
 
 	.show-container {
 
@@ -135,7 +135,7 @@
 		}
 	}
 
-	/* Show Banner */
+	// Show Banner
 
 	.show-banner {
 		position: absolute;

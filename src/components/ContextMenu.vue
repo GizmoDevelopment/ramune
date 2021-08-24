@@ -78,6 +78,8 @@
 
 	@import "@styles/main.scss";
 
+	// Transitions
+
 	.context-menu-slide-enter-active,
 	.context-menu-slide-leave-active {
 		transition: opacity .2s ease, transform .3s ease;
@@ -88,6 +90,8 @@
 		opacity: 0;
 		transform: translateY(.2rem) scaleX(95%);
 	}
+
+	//
 
 	.ghost-element, .ghost-slot {
 		width: inherit;

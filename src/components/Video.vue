@@ -601,7 +601,7 @@
 
 	@import "@styles/main.scss";
 
-	/* Transitions */
+	// Transitions
 
 	.video-platter-slide-enter-active {
 		transition: opacity .2s ease, transform .4s variable(easing-enter);
@@ -617,7 +617,8 @@
 		transform: translateY(.5em) scale(90%);
 	}
 
-	/* Subtitles & Captions */
+	// Subtitles & Captions
+	// ! SUPERSEDED BY ASS RENDERER
 
 	video {
 
@@ -653,7 +654,7 @@
 		text-shadow: #000 0 0 2px;
 	}
 
-	/* Video Containers */
+	// Video Containers
 
 	.video-player {
 		width: 100%;
@@ -680,7 +681,8 @@
 		pointer-events: none;
 	}
 
-	.constant-video-overlay, .video-overlay {
+	.constant-video-overlay,
+	.video-overlay {
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -698,7 +700,7 @@
 		cursor: none;
 	}
 
-	/* Video Controls */
+	// Video Controls
 
 	.video-controls {
 		background-color: variable(container-background-color);
@@ -734,7 +736,7 @@
 		height: 100%;
 	}
 
-	/* Progress Bar */
+	// Progress Bar
 
 	.progress-bar-container {
 		position: relative;
@@ -775,9 +777,10 @@
 		cursor: pointer;
 	}
 
-	/* Timestamp & Duration */
+	// Timestamp & Duration
 
-	.video-timestamp, .video-duration {
+	.video-timestamp,
+	.video-duration {
 		margin-left: .5rem;
 		margin-right: .5rem;
 	}
@@ -790,7 +793,7 @@
 		text-align: left;
 	}
 
-	/* Video Control Trays */
+	// Video Control Trays
 
 	.video-control-tray {
 		position: absolute;
@@ -798,10 +801,10 @@
 		background-color: variable(container-background-color);
 		border-radius: variable(card-border-radius);
 		pointer-events: visible;
-		z-index: 5; /* To go above chat messages */
+		z-index: 5; // To go above chat messages
 	}
 
-	/* Subtitle Tray */
+	// Subtitle Tray
 
 	.subtitle-tray {
 
@@ -863,7 +866,7 @@
 		}
 	}
 
-	/* Volume Tray */
+	// Volume Tray
 
 	.volume-tray {
 		left: .5rem;
@@ -879,7 +882,7 @@
 		}
 	}
 
-	/* Overlay */
+	// Overlay
 
 	.overlay-user-list {
 		position: absolute;

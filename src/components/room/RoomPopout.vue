@@ -54,14 +54,15 @@
 
 	.popout-container {
 		position: relative;
-		background-color: var(--container-background-color);
-		border-radius: var(--popup-border-radius);
-		box-shadow: 0 0 10px var(--primary-color);
+		background-color: variable(container-background-color);
+		border-radius: variable(popup-border-radius);
+		box-shadow: 0 0 10px variable(primary-color);
 		width: 350px;
 		height: calc(350px * 9/16);
 	}
 
-	#room-video-popout-container, .no-video-message-container {
+	#room-video-popout-container,
+	.no-video-message-container {
 		position: absolute;
 		width: inherit;
 		top: 0;
@@ -89,7 +90,7 @@
 	}
 
 	.overlay {
-		border-radius: var(--popup-border-radius);
+		border-radius: variable(popup-border-radius);
 		z-index: 3;
 	}
 

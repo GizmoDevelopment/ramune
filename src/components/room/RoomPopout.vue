@@ -52,6 +52,8 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/main.scss";
+
 	.popout-container {
 		position: relative;
 		background-color: variable(container-background-color);

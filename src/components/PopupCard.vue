@@ -101,6 +101,8 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/main.scss";
+
 	// Transitions
 
 	.fade-popup-overlay-enter-active,

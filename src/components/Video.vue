@@ -583,7 +583,7 @@
 				}
 			},
 			updateBufferedSections () {
-				if (this.video) {
+				if (this.video && this.video.buffered.length > 0) {
 					this.bufferedSectionsPercentage = (this.video.buffered.end(this.video.buffered.length - 1) / this.video.duration) * 100;
 				}
 			}

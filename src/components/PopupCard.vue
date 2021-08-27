@@ -165,6 +165,7 @@
 		padding-left: 1em;
 		padding-right: 1em;
 		box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, .6);
+		overflow-x: hidden;
 	}
 
 	.popup-title-bar {

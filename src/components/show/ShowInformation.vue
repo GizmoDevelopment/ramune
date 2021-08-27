@@ -14,6 +14,11 @@
 				</div>
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
+			<img
+				class="show-banner"
+				:src="show.banner_url"
+				draggable="false"
+			>
 		</div>
 		<ShowEpisodePicker
 			:show="show"
@@ -67,6 +72,7 @@
 	@import "@styles/main.scss";
 
 	.show-information {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -79,6 +85,7 @@
 		min-width: calc(280px * .7);
 		height: 280px;
 		border-radius: variable(card-border-radius);
+		z-index: 1;
 	}
 
 	.show-details {
@@ -129,6 +136,21 @@
 		.show-description {
 			display: none;
 		}
+	}
+
+	// Show Banner
+
+	.show-banner {
+		position: absolute;
+		width: auto;
+		height: calc(100% + 4em);
+		left: -2em;
+		top: -4em;
+		border-top-left-radius: variable(popup-border-radius);
+		border-top-right-radius: variable(popup-border-radius);
+		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+		opacity: .1;
 	}
 
 </style>

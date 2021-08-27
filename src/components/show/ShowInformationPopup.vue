@@ -9,11 +9,6 @@
 				<ShowInformation
 					:show="show"
 				/>
-				<img
-					class="show-banner"
-					:src="show.banner_url"
-					draggable="false"
-				>
 			</div>
 			<Error v-else-if="error" :text="error" />
 			<ShowInformationHusk v-else />
@@ -132,28 +127,6 @@
 			width: 100%;
 			padding-left: 0;
 			padding-right: 0;
-		}
-	}
-
-	// Show Banner
-
-	.show-banner {
-		position: absolute;
-		width: calc(1100px + 2em + 2em);
-		height: auto;
-		left: -1em;
-		top: -1em;
-		border-top-left-radius: variable(popup-border-radius);
-		border-top-right-radius: variable(popup-border-radius);
-		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-		opacity: .1;
-		z-index: 1;
-	}
-
-	@media only screen and (max-width: 1250px) {
-		.show-banner {
-			display: none;
 		}
 	}
 

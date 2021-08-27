@@ -86,10 +86,10 @@
 							</div>
 						</transition>
 						<div @click="toggleVolumeTray">
-							<VolumeOff v-if="volume === 0" class="video-control-button" />
-							<VolumeLow v-if="volume > 0 && volume < .45" class="video-control-button" />
-							<VolumeMedium v-if="volume >= .45 && volume < .85" class="video-control-button" />
 							<VolumeHigh v-if="volume >= .85" class="video-control-button" />
+							<VolumeMedium v-else-if="volume >= .45" class="video-control-button" />
+							<VolumeLow v-else-if="volume > 0" class="video-control-button" />
+							<VolumeOff v-else class="video-control-button" />
 						</div>
 						<span class="video-timestamp">{{ videoCurrentTimestamp }}</span>
 						<div
@@ -101,8 +101,8 @@
 							@mouseleave="isHoveringOverProgressBar = false"
 							@mousemove="updateHoverTimestamp"
 						>
-							<div class="progress-bar-overflow" :style="`background: linear-gradient(90deg, var(--text-color) ${bufferedSectionsPercentage}%, #c7c7c7 ${bufferedSectionsPercentage + 2}%, #c7c7c7 100%)`">
-								<div class="progress-bar" :style="`width: ${videoProgressPercentage}%`" />
+							<div class="progress-bar-overflow">
+								<div class="progress-bar" />
 							</div>
 							<div
 								v-if="isHoveringOverProgressBar"
@@ -317,6 +317,12 @@
 			hoverTimestamp (): string {
 				const offset = this.hoverTimestampOffset;
 				return formatTimestamp(this.getProgressBarTimestamp(offset));
+			},
+			bufferedSections (): string {
+				return `linear-gradient(90deg, var(--text-color) ${this.bufferedSectionsPercentage}%, #c7c7c7 ${this.bufferedSectionsPercentage + 2}%, #c7c7c7 100%)`;
+			},
+			videoProgress (): string {
+				return `${this.videoProgressPercentage}%`;
 			}
 		},
 		watch: {
@@ -343,6 +349,8 @@
 			episode () {
 
 				this.subtitles = {};
+				this.currentTime = 0;
+				this.isPaused = true;
 
 				this.initializeASSSubtitles();
 				this.updateBufferedSections();
@@ -764,9 +772,11 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
+		background: v-bind(bufferedSections);
 	}
 
 	.progress-bar {
+		width: v-bind(videoProgress);
 		height: 100%;
 		background-color: variable(primary-color);
 		transition: width .3s ease;

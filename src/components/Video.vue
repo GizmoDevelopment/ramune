@@ -291,22 +291,18 @@
 
 				// Subtitles
 				subtitles: {} as Record<string, string>,
-
-				rendererASS: null as SubtitlesOctopus | null
+				rendererASS: null as SubtitlesOctopus | null,
+				shouldShowSubtitles: false
 			};
 		},
 		computed: {
+
+			// States
 			isKaraokeEnabled (): boolean {
 				return this.$store.state.settings.karaoke;
 			},
 			areEffectsEnabled (): boolean {
 				return this.$store.state.settings.effects;
-			},
-			videoCurrentTimestamp (): string {
-				return formatTimestamp(this.currentTime);
-			},
-			durationTimestamp (): string {
-				return formatTimestamp(this.duration);
 			},
 			isRequestingRoomSync (): boolean {
 				return this.$store.state.room.isRequestingRoomSync;
@@ -314,20 +310,40 @@
 			isInPopOutMode (): boolean {
 				return this.$route.path.match(/^\/watch\/.+|\/rooms\/.+$/i) === null;
 			},
+
+			// Timestamps
+			videoCurrentTimestamp (): string {
+				return formatTimestamp(this.currentTime);
+			},
+			durationTimestamp (): string {
+				return formatTimestamp(this.duration);
+			},
 			hoverTimestamp (): string {
 				const offset = this.hoverTimestampOffset;
 				return formatTimestamp(this.getProgressBarTimestamp(offset));
 			},
+
+			// Style Bindings
 			bufferedSections (): string {
 				return `linear-gradient(90deg, var(--text-color) ${this.bufferedSectionsPercentage}%, #c7c7c7 ${this.bufferedSectionsPercentage + 2}%, #c7c7c7 100%)`;
 			},
 			videoProgress (): string {
 				return `${this.currentTime > 0 ? this.videoProgressPercentage : 0}%`;
+			},
+			subtitleVisibility (): string {
+				return this.shouldShowSubtitles
+					? "visible"
+					: "hidden";
 			}
 		},
 		watch: {
-			isPaused () {
+			isPaused (state: boolean) {
+
 				this.pushSync();
+
+				if (!state && !this.shouldShowSubtitles) {
+					this.shouldShowSubtitles = true;
+				}
 			},
 			isRequestingRoomSync (newState: boolean) {
 				if (newState) {
@@ -351,6 +367,7 @@
 				this.subtitles = {};
 				this.currentTime = 0;
 				this.isPaused = true;
+				this.shouldShowSubtitles = false;
 
 				this.initializeASSSubtitles();
 				this.updateBufferedSections();
@@ -916,6 +933,16 @@
 		position: absolute;
 		bottom: 3.7rem;
 		left: .7rem;
+	}
+
+</style>
+
+<style lang="scss">
+
+	// Subtitles & Captions
+
+	.libassjs-canvas {
+		visibility: v-bind(subtitleVisibility);
 	}
 
 </style>

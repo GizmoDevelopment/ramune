@@ -113,7 +113,7 @@
 	.show-container {
 
 		position: relative;
-		width: 1100px;
+		width: 1040px;
 		padding: 2em 1em 0 1em;
 
 		.show-information div {

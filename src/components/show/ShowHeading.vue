@@ -51,4 +51,15 @@
 		font-size: 1.25rem;
 	}
 
+	@media only screen and (max-width: 570px) {
+
+		.show-title {
+			font-size: 1.9rem;
+		}
+
+		.episode-title {
+			font-size: 1rem;
+		}
+	}
+
 </style>

@@ -90,6 +90,7 @@
 
 	.show-details {
 		margin-left: 20px;
+		z-index: 1;
 	}
 
 	.show-title {

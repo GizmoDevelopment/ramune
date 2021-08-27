@@ -364,10 +364,15 @@
 			},
 			episode () {
 
+				if (this.video) {
+					this.video.pause();
+					this.video.currentTime = 0;
+				}
+
 				this.subtitles = {};
 				this.currentTime = 0;
-				this.isPaused = true;
 				this.shouldShowSubtitles = false;
+				this.isPaused = true;
 
 				this.initializeASSSubtitles();
 				this.updateBufferedSections();

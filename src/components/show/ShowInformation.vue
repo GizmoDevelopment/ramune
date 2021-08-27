@@ -14,11 +14,7 @@
 				</div>
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
-			<img
-				class="show-banner"
-				:src="show.banner_url"
-				draggable="false"
-			>
+			<div class="show-banner" />
 		</div>
 		<ShowEpisodePicker
 			:show="show"
@@ -60,7 +56,10 @@
 				}
 			},
 			formattedDescription (): string {
-				return this.show?.description?.replace(/\\n/g, "\n") || "";
+				return this.show.description.replace(/\\n/g, "\n") || "";
+			},
+			bannerUrl (): string {
+				return `url(${this.show.banner_url})`;
 			}
 		}
 	});
@@ -143,14 +142,17 @@
 
 	.show-banner {
 		position: absolute;
-		width: auto;
+		width: calc(100% + 2em + 2em);
 		height: calc(100% + 4em);
 		left: -2em;
 		top: -4em;
-		border-top-left-radius: variable(popup-border-radius);
-		border-top-right-radius: variable(popup-border-radius);
+		background-image: v-bind(bannerUrl);
+		background-size: cover;
+		background-position: center;
 		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+		border-top-left-radius: variable(popup-border-radius);
+		border-top-right-radius: variable(popup-border-radius);
 		opacity: .1;
 	}
 

@@ -322,7 +322,7 @@
 				return `linear-gradient(90deg, var(--text-color) ${this.bufferedSectionsPercentage}%, #c7c7c7 ${this.bufferedSectionsPercentage + 2}%, #c7c7c7 100%)`;
 			},
 			videoProgress (): string {
-				return `${this.videoProgressPercentage}%`;
+				return `${this.currentTime > 0 ? this.videoProgressPercentage : 0}%`;
 			}
 		},
 		watch: {

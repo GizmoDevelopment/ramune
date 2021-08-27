@@ -698,6 +698,9 @@
 	.video-player {
 		width: 100%;
 		height: auto;
+	}
+
+	.video-container:not(:fullscreen) .video-player {
 		max-height: 763.3px; // Temporary fix for thumbnail-less videos jumping when being selected
 	}
 

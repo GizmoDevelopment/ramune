@@ -427,11 +427,13 @@
 		},
 		methods: {
 			pushSync (targetUserId?: number) {
-				if (this.video) {
-					this.$emit("update", !this.video.paused, this.video.currentTime, targetUserId);
-				} else { // Fallback to saved data
-					this.$emit("update", !this.isPaused, this.currentTime, targetUserId);
-					console.error("No video element found while attempting to push sync.");
+				if (this.isHost) {
+					if (this.video) {
+						this.$emit("update", !this.video.paused, this.video.currentTime, targetUserId);
+					} else { // Fallback to saved data
+						this.$emit("update", !this.isPaused, this.currentTime, targetUserId);
+						console.error("No video element found while attempting to push sync.");
+					}
 				}
 			},
 			updatePlaybackState () {

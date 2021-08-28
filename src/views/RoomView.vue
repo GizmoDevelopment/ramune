@@ -124,13 +124,6 @@
 			}
 		},
 		sockets: {
-			"ROOM:USER_JOIN" () {
-				setTimeout(() => {
-					if (this.isHost) {
-						this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", true);
-					}
-				}, 500);
-			},
 			"ROOM:USER_START_TYPING" (userId: number) {
 				this.$store.commit("room/USER_START_TYPING", userId);
 			},

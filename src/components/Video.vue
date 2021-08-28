@@ -304,9 +304,6 @@
 			areEffectsEnabled (): boolean {
 				return this.$store.state.settings.effects;
 			},
-			isRequestingRoomSync (): boolean {
-				return this.$store.state.room.isRequestingRoomSync;
-			},
 			isInPopOutMode (): boolean {
 				return this.$route.path.match(/^\/watch\/.+|\/rooms\/.+$/i) === null;
 			},
@@ -343,12 +340,6 @@
 
 				if (!state && !this.shouldShowSubtitles) {
 					this.shouldShowSubtitles = true;
-				}
-			},
-			isRequestingRoomSync (newState: boolean) {
-				if (newState) {
-					this.$store.commit("room/UPDATE_ROOM_SYNC_REQUEST", false);
-					this.pushSync();
 				}
 			},
 			isMouseStatic (newState: boolean) {
@@ -435,11 +426,11 @@
 			}
 		},
 		methods: {
-			pushSync () {
+			pushSync (targetUserId?: number) {
 				if (this.video) {
-					this.$emit("update", !this.video.paused, this.video.currentTime);
+					this.$emit("update", !this.video.paused, this.video.currentTime, targetUserId);
 				} else { // Fallback to saved data
-					this.$emit("update", !this.isPaused, this.currentTime);
+					this.$emit("update", !this.isPaused, this.currentTime, targetUserId);
 					console.error("No video element found while attempting to push sync.");
 				}
 			},
@@ -656,6 +647,9 @@
 						this.video.pause();
 					}
 				}
+			},
+			"ROOM:CLIENT_REQUEST_ROOM_SYNC" (userId: number) {
+				this.pushSync(userId);
 			}
 		}
 	});

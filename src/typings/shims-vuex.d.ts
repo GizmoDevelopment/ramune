@@ -16,7 +16,6 @@ export interface CacheState {
 export interface RoomState {
 	room: Room | null;
 	roomVideoTeleportParent: string | null;
-	isRequestingRoomSync: boolean;
 	isLoadingRoomData: boolean;
 	typingUserList: number[];
 }

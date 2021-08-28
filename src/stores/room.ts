@@ -10,7 +10,6 @@ export default {
 		return {
 			room: null,
 			roomVideoTeleportParent: null,
-			isRequestingRoomSync: false,
 			isLoadingRoomData: false,
 			typingUserList: []
 		};
@@ -44,9 +43,6 @@ export default {
 		},
 		UPDATE_ROOM_CONTROLLER_STATE (state: RoomState, newState: string | null) {
 			state.roomVideoTeleportParent = newState;
-		},
-		UPDATE_ROOM_SYNC_REQUEST (state: RoomState, newState: boolean) {
-			state.isRequestingRoomSync = newState;
 		},
 		UPDATE_ROOM_DATA_LOADING_STATE (state: RoomState, newState: boolean) {
 			state.isLoadingRoomData = newState;

@@ -64,7 +64,7 @@
 			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
 		},
 		methods: {
-			pushSync (playing: boolean, currentTime: number) {
+			pushSync (playing: boolean, currentTime: number, targetUserId?: number) {
 				if (this.isHost) {
 
 					const payload: RoomSyncData = {
@@ -72,11 +72,19 @@
 						currentTime: currentTime
 					};
 
-					this.$socket.client.emit("CLIENT:SYNC_ROOM", payload, (res: SocketResponse<string>) => {
-						if (res.type !== "success") {
-							console.error(res.message);
-						}
-					});
+					if (typeof targetUserId === "number") {
+						this.$socket.client.emit("CLIENT:SYNC_ROOM_TARGET", { data: payload, userId: targetUserId }, (res: SocketResponse<string>) => {
+							if (res.type !== "success") {
+								console.error(res.message);
+							}
+						});
+					} else {
+						this.$socket.client.emit("CLIENT:SYNC_ROOM", payload, (res: SocketResponse<string>) => {
+							if (res.type !== "success") {
+								console.error(res.message);
+							}
+						});
+					}
 				}
 			},
 			updateFullscreenState () {

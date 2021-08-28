@@ -389,26 +389,36 @@
 			this.bufferedSectionsChecker = window.setInterval(this.updateBufferedSections, 1000);
 
 			if (this.video) {
+
 				this.volume = this.video.volume;
-			}
 
-			this.initializeASSRenderer();
+				// URL Timestamp
+				if (this.$route.query.t) {
 
-			// URL Timestamp
-			if (this.$route.query.t && this.video) {
+					const timestamp = Number(this.$route.query.t);
 
-				const timestamp = Number(this.$route.query.t);
+					if (!isNaN(timestamp) && !this.room) {
+						this.video.addEventListener("canplay", () => {
+							if (this.video) {
+								this.video.currentTime = timestamp;
+							}
+						}, {
+							once: true
+						});
+					}
+				}
 
-				if (!isNaN(timestamp) && !this.room) {
+				// Request video data on Room join
+				if (this.room && !this.isHost) {
 					this.video.addEventListener("canplay", () => {
-						if (this.video) {
-							this.video.currentTime = timestamp;
-						}
+						this.$socket.client.emit("CLIENT:REQUEST_ROOM_SYNC");
 					}, {
 						once: true
 					});
 				}
 			}
+
+			this.initializeASSRenderer();
 		},
 		beforeUnmount () {
 

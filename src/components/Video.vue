@@ -393,6 +393,22 @@
 			}
 
 			this.initializeASSRenderer();
+
+			// URL Timestamp
+			if (this.$route.query.t && this.video) {
+
+				const timestamp = Number(this.$route.query.t);
+
+				if (!isNaN(timestamp) && !this.room) {
+					this.video.addEventListener("canplay", () => {
+						if (this.video) {
+							this.video.currentTime = timestamp;
+						}
+					}, {
+						once: true
+					});
+				}
+			}
 		},
 		beforeUnmount () {
 

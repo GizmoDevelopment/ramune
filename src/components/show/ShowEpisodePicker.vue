@@ -69,9 +69,6 @@
 			};
 		},
 		computed: {
-			isHost (): boolean {
-				return this.room?.host?.id === this.user?.id;
-			},
 			currentSeason (): Season {
 				return this.show.seasons[this.currentSeasonIndex];
 			}

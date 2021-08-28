@@ -12,6 +12,9 @@ export default defineComponent({
 		},
 		room (): Room | null {
 			return this.$store.state.room.room;
+		},
+		isHost (): boolean {
+			return this.room?.host?.id === this.user?.id;
 		}
 	}
 });

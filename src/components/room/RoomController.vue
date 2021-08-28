@@ -73,7 +73,7 @@
 					};
 
 					if (typeof targetUserId === "number") {
-						this.$socket.client.emit("CLIENT:SYNC_ROOM_TARGET", { data: payload, userId: targetUserId }, (res: SocketResponse<string>) => {
+						this.$socket.client.emit("CLIENT:SYNC_ROOM_CLIENT", { data: payload, userId: targetUserId }, (res: SocketResponse<string>) => {
 							if (res.type !== "success") {
 								console.error(res.message);
 							}

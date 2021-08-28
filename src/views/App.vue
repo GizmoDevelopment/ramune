@@ -322,16 +322,16 @@
 	@media only screen and (max-width: 1400px) {
 		#content {
 			width: 100%;
-			margin-left: 1.5rem;
-			margin-right: 1.5rem;
+			margin-left: 1.3rem;
+			margin-right: 1.3rem;
 		}
 	}
 
 	@media only screen and (max-width: 1200px) {
 		#content {
 			width: 100%;
-			margin-left: 1rem;
-			margin-right: 1rem;
+			margin-left: .5rem;
+			margin-right: .5rem;
 		}
 	}
 

@@ -6,20 +6,23 @@
 			v-if="shows.length > 0"
 			class="show-container"
 		>
-			<div v-for="show in shows" :key="show.id">
-				<ShowCard
-					:show="show"
-					@select-show="selectShow"
-				/>
-			</div>
+			<ShowCard
+				v-for="show in shows"
+				:key="show.id"
+				class="show-card"
+				:show="show"
+				@select-show="selectShow"
+			/>
 		</div>
 		<div
 			v-else
 			class="show-container"
 		>
-			<div v-for="(_, index) in new Array(10)" :key="index">
-				<ShowCardHusk />
-			</div>
+			<ShowCardHusk
+				v-for="(_, index) in new Array(10)"
+				:key="index"
+				class="show-card"
+			/>
 		</div>
 		<ShowInformationPopup
 			:show-id="selectedShowId"
@@ -101,7 +104,7 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 	.fade-popup-overlay-enter-active, .fade-popup-overlay-leave-active {
 		transition: opacity .4s ease;
@@ -118,6 +121,10 @@
 		flex-wrap: wrap;
 	}
 
+	.show-card {
+		margin: 5px 5px 2px 5px;
+	}
+
 	.show-overlay {
 		position: absolute;
 		width: 100%;
@@ -125,6 +132,12 @@
 		top: 0;
 		left: 0;
 		background: rgba(0, 0, 0, .5)
+	}
+
+	@media only screen and (max-width: 500px) {
+		.show-card {
+			margin: 3px 4.5px 1px 4.5px;
+		}
 	}
 
 </style>

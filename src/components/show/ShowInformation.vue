@@ -119,6 +119,18 @@
 		font-size: 1.1rem;
 	}
 
+	@media only screen and (max-width: 600px) {
+
+		.show-title {
+			font-size: 1.5rem;
+		}
+
+		.show-episode-count {
+			font-size: .9rem;
+			font-weight: 500;
+		}
+	}
+
 	.show-description {
 		font-size: 1.2rem;
 		text-align: left;

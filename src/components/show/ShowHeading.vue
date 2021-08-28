@@ -54,7 +54,7 @@
 	@media only screen and (max-width: 570px) {
 
 		.show-title {
-			font-size: 1.9rem;
+			font-size: 1.6rem;
 		}
 
 		.episode-title {

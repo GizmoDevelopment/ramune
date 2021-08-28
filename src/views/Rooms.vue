@@ -12,13 +12,13 @@
 		<div v-if="user">
 			<div v-if="$socket.connected && rooms">
 				<div v-if="rooms.length > 0" class="room-list">
-					<div
+					<RoomCard
 						v-for="room in rooms"
 						:key="room.id"
 						class="room-card"
-					>
-						<RoomCard :room="room" @request-room-password="(roomId) => joinRoomId = roomId" />
-					</div>
+						:room="room"
+						@request-room-password="(roomId) => joinRoomId = roomId"
+					/>
 				</div>
 				<div v-else>
 					<h3 class="faded">There are no active rooms</h3>

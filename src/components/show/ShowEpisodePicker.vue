@@ -3,6 +3,7 @@
 		<div v-if="show.seasons.length > 1" class="title-bar">
 			<span class="season-title">Season {{ currentSeason.id }}</span>
 			<Dropdown
+				class="dropdown"
 				:entries="seasonList"
 				:current-index="currentSeasonIndex"
 				:variant="variant"
@@ -143,6 +144,22 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		flex-wrap: wrap;
+	}
+
+	@media only screen and (max-width: 700px) {
+		.season-title {
+			font-size: 1.5rem !important;
+		}
+	}
+
+</style>
+
+<style lang="scss">
+
+	@media only screen and (max-width: 700px) {
+		.dropdown .dropdown-currently-selected-label {
+			font-size: 1rem !important;
+		}
 	}
 
 </style>

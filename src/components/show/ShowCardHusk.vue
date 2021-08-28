@@ -1,5 +1,5 @@
 <template>
-	<div class="show-container">
+	<div class="show-card">
 		<div class="show-poster-container">
 			<div
 				class="husk show-poster"
@@ -26,9 +26,8 @@
 
 	@import "@styles/mixins.scss";
 
-	.show-container {
+	.show-card {
 		max-width: 170px;
-		padding: 5px 5px 2px 5px;
 	}
 
 	.show-poster-container {
@@ -37,18 +36,6 @@
 		width: 170px;
 		height: calc(170px * 1.42);
 		margin-bottom: .3em;
-	}
-
-	@media only screen and (max-width: 700px) {
-
-		.show-container {
-			max-width: 115px;
-		}
-
-		.show-poster-container {
-			width: 115px;
-			height: calc(115px * 1.42);
-		}
 	}
 
 	.show-poster {
@@ -73,9 +60,25 @@
 
 		margin-top: 0;
 		margin-bottom: 5px;
-		font-size: 18px;
+		font-size: 1.1rem;
 		font-weight: 500;
 		text-align: left;
+	}
+
+	@media only screen and (max-width: 700px) {
+
+		.show-card {
+			max-width: 110px;
+		}
+
+		.show-poster-container {
+			width: 110px;
+			height: calc(110px * 1.42);
+		}
+
+		.show-title {
+			font-size: .9rem;
+		}
 	}
 
 </style>

@@ -1,15 +1,17 @@
 <template>
-	<img
-		v-if="shouldDisplayHanyuu"
-		class="logo"
-		:class="{ small: size === 'small', normal: size === 'normal' }"
-		:src="Hanyuu"
-	>
-	<Logo
-		v-else
-		class="logo"
-		:class="{ small: size === 'small', normal: size === 'normal' }"
-	/>
+	<div class="logo-container">
+		<img
+			v-if="shouldDisplayHanyuu"
+			class="logo"
+			:class="{ small: size === 'small', normal: size === 'normal' }"
+			:src="Hanyuu"
+		>
+		<Logo
+			v-else
+			class="logo"
+			:class="{ small: size === 'small', normal: size === 'normal' }"
+		/>
+	</div>
 </template>
 
 <script lang="ts">
@@ -76,22 +78,26 @@
 
 	//
 
-	.logo {
+	.logo-container {
 
-		width: auto;
-		text-align: center;
 		width: 100%;
+		text-align: center;
 
-		&.small {
-			height: 1em;
-			margin-top: 1em;
-			animation: loading-s 2s ease-in-out infinite;
-		}
+		.logo {
 
-		&.normal {
-			height: 5em;
-			margin-top: 15em;
-			animation: loading-n 2s ease-in-out infinite;
+			width: auto;
+
+			&.small {
+				height: 1em;
+				margin-top: 1em;
+				animation: loading-s 2s ease-in-out infinite;
+			}
+
+			&.normal {
+				height: 5em;
+				margin-top: 15em;
+				animation: loading-n 2s ease-in-out infinite;
+			}
 		}
 	}
 

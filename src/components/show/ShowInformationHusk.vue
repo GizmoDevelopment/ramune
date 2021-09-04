@@ -2,7 +2,7 @@
 	<div class="show-information">
 		<div class="husk-dark show-poster" />
 		<div class="show-details">
-			<p class="heading husk-dark show-title">XD?????????????????????????????</p>
+			<p class="heading husk-dark show-title">K I N O</p>
 			<div class="show-stats">
 				<div class="husk-dark show-episode-count">1702 Episodes</div>
 			</div>
@@ -25,67 +25,10 @@
 <style scoped lang="scss">
 
 	@import "@styles/main.scss";
-
-	.show-information {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		margin-top: 1rem;
-	}
-
-	.show-poster {
-		min-width: calc(280px * .7);
-		height: 280px;
-		border-radius: variable(card-border-radius);
-	}
-
-	.show-details {
-		margin-left: 20px;
-	}
-
-	.show-title {
-		margin-top: .2rem;
-		margin-bottom: 10px;
-	}
-
-	.show-stats {
-
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-
-		* {
-			margin-right: 10px;
-		}
-	}
+	@import "@styles/components/ShowInformation.scss";
 
 	.show-episode-count {
 		border: 2px solid transparent;
-		border-radius: 20px;
-		padding-left: 8px;
-		padding-right: 8px;
-		font-weight: bold;
-		font-size: 1.1rem;
-	}
-
-	.show-description {
-		font-size: 1.5rem;
-		text-align: left;
-		white-space: pre-line;
-	}
-
-	@media only screen and (max-width: 800px) {
-		.show-poster {
-			min-width: calc(190px * .7);
-			height: 190px;
-		}
-	}
-
-	@media only screen and (max-width: 600px) {
-		.show-description {
-			display: none;
-		}
 	}
 
 </style>

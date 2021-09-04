@@ -4,7 +4,7 @@
 			<div
 				v-for="user in users"
 				:key="user.id"
-				v-memo="[ isHost, typingUserList.includes(user.id) ]"
+				v-memo="[ host, typingUserList.includes(user.id) ]"
 				v-tooltip="user.username"
 				class="user"
 				:class="{

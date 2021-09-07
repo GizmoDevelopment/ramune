@@ -158,7 +158,7 @@
 				-->
 				<source
 					:src="episode.stream_url"
-					type="video/mp4; codecs='avc1.4d002a'"
+					type="video/mp4"
 				>
 			</video>
 		</div>

@@ -132,6 +132,7 @@
 				preload="auto"
 
 				:class="{ 'popped-out': isInPopOutMode }"
+				:src="episode.stream_url"
 				:poster="episode.thumbnail_url"
 				:volume="volume"
 
@@ -156,10 +157,6 @@
 						>
 					</template>
 				-->
-				<source
-					:src="episode.stream_url"
-					type="video/mp4"
-				>
 			</video>
 		</div>
 		<div v-if="!isInPopOutMode && !isFullscreen && episode.data.effects && areEffectsEnabled">

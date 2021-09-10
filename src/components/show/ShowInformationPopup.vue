@@ -24,7 +24,7 @@
 	// Components
 	import Error from "@components/Error.vue";
 	import ShowInformation from "@components/show/ShowInformation.vue";
-	import ShowInformationHusk from "@components/show/ShowInformationHusk.vue";
+	import ShowInformationHusk from "@components/husks/ShowInformationHusk.vue";
 	import PopupCard from "@components/PopupCard.vue";
 
 	// Utils

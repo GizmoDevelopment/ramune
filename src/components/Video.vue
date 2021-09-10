@@ -28,6 +28,7 @@
 						<h3>Subtitles</h3>
 						<div v-for="subtitle in episode.subtitles" :key="subtitle.code">
 							<button
+								v-if="subtitles[subtitle.code]"
 								class="subtitle-language-button"
 								@click="setSubtitleLanguage(`${subtitle.code}`)"
 							>

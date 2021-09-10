@@ -87,6 +87,7 @@
 		border-top-left-radius: variable(popup-border-radius);
 		border-top-right-radius: variable(popup-border-radius);
 		opacity: .1;
+		pointer-events: none;
 	}
 
 </style>

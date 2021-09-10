@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="title" content="Ramune">
 	<meta name="description" content="Watch anime together with your friends.">
 	<meta name="theme-color" content="#3DB8F5">
-	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://ramune.gizmo.moe/">
 	<meta property="og:title" content="Ramune">
@@ -17,12 +17,11 @@
 	<meta property="twitter:title" content="Ramune">
 	<meta property="twitter:description" content="Watch anime together with your friends.">
 	<meta property="twitter:image" content="https://ramune.gizmo.moe/logo.png">
+</head>
+  <body bgcolor="#0D0D0D">
+    <div id="app"><!--ssr-outlet--></div>
+    <script type="module" src="/src/entry-client.ts"></script>
 	<script src="https://cdn.gizmo.moe/scripts/twemoji@13.1.0.min.js" crossorigin="anonymous"></script>
-    <title>Ramune</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
 	<script src="/libass/subtitles-octopus.js"></script>
   </body>
 </html>

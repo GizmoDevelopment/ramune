@@ -26,7 +26,8 @@
 			"@mixins/*": ["mixins/*"],
 			"@renderers/*": ["renderers/*"],
 			"@styles/*": ["styles/*"],
-			"@stores/*": ["stores/*"]
+			"@stores/*": ["stores/*"],
+			"@factories/*": ["factories/*"]
 		},
 		"plugins": [
 			{ "name": "@vuedx/typescript-plugin-vue" }

@@ -19,7 +19,8 @@ export default defineConfig({
 			"@mixins": path.resolve(__dirname, "./src/mixins"),
 			"@renderers": path.resolve(__dirname, "./src/renderers"),
 			"@styles": path.resolve(__dirname, "./src/styles"),
-			"@stores": path.resolve(__dirname, "./src/stores")
+			"@stores": path.resolve(__dirname, "./src/stores"),
+			"@factories": path.resolve(__dirname, "./src/factories")
 		}
 	},
 	server: {

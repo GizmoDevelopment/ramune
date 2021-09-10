@@ -10,7 +10,7 @@
 				<h1 class="heading show-title">{{ show.title }}</h1>
 				<div class="show-stats">
 					<!-- <ShowScoreLabel class="show-score" :score="show.score" /> -->
-					<div class="show-episode-count">{{ episodeCount }} Episodes</div>
+					<div class="show-episode-count">{{ formattedEpisodeCount }}</div>
 				</div>
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
@@ -30,6 +30,9 @@
 
 	// Components
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
+
+	// Utils
+	import { pluralize } from "@utils/essentials";
 
 	// Types
 	import { Show, Season } from "@typings/show";
@@ -54,6 +57,9 @@
 				} else {
 					return 0;
 				}
+			},
+			formattedEpisodeCount (): string {
+				return pluralize("{NUM} Episode{S}", this.episodeCount);
 			},
 			formattedDescription (): string {
 				return this.show.description.replace(/\\n/g, "\n") || "";

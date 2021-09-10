@@ -5,17 +5,17 @@
 				v-for="user in users"
 				:key="user.id"
 				v-memo="[ host, typingUserList.includes(user.id) ]"
-				v-tooltip="user.username"
 				class="user"
 				:class="{
 					host: isHost(user),
 					typing: typingUserList.includes(user.id)
 				}"
 			>
+				<Tooltip>{{ user.username }}</Tooltip>
 				<img
 					class="user-avatar"
 					:src="user.avatar_url"
-					:alt="`${ user.username }'s profile picture`"
+					:alt="`${user.username}'s profile picture`"
 				>
 			</div>
 		</transition-group>
@@ -27,11 +27,17 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
+	// Components
+	import Tooltip from "@components/Tooltip.vue";
+
 	// Types
 	import { User } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "UserList",
+		components: {
+			Tooltip
+		},
 		props: {
 			users: {
 				type: Array as PropType<User[]>,

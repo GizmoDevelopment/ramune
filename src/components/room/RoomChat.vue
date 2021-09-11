@@ -273,8 +273,10 @@
 
 	@media only screen and (max-width: 420px) {
 		.chat-container {
-			width: 100%;
-			padding: 0;
+			width: calc(100% - 1rem);
+			height: 65%;
+			bottom: 65%;
+			padding: 0 .5rem .5rem .5rem;
 		}
 	}
 

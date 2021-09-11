@@ -4,13 +4,14 @@
   "license": "MIT",
   "version": "1.5.1",
   "scripts": {
-    "dev": "node ./server.js",
+    "lint": "eslint src/**/*.{js,ts,vue}",
     "build:client": "vite build --ssrManifest --outDir ./dist/client",
     "build:server": "vite build --outDir ./dist/server --ssr ./src/entry-server.js",
     "build": "vue-tsc --noEmit && npm run build:client && npm run build:server && npm run minify-libass",
     "minify-libass": "esbuild ./public/libass/subtitles-octopus-worker-legacy.js ./public/libass/subtitles-octopus-worker.js ./public/libass/subtitles-octopus.js --minify --outdir=dist/client/libass/",
+    "dev": "node ./server.js",
     "serve": "cross-env NODE_ENV=production node ./server.js",
-    "lint": "eslint src/**/*.{js,ts,vue}"
+	"preview": "npm run build && npm run serve"
   },
   "dependencies": {
     "gizmo-api": "^1.1.0",

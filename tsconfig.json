@@ -27,7 +27,8 @@
 			"@renderers/*": ["renderers/*"],
 			"@styles/*": ["styles/*"],
 			"@stores/*": ["stores/*"],
-			"@factories/*": ["factories/*"]
+			"@factories/*": ["factories/*"],
+			"@directives/*": ["directives/*"]
 		},
 		"plugins": [
 			{ "name": "@vuedx/typescript-plugin-vue" }

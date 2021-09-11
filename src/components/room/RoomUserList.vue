@@ -5,13 +5,13 @@
 				v-for="user in users"
 				:key="user.id"
 				v-memo="[ isHost, typingUserList.includes(user.id) ]"
+				v-tooltip="user.username"
 				class="user"
 				:class="{
 					host: isUserHost(user),
 					typing: typingUserList.includes(user.id)
 				}"
 			>
-				<Tooltip>{{ user.username }}</Tooltip>
 				<ContextMenu
 					v-if="isHost && user.id !== host.id"
 					:identifier="user.id"
@@ -43,7 +43,6 @@
 
 	// Components
 	import ContextMenu from "@components/ContextMenu.vue";
-	import Tooltip from "@components/Tooltip.vue";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -55,8 +54,7 @@
 	export default defineComponent({
 		name: "RoomUserList",
 		components: {
-			ContextMenu,
-			Tooltip
+			ContextMenu
 		},
 		mixins: [ RoomMixin ],
 		props: {

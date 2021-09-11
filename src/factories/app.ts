@@ -10,6 +10,9 @@ import VueApp from "@views/App.vue";
 import { createRouter } from "@factories/router";
 import { createStore } from "@factories/store";
 
+// Directives
+import Tooltip from "@directives/tooltip";
+
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 
@@ -30,7 +33,8 @@ export function createApp (): App<Element> {
 	app
 		.use(router)
 		.use(store)
-		.use(VueSocketIO, ioInstance);
+		.use(VueSocketIO, ioInstance)
+		.directive("tooltip", Tooltip);
 
 	return app;
 }

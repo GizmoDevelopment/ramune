@@ -165,6 +165,7 @@
 	@import "@styles/font.scss";
 	@import "@styles/animations.scss";
 	@import "@styles/mixins.scss";
+	@import "@styles/tooltip.scss";
 
 	:root {
 

@@ -200,14 +200,13 @@
 	}
 
 	@media only screen and (max-width: 1250px) {
+
 		.popup-container {
 			width: 90%;
 		}
-	}
 
-	@media only screen and (max-width: 500px) {
 		.popup-title {
-			margin-right: 1em;
+			margin-right: 0 !important;
 		}
 	}
 

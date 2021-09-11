@@ -17,11 +17,19 @@ export function formatTimestamp (timestamp: number): string {
 
 	if (isNaN(timestamp) || timestamp === 0) return "0:00";
 
-	const
-		minutes = Math.floor(timestamp / 60),
-		seconds = Math.floor(timestamp - (minutes * 60));
+	let _timestamp = timestamp;
 
-	return `${minutes}:${seconds > 9 ? "" : 0}${seconds}`;
+	const hours = Math.floor(_timestamp / 3600);
+
+	_timestamp -= hours * 3600;
+
+	const minutes = Math.floor(_timestamp / 60);
+
+	_timestamp -= minutes * 60;
+
+	const seconds = Math.floor(_timestamp);
+
+	return `${hours > 0 ? `${hours}:` : ""}${(hours > 0 && minutes < 10) ? "0" : ""}${minutes}:${seconds > 9 ? "" : 0}${seconds}`;
 }
 
 export function convertTimestampToSeconds (timestamp: string): number {

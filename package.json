@@ -11,7 +11,7 @@
     "minify-libass": "esbuild ./public/libass/subtitles-octopus-worker-legacy.js ./public/libass/subtitles-octopus-worker.js ./public/libass/subtitles-octopus.js --minify --outdir=dist/client/libass/",
     "dev": "node ./server.js",
     "serve": "cross-env NODE_ENV=production node ./server.js",
-	"preview": "npm run build && npm run serve"
+    "preview": "npm run build && npm run serve"
   },
   "dependencies": {
     "gizmo-api": "^1.1.0",

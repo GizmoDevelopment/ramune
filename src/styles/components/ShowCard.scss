@@ -10,13 +10,19 @@
 	width: 170px;
 	height: calc(170px * 1.42);
 	margin-bottom: .3em;
+	overflow: hidden;
+}
+
+.show-poster-container,
+.show-poster {
+	border-radius: variable(card-border-radius);
 }
 
 .show-poster {
+	position: absolute;
 	width: inherit;
 	height: inherit;
 	background-color: variable(container-background-color);
-	border-radius: 5px;
 }
 
 .overlay-play-icon {

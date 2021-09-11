@@ -2,7 +2,7 @@
 	<div class="show-card">
 		<div class="show-poster-container">
 			<img
-				class="show-poster"
+				class="husk show-poster"
 				:src="show.poster_url"
 				draggable="false"
 				alt="Show poster"
@@ -48,5 +48,17 @@
 
 	@import "@styles/mixins.scss";
 	@import "@styles/components/ShowCard.scss";
+
+	.show-poster-container {
+
+		.show-poster {
+			transition: transform .3s ease-in-out, filter .25s ease;
+		}
+
+		&:hover .show-poster {
+			transform: scale(103%);
+			filter: blur(1px);
+		}
+	}
 
 </style>

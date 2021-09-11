@@ -87,17 +87,32 @@
 	}
 
 	.thumbnail-container {
+
 		position: relative;
 		display: block;
 		width: $card-width;
 		height: $card-height;
+		overflow: hidden;
+
+		.episode-thumbnail {
+			transition: transform .3s ease-in-out, filter .25s ease;
+		}
+
+		&:hover .episode-thumbnail {
+			transform: scale(103%);
+			filter: blur(1px);
+		}
+	}
+
+	.thumbnail-container,
+	.episode-thumbnail {
+		border-radius: variable(card-border-radius);
 	}
 
 	.episode-thumbnail {
 		display: block;
 		width: 100%;
 		height: 100%;
-		border-radius: variable(card-border-radius);
 	}
 
 	.overlay-container,

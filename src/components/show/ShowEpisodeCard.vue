@@ -138,7 +138,7 @@
 		justify-content: space-between;
 		align-items: flex-end;
 		pointer-events: none;
-		z-index: 2;
+		z-index: 1;
 
 		* {
 			background-color: variable(overlay-background-color);

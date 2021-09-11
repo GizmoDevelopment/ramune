@@ -1,5 +1,5 @@
 // Modules
-import { App, createSSRApp } from "vue";
+import { App, createApp as _createApp } from "vue";
 import VueSocketIO from "vue-socket.io-extended";
 import { io } from "socket.io-client";
 
@@ -16,22 +16,14 @@ const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 // Variables
 const ioInstance = io(SOCKET_ENDPOINT);
 
-// Types
-import { Router } from "vue-router";
-
-interface CreateAppReturn {
-	app: App<Element>;
-	router: Router;
-}
-
-export function createApp (): CreateAppReturn {
+export function createApp (): App<Element> {
 
 	if (typeof SOCKET_ENDPOINT !== "string") {
 		throw Error("Environmental variable 'SOCKET_ENDPOINT' is not assigned");
 	}
 
 	const
-		app = createSSRApp(VueApp),
+		app = _createApp(VueApp),
 		router = createRouter(),
 		store = createStore();
 
@@ -40,8 +32,5 @@ export function createApp (): CreateAppReturn {
 		.use(store)
 		.use(VueSocketIO, ioInstance);
 
-	return {
-		app,
-		router
-	};
+	return app;
 }

@@ -2,7 +2,6 @@
 import { App, createSSRApp } from "vue";
 import VueSocketIO from "vue-socket.io-extended";
 import { io } from "socket.io-client";
-import { sync } from "vuex-router-sync";
 
 // Views
 import VueApp from "@views/App.vue";
@@ -19,13 +18,10 @@ const ioInstance = io(SOCKET_ENDPOINT);
 
 // Types
 import { Router } from "vue-router";
-import { State } from "@typings/shims-vuex";
-import { Store } from "vuex";
 
 interface CreateAppReturn {
 	app: App<Element>;
 	router: Router;
-	store: Store<State>;
 }
 
 export function createApp (): CreateAppReturn {
@@ -39,8 +35,6 @@ export function createApp (): CreateAppReturn {
 		router = createRouter(),
 		store = createStore();
 
-	sync(store, router);
-
 	app
 		.use(router)
 		.use(store)
@@ -48,7 +42,6 @@ export function createApp (): CreateAppReturn {
 
 	return {
 		app,
-		router,
-		store
+		router
 	};
 }

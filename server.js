@@ -19,7 +19,7 @@ async function createServer () {
 
 	const
 		manifest = isProduction ? require("./dist/client/ssr-manifest.json") : {},
-		indexFile = fs.readFileSync(resolve("dist/client/index.html"), "utf-8");
+		indexFile = isProduction ? fs.readFileSync(resolve("dist/client/index.html"), "utf-8") : "";
 
 	const app = express();
 	let vite = null;
@@ -60,20 +60,13 @@ async function createServer () {
 				render = (await vite.ssrLoadModule("./src/entry-server.js")).render;
 			}
 
-			if (render && template) {
+			const [ appHtml, preloadLinks ] = await render(url, manifest);
 
-				const [ appHtml, state, preloadLinks ] = await render(url, manifest);
+			const html = template
+				.replace("<!--preload-links-->", preloadLinks)
+				.replace("<!--app-html-->", appHtml);
 
-				const html = template
-					.replace("<!--preload-links-->", preloadLinks)
-					.replace("<vuex-state>", state)
-					.replace("<!--app-html-->", appHtml);
-
-				res.status(200).set({ "Content-Type": "text/html" }).end(html);
-			} else {
-				res.status(500).end("No render function.");
-			}
-
+			res.status(200).set({ "Content-Type": "text/html" }).end(html);
 		} catch (err) {
 
 			vite?.ssrFixStacktrace(err);
@@ -88,6 +81,6 @@ async function createServer () {
 
 createServer().then(app => {
 	app.listen(3000, () => {
-		console.log("Server running");
+		console.log("Server running: http://localhost:3000");
 	});
 });

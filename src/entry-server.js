@@ -14,7 +14,7 @@ export async function render (url, manifest) {
 	const
 		ctx = {},
 		html = await renderToString(app, ctx),
-		preloadLinks = renderPreloadLinks(ctx?.modules, manifest);
+		preloadLinks = renderPreloadLinks(ctx.modules, manifest);
 
 	return [
 		html,

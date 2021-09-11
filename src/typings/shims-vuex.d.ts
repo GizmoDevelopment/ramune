@@ -35,14 +35,6 @@ export interface SettingsState {
 	effects: boolean;
 }
 
-export interface State {
-	cache: CacheState;
-	room: RoomState;
-	user: UserState;
-	generic: GenericState;
-	settings: SettingsState;
-}
-
 declare module "@vue/runtime-core" {
 
 	interface State {

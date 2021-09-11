@@ -2,7 +2,7 @@
   "name": "ramune",
   "description": "Watch anime together with your friends.",
   "license": "MIT",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "scripts": {
     "lint": "eslint src/**/*.{js,ts,vue}",
     "build:client": "vite build --ssrManifest --outDir ./dist/client",

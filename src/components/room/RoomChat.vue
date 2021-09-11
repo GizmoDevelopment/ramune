@@ -271,6 +271,12 @@
 		}
 	}
 
+	@media only screen and (max-width: 420px) {
+		.chat-container {
+			width: 100%;
+		}
+	}
+
 	.chat-message-container,
 	.chat-input-container {
 		width: 100%;

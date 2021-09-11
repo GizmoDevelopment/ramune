@@ -4,7 +4,7 @@ import VueSocketIO from "vue-socket.io-extended";
 import { io } from "socket.io-client";
 import { sync } from "vuex-router-sync";
 
-// Components
+// Views
 import VueApp from "@views/App.vue";
 
 // Factories

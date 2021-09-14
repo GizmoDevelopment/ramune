@@ -29,7 +29,7 @@
 
 	// stylelint-disable-next-line no-duplicate-selectors
 	.show-episode-count {
-		border: 2px solid transparent;
+		border-color: transparent;
 	}
 
 </style>

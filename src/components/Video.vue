@@ -679,43 +679,6 @@
 		transform: translateY(.5em) scale(90%);
 	}
 
-	// Subtitles & Captions
-	// ! SUPERSEDED BY ASS RENDERER
-
-	video {
-
-		&::cue {
-			font-family: variable(font);
-			font-size: 40px;
-			line-height: 100%;
-			background: transparent;
-			text-shadow: #000 3px 3px 10px;
-		}
-
-		&::-webkit-media-text-track-display {
-			margin-top: 1em;
-		}
-	}
-
-	.video-container:fullscreen {
-		video::cue {
-			font-size: 50px;
-		}
-	}
-
-	@media only screen and (max-width: 2560px) {
-		.video-container:fullscreen {
-			video::cue {
-				font-size: 55px;
-			}
-		}
-	}
-
-	.popped-out::cue {
-		font-size: 12px;
-		text-shadow: #000 0 0 2px;
-	}
-
 	// Video Containers
 
 	.video-player {
@@ -723,14 +686,15 @@
 		height: 100%;
 	}
 
-	.video-container:not(:fullscreen) .video-player {
-		max-height: 763.3px; // Temporary fix for thumbnail-less videos jumping when being selected
-	}
-
 	.video-container {
+
 		position: relative;
 		width: 100%;
 		height: auto;
+
+		&:not(:fullscreen) .video-player {
+			max-height: 763.3px; // Temporary fix for thumbnail-less videos jumping when being selected
+		}
 	}
 
 	.subtitle-container {
@@ -889,7 +853,6 @@
 
 		background: none;
 		border: none;
-		font-weight: 100;
 		color: variable(text-color);
 		font-size: 1.1rem;
 		font-weight: lighter;

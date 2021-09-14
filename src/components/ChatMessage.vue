@@ -115,6 +115,7 @@
 
 <style lang="scss">
 
+	// stylelint-disable-next-line no-duplicate-selectors
 	.message-container {
 
 		.emoji {

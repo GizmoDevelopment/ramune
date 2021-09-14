@@ -77,6 +77,11 @@
 	$card-width: 200px;
 	$card-height: calc(#{$card-width} * .56);
 
+	.thumbnail-container,
+	.episode-thumbnail {
+		border-radius: variable(card-border-radius);
+	}
+
 	.episode-container {
 		display: flex;
 		flex-direction: column;
@@ -105,11 +110,6 @@
 			transform: scale(103%);
 			filter: blur(1px);
 		}
-	}
-
-	.thumbnail-container,
-	.episode-thumbnail {
-		border-radius: variable(card-border-radius);
 	}
 
 	.overlay-container,

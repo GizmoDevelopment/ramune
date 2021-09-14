@@ -6,7 +6,9 @@
 	"plugins": [
 		"stylelint-scss"
 	],
+	"ignoreFiles": [ "**/*.{js,ts}" ],
 	"rules": {
-		"no-empty-source": null
+		"no-empty-source": null,
+		"no-invalid-double-slash-comments": null
 	}
 }

@@ -85,6 +85,11 @@
 				return this.password.length === 0 || this.debounce;
 			}
 		},
+		watch: {
+			visible (state: boolean) {
+				if (state) this.clearPopup();
+			}
+		},
 		methods: {
 			verifyPassword () {
 
@@ -104,6 +109,10 @@
 					this.debounce = false;
 					this.error = err;
 				});
+			},
+			clearPopup () {
+				this.error = "";
+				this.password = "";
 			}
 		}
 	});

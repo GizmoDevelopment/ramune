@@ -13,6 +13,7 @@
 			:variant="variant"
 			:placeholder="placeholder"
 			:maxlength="limit"
+			:name="name"
 		>
 	</div>
 </template>
@@ -52,6 +53,10 @@
 			autofocus: {
 				type: Boolean,
 				default: false
+			},
+			name: {
+				type: String,
+				default: ""
 			}
 		},
 		emits: [ "update:modelValue" ],
@@ -92,6 +97,7 @@
 
 	.container {
 
+		width: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;

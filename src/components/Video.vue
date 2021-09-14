@@ -720,7 +720,7 @@
 
 	.video-player {
 		width: 100%;
-		height: auto;
+		height: 100%;
 	}
 
 	.video-container:not(:fullscreen) .video-player {

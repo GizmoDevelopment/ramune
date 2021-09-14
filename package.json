@@ -5,8 +5,8 @@
   "version": "1.5.2",
   "scripts": {
     "lint:js": "eslint ./src/**/*.{js,ts,vue}",
-	"lint:css": "stylelint ./src/**/*.{css,scss,vue} --syntax scss",
-	"lint": "npm run js && npm run css",
+    "lint:css": "stylelint ./src/**/*.{css,scss,vue} --syntax scss",
+    "lint": "npm run js && npm run css",
     "build": "vue-tsc --noEmit && vite build && npm run minify-libass",
     "minify-libass": "esbuild ./public/libass/subtitles-octopus-worker-legacy.js ./public/libass/subtitles-octopus-worker.js ./public/libass/subtitles-octopus.js --minify --outdir=dist/libass/",
     "dev": "vite",
@@ -37,6 +37,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-recommended-scss": "^4.3.0",
     "stylelint-processor-html": "^1.0.0",
+    "stylelint-scss": "^3.21.0",
     "typescript": "^4.4.3",
     "vite": "^2.5.7",
     "vite-svg-loader": "^2.2.0",

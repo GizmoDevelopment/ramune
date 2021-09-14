@@ -95,6 +95,9 @@
 		overflow: hidden;
 
 		.episode-thumbnail {
+			display: block;
+			width: 100%;
+			height: 100%;
 			transition: transform .3s ease-in-out, filter .25s ease;
 		}
 
@@ -107,12 +110,6 @@
 	.thumbnail-container,
 	.episode-thumbnail {
 		border-radius: variable(card-border-radius);
-	}
-
-	.episode-thumbnail {
-		display: block;
-		width: 100%;
-		height: 100%;
 	}
 
 	.overlay-container,

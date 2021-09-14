@@ -60,7 +60,7 @@
 		border-radius: variable(popup-border-radius);
 		box-shadow: 0 0 10px variable(primary-color);
 		width: 350px;
-		height: calc(350px * 9/16);
+		height: calc(350px * (9 / 16));
 	}
 
 	#room-video-popout-container,

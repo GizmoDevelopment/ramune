@@ -1,22 +1,24 @@
 @import "@styles/main.scss";
 
 .tooltip-container {
+
+	.tooltip {
+		position: absolute;
+		top: calc(-2em - (2 * .2em));
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		opacity: 0;
+		transform: translateY(.5em) scale(95%);
+		transition: opacity .2s ease, transform .2s ease;
+	}
+
 	&:hover .tooltip {
 		opacity: 1;
 		transform: translateY(0) scale(100%);
 	}
-}
 
-.tooltip {
-	position: absolute;
-	top: calc(-2em - 2*.2em);
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	opacity: 0;
-	transform: translateY(.5em) scale(95%);
-	transition: opacity .2s ease, transform .2s ease;
 }
 
 .tooltip-content {

@@ -6,22 +6,20 @@
 	>
 		<Error :v-show="error" :text="error" />
 		<form class="form" @submit.prevent="attemptLogin">
-			<input
+			<Input
 				v-model="username"
-				class="input"
 				variant="dark"
 				type="text"
 				name="username"
-				placeholder="Username / E-mail"
-			>
-			<input
+				label="Username / Email"
+			/>
+			<Input
 				v-model="password"
-				class="input"
 				variant="dark"
 				type="password"
 				name="password"
-				placeholder="Password"
-			>
+				label="Password"
+			/>
 			<div v-if="isBusy">
 				<LoadingBuffer size="small" />
 			</div>
@@ -51,13 +49,15 @@
 	import PopupCard from "@components/PopupCard.vue";
 	import Error from "@components/Error.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
+	import Input from "@components/Input.vue";
 
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {
 			PopupCard,
 			Error,
-			LoadingBuffer
+			LoadingBuffer,
+			Input
 		},
 		mixins: [ SocketMixin ],
 		props: {
@@ -128,9 +128,8 @@
 			margin-top: .5em;
 		}
 
-		.input {
+		.container {
 			width: 100%;
-			font-size: 1.2em;
 		}
 	}
 

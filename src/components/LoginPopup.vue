@@ -51,6 +51,9 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Input from "@components/Input.vue";
 
+	// Types
+	import { ErrorResult } from "gizmo-api/lib/types";
+
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {
@@ -97,9 +100,13 @@
 							this.login(user);
 							this.$emit("dismiss");
 
-						} catch (err) {
+						} catch (err: unknown) {
+
 							console.error(err);
-							this.error = err.message;
+
+							if (typeof err === "object") {
+								this.error = (err as ErrorResult).message;
+							}
 						}
 
 						this.isBusy = false;

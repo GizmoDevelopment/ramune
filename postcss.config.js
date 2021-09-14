@@ -5,6 +5,12 @@ module.exports = {
 			flexbox: false
 		}),
 		require("stylelint"),
-		require("postcss-reporter")
+		require("postcss-reporter"),
+		require("@fullhuman/postcss-purgecss")({
+			content: [
+				"index.html",
+				"./src/**/*.{css,scss,vue}"
+			]
+		})
 	]
 };

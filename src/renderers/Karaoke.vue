@@ -186,7 +186,7 @@
 
 	.lyrics-appear-enter-active,
 	.lyrics-appear-leave-active {
-		transition: opacity .4s ease, transform .3s ease-in-out;
+		transition: opacity .35s ease, transform .25s ease-in-out;
 	}
 
 	.lyrics-appear-enter-from,
@@ -197,7 +197,7 @@
 
 	.lyrics-line-slide-enter-active,
 	.lyrics-line-slide-leave-active {
-		transition: opacity .1s ease, transform .15s ease;
+		transition: opacity .05s ease, transform .1s ease;
 	}
 
 	.lyrics-line-slide-enter-from {

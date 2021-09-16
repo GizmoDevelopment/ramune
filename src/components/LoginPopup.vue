@@ -12,6 +12,7 @@
 				type="text"
 				name="username"
 				label="Username / Email"
+				:autofocus="true"
 			/>
 			<Input
 				v-model="password"

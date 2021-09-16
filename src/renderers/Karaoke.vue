@@ -214,8 +214,7 @@
 
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
-		padding-left: 1rem;
-		padding-right: 1rem;
+		padding: 0 1rem 0 1rem;
 
 		display: flex;
 		flex-direction: row;
@@ -223,7 +222,7 @@
 		align-items: center;
 
 		svg {
-			height: 2rem;
+			height: 2em;
 		}
 	}
 
@@ -239,9 +238,19 @@
 	}
 
 	@media only screen and (max-width: 1100px) {
+
+		.karaoke-holder {
+			padding: 0 .5rem 0 .5rem;
+		}
+
+		.lyrics-container {
+			padding: .15rem 0 .15rem .5rem;
+		}
+
 		.karaoke-holder {
 			font-size: 10px;
 		}
+
 	}
 
 	@media only screen and (max-width: 750px) {

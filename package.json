@@ -6,7 +6,7 @@
   "scripts": {
     "lint:js": "eslint ./src/**/*.{js,ts,vue}",
     "lint:css": "stylelint ./src/**/*.{css,scss,vue} --syntax scss",
-    "lint": "npm run js && npm run css",
+    "lint": "npm run lint:js && npm run lint:css",
     "build": "vue-tsc --noEmit && vite build && npm run minify-libass",
     "minify-libass": "esbuild ./public/libass/subtitles-octopus-worker-legacy.js ./public/libass/subtitles-octopus-worker.js ./public/libass/subtitles-octopus.js --minify --outdir=dist/libass/",
     "dev": "vite",

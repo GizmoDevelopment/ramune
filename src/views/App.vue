@@ -341,26 +341,6 @@
 		}
 	}
 
-	/* Tooltip */
-
-	.tippy-box {
-		border-radius: var(--popup-border-radius);
-		border: 2px solid var(--primary-color);
-	}
-
-	.tippy-box, .tippy-arrow {
-		background-color: var(--container-background-color);
-	}
-
-	.tippy-content {
-		color: var(--text-color);
-		font-family: var(--font);
-		padding-left: 9px;
-		padding-right: 9px;
-		padding-top: 5px;
-		padding-bottom: 5px;
-	}
-
 	.room-popout-container {
 		position: fixed;
 		left: 0;

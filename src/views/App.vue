@@ -1,7 +1,7 @@
 <template>
 	<Header />
-	<div id="content-container">
-		<div id="content">
+	<div class="content-container">
+		<div class="content">
 			<router-view v-slot="{ Component }">
 				<transition name="view" mode="out-in">
 					<component :is="Component" />
@@ -309,18 +309,18 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	#content-container {
+	.content-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 	}
 
-	#content {
+	.content {
 		width: 1350px;
 	}
 
 	@media only screen and (max-width: 1400px) {
-		#content {
+		.content {
 			width: 100%;
 			margin-left: 1.3rem;
 			margin-right: 1.3rem;
@@ -328,7 +328,7 @@
 	}
 
 	@media only screen and (max-width: 1200px) {
-		#content {
+		.content {
 			width: 100%;
 			margin-left: .5rem;
 			margin-right: .5rem;

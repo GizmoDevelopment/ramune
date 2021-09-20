@@ -93,13 +93,18 @@
 
 	//
 
-	.ghost-element, .ghost-slot {
+	.ghost-element,
+	.ghost-slot {
 		width: inherit;
 		height: inherit;
 	}
 
 	.ghost-slot {
 		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.context-menu-positioner {

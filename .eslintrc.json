@@ -28,7 +28,8 @@
 			"singleline": 2
 		}],
 		"vue/script-setup-uses-vars": "off",
-		"vue/eqeqeq": [ "error", "always" ]
+		"vue/eqeqeq": [ "error", "always" ],
+		"vue/component-api-style": [ "error", [ "options", "composition" ] ]
     },
 	"overrides": [
 		{

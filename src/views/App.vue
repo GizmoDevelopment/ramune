@@ -63,9 +63,7 @@
 		},
 		watch: {
 			user (user: AuthenticatedUser | null) {
-				if (user) {
-					this.$socket.client.open();
-				}
+				if (user) this.$socket.client.connect();
 			}
 		},
 		async mounted () {

@@ -13,6 +13,9 @@ export default {
 	mutations: {
 		UPDATE_USER (state: UserState, user: AuthenticatedUser) {
 			state.user = user;
+		},
+		REMOVE_USER (state: UserState) {
+			state.user = null;
 		}
 	}
 } as Module<UserState, unknown>;

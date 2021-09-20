@@ -24,6 +24,12 @@
 					:src="user.avatar_url"
 					alt="Your profile picture"
 				>
+				<ContextMenu
+					:items="[ 'Log out' ]"
+					@ctx-log-out="logout"
+				>
+					<Caret class="more-icon" />
+				</ContextMenu>
 			</div>
 			<div v-else>
 				<div class="login">
@@ -45,6 +51,7 @@
 
 	// Components
 	import LoginPopup from "@components/LoginPopup.vue";
+	import ContextMenu from "@components/ContextMenu.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";
@@ -52,12 +59,18 @@
 	// Icons
 	import Hanyuu from "@assets/images/hanyuu.webp";
 	import Logo from "@assets/icons/logo.svg?component";
+	import Caret from "@assets/icons/caret.svg?component";
+
+	// Utils
+	import { removeCookie } from "@utils/dom";
 
 	export default defineComponent({
 		name: "Header",
 		components: {
 			Logo,
-			LoginPopup
+			LoginPopup,
+			ContextMenu,
+			Caret
 		},
 		mixins: [ MainMixin ],
 		data () {
@@ -69,6 +82,19 @@
 		computed: {
 			shouldDisplayHanyuu (): boolean {
 				return this.$store.state.generic.shouldDisplayHanyuu;
+			}
+		},
+		methods: {
+			logout () {
+				if (this.user) {
+
+					this.$store.commit("user/REMOVE_USER");
+					removeCookie("GIZMO_TOKEN");
+
+					if (this.$socket.connected) {
+						this.$socket.client.disconnect();
+					}
+				}
 			}
 		}
 	});
@@ -181,6 +207,11 @@
 
 		* {
 			margin-left: 10px;
+		}
+
+		.more-icon {
+			transform: rotateZ(90deg);
+			margin-left: 0;
 		}
 	}
 

@@ -5,7 +5,7 @@
 			<div class="inner-title-bar">
 				<MarkdownRenderer class="room-name" :content="room.name" />
 				<button class="primary-button icon-button" @click="attemptRoomJoin">
-					<CaretRight />
+					<Caret />
 				</button>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 	import RoomMethodsMixin from "@mixins/RoomMethods";
 
 	// Icons
-	import CaretRight from "@assets/icons/caret-right.svg?component";
+	import Caret from "@assets/icons/caret.svg?component";
 	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Types
@@ -36,7 +36,7 @@
 	export default defineComponent({
 		name: "RoomCard",
 		components: {
-			CaretRight,
+			Caret,
 			UserList,
 			MarkdownRenderer,
 			LockClosed

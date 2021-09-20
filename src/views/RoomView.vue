@@ -1,7 +1,7 @@
 <template>
 	<div class="room-title-bar">
 		<button class="primary-button icon-button" @click="$emit('leave-room')">
-			<CaretLeft />
+			<Caret class="leave-icon" />
 		</button>
 		<div class="heading inner-title-bar">
 			<LockClosed v-if="room.locked" class="lock-icon" />
@@ -59,7 +59,7 @@
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Icons
-	import CaretLeft from "@assets/icons/caret-left.svg?component";
+	import Caret from "@assets/icons/caret.svg?component";
 	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Mixins
@@ -77,7 +77,7 @@
 		components: {
 			RoomUserList,
 			ShowEpisodePicker,
-			CaretLeft,
+			Caret,
 			ShowHeading,
 			LoadingBuffer,
 			MarkdownRenderer,
@@ -147,6 +147,15 @@
 		> * {
 			margin-right: 10px;
 		}
+
+		.lock-icon {
+			font-size: .7em;
+			margin-right: .2em;
+		}
+
+		.leave-icon {
+			transform: rotateZ(180deg);
+		}
 	}
 
 	.no-video-message {
@@ -158,11 +167,6 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-	}
-
-	.lock-icon {
-		font-size: .7em;
-		margin-right: .2em;
 	}
 
 	@media only screen and (max-width: 800px) {

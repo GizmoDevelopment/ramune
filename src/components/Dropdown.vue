@@ -8,7 +8,7 @@
 	>
 		<div class="dropdown-currently-selected">
 			<p class="dropdown-currently-selected-label">{{ entries[currentIndex] }}</p>
-			<CaretDown class="dropdown-icon" :class="{ 'dropdown-icon-active': isOpen }" />
+			<Caret class="dropdown-icon" :class="{ 'dropdown-icon-active': isOpen }" />
 		</div>
 		<transition name="dropdown">
 			<div v-show="isOpen" class="dropdown-holder">
@@ -42,12 +42,12 @@
 	import GenericMixin from "@mixins/Generic";
 
 	// Icons
-	import CaretDown from "@assets/icons/caret-down.svg?component";
+	import Caret from "@assets/icons/caret.svg?component";
 
 	export default defineComponent({
 		name: "Dropdown",
 		components: {
-			CaretDown
+			Caret
 		},
 		mixins: [ GenericMixin ],
 		props: {
@@ -165,10 +165,11 @@
 
 	.dropdown-icon {
 		transition: transform .3s ease;
+		transform: rotateZ(90deg);
 	}
 
 	.dropdown-icon-active {
-		transform: rotateX(180deg);
+		transform: rotateZ(90deg) rotateY(180deg);
 	}
 
 	.dropdown-entry {

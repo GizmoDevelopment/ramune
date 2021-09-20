@@ -36,7 +36,7 @@
 					:class="{ 'spinning-button': isMessageSending }"
 					type="submit"
 				>
-					<ArrowUp />
+					<Arrow class="send-icon" />
 				</button>
 			</form>
 		</div>
@@ -52,7 +52,7 @@
 	import ChatMessage from "@components/ChatMessage.vue";
 
 	// Icons
-	import ArrowUp from "@assets/icons/arrow-up.svg?component";
+	import Arrow from "@assets/icons/arrow.svg?component";
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
@@ -65,7 +65,7 @@
 		name: "RoomChat",
 		components: {
 			ChatMessage,
-			ArrowUp
+			Arrow
 		},
 		mixins: [ RoomMixin ],
 		setup () {
@@ -336,6 +336,10 @@
 			pointer-events: none;
 		}
 
+	}
+
+	.send-icon {
+		transform: rotateZ(-90deg);
 	}
 
 </style>

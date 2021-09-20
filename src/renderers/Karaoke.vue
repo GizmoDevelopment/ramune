@@ -241,14 +241,11 @@
 
 		.karaoke-holder {
 			padding: 0 .5rem 0 .5rem;
+			font-size: 10px;
 		}
 
 		.lyrics-container {
 			padding: .15rem 0 .15rem .5rem;
-		}
-
-		.karaoke-holder {
-			font-size: 10px;
 		}
 
 	}

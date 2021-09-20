@@ -24,8 +24,19 @@ export function getCookie (name: string): string | null {
 		: null;
 }
 
-export function setCookie (name: string, value: string): void {
-	document.cookie = `${name}=${encodeURIComponent(value)}; domain=.gizmo.moe; expires=${new Date(Date.now() + (60 * 60 * 24 * 365 * 1000)).toUTCString()}; secure=true; samesite=lax`;
+export function setCookie (name: string, value: string, options?: { expiration: number }): void {
+
+	let expiration = Date.now() + (60 * 60 * 24 * 365 * 1000);
+
+	if (options?.expiration) {
+		expiration = options?.expiration;
+	}
+
+	document.cookie = `${name}=${encodeURIComponent(value)}; domain=localhost; expires=${new Date(expiration).toUTCString()}; secure=true; samesite=lax`;
+}
+
+export function removeCookie (name: string): void {
+	setCookie(name, "", { expiration: 0 });
 }
 
 export function renderTwemoji (element: HTMLElement): void {

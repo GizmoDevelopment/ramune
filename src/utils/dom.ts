@@ -32,7 +32,7 @@ export function setCookie (name: string, value: string, options?: { expiration: 
 		expiration = options?.expiration;
 	}
 
-	document.cookie = `${name}=${encodeURIComponent(value)}; domain=localhost; expires=${new Date(expiration).toUTCString()}; secure=true; samesite=lax`;
+	document.cookie = `${name}=${encodeURIComponent(value)}; domain=.gizmo.moe; expires=${new Date(expiration).toUTCString()}; secure=true; samesite=lax`;
 }
 
 export function removeCookie (name: string): void {

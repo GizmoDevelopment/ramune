@@ -12,10 +12,11 @@
 		</div>
 		<transition name="context-menu-slide">
 			<div v-if="isOpen" class="context-menu-positioner">
-				<div class="context-menu-platter">
+				<div class="context-menu-platter" :variant="variant">
 					<button
 						v-for="(item, index) in items"
 						:key="index"
+						:variant="variant"
 						class="secondary-button context-menu-button"
 						@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
 					>
@@ -32,8 +33,12 @@
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
 
+	// Mixins
+	import GenericMixin from "@mixins/Generic";
+
 	export default defineComponent({
 		name: "ContextMenu",
+		mixins: [ GenericMixin ],
 		props:  {
 			items: {
 				type: Array as PropType<string[]>,
@@ -41,7 +46,7 @@
 			},
 			identifier: {
 				type: [ String, Number ],
-				required: true
+				default: null
 			}
 		},
 		setup () {

@@ -2,13 +2,13 @@
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div v-if="show && season && episode">
+			<Video
+				:show="show"
+				:episode="episode"
+			/>
 			<ShowHeading
 				:show="show"
 				:season="season"
-				:episode="episode"
-			/>
-			<Video
-				:show="show"
 				:episode="episode"
 			/>
 			<ShowEpisodePicker

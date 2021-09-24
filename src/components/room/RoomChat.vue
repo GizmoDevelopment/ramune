@@ -251,6 +251,7 @@
 		left: 0;
 		position: fixed;
 		pointer-events: none;
+		z-index: 4;
 	}
 
 	.chat-container {
@@ -320,11 +321,6 @@
 		resize: none;
 		overflow: hidden;
 		margin: 0;
-	}
-
-	.chat-input,
-	.chat-message-container {
-		z-index: 4;
 	}
 
 	.hidden-chat-input-container {

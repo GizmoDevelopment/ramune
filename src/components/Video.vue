@@ -701,6 +701,7 @@
 		left: 0;
 		height: 2.25rem;
 		margin: 1rem;
+		pointer-events: none;
 	}
 
 	// Overlay

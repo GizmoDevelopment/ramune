@@ -1,6 +1,8 @@
 <template>
 	<div>
+		<!-- ID is used for parenting the Room Chat to the container -->
 		<div
+			id="video-container"
 			ref="videoContainer"
 			class="video-container"
 			:class="{ 'video-inactive': isMouseStatic }"

@@ -186,6 +186,7 @@
 		--card-border-radius: 3px;
 		--popup-border-radius: 8px;
 		--overlay-background-color: rgba(0, 0, 0, .7);
+		--border-style: 2px solid var(--primary-color);
 
 		/* Timing Functions */
 		--easing-enter: cubic-bezier(0, 1.68, .43, 1.01);

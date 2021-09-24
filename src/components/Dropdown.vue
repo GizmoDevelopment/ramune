@@ -76,7 +76,7 @@
 
 	// Variables
 	$empty-border: 2px solid transparent;
-	$filled-border: 2px solid variable(primary-color);
+	$filled-border: variable(border-style);
 	$border-transition: .15s ease;
 
 	// Transitions

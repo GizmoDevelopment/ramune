@@ -117,7 +117,7 @@
 			position: relative;
 			background-color: variable(tray-background-color);
 			border-radius: variable(popup-border-radius);
-			border: 2px solid variable(primary-color);
+			border: variable(border-style);
 			min-width: 11rem;
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;

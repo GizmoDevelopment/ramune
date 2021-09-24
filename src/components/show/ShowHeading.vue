@@ -79,7 +79,6 @@
 
 		.episode-index {
 			font-size: 1em;
-			margin-right: .1em;
 		}
 
 		.episode-label {

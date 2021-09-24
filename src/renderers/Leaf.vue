@@ -257,7 +257,7 @@
 											y += getRandomNumberFromRange([ -1, 1 ]) * sY;
 
 											break;
-										case "driftBottomRight":
+										case "drift":
 
 											x += sX;
 											y += sY;

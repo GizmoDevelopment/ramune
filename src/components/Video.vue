@@ -676,6 +676,12 @@
 		cursor: none;
 	}
 
+	.karaoke {
+		position: absolute;
+		bottom: 1.5rem;
+		left: .7rem;
+	}
+
 	// Overlay
 
 	.video-overlay {

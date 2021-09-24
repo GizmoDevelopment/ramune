@@ -1,7 +1,7 @@
 <template>
 	<Header />
 	<div class="content-container">
-		<div class="content">
+		<div class="route-content">
 			<router-view v-slot="{ Component }">
 				<transition name="view" mode="out-in">
 					<component :is="Component" />
@@ -316,12 +316,12 @@
 		justify-content: center;
 	}
 
-	.content {
+	.route-content {
 		width: 1350px;
 	}
 
 	@media only screen and (max-width: 1400px) {
-		.content {
+		.route-content {
 			width: 100%;
 			margin-left: 1.3rem;
 			margin-right: 1.3rem;
@@ -329,7 +329,7 @@
 	}
 
 	@media only screen and (max-width: 1200px) {
-		.content {
+		.route-content {
 			width: 100%;
 			margin-left: .5rem;
 			margin-right: .5rem;

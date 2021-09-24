@@ -532,7 +532,7 @@
 				}
 			},
 			togglePlayPause () {
-				if (this.video) {
+				if (this.video && this.controls) {
 					if (this.video.paused) {
 						this.video.play();
 					} else {

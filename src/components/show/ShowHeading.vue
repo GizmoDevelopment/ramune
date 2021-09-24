@@ -1,6 +1,6 @@
 <template>
 	<h1 class="heading show-title">{{ show.title }}</h1>
-	<p v-if="show.format !=='movie'" class="faded episode-title">Season {{ season.id }} Episode {{ id }} - {{ episode.title }}</p>
+	<p v-if="show.format !=='movie'" class="faded episode-title">S{{ season.id }} E{{ id }} - {{ episode.title }}</p>
 </template>
 
 <script lang="ts">

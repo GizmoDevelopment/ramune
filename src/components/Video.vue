@@ -829,7 +829,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: variable(container-background-color);
+		background-color: variable(tray-background-color);
 		border-radius: variable(popup-border-radius);
 		padding: .5rem;
 

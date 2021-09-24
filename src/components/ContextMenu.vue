@@ -16,7 +16,7 @@
 					<button
 						v-for="(item, index) in items"
 						:key="index"
-						class="secondary-button context-menu-button"
+						class="tray-button context-menu-button"
 						@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
 					>
 						{{ item }}
@@ -127,16 +127,10 @@
 			align-items: flex-start;
 
 			.context-menu-button {
-
-				background-color: variable(tray-background-color);
 				border-radius: 0;
 				width: 100%;
 				text-align: left;
 				transition: background-color .3s ease;
-
-				&:hover {
-					background-color: variable(tray-hover-background-color);
-				}
 			}
 		}
 	}

@@ -88,7 +88,7 @@
 										<button
 											v-for="subtitle in episode.subtitles"
 											:key="subtitle.code"
-											class="subtitle-language-button"
+											class="tray-button subtitle-language-button"
 											@click="selectSubtitleLanguage(subtitle.code)"
 										>
 											<Checkmark v-show="subtitle.code === selectedSubtitleLanguage" />
@@ -866,21 +866,11 @@
 			width: 100%;
 			height: 2rem;
 			padding: .2rem 0 .2rem 0;
+			border-radius: 0;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: none;
-			border: none;
-			color: variable(text-color);
-			font-weight: lighter;
 			font-size: 1.1rem;
-			border-radius: 0;
-			cursor: pointer;
-			transition: background-color .3s ease;
-
-			&:hover {
-				background-color: variable(container-hover-color);
-			}
 
 			svg {
 				position: absolute;

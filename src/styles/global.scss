@@ -2,7 +2,8 @@
 @import "@styles/mixins.scss";
 
 .primary-button,
-.secondary-button {
+.secondary-button,
+.tray-button {
 	color: variable(text-color);
 	font-size: 18px;
 	font-weight: 500;
@@ -33,6 +34,15 @@
 		background-color: variable(container-hover-color);
 	}
 
+}
+
+.tray-button {
+
+	background-color: variable(tray-background-color);
+
+	&:hover {
+		background-color: variable(tray-hover-background-color);
+	}
 }
 
 .icon-button {

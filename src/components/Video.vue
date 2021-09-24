@@ -178,9 +178,6 @@
 	// Constants
 	const DEV = import.meta.env.DEV;
 
-	// TODO: Implemnet controls prop
-	// TODO: Static video size when thumbnail-less or loading
-
 	export default defineComponent({
 		name: "Video",
 		components: {
@@ -681,6 +678,14 @@
 		position: absolute;
 		bottom: 1.5rem;
 		left: .7rem;
+	}
+
+	.overlay-user-list {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 2.25rem;
+		margin: 1rem;
 	}
 
 	// Overlay

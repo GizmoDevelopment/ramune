@@ -1,6 +1,9 @@
 <template>
 	<h1 class="heading show-title">{{ show.title }}</h1>
-	<p v-if="show.format !=='movie'" class="faded episode-title">S{{ season.id }} E{{ id }} - {{ episode.title }}</p>
+	<span v-if="show.format !=='movie'" class="faded episode-label">
+		<span class="episode-index">S{{ season.id }} E{{ id }}</span>
+		<span class="episode-title">{{ episode.title }}</span>
+	</span>
 </template>
 
 <script lang="ts">
@@ -39,26 +42,47 @@
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+	@import "@styles/main.scss";
 
 	.show-title {
-		margin-bottom: .1rem;
+		margin-bottom: .2em;
 	}
 
-	.episode-title {
+	.episode-index {
+		color: variable(text-color);
+		background-color: variable(container-background-color);
+		padding-left: 8px;
+		padding-right: 8px;
+		margin-right: .5em;
+		border: 2px solid variable(container-background-color);
+		border-radius: 20px;
+		font-weight: bold;
+		font-size: 1em;
+	}
+
+	.episode-label {
 		text-align: left;
 		margin-top: 0;
-		font-size: 1.25rem;
+		font-size: 1.25em;
 	}
 
 	@media only screen and (max-width: 570px) {
 
 		.show-title {
-			font-size: 1.6rem;
+			font-size: 1.6em;
+			margin-bottom: .3em;
+			margin-top: .2em;
 		}
 
-		.episode-title {
-			font-size: 1rem;
+		.episode-index {
+			font-size: 1em;
+			margin-right: .1em;
+		}
+
+		.episode-label {
+			font-size: 1em;
 		}
 	}
 

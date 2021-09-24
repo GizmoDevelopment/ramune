@@ -1,12 +1,11 @@
 <template>
 	<div class="episode-picker-container">
 		<div v-if="show.seasons.length > 1" class="title-bar">
-			<span class="season-title">Season {{ currentSeason.id }}</span>
 			<Dropdown
 				class="dropdown"
+				:variant="variant"
 				:entries="seasonList"
 				:current-index="currentSeasonIndex"
-				:variant="variant"
 				@select-index="selectSeason"
 			/>
 		</div>
@@ -141,6 +140,10 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		flex-wrap: wrap;
+	}
+
+	.dropdown {
+		font-size: 1.2rem !important;
 	}
 
 	@media only screen and (max-width: 700px) {

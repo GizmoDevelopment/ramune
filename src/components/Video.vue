@@ -35,6 +35,7 @@
 							<div class="progress-bar-container">
 								<div
 									class="progress-bar"
+									:class="{ 'non-selectable-progress-bar': !controls }"
 									@click="seek"
 									@mouseenter="isHoveringOverProgressBar = true"
 									@mouseleave="isHoveringOverProgressBar = false"
@@ -48,7 +49,7 @@
 						</div>
 						<div class="control-row">
 							<div class="control-row-left">
-								<div @click="togglePlayPause">
+								<div v-if="controls" @click="togglePlayPause">
 									<Play v-if="isPaused" />
 									<Pause v-else />
 								</div>
@@ -204,6 +205,10 @@
 			episode: {
 				type: Object as PropType<Episode>,
 				required: true
+			},
+			controls: {
+				type: Boolean,
+				default: true
 			}
 		},
 		emits: [ "update" ],
@@ -485,7 +490,7 @@
 				}
 			},
 			seek (e: MouseEvent) {
-				if (this.isHoveringOverProgressBar && this.video) {
+				if (this.controls && this.isHoveringOverProgressBar && this.video) {
 					this.video.currentTime = this.getTimeFromProgressBar(e, this.getProgressBarOffset(e));
 				}
 			},
@@ -806,6 +811,10 @@
 					transition: width .3s ease;
 					pointer-events: none;
 				}
+			}
+
+			.non-selectable-progress-bar {
+				cursor: default;
 			}
 
 			.progress-bar-hover-tooltip {

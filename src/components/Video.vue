@@ -836,6 +836,7 @@
 		justify-content: center;
 		align-items: center;
 		background-color: variable(tray-background-color);
+		border: 2px solid variable(primary-color);
 		border-radius: variable(popup-border-radius);
 		padding: .5rem;
 

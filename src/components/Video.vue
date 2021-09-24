@@ -658,6 +658,7 @@
 
 	.video-container {
 
+		min-width: 100%;
 		position: relative;
 		display: inline-flex;
 		flex-direction: row;

@@ -182,7 +182,6 @@
 			flex: 1;
 			margin-top: 0;
 			margin-bottom: 0;
-			margin-right: 10em;
 			text-align: left;
 		}
 
@@ -200,13 +199,8 @@
 	}
 
 	@media only screen and (max-width: 1250px) {
-
 		.popup-container {
 			width: 90%;
-		}
-
-		.popup-title {
-			margin-right: 0 !important;
 		}
 	}
 

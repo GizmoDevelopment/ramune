@@ -234,7 +234,6 @@
 		margin-top: .2em;
 
 		> * {
-			width: 100%;
 			margin-top: 0;
 		}
 	}

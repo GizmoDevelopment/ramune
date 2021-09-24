@@ -2,11 +2,14 @@
 import { Range } from "@typings/main";
 
 export type LeafRendererParticleShape = "circle" | "square";
-export type LeafRendererParticleMovementStyle = "sporadic" | "driftBottomRight";
+export type LeafRendererParticleMovementStyle = "sporadic" | "drift";
 
 export interface LeafRendererData {
 	start: number;
 	end: number;
+	background?: {
+		color: string;
+	};
 	particle?: {
 		size: number | Range;
 		speed?: {

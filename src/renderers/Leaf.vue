@@ -46,10 +46,14 @@
 		},
 		data () {
 			return {
-				// Simplifies timestamp match lookup
+
 				isVisible: false,
+				backgroundColor: "transparent",
+
+				// Simplifies timestamp match lookup
 				reversedData: [] as LeafRendererData[],
 				currentData: null as LeafRendererData | null,
+
 				ctx: null as CanvasRenderingContext2D | null,
 				renderQueue: [] as LeafRendererInstance[]
 			};
@@ -173,6 +177,10 @@
 							}
 
 						}
+					}
+
+					if (data.background) {
+						this.backgroundColor = data.background.color;
 					}
 
 					this.renderQueue = renderQueue;
@@ -325,10 +333,12 @@
 
 	.canvas {
 		position: fixed;
+		background-color: v-bind(backgroundColor);
 		width: 100%;
 		height: 100%;
 		top: 0;
 		left: 0;
-		z-index: -1;
+		z-index: 2;
+		pointer-events: none;
 	}
 </style>

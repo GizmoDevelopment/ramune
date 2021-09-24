@@ -36,6 +36,7 @@
 			<LoadingBuffer />
 		</div>
 	</div>
+	<br><br>
 	<PopupCard
 		:visible="!$socket.connected"
 		:dismissable="false"

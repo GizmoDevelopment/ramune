@@ -154,6 +154,7 @@
 		margin-top: 5%;
 		margin-bottom: 20px;
 		width: auto;
+		min-width: 300px;
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
 		display: flex;

@@ -23,18 +23,15 @@
 			:season="season"
 			:episode="episode"
 		/>
-		<div v-if="isHost">
-			<ShowEpisodePicker
-				:show="show"
-				:current-episode-id="episodeId"
-			/>
-		</div>
+		<ShowEpisodePicker
+			v-if="isHost && show.format !== 'movie'"
+			:show="show"
+			:current-episode-id="episodeId"
+		/>
 	</div>
 	<div v-else>
 		<h3 class="faded no-video-message">Waiting for host</h3>
-		<div v-if="isLoadingRoomData">
-			<LoadingBuffer />
-		</div>
+		<LoadingBuffer v-if="isLoadingRoomData" />
 	</div>
 	<br><br>
 	<PopupCard

@@ -444,14 +444,24 @@
 				if (this.video && document.activeElement && ![ "SPAN", "INPUT", "TEXTAREA" ].includes(document.activeElement.tagName)) {
 					switch (e.code) {
 						case "ArrowLeft":
-							this.video.currentTime -= 5;
+
+							if (this.controls)
+								this.video.currentTime -= 5;
+
 							break;
 						case "ArrowRight":
-							this.video.currentTime += 5;
+
+							if (this.controls)
+								this.video.currentTime += 5;
+
 							break;
 						case "Space":
-							this.togglePlayPause();
-							e.preventDefault(); // Prevents page scrolling
+
+							if (this.controls) {
+								this.togglePlayPause();
+								e.preventDefault(); // Prevents page scrolling
+							}
+
 							break;
 						case "KeyF":
 							this.toggleFullscreen();

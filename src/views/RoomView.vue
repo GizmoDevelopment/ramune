@@ -143,6 +143,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
+		margin-bottom: .2em;
 
 		> * {
 			margin-right: 10px;

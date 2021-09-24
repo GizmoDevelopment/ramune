@@ -12,6 +12,7 @@
 				:episode="episode"
 			/>
 			<ShowEpisodePicker
+				v-if="show.format !== 'movie'"
 				:show="show"
 				:current-episode-id="episodeId"
 			/>

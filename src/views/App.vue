@@ -178,6 +178,8 @@
 		--container-hover-color: #494949;
 		--background-color: #0D0D0D;
 		--transparent-hover-color: rgba(13, 13, 13, .5);
+		--tray-background-color: rgb(41, 41, 41);
+		--tray-hover-background-color: rgb(65, 65, 65);
 		--error-color: hsl(0, 95%, 60%);
 
 		/* Values */

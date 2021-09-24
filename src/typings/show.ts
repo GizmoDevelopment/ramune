@@ -10,6 +10,7 @@ export interface ShowHusk {
 }
 
 export interface Show extends ShowHusk {
+	format?: ShowFormat;
 	seasons: Season[];
 }
 
@@ -44,3 +45,5 @@ export interface Lyrics {
 	start: number;
 	url: string;
 }
+
+export type ShowFormat = "movie";

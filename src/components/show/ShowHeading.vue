@@ -47,6 +47,7 @@
 	@import "@styles/main.scss";
 
 	.show-title {
+		margin-top: .1em;
 		margin-bottom: .2em;
 	}
 

@@ -6,7 +6,6 @@
 				:show="show"
 				:episode="episode"
 				:controls="isHost"
-				:hide-controls="!allowControls"
 
 				@update="pushSync"
 			/>

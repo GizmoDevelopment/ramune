@@ -12,11 +12,10 @@
 		</div>
 		<transition name="context-menu-slide">
 			<div v-if="isOpen" class="context-menu-positioner">
-				<div class="context-menu-platter" :variant="variant">
+				<div class="context-menu-tray" @mouseleave="isOpen = false">
 					<button
 						v-for="(item, index) in items"
 						:key="index"
-						:variant="variant"
 						class="secondary-button context-menu-button"
 						@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
 					>
@@ -33,12 +32,8 @@
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
 
-	// Mixins
-	import GenericMixin from "@mixins/Generic";
-
 	export default defineComponent({
 		name: "ContextMenu",
-		mixins: [ GenericMixin ],
 		props:  {
 			items: {
 				type: Array as PropType<string[]>,
@@ -117,11 +112,12 @@
 		position: absolute;
 		z-index: 10;
 
-		.context-menu-platter {
+		.context-menu-tray {
 
 			position: relative;
-			background-color: variable(container-background-color);
-			border-radius: variable(card-border-radius);
+			background-color: variable(tray-background-color);
+			border-radius: variable(popup-border-radius);
+			border: 2px solid variable(primary-color);
 			min-width: 11rem;
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;
@@ -131,10 +127,16 @@
 			align-items: flex-start;
 
 			.context-menu-button {
+
+				background-color: variable(tray-background-color);
 				border-radius: 0;
 				width: 100%;
 				text-align: left;
 				transition: background-color .3s ease;
+
+				&:hover {
+					background-color: variable(tray-hover-background-color);
+				}
 			}
 		}
 	}

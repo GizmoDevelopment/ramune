@@ -56,7 +56,7 @@
 		background-color: variable(container-background-color);
 		padding-left: 8px;
 		padding-right: 8px;
-		margin-right: .5em;
+		margin-right: .3em;
 		border: 2px solid variable(container-background-color);
 		border-radius: 20px;
 		font-weight: bold;

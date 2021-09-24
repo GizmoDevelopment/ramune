@@ -2,7 +2,7 @@
   "name": "ramune",
   "description": "Watch anime together with your friends.",
   "license": "MIT",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "scripts": {
     "lint:js": "eslint ./src/**/*.{js,ts,vue}",
     "lint:css": "stylelint ./src/**/*.{css,scss,vue} --syntax scss",

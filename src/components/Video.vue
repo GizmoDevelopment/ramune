@@ -12,7 +12,7 @@
 			>
 				<div
 					class="static-overlay"
-					@click="togglePlayPause"
+					@click="togglePlayPause(); checkDoubleClick();"
 				>
 					<UserList
 						v-if="room && isFullscreen"
@@ -251,7 +251,8 @@
 				isMouseInOverlay: false,
 				isMouseStatic: false,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
-				mouseChecker: 0
+				mouseChecker: 0,
+				lastClickTimestamp: 0
 
 			};
 		},
@@ -294,7 +295,11 @@
 
 		},
 		watch: {
-			episode () {
+			episode (episode: Episode) {
+
+				const
+					_episodeId = episode.id,
+					_showId = this.show.id;
 
 				if (this.video) {
 					this.video.pause();
@@ -305,8 +310,13 @@
 				this.currentTime = 0;
 				this.shouldShowSubtitles = false;
 				this.subtitles = {};
+				this.selectedSubtitleLanguage = null;
 
-				this.destroySubtitleRenderer();
+				setTimeout(() => {
+					if (this.episode.id === _episodeId && this.show.id === _showId) {
+						this.selectedSubtitleLanguage = this.episode.subtitles[0].code;
+					}
+				}, 100);
 			},
 			isPaused (state: boolean) {
 
@@ -591,6 +601,16 @@
 				setTimeout(() => {
 					this.isMouseStatic = this.lastMousePosition === _pos && !this.isHoveringOverProgressBar && !this.isBusy;
 				}, 1500);
+			},
+			checkDoubleClick () {
+
+				const now = Date.now();
+
+				if ((now - this.lastClickTimestamp) < 200) {
+					this.toggleFullscreen();
+				}
+
+				this.lastClickTimestamp = now;
 			}
 		},
 		sockets: {

@@ -20,6 +20,7 @@
 						v-if="room"
 						v-show="isFullscreen"
 						class="overlay-user-list"
+						:tooltips="false"
 						:users="room.users"
 						:host="room.host"
 					/>

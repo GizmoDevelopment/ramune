@@ -3,6 +3,7 @@
 		<div class="room-information">
 			<UserList
 				id="user-list"
+				:tooltips="false"
 				:users="room.users"
 				:host="room.host"
 			/>

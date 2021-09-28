@@ -17,7 +17,8 @@
 					@click="togglePlayPause(); checkDoubleClick();"
 				>
 					<UserList
-						v-if="room && isFullscreen"
+						v-if="room"
+						v-show="isFullscreen"
 						class="overlay-user-list"
 						:users="room.users"
 						:host="room.host"

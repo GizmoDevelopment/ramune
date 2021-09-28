@@ -19,5 +19,8 @@ export default {
 	},
 	updated (el: HTMLElement) {
 		el.classList.add("tooltip-container");
+	},
+	beforeUnmount (el: HTMLElement) {
+		el.querySelector(".tooltip-container")?.remove();
 	}
 } as Directive;

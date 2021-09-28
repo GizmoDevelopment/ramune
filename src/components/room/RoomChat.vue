@@ -57,6 +57,9 @@
 	// Mixins
 	import RoomMixin from "@mixins/Room";
 
+	// Utils
+	import { INPUT_ELEMENTS } from "@utils/constants";
+
 	// Types
 	import { SocketResponse } from "@typings/main";
 	import { Message } from "@typings/message";
@@ -168,7 +171,7 @@
 					switch (e.key) {
 						case "/":
 
-							if (document.activeElement !== input) {
+							if (!(document.activeElement && INPUT_ELEMENTS.includes(document.activeElement.tagName))) {
 
 								e.preventDefault();
 								this.isFocusedOnInput = true;

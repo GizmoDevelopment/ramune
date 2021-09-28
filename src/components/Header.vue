@@ -25,6 +25,7 @@
 					alt="Your profile picture"
 				>
 				<ContextMenu
+					align="right"
 					:items="[ 'Log out' ]"
 					@ctx-log-out="logout"
 				>

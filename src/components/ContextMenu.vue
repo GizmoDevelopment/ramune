@@ -42,6 +42,10 @@
 			identifier: {
 				type: [ String, Number ],
 				default: null
+			},
+			align: {
+				type: String,
+				default: "left"
 			}
 		},
 		setup () {
@@ -56,6 +60,11 @@
 			return {
 				isOpen: false
 			};
+		},
+		computed: {
+			alignment (): string {
+				return this.align === "right" ? "-85%" : "0%";
+			}
 		},
 		mounted () {
 			document.addEventListener("click", this.handleOutsideClick);
@@ -118,6 +127,7 @@
 			background-color: variable(tray-background-color);
 			border-radius: variable(popup-border-radius);
 			border: variable(border-style);
+			transform: translateX(v-bind(alignment));
 			min-width: 8em;
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;

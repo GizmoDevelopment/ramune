@@ -172,6 +172,7 @@
 
 	// Utils
 	import { formatTimestamp } from "@utils/essentials";
+	import { INPUT_ELEMENTS } from "@utils/constants";
 
 	// Types
 	import { SubtitlesOctopus } from "@typings/main";
@@ -443,7 +444,7 @@
 			},
 			handleKeypress (e: KeyboardEvent) {
 				// Only process keys if user isn't focused on any inputs/spans/textareas
-				if (this.video && document.activeElement && ![ "SPAN", "INPUT", "TEXTAREA" ].includes(document.activeElement.tagName)) {
+				if (this.video && document.activeElement && !INPUT_ELEMENTS.includes(document.activeElement.tagName)) {
 					switch (e.code) {
 						case "ArrowLeft":
 

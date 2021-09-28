@@ -7,3 +7,5 @@ export const THEMES: Record<string, Theme> = {
 		primaryHover: "#0a85c2"
 	}
 };
+
+export const INPUT_ELEMENTS = [ "SPAN", "INPUT", "TEXTAREA" ];

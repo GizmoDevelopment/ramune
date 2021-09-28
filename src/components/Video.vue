@@ -324,6 +324,11 @@
 						this.selectedSubtitleLanguage = this.episode.subtitles[0].code;
 					}
 				}, 100);
+
+				window.scrollTo({
+					top: 0,
+					behavior: "smooth"
+				});
 			},
 			isPaused (state: boolean) {
 

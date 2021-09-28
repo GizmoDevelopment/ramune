@@ -5,7 +5,7 @@
 				v-for="user in users"
 				:key="user.id"
 				v-memo="[ host, typingUserList.includes(user.id) ]"
-				v-tooltip="user.username"
+				v-tooltip="tooltips && user.username || false"
 				class="user"
 				:class="{
 					host: isHost(user),
@@ -40,6 +40,10 @@
 			host: {
 				type: Object as PropType<User | null>,
 				default: null
+			},
+			tooltips: {
+				type: Boolean,
+				default: true
 			}
 		},
 		computed: {

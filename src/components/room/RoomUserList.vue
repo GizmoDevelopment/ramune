@@ -5,7 +5,7 @@
 				v-for="user in users"
 				:key="user.id"
 				v-memo="[ host, typingUserList.includes(user.id) ]"
-				v-tooltip="user.username"
+				v-tooltip="tooltips && user.username || false"
 				class="user"
 				:class="{
 					host: isUserHost(user),
@@ -61,6 +61,10 @@
 			room: {
 				type: Object as PropType<Room>,
 				required: true
+			},
+			tooltips: {
+				type: Boolean,
+				default: true
 			}
 		},
 		emits: [ "ctx-promote-to-host", "ctx-kick" ],

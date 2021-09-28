@@ -7,8 +7,8 @@
 				alt="Episode thumbnail"
 			>
 			<div class="episode-info">
-				<div class="episode-index">{{ id }}</div>
-				<div class="episode-duration">{{ formattedDuration }}</div>
+				<div class="episode-info-label episode-index">{{ id }}</div>
+				<div class="episode-info-label episode-duration">{{ formattedDuration }}</div>
 			</div>
 			<div
 				:class="{ 'active-episode': active }"
@@ -77,6 +77,8 @@
 	$card-width: 200px;
 	$card-height: calc(#{$card-width} * .56);
 
+	// Containers
+
 	.thumbnail-container,
 	.episode-thumbnail {
 		border-radius: variable(card-border-radius);
@@ -89,6 +91,49 @@
 		align-items: center;
 		width: $card-width;
 		padding: 4px;
+	}
+
+	.overlay-container,
+	.episode-info {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.overlay-play-icon {
+		font-size: 4em;
+	}
+
+	// Episode Info
+
+	.episode-info {
+
+		width: calc(100% - .4rem);
+		height: calc(100% - .4rem);
+		margin: .2rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+		pointer-events: none;
+		z-index: 1;
+
+		.episode-info-label {
+			background-color: variable(overlay-background-color);
+			border-radius: variable(card-border-radius);
+			font-weight: 400;
+			padding: .1em .25em .1em .25em;
+			transition: background-color .2s ease-in-out;
+		}
+	}
+
+	.episode-title {
+		margin-top: 3px;
+		width: calc(100% - 4px);
+		text-align: left;
+		min-height: 40px;
 	}
 
 	.thumbnail-container {
@@ -106,50 +151,18 @@
 			transition: transform .3s ease-in-out, filter .25s ease;
 		}
 
-		&:hover .episode-thumbnail {
-			transform: scale(103%);
-			filter: blur(1px);
+		&:hover {
+
+			.episode-thumbnail {
+				transform: scale(103%);
+				filter: blur(1px);
+			}
+
+			.episode-info-label {
+				background-color: transparent;
+			}
+
 		}
-	}
-
-	.overlay-container,
-	.episode-info {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.overlay-play-icon {
-		font-size: 4em;
-	}
-
-	.episode-info {
-
-		width: calc(100% - .4rem);
-		height: calc(100% - .4rem);
-		margin: .2rem;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-end;
-		pointer-events: none;
-		z-index: 1;
-
-		* {
-			background-color: variable(overlay-background-color);
-			border-radius: variable(card-border-radius);
-			font-weight: 400;
-			padding: 1px .2rem 1px .2rem;
-		}
-	}
-
-	.episode-title {
-		margin-top: 3px;
-		width: calc(100% - 4px);
-		text-align: left;
-		min-height: 40px;
 	}
 
 	.active-episode {

@@ -7,10 +7,7 @@
 				v-memo="[ host, typingUserList.includes(user.id) ]"
 				v-tooltip="tooltips && user.username || false"
 				class="user"
-				:class="{
-					host: isUserHost(user),
-					typing: typingUserList.includes(user.id)
-				}"
+				:class="{ host: isUserHost(user) }"
 			>
 				<ContextMenu
 					v-if="isHost && user.id !== host.id"
@@ -21,6 +18,7 @@
 				>
 					<img
 						class="user-avatar"
+						:class="{ typing: typingUserList.includes(user.id) }"
 						:src="user.avatar_url"
 						:alt="`${user.username}'s profile picture`"
 					>

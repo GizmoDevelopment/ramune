@@ -7,13 +7,11 @@
 				v-memo="[ host, typingUserList.includes(user.id) ]"
 				v-tooltip="tooltips && user.username || false"
 				class="user"
-				:class="{
-					host: isHost(user),
-					typing: typingUserList.includes(user.id)
-				}"
+				:class="{ host: isHost(user) }"
 			>
 				<img
 					class="user-avatar"
+					:class="{ typing: typingUserList.includes(user.id) }"
 					:src="user.avatar_url"
 					:alt="`${user.username}'s profile picture`"
 				>

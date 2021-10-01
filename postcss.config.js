@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 module.exports = {
 	plugins: [
-		require("autoprefixer")({
-			flexbox: false
-		}),
+		require("autoprefixer"),
 		require("stylelint"),
 		require("postcss-reporter"),
 		require("@fullhuman/postcss-purgecss")({

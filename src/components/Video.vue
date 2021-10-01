@@ -673,7 +673,7 @@
 	.video-tray-enter-from,
 	.video-tray-leave-to {
 		opacity: 0;
-		transform: translateY(.5em) scale(90%);
+		transform: translateY(.4em) scale(95%);
 	}
 
 	// Containers

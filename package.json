@@ -13,7 +13,7 @@
     "serve": "vite preview"
   },
   "browserslist": [
-	"last 10 versions"
+	"last 4 versions"
   ],
   "dependencies": {
     "gizmo-api": "^1.1.0",

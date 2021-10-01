@@ -12,6 +12,9 @@
     "dev": "vite",
     "serve": "vite preview"
   },
+  "browserslist": [
+	"last 10 versions"
+  ],
   "dependencies": {
     "gizmo-api": "^1.1.0",
     "socket.io-client": "^4.2.0",

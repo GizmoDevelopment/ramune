@@ -129,6 +129,7 @@
 			border: variable(border-style);
 			transform: translateX(v-bind(alignment));
 			min-width: 8em;
+			width: auto;
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;
 			display: flex;

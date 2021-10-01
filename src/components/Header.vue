@@ -32,12 +32,10 @@
 					<Caret class="more-icon" />
 				</ContextMenu>
 			</div>
-			<div v-else>
-				<div class="login">
-					<button class="primary-button" @click="isLoggingIn = true">
-						Log In
-					</button>
-				</div>
+			<div v-else class="login">
+				<button class="primary-button" @click="isLoggingIn = true">
+					Log In
+				</button>
 			</div>
 		</div>
 	</header>

@@ -31,7 +31,7 @@
 				</div>
 				<transition name="fade">
 					<div
-						v-show="isMouseInOverlay && !isMouseStatic"
+						v-show="isMouseInOverlay && !isMouseStatic || isHoveringOverControls"
 						class="hover-overlay"
 					>
 						<div class="time-row">
@@ -52,7 +52,11 @@
 							<span>{{ formattedDuration }}</span>
 						</div>
 						<div class="control-row">
-							<div class="control-row-left">
+							<div
+								class="control-row-left"
+								@mouseenter="isHoveringOverControls = true"
+								@mouseleave="isHoveringOverControls = false"
+							>
 								<div v-if="controls" @click="togglePlayPause">
 									<Play v-if="isPaused" />
 									<Pause v-else />
@@ -80,7 +84,11 @@
 									</transition>
 								</div>
 							</div>
-							<div class="control-row-right">
+							<div
+								class="control-row-right"
+								@mouseenter="isHoveringOverControls = true"
+								@mouseleave="isHoveringOverControls = false"
+							>
 								<ClosedCaptioning class="subtitle-button" @click="isSubtitleTrayVisible = !isSubtitleTrayVisible" />
 								<transition name="video-tray">
 									<div
@@ -257,6 +265,7 @@
 				isBusy: false,
 				isMouseInOverlay: false,
 				isMouseStatic: false,
+				isHoveringOverControls: false,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
 				mouseChecker: 0,
 				lastClickTimestamp: 0

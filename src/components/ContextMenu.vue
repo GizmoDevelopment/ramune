@@ -97,7 +97,7 @@
 	.context-menu-slide-enter-from,
 	.context-menu-slide-leave-to {
 		opacity: 0;
-		transform: translateY(.2rem) scaleX(95%);
+		transform: translateY(-.2rem);
 	}
 
 	//

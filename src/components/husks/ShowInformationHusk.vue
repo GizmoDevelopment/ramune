@@ -27,7 +27,7 @@
 	@import "@styles/main.scss";
 	@import "@styles/components/ShowInformation.scss";
 
-	// stylelint-disable-next-line no-duplicate-selectors
+	/*! stylelint-disable-next-line no-duplicate-selectors */
 	.show-episode-count {
 		border-color: transparent;
 	}

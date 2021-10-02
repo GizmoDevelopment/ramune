@@ -109,11 +109,11 @@
 	}
 
 	.ghost-slot {
-		cursor: pointer;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 	}
 
 	.context-menu-positioner {
@@ -125,8 +125,6 @@
 
 			display: flex;
 			position: relative;
-			min-width: 8em;
-			width: auto;
 
 			background-color: variable(tray-background-color);
 			border-radius: variable(popup-border-radius);
@@ -142,9 +140,10 @@
 			align-items: flex-start;
 
 			.context-menu-button {
-				border-radius: 0;
 				width: 100%;
+				border-radius: 0;
 				text-align: left;
+				white-space: nowrap; // Forces all text in one line
 				transition: background-color .3s ease;
 			}
 		}

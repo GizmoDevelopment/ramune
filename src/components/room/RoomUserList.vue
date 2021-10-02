@@ -26,6 +26,7 @@
 				<img
 					v-else
 					class="user-avatar"
+					:class="{ typing: typingUserList.includes(user.id) }"
 					:src="user.avatar_url"
 					:alt="`${user.username}'s profile picture`"
 				>

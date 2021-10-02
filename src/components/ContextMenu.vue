@@ -123,16 +123,20 @@
 
 		.context-menu-tray {
 
+			display: flex;
 			position: relative;
+			min-width: 8em;
+			width: auto;
+
 			background-color: variable(tray-background-color);
 			border-radius: variable(popup-border-radius);
 			border: variable(border-style);
+			box-shadow: 0 0 10px 10px rgba(0, 0, 0, .4);
 			transform: translateX(v-bind(alignment));
-			min-width: 8em;
-			width: auto;
+
 			padding: .3rem 0 .3rem 0;
 			margin-top: 5px;
-			display: flex;
+
 			flex-direction: column;
 			justify-content: flex-start;
 			align-items: flex-start;

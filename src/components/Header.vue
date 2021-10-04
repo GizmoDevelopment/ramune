@@ -26,7 +26,8 @@
 				>
 				<ContextMenu
 					align="right"
-					:items="[ 'Log out' ]"
+					:items="[ 'Settings', 'Log out' ]"
+					@ctx-settings="isInSettings = !isInSettings"
 					@ctx-log-out="logout"
 				>
 					<Caret class="more-icon" />
@@ -41,6 +42,7 @@
 	</header>
 	<div class="empty" />
 	<LoginPopup :visible="isLoggingIn" @dismiss="isLoggingIn = false" />
+	<SettingsPopup :visible="isInSettings" @dismiss="isInSettings = false" />
 </template>
 
 <script lang="ts">
@@ -49,7 +51,8 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import LoginPopup from "@components/LoginPopup.vue";
+	import LoginPopup from "@components/popups/LoginPopup.vue";
+	import SettingsPopup from "@components/popups/SettingsPopup.vue";
 	import ContextMenu from "@components/ContextMenu.vue";
 
 	// Mixins
@@ -69,12 +72,14 @@
 			Logo,
 			LoginPopup,
 			ContextMenu,
-			Caret
+			Caret,
+			SettingsPopup
 		},
 		mixins: [ MainMixin ],
 		data () {
 			return {
 				isLoggingIn: false,
+				isInSettings: false,
 				Hanyuu: Hanyuu
 			};
 		},

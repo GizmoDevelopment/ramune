@@ -99,11 +99,20 @@
 
 	// Theme Color
 
+	.theme-color-grid {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+
 	.theme-color-button {
 
+		flex: 1;
 		position: relative;
-		flex: 1 0 0;
-		padding: .5em 1em .5em 1em;
+		padding: .5em;
 		margin: .2em;
 		font-size: 1rem;
 
@@ -126,14 +135,6 @@
 		&:hover {
 			color: variable(text-color);
 		}
-	}
-
-	.theme-color-grid {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-		flex-wrap: wrap;
 	}
 
 </style>

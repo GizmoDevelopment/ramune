@@ -196,6 +196,7 @@
 
 		--text-color: white;
 		--faded-text-color: #868686;
+		--faded-heading-text-color: #b4b4b4;
 		--container-background-color: rgb(31, 31, 31);
 		--container-hover-color: #494949;
 		--background-color: #0D0D0D;

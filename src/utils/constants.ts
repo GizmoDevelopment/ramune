@@ -3,12 +3,20 @@ import { Theme } from "@typings/main";
 
 export const THEMES: Record<string, Theme> = {
 	blueberry: {
-		primary: "#3db8f5",
-		primaryHover: "#0a85c2"
+		primary: "hsl(200, 90%, 60%)",
+		primaryHover: "hsl(200, 90%, 40%)"
 	},
 	strawberry: {
-		primary: "#f53d3d",
-		primaryHover: "#c20a0a"
+		primary: "hsl(0, 90%, 60%)",
+		primaryHover: "hsl(0, 90%, 40%)"
+	},
+	lime: {
+		primary: "hsl(100, 90%, 45%)",
+		primaryHover: "hsl(100, 90%, 35%)"
+	},
+	grape: {
+		primary: "hsl(288, 90%, 45%)",
+		primaryHover: "hsl(288, 90%, 35%)"
 	}
 };
 

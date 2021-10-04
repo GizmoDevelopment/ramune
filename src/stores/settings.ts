@@ -10,14 +10,17 @@ export default {
 	namespaced: true,
 	state () {
 		return {
-			theme: "blueberry",
+			theme: window.localStorage.getItem("themeColor") || "blueberry",
 			karaoke: true,
 			effects: true
 		};
 	},
 	mutations: {
 		UPDATE_THEME (state: SettingsState, theme: string) {
-			if (theme in THEMES) state.theme = theme;
+			if (theme in THEMES) {
+				state.theme = theme;
+				window.localStorage.setItem("themeColor", theme);
+			}
 		},
 		UPDATE_KARAOKE_STATE (_state: SettingsState, state: boolean) {
 			_state.karaoke = state;

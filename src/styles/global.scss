@@ -2,6 +2,7 @@
 @import "@styles/mixins.scss";
 @import "@styles/variables.scss";
 
+.button,
 .primary-button,
 .secondary-button,
 .tray-button {
@@ -129,6 +130,10 @@
 		}
 
 	}
+}
+
+.faded-heading {
+	color: variable(faded-heading-text-color);
 }
 
 .faded {

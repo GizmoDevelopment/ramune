@@ -1,5 +1,6 @@
 @import "@styles/main.scss";
 @import "@styles/mixins.scss";
+@import "@styles/variables.scss";
 
 .primary-button,
 .secondary-button,
@@ -213,4 +214,9 @@
 		background-color: variable(transparent-hover-color);
 		cursor: pointer;
 	}
+}
+
+.themeable,
+.button {
+	transition: $themeable-transitions;
 }

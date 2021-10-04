@@ -42,6 +42,7 @@
 	// Types
 	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
+	import { Theme } from "@typings/main";
 
 	export default defineComponent({
 		name: "App",
@@ -59,11 +60,27 @@
 		computed: {
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
+			},
+			theme (): Theme {
+				return this.$store.getters["settings/theme"];
 			}
 		},
 		watch: {
 			user (user: AuthenticatedUser | null) {
 				if (user) this.$socket.client.connect();
+			},
+			theme: {
+				immediate: true,
+				handler (theme: Theme) {
+					this.$nextTick(() => {
+
+						const root = document.documentElement;
+
+						root.style.setProperty("--primary-color", theme.primary);
+						root.style.setProperty("--primary-hover-color", theme.primaryHover);
+
+					});
+				}
 			}
 		},
 		async mounted () {
@@ -170,10 +187,15 @@
 		--font: Roboto, sans-serif;
 
 		/* Colors */
+
+		/*
+			Dynamic:
+			--primary-color
+			--primary-hover-color
+		*/
+
 		--text-color: white;
 		--faded-text-color: #868686;
-		--primary-color: #3db8f5;
-		--primary-hover-color: #0a85c2;
 		--container-background-color: rgb(31, 31, 31);
 		--container-hover-color: #494949;
 		--background-color: #0D0D0D;

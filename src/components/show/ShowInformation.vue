@@ -10,7 +10,7 @@
 				<h1 class="heading show-title">{{ show.title }}</h1>
 				<div class="show-stats">
 					<!-- <ShowScoreLabel class="show-score" :score="show.score" /> -->
-					<div class="show-episode-count">{{ show.format === "movie" ? "Movie" : formattedEpisodeCount }}</div>
+					<div class="themeable show-episode-count">{{ show.format === "movie" ? "Movie" : formattedEpisodeCount }}</div>
 				</div>
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>

@@ -36,7 +36,7 @@
     "esbuild": "^0.13.3",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.19.0",
-    "postcss": "^8.3.8",
+    "postcss": "^8.3.9",
     "postcss-calc": "^8.0.0",
     "postcss-reporter": "^7.0.3",
     "sass": "^1.42.1",

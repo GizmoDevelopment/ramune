@@ -268,57 +268,6 @@
 		color: transparent;
 	}
 
-	// Can we please, for the love of God, incorporate a standard for this
-	// Also, for some reason, I cannot combine these together? What the fuck?
-
-	@mixin track () {
-		-webkit-appearance: none;
-		background: variable(container-hover-color);
-		height: .6rem;
-		border-radius: 1rem;
-	}
-
-	@mixin progress () {
-		-webkit-appearance: none;
-		background: variable(primary-color);
-		border-radius: 1rem;
-		height: .6rem;
-	}
-
-	@mixin thumb () {
-		-webkit-appearance: none;
-		background: variable(text-color);
-		width: 1.1rem;
-		height: 1.1rem;
-		border: 2px solid variable(text-color);
-		border-radius: 50%;
-		cursor: pointer;
-	}
-
-	@media screen and (-webkit-min-device-pixel-ratio: 0) {
-		input[type="range"] {
-			-webkit-appearance: none;
-		}
-	}
-
-	input[type="range"] {
-
-		background: transparent;
-		padding: .1rem 0 .1rem 0; // Allows the thumb to look like a perfect oversized circle
-
-		// Firefox
-		&::-moz-range-track { @include track; overflow: hidden; }
-		&::-moz-range-progress { @include progress }
-		&::-moz-range-thumb { @include thumb }
-
-		// Safari/Chrome/Edge
-		// Support the HTML5 specification or else you can eat my shit, WebKit/Blink
-		// &::-webkit-slider-runnable-track { @include track }
-		&::-webkit-slider-container { @include track }
-		&::-webkit-slider-thumb { @include thumb }
-
-	}
-
 	/* Layout */
 
 	body {
@@ -356,12 +305,6 @@
 			width: 100%;
 			margin-left: .5rem;
 			margin-right: .5rem;
-		}
-	}
-
-	@media only screen and (max-width: 800px) {
-		.heading {
-			font-size: 30px;
 		}
 	}
 

@@ -2,7 +2,7 @@
 import { Range } from "@typings/main";
 
 interface FetchResponse {
-	data: Record<string, any>;
+	data: any;
 	text: string;
 }
 

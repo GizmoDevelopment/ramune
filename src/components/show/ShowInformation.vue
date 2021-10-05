@@ -17,8 +17,8 @@
 			<div class="show-banner" />
 		</div>
 		<ShowEpisodePicker
+			variant="dark"
 			:show="show"
-			:variant="'dark'"
 		/>
 	</div>
 </template>

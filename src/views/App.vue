@@ -74,11 +74,16 @@
 				handler (theme: Theme) {
 					this.$nextTick(() => {
 
-						const root = document.documentElement;
+						const
+							root = document.documentElement,
+							favicon = document.getElementById("favicon") as HTMLLinkElement;
 
 						root.style.setProperty("--primary-color", theme.primary);
 						root.style.setProperty("--primary-hover-color", theme.primaryHover);
 
+						if (favicon) {
+							favicon.href = `/favicons/${this.$store.state.settings.theme}.png`;
+						}
 					});
 				}
 			}

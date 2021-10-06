@@ -17,6 +17,10 @@ export const THEMES: Record<string, Theme> = {
 	grape: {
 		primary: "hsl(288, 90%, 45%)",
 		primaryHover: "hsl(288, 90%, 35%)"
+	},
+	orange: {
+		primary: "hsl(17, 80%, 55%)",
+		primaryHover: "hsl(17, 80%, 45%)"
 	}
 };
 

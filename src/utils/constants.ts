@@ -10,7 +10,7 @@ export const THEMES: Record<string, Theme> = {
 		primary: "hsl(0, 90%, 60%)",
 		primaryHover: "hsl(0, 90%, 40%)"
 	},
-	lime: {
+	watermelon: {
 		primary: "hsl(100, 90%, 45%)",
 		primaryHover: "hsl(100, 90%, 35%)"
 	},

@@ -5,16 +5,16 @@
 		@dismiss="$emit('dismiss')"
 	>
 		<div class="setting">
-			<span class="heading setting-title">Theme Color</span>
+			<span class="heading setting-title">Flavor</span>
 			<span class="setting-description">Changes the accent color across the website.</span>
-			<div class="theme-color-grid">
+			<div class="flavor-grid">
 				<button
-					v-for="(colors, name) in themes"
+					v-for="(colors, name) in flavors"
 					:key="name"
 					v-memo="[]"
-					class="button theme-color-button"
+					class="button flavor-button"
 					:style="{ backgroundColor: colors.primary }"
-					@click="setThemeColor(name)"
+					@click="setFlavor(name)"
 				>
 					{{ name }}
 				</button>
@@ -32,7 +32,7 @@
 	import PopupCard from "@components/PopupCard.vue";
 
 	// Utils
-	import { THEMES } from "@utils/constants";
+	import { FLAVORS } from "@utils/constants";
 
 	export default defineComponent({
 		name: "SettingsPopup",
@@ -47,13 +47,13 @@
 		},
 		emits: [ "dismiss" ],
 		computed: {
-			themes () {
-				return THEMES;
+			flavors () {
+				return FLAVORS;
 			}
 		},
 		methods: {
-			setThemeColor (themeName: string) {
-				this.$store.commit("settings/UPDATE_THEME", themeName);
+			setFlavor (flavorName: string) {
+				this.$store.commit("settings/UPDATE_FLAVOR", flavorName);
 			}
 		}
 	});
@@ -97,9 +97,9 @@
 		}
 	}
 
-	// Theme Color
+	// Flavor
 
-	.theme-color-grid {
+	.flavor-grid {
 		width: 100%;
 		display: flex;
 		flex-direction: row;
@@ -108,7 +108,7 @@
 		flex-wrap: wrap;
 	}
 
-	.theme-color-button {
+	.flavor-button {
 
 		flex: 1;
 		position: relative;

@@ -42,7 +42,7 @@
 	// Types
 	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
-	import { Theme } from "@typings/main";
+	import { Flavor } from "@typings/main";
 
 	export default defineComponent({
 		name: "App",
@@ -61,28 +61,28 @@
 			isViewingRoom (): boolean {
 				return this.$route.path.match(/^\/rooms\/.+$/i) !== null;
 			},
-			theme (): Theme {
-				return this.$store.getters["settings/theme"];
+			flavor (): Flavor {
+				return this.$store.getters["settings/flavor"];
 			}
 		},
 		watch: {
 			user (user: AuthenticatedUser | null) {
 				if (user) this.$socket.client.connect();
 			},
-			theme: {
+			flavor: {
 				immediate: true,
-				handler (theme: Theme) {
+				handler (flavor: Flavor) {
 					this.$nextTick(() => {
 
 						const
 							root = document.documentElement,
 							favicon = document.getElementById("favicon") as HTMLLinkElement;
 
-						root.style.setProperty("--primary-color", theme.primary);
-						root.style.setProperty("--primary-hover-color", theme.primaryHover);
+						root.style.setProperty("--primary-color", flavor.primary);
+						root.style.setProperty("--primary-hover-color", flavor.primaryHover);
 
 						if (favicon) {
-							favicon.href = `/favicons/${this.$store.state.settings.theme}.png`;
+							favicon.href = `/favicons/${this.$store.state.settings.flavor}.png`;
 						}
 					});
 				}

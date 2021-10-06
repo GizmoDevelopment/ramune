@@ -1,7 +1,7 @@
 // Types
-import { Theme } from "@typings/main";
+import { Flavor } from "@typings/main";
 
-export const THEMES: Record<string, Theme> = {
+export const FLAVORS: Record<string, Flavor> = {
 	blueberry: {
 		primary: "hsl(200, 90%, 60%)",
 		primaryHover: "hsl(200, 90%, 40%)"

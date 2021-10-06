@@ -76,7 +76,7 @@ export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 export type Range = [ number, number ];
 
-export interface Theme {
+export interface Flavor {
 	primary: string;
 	primaryHover: string;
 }

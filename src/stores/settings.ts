@@ -1,25 +1,25 @@
 // Types
 import { Module } from "vuex";
 import { SettingsState } from "@typings/shims-vuex";
-import { Theme } from "@typings/main";
+import { Flavor } from "@typings/main";
 
 // Variables
-import { THEMES } from "@utils/constants";
+import { FLAVORS } from "@utils/constants";
 
 export default {
 	namespaced: true,
 	state () {
 		return {
-			theme: window.localStorage.getItem("themeColor") || "blueberry",
+			flavor: window.localStorage.getItem("flavorName") || "blueberry",
 			karaoke: true,
 			effects: true
 		};
 	},
 	mutations: {
-		UPDATE_THEME (state: SettingsState, theme: string) {
-			if (theme in THEMES) {
-				state.theme = theme;
-				window.localStorage.setItem("themeColor", theme);
+		UPDATE_FLAVOR (state: SettingsState, flavorName: string) {
+			if (flavorName in FLAVORS) {
+				state.flavor = flavorName;
+				window.localStorage.setItem("flavorName", flavorName);
 			}
 		},
 		UPDATE_KARAOKE_STATE (_state: SettingsState, state: boolean) {
@@ -30,8 +30,8 @@ export default {
 		}
 	},
 	getters: {
-		theme (state: SettingsState): Theme {
-			return THEMES[state.theme] || THEMES.blueberry;
+		flavor (state: SettingsState): Flavor {
+			return FLAVORS[state.flavor] || FLAVORS.blueberry;
 		}
 	}
 } as Module<SettingsState, unknown>;

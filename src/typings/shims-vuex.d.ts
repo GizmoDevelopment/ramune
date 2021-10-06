@@ -30,7 +30,7 @@ export interface GenericState {
 }
 
 export interface SettingsState {
-	theme: string;
+	flavor: string;
 	karaoke: boolean;
 	effects: boolean;
 }

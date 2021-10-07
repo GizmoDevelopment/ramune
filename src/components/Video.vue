@@ -45,7 +45,7 @@
 									@mouseleave="isHoveringOverProgressBar = false"
 									@mousemove="updateHoverCurrentTime"
 								>
-									<div class="themeable progress-bar-snake" />
+									<div class="flavorable progress-bar-snake" />
 								</div>
 								<div v-show="isHoveringOverProgressBar" class="progress-bar-hover-tooltip">{{ formattedHover }}</div>
 							</div>
@@ -847,7 +847,7 @@
 					top: 0;
 					left: 0;
 					background-color: variable(primary-color);
-					transition: $themeable-transitions, width .3s ease;
+					transition: $flavorable-transitions, width .3s ease;
 					pointer-events: none;
 				}
 			}

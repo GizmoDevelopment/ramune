@@ -10,7 +10,7 @@
 				:class="{ host: isHost(user) }"
 			>
 				<img
-					class="themeable user-avatar"
+					class="flavorable user-avatar"
 					:class="{ typing: typingUserList.includes(user.id) }"
 					:src="user.avatar_url"
 					:alt="`${user.username}'s profile picture`"

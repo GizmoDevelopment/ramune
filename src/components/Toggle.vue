@@ -62,7 +62,7 @@
 		border-radius: 10em;
 
 		cursor: pointer;
-		transition: $themeable-transitions;
+		transition: $flavorable-transitions;
 
 		&:after {
 

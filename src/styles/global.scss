@@ -2,8 +2,8 @@
 @import "@styles/mixins.scss";
 @import "@styles/variables.scss";
 
-.themeable {
-	transition: $themeable-transitions;
+.flavorable {
+	transition: $flavorable-transitions;
 }
 
 .button,
@@ -18,7 +18,7 @@
 	padding: 5px;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	transition: $themeable-transitions, .2s background-color ease-in-out, .2s opacity ease;
+	transition: $flavorable-transitions, .2s background-color ease-in-out, .2s opacity ease;
 	cursor: pointer;
 }
 

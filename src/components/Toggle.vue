@@ -33,8 +33,11 @@
 			}
 		},
 		watch: {
-			modelValue (value: boolean) {
-				this.state = value;
+			modelValue: {
+				immediate: true,
+				handler (value: boolean) {
+					this.state = value;
+				},
 			},
 			state (value: boolean) {
 				this.$emit("update:modelValue", value);

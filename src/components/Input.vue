@@ -74,8 +74,11 @@
 			};
 		},
 		watch: {
-			modelValue (value: string) {
-				this.value = value;
+			modelValue: {
+				immediate: true,
+				handler (value: string) {
+					this.value = value;
+				}
 			},
 			value (value: string) {
 				this.$emit("update:modelValue", value);

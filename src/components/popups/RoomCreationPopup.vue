@@ -1,5 +1,5 @@
 <template>
-	<PopupCard
+	<Popup
 		title="Create a room"
 		:visible="visible"
 		@dismiss="$emit('dismiss')"
@@ -57,7 +57,7 @@
 		>
 			Create
 		</button>
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -67,7 +67,7 @@
 
 	// Components
 	import RoomCard from "@components/room/RoomCard.vue";
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 	import Input from "@components/Input.vue";
 	import Error from "@components/Error.vue";
 
@@ -82,7 +82,7 @@
 	export default defineComponent({
 		name: "RoomCreationPopup",
 		components: {
-			PopupCard,
+			Popup,
 			Input,
 			RoomCard,
 			Error

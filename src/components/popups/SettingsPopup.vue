@@ -1,5 +1,5 @@
 <template>
-	<PopupCard
+	<Popup
 		:visible="visible"
 		title="Settings"
 		@dismiss="$emit('dismiss')"
@@ -20,7 +20,7 @@
 				</button>
 			</div>
 		</div>
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -29,7 +29,7 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 
 	// Utils
 	import { FLAVORS } from "@utils/constants";
@@ -37,7 +37,7 @@
 	export default defineComponent({
 		name: "SettingsPopup",
 		components: {
-			PopupCard
+			Popup
 		},
 		props: {
 			visible: {

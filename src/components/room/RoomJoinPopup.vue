@@ -1,5 +1,5 @@
 <template>
-	<PopupCard
+	<Popup
 		title="Verification"
 		:visible="visible"
 		@dismiss="$emit('dismiss')"
@@ -35,7 +35,7 @@
 		>
 			Enter
 		</button>
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -44,7 +44,7 @@
 	import { defineComponent } from "vue";
 
 	// Components
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 	import Input from "@components/Input.vue";
 	import Error from "@components/Error.vue";
 
@@ -57,7 +57,7 @@
 	export default defineComponent({
 		name: "RoomJoinPopup",
 		components: {
-			PopupCard,
+			Popup,
 			Input,
 			Error
 		},

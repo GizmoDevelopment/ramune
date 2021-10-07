@@ -1,5 +1,5 @@
 <template>
-	<PopupCard
+	<Popup
 		:visible="visible"
 		title="Login"
 		@dismiss="$emit('dismiss')"
@@ -34,7 +34,7 @@
 				</button>
 			</div>
 		</form>
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -47,7 +47,7 @@
 	import SocketMixin from "@mixins/Socket";
 
 	// Components
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 	import Error from "@components/Error.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Input from "@components/Input.vue";
@@ -58,7 +58,7 @@
 	export default defineComponent({
 		name: "LoginPopup",
 		components: {
-			PopupCard,
+			Popup,
 			Error,
 			LoadingBuffer,
 			Input

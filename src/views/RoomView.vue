@@ -34,13 +34,13 @@
 		<LoadingBuffer v-if="isLoadingRoomData" />
 	</div>
 	<br><br>
-	<PopupCard
+	<Popup
 		:visible="!$socket.connected"
 		:dismissable="false"
 		:transparent="true"
 	>
 		<LoadingBuffer />
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -53,7 +53,7 @@
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Icons
@@ -80,7 +80,7 @@
 			LoadingBuffer,
 			MarkdownRenderer,
 			LockClosed,
-			PopupCard
+			Popup
 		},
 		mixins: [ RoomMixin ],
 		props: {

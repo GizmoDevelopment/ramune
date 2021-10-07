@@ -47,7 +47,7 @@
 	import Close from "@assets/icons/close.svg?component";
 
 	export default defineComponent({
-		name: "PopupCard",
+		name: "Popup",
 		components: {
 			Close
 		},

@@ -1,5 +1,5 @@
 <template>
-	<PopupCard
+	<Popup
 		:visible="showId.length > 0"
 		:floating-title-bar="true"
 		@dismiss="$emit('dismiss')"
@@ -13,7 +13,7 @@
 			<Error v-else-if="error" :text="error" />
 			<ShowInformationHusk v-else />
 		</div>
-	</PopupCard>
+	</Popup>
 </template>
 
 <script lang="ts">
@@ -25,7 +25,7 @@
 	import Error from "@components/Error.vue";
 	import ShowInformation from "@components/show/ShowInformation.vue";
 	import ShowInformationHusk from "@components/husks/ShowInformationHusk.vue";
-	import PopupCard from "@components/PopupCard.vue";
+	import Popup from "@components/popups/Popup.vue";
 
 	// Utils
 	import { getShow } from "@utils/api";
@@ -40,7 +40,7 @@
 			Error,
 			ShowInformation,
 			ShowInformationHusk,
-			PopupCard
+			Popup
 		},
 		props: {
 			showId: {

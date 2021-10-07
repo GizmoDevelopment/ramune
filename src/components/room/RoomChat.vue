@@ -49,7 +49,7 @@
 	import { defineComponent, ref } from "vue";
 
 	// Components
-	import ChatMessage from "@components/ChatMessage.vue";
+	import ChatMessage from "@components/room/ChatMessage.vue";
 
 	// Icons
 	import Arrow from "@assets/icons/arrow.svg?component";

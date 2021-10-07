@@ -55,7 +55,7 @@
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import RoomCard from "@components/room/RoomCard.vue";
 	import RoomCreationPopup from "@components/popups/RoomCreationPopup.vue";
-	import RoomJoinPopup from "@components/room/RoomJoinPopup.vue";
+	import RoomJoinPopup from "@components/popups/RoomJoinPopup.vue";
 
 	// Mixins
 	import MainMixin from "@mixins/Main";

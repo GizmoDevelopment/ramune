@@ -39,7 +39,7 @@
 	// Components
 	import ShowCard from "@components/show/ShowCard.vue";
 	import ShowCardHusk from "@components/husks/ShowCardHusk.vue";
-	import ShowInformationPopup from "@components/show/ShowInformationPopup.vue";
+	import ShowInformationPopup from "@components/popups/ShowInformationPopup.vue";
 
 	// Utils
 	import { getShows } from "@utils/api";

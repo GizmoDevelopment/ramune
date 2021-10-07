@@ -25,7 +25,7 @@
 			<span class="setting-description">Toggle special experience features.</span>
 			<div class="experience-list">
 				<div class="experience-toggle">
-					<span class="experience-title">Effects</span>
+					<span class="experience-title">Video Effects</span>
 					<Toggle v-model="isLeafEnabled" />
 				</div>
 				<div class="experience-toggle">

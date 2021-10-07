@@ -50,6 +50,7 @@
 <style scoped lang="scss">
 
 	@import "@styles/main.scss";
+	@import "@styles/variables.scss";
 
 	.toggle-container {
 
@@ -61,7 +62,7 @@
 		border-radius: 10em;
 
 		cursor: pointer;
-		transition: background-color .25s ease-in-out;
+		transition: $themeable-transitions;
 
 		&:after {
 

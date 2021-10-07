@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 // Types
-import { Theme } from "@typings/main";
+import { Flavor } from "@typings/main";
 
 export default defineComponent({
 	props: {
@@ -12,8 +12,8 @@ export default defineComponent({
 		}
 	},
 	computed: {
-		theme (): Theme {
-			return this.$store.getters["settings/theme"];
+		flavor (): Flavor {
+			return this.$store.getters["settings/flavor"];
 		}
 	}
 });

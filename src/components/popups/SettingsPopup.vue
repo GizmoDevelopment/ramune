@@ -20,6 +20,20 @@
 				</button>
 			</div>
 		</div>
+		<div class="setting">
+			<span class="heading setting-title">Experience</span>
+			<span class="setting-description">Toggle special experience features.</span>
+			<div class="experience-list">
+				<div class="experience-toggle">
+					<span class="experience-title">Effects</span>
+					<Toggle v-model="isLeafEnabled" />
+				</div>
+				<div class="experience-toggle">
+					<span class="experience-title">Karaoke</span>
+					<Toggle v-model="isKaraokeEnabled" />
+				</div>
+			</div>
+		</div>
 	</Popup>
 </template>
 
@@ -30,6 +44,7 @@
 
 	// Components
 	import Popup from "@components/popups/Popup.vue";
+	import Toggle from "@components/Toggle.vue";
 
 	// Utils
 	import { FLAVORS } from "@utils/constants";
@@ -37,7 +52,8 @@
 	export default defineComponent({
 		name: "SettingsPopup",
 		components: {
-			Popup
+			Popup,
+			Toggle
 		},
 		props: {
 			visible: {
@@ -49,6 +65,22 @@
 		computed: {
 			flavors () {
 				return FLAVORS;
+			},
+			isLeafEnabled: {
+				get () {
+					return this.$store.state.settings.effects;
+				},
+				set (value: boolean) {
+					this.$store.commit("settings/UPDATE_EFFECTS_STATE", value);
+				}
+			},
+			isKaraokeEnabled: {
+				get () {
+					return this.$store.state.settings.karaoke;
+				},
+				set (value: boolean) {
+					this.$store.commit("settings/UPDATE_KARAOKE_STATE", value);
+				}
 			}
 		},
 		methods: {
@@ -68,6 +100,7 @@
 
 		width: 400px;
 		padding: .8rem;
+		margin-bottom: .5rem;
 
 		background-color: variable(background-color);
 		border-radius: variable(card-border-radius);
@@ -134,6 +167,28 @@
 
 		&:hover {
 			color: variable(text-color);
+		}
+	}
+
+	// Experience
+
+	.experience-list {
+
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+
+		.experience-title {
+			font-weight: bold;
+		}
+
+		.experience-toggle {
+			flex: 1;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: .3rem 0 .3rem 0;
 		}
 	}
 

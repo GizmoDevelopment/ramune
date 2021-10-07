@@ -136,20 +136,28 @@
 				@seeked="updateCurrentTime($event); pushSync();"
 				@seeking="updateCurrentTime($event); pushSync();"
 			/>
-			<KaraokeRenderer
-				v-if="isKaraokeEnabled && episode.data.lyrics && !isInPopOutMode"
-				class="karaoke"
-				:show-id="show.id"
-				:episode-id="episode.id"
-				:data="episode.data.lyrics"
-				:timestamp="currentTime"
-			/>
+			<transition name="fade">
+				<div v-if="isKaraokeEnabled">
+					<KaraokeRenderer
+						v-if="episode.data.lyrics && !isInPopOutMode"
+						class="karaoke"
+						:show-id="show.id"
+						:episode-id="episode.id"
+						:data="episode.data.lyrics"
+						:timestamp="currentTime"
+					/>
+				</div>
+			</transition>
 		</div>
-		<LeafRenderer
-			v-if="isLeafEnabled && episode.data.effects && !isInPopOutMode && !isFullscreen"
-			:data="episode.data.effects"
-			:timestamp="currentTime"
-		/>
+		<transition name="fade">
+			<div v-if="isLeafEnabled">
+				<LeafRenderer
+					v-if="episode.data.effects && !isInPopOutMode && !isFullscreen"
+					:data="episode.data.effects"
+					:timestamp="currentTime"
+				/>
+			</div>
+		</transition>
 	</div>
 </template>
 

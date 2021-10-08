@@ -11,12 +11,13 @@
 				<button
 					v-for="(colors, name) in flavors"
 					:key="name"
-					v-memo="[]"
+					v-memo="[ flavorName === name ]"
 					class="button flavor-button"
+					:class="{ 'selected-flavor': flavorName === name }"
 					:style="{ backgroundColor: colors.primary }"
 					@click="setFlavor(name)"
 				>
-					{{ name }}
+					<span class="flavor-name">{{ name }}</span>
 				</button>
 			</div>
 		</div>
@@ -65,6 +66,9 @@
 		computed: {
 			flavors () {
 				return FLAVORS;
+			},
+			flavorName (): string {
+				return this.$store.state.settings.flavor;
 			},
 			isLeafEnabled: {
 				get () {
@@ -143,30 +147,45 @@
 
 	.flavor-button {
 
-		flex: 1;
 		position: relative;
-		padding: .5em;
+		width: 4em;
+		height: 2em;
+
 		margin: .2em;
-		font-size: 1rem;
+		padding: .5em;
+		border: 3px solid transparent;
 
-		color: transparent;
+		display: flex;
+		align-content: center;
+		justify-content: center;
 
-		overflow: hidden;
-		transition: color .35s ease;
+		transition: border-color .2s ease, transform .25s ease;
 
-		&:before {
+		.flavor-name {
+
 			position: absolute;
-			width: 100%;
-			height: .35em;
-			top: 0;
-			left: 0;
-			opacity: .4;
-			background-color: variable(text-color);
-			content: "";
+			top: -1em;
+
+			font-size: 1rem;
+			opacity: 0;
+
+			user-select: none;
+
+			transition: transform .25s ease, opacity .2s ease;
 		}
 
 		&:hover {
-			color: variable(text-color);
+
+			transform: translateY(-.3rem);
+
+			.flavor-name {
+				transform: translateY(-.8em);
+				opacity: 1;
+			}
+		}
+
+		&.selected-flavor {
+			border-color: variable(text-color);
 		}
 	}
 

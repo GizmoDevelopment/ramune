@@ -17,7 +17,7 @@
 						:key="room.id"
 						class="room-card"
 						:room="room"
-						@request-room-password="(roomId) => joinRoomId = roomId"
+						@request-room-password="setJoinRoomId"
 					/>
 				</div>
 				<div v-else>
@@ -119,6 +119,9 @@
 						}
 					});
 				}
+			},
+			setJoinRoomId (roomId: string) {
+				this.joinRoomId = roomId;
 			}
 		}
 	});

@@ -89,7 +89,11 @@
 								@mouseenter="isHoveringOverControls = true"
 								@mouseleave="isHoveringOverControls = false"
 							>
-								<ClosedCaptioning class="subtitle-button" @click="isSubtitleTrayVisible = !isSubtitleTrayVisible" />
+								<ClosedCaptioning
+									v-if="episode.subtitles.length > 0"
+									class="subtitle-button"
+									@click="isSubtitleTrayVisible = !isSubtitleTrayVisible"
+								/>
 								<transition name="video-tray">
 									<div
 										v-show="isSubtitleTrayVisible"

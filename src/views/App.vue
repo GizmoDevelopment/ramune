@@ -4,7 +4,7 @@
 		<div class="route-content">
 			<router-view v-slot="{ Component }">
 				<transition name="view" mode="out-in">
-					<component :is="Component" class="route-view" />
+					<component :is="Component" />
 				</transition>
 			</router-view>
 		</div>
@@ -295,10 +295,6 @@
 
 	.route-content {
 		width: 1350px;
-	}
-
-	.route-view {
-		display: block;
 	}
 
 	@media only screen and (max-width: 1400px) {

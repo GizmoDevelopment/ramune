@@ -20,7 +20,7 @@
     "gizmo-api": "^1.1.0",
     "socket.io-client": "^4.2.0",
     "vite-ssr": "^0.13.2",
-    "vue": "^3.2.19",
+    "vue": "^3.2.20",
     "vue-router": "^4.0.11",
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vuex": "^4.0.2"

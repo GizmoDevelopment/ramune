@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@vueuse/head": "^0.6.0",
+    "axios": "^0.23.0",
     "gizmo-api": "^1.1.0",
     "socket.io-client": "^4.2.0",
     "vite-ssr": "^0.14.1",

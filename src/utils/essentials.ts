@@ -1,11 +1,6 @@
 // Types
 import { Range } from "@typings/main";
 
-interface FetchResponse {
-	data: any;
-	text: string;
-}
-
 /**
  * @param input String to modify (e.g. "{NUM} tree{S}") -> "3 trees" | "1 tree"
  */

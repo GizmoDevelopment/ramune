@@ -21,7 +21,7 @@
     "socket.io-client": "^4.3.0",
     "vite-ssr": "^0.14.1",
     "vue": "^3.2.20",
-    "vue-router": "^4.0.11",
+    "vue-router": "^4.0.12",
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vuex": "^4.0.2"
   },

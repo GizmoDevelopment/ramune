@@ -48,31 +48,6 @@ export function convertTimestampToSeconds (timestamp: string): number {
 	return time;
 }
 
-async function fetchRequest (method: "GET" | "POST", url: string): Promise<FetchResponse> {
-
-	const
-		res = await fetch(url, { method }),
-		text = await res.text(),
-		result: FetchResponse = {
-			data: {},
-			text
-		};
-
-	try {
-		result.data = JSON.parse(text);
-	} catch (err) {
-		result.data = {};
-	}
-
-	return result;
-}
-
-export const http = {
-	get (url: string): Promise<FetchResponse> {
-		return fetchRequest("GET", url);
-	}
-};
-
 export function getRandomNumberFromRange (range: Range): number {
 	return (Math.random() * (range[1] - range[0])) + range[0];
 }

@@ -72,6 +72,8 @@ export interface ErrorResponse extends BaseResponse {
 	message: string;
 }
 
+export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
+
 export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 export type Range = [ number, number ];

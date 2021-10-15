@@ -1,7 +1,8 @@
-// Utils
-import { http } from "@utils/essentials";
+// Modules
+import axios from "axios";
 
 // Types
+import { APIResponse } from "@typings/main";
 import { Show, ShowHusk } from "@typings/show";
 
 // Constants
@@ -13,9 +14,9 @@ const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
 export async function getShows (): Promise<ShowHusk[]> {
 	try {
 
-		const { data: response } = await http.get(`${SHOW_ENDPOINT}/shows`);
+		const { data: response } = await axios.get<APIResponse<ShowHusk[]>>(`${SHOW_ENDPOINT}/shows`);
 
-		if (response.type === "success" && response.data) {
+		if (response.type === "success") {
 			return response.data;
 		} else {
 			throw new Error(response.message);
@@ -33,9 +34,9 @@ export async function getShows (): Promise<ShowHusk[]> {
 export async function getShow (showId: string): Promise<Show | null> {
 	try {
 
-		const { data: response } = await http.get(`${SHOW_ENDPOINT}/shows/${showId}`);
+		const { data: response } = await axios.get<APIResponse<Show>>(`${SHOW_ENDPOINT}/shows/${showId}`);
 
-		if (response.type === "success" && response.data) {
+		if (response.type === "success") {
 			return response.data;
 		} else {
 			throw new Error(response.message);

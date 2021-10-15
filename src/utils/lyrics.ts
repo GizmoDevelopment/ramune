@@ -1,5 +1,8 @@
+// Modules
+import axios from "axios";
+
 // Utils
-import { convertTimestampToSeconds, http } from "@utils/essentials";
+import { convertTimestampToSeconds } from "@utils/essentials";
 
 // Types
 import { Lyrics } from "@typings/show";
@@ -8,7 +11,7 @@ import { ParsedLyrics } from "@typings/lyrics";
 export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 
 	const
-		{ text: rawLyrics } = await http.get(lyrics.url),
+		{ data: rawLyrics } = await axios.get<string>(lyrics.url),
 		_lyrics: ParsedLyrics = {
 			id: lyrics.id,
 			title: "",

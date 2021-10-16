@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="input-container">
 		<p v-if="label.length > 0">{{ label }}</p>
 		<input
 
@@ -103,7 +103,7 @@
 
 <style scoped lang="scss">
 
-	.container {
+	.input-container {
 
 		width: auto;
 		display: flex;

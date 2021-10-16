@@ -2,10 +2,10 @@
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div class="heading-container">
-			<h1 class="heading">All Shows</h1>
+			<h1 class="heading">Shows</h1>
 			<Input
 				v-model="searchQuery"
-				placeholder="Search for show..."
+				placeholder="Search..."
 				:enabled="allShows.length > 0"
 			/>
 		</div>
@@ -129,13 +129,19 @@
 
 <style scoped lang="scss">
 
-	.fade-popup-overlay-enter-active, .fade-popup-overlay-leave-active {
+	// Transitions
+
+	.fade-popup-overlay-enter-active,
+	.fade-popup-overlay-leave-active {
 		transition: opacity .4s ease;
 	}
 
-	.fade-popup-overlay-enter-from, .fade-popup-overlay-leave-to {
+	.fade-popup-overlay-enter-from,
+	.fade-popup-overlay-leave-to {
 		opacity: 0;
 	}
+
+	//
 
 	.heading-container {
 		display: flex;
@@ -163,6 +169,20 @@
 	@media only screen and (max-width: 500px) {
 		.show-card {
 			margin: 3px 4.5px 1px 4.5px;
+		}
+	}
+
+</style>
+
+<style lang="scss">
+
+	.heading-container .input-container {
+		font-size: 1.2rem;
+	}
+
+	@media only screen and (max-width: 700px) {
+		.heading-container .input-container {
+			font-size: 1rem;
 		}
 	}
 

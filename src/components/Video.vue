@@ -423,39 +423,34 @@
 
 			if (this.video) {
 
-				// URL Timestamp
-				if (this.$route.query.t) {
-
-					const timestamp = Number(this.$route.query.t);
-
-					if (!isNaN(timestamp) && !this.room) {
-						this.video.addEventListener("canplay", () => {
-							if (this.video) {
-								this.video.currentTime = timestamp;
-							}
-						}, {
-							once: true
-						});
-					}
-				}
+				this.volume = this.video.volume;
 
 				this.video.addEventListener("canplay", () => {
+
+					if (this.video) {
+
+						// Fetch volume from settings
+						this.video.volume = this.$store.state.settings.volume;
+
+						// URL Timestamp
+						if (this.$route.query.t) {
+
+							const timestamp = Number(this.$route.query.t);
+
+							if (!isNaN(timestamp) && !this.room) {
+								this.video.currentTime = timestamp;
+							}
+						}
+					}
 
 					// Request video data on Room join
 					if (this.room && !this.isHost) {
 						this.$socket.client.emit("CLIENT:REQUEST_ROOM_SYNC");
 					}
 
-					// Fetch volume from settings
-					if (this.video) {
-						this.video.volume = this.$store.state.settings.volume;
-					}
-
 				}, {
 					once: true
 				});
-
-				this.volume = this.video.volume;
 			}
 
 			this.selectedSubtitleLanguage = this.episode.subtitles[0].code;

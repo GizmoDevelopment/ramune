@@ -35,7 +35,8 @@
 		"GizmoMusic",
 		"GizmoMoyai",
 		"Ramune",
-		"Troll"
+		"Troll",
+		"RikaCheers"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

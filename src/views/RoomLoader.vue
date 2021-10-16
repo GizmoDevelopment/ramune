@@ -82,7 +82,7 @@
 			if (this.user) {
 				this._joinRoom();
 			} else {
-				this.status = "You must be logged in to join a room.";
+				this.status = "You must be logged in to join a room";
 			}
 		},
 		beforeUnmount () {
@@ -100,7 +100,7 @@
 
 					this.status = err;
 
-					if (err === "The room requires a password.") {
+					if (err === "The room requires a password") {
 						this.joinPopupVisible = true;
 					}
 				});

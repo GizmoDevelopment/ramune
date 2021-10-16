@@ -28,6 +28,13 @@
 						v-if="isBuffering"
 						:size="isInPopOutMode ? 'small' : 'normal'"
 					/>
+					<div
+						v-if="isSyncOverlayVisible"
+						class="sync-overlay-container"
+						@click="requestSync(); isSyncOverlayVisible = false"
+					>
+						<h2 class="sync-label">Click to sync</h2>
+					</div>
 				</div>
 				<transition name="fade">
 					<div
@@ -258,6 +265,7 @@
 				currentTime: 0,
 				volume: 1,
 				duration: 0,
+				isSyncOverlayVisible: false,
 
 				// Progress Bar
 				isHoveringOverProgressBar: false,
@@ -283,7 +291,8 @@
 				lastClickTimestamp: 0,
 
 				// Misc
-				volumeSaver: 0
+				volumeSaver: 0,
+				firstSyncData: null as RoomSyncData | null
 
 			};
 		},
@@ -445,7 +454,18 @@
 
 					// Request video data on Room join
 					if (this.room && !this.isHost) {
-						this.$socket.client.emit("CLIENT:REQUEST_ROOM_SYNC");
+
+						this.requestSync();
+
+						setTimeout(() => {
+							// Initial sync didn't succeed (autoplay might be off)
+							if (
+								this.video && this.firstSyncData
+								&& this.video.paused !== !this.firstSyncData.playing
+							) {
+								this.isSyncOverlayVisible = true
+							}
+						}, 350);
 					}
 
 				}, {
@@ -467,16 +487,7 @@
 			this.destroySubtitleRenderer();
 		},
 		methods: {
-			pushSync (targetUserId?: number) {
-				if (this.isHost) {
-					if (this.video) {
-						this.$emit("update", !this.video.paused, this.video.currentTime, targetUserId);
-					} else { // Fallback to saved data
-						this.$emit("update", !this.isPaused, this.currentTime, targetUserId);
-						console.error("No video element found while attempting to push sync.");
-					}
-				}
-			},
+
 			handleKeypress (e: KeyboardEvent) {
 				// Only process keys if user isn't focused on any inputs/spans/textareas
 				if (this.video && document.activeElement && !INPUT_ELEMENTS.includes(document.activeElement.tagName)) {
@@ -510,6 +521,21 @@
 						default:
 					}
 				}
+			},
+
+			// Room
+			pushSync (targetUserId?: number) {
+				if (this.isHost) {
+					if (this.video) {
+						this.$emit("update", !this.video.paused, this.video.currentTime, targetUserId);
+					} else { // Fallback to saved data
+						this.$emit("update", !this.isPaused, this.currentTime, targetUserId);
+						console.error("No video element found while attempting to push sync.");
+					}
+				}
+			},
+			requestSync () {
+				this.$socket.client.emit("CLIENT:REQUEST_ROOM_SYNC");
 			},
 
 			// Progress Bar
@@ -681,6 +707,10 @@
 					} else {
 						this.video.pause();
 					}
+
+					if (!this.firstSyncData) {
+						this.firstSyncData = data;
+					}
 				}
 			},
 			"ROOM:CLIENT_REQUEST_ROOM_SYNC" (userId: number) {
@@ -750,7 +780,7 @@
 		pointer-events: none;
 	}
 
-	// Overlay
+	// Overlays
 
 	.video-overlay {
 
@@ -781,6 +811,22 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+		}
+	}
+
+	.sync-overlay-container {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: variable(container-background-color);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.sync-label {
+			user-select: none;
 		}
 	}
 

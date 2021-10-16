@@ -21,18 +21,15 @@
 				name="password"
 				label="Password"
 			/>
-			<div v-if="isBusy">
-				<LoadingBuffer size="small" />
-			</div>
-			<div v-else>
-				<button
-					class="primary-button"
-					name="login"
-					@click="attemptLogin()"
-				>
-					Log in
-				</button>
-			</div>
+			<LoadingBuffer v-if="isBusy" size="small" />
+			<button
+				v-else
+				class="primary-button"
+				name="login"
+				@click="attemptLogin()"
+			>
+				Log in
+			</button>
 		</form>
 	</Popup>
 </template>
@@ -132,12 +129,12 @@
 		flex-direction: column;
 		align-items: center;
 
-		* {
-			margin-top: .5em;
+		*:not(button) {
+			width: 100%;
 		}
 
-		.container {
-			width: 100%;
+		button {
+			margin-top: .5em;
 		}
 	}
 

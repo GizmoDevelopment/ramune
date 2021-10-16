@@ -12,7 +12,8 @@ export default {
 		return {
 			flavor: window.localStorage.getItem("flavorName") || "blueberry",
 			karaoke: true,
-			effects: true
+			effects: true,
+			volume: Number(window.localStorage.getItem("volume")) || 1
 		};
 	},
 	mutations: {
@@ -27,6 +28,12 @@ export default {
 		},
 		UPDATE_EFFECTS_STATE (_state: SettingsState, state: boolean) {
 			_state.effects = state;
+		},
+		UPDATE_VOLUME (_state: SettingsState, state: number) {
+			if (state >= 0 && state <= 1) {
+				_state.volume = state;
+				window.localStorage.setItem("volume", state.toString());
+			}
 		}
 	},
 	getters: {

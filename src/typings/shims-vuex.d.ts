@@ -33,6 +33,7 @@ export interface SettingsState {
 	flavor: string;
 	karaoke: boolean;
 	effects: boolean;
+	volume: number;
 }
 
 export interface State {

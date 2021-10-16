@@ -280,7 +280,10 @@
 				isHoveringOverControls: false,
 				lastMousePosition: [ 0, 0 ] as [ number, number ],
 				mouseChecker: 0,
-				lastClickTimestamp: 0
+				lastClickTimestamp: 0,
+
+				// Misc
+				volumeSaver: 0
 
 			};
 		},
@@ -407,7 +410,7 @@
 					this.isVolumeTrayVisible = false;
 					this.isSubtitleTrayVisible = false;
 				}
-			},
+			}
 		},
 		mounted () {
 
@@ -416,10 +419,9 @@
 			document.addEventListener("mousemove", this.updateMousePosition);
 
 			this.mouseChecker = window.setInterval(this.checkForStaticMouse, 100);
+			this.volumeSaver = window.setInterval(this.saveVolume, 1000);
 
 			if (this.video) {
-
-				this.volume = this.video.volume;
 
 				// URL Timestamp
 				if (this.$route.query.t) {
@@ -437,14 +439,23 @@
 					}
 				}
 
-				// Request video data on Room join
-				if (this.room && !this.isHost) {
-					this.video.addEventListener("canplay", () => {
+				this.video.addEventListener("canplay", () => {
+
+					// Request video data on Room join
+					if (this.room && !this.isHost) {
 						this.$socket.client.emit("CLIENT:REQUEST_ROOM_SYNC");
-					}, {
-						once: true
-					});
-				}
+					}
+
+					// Fetch volume from settings
+					if (this.video) {
+						this.video.volume = this.$store.state.settings.volume;
+					}
+
+				}, {
+					once: true
+				});
+
+				this.volume = this.video.volume;
 			}
 
 			this.selectedSubtitleLanguage = this.episode.subtitles[0].code;
@@ -456,6 +467,7 @@
 			document.removeEventListener("mousemove", this.updateMousePosition);
 
 			clearInterval(this.mouseChecker);
+			clearInterval(this.volumeSaver);
 
 			this.destroySubtitleRenderer();
 		},
@@ -654,6 +666,13 @@
 				}
 
 				this.lastClickTimestamp = now;
+			},
+
+			// Misc
+			saveVolume () {
+				if (this.$store.state.settings.volume !== this.volume) {
+					this.$store.commit("settings/UPDATE_VOLUME", this.volume);
+				}
 			}
 		},
 		sockets: {

@@ -103,7 +103,7 @@
 							console.error(err);
 
 							if (typeof err === "object") {
-								this.error = (err as ErrorResult).message;
+								this.error = (err as ErrorResult).message.replace(/\.$/, "");
 							}
 						}
 

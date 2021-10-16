@@ -14,6 +14,7 @@
 			:placeholder="placeholder"
 			:maxlength="limit"
 			:name="name"
+			:readonly="!enabled"
 		>
 	</div>
 </template>
@@ -57,6 +58,10 @@
 			name: {
 				type: String,
 				default: ""
+			},
+			enabled: {
+				type: Boolean,
+				default: true
 			}
 		},
 		emits: [ "update:modelValue" ],

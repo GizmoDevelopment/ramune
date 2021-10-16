@@ -1,11 +1,15 @@
 <template>
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<h1 class="heading">All Shows</h1>
-		<div
-			v-if="shows.length > 0"
-			class="show-container"
-		>
+		<div class="heading-container">
+			<h1 class="heading">All Shows</h1>
+			<Input
+				v-model="searchQuery"
+				placeholder="Search for show..."
+				:enabled="allShows.length > 0"
+			/>
+		</div>
+		<div v-if="shows.length > 0" class="show-container">
 			<ShowCard
 				v-for="show in shows"
 				:key="show.id"
@@ -14,12 +18,10 @@
 				@select-show="selectShow"
 			/>
 		</div>
-		<div
-			v-else
-			class="show-container"
-		>
+		<h3 v-else-if="isSearching && searchedShows.length === 0" class="faded">Nothing found :(</h3>
+		<div v-else class="show-container">
 			<ShowCardHusk
-				v-for="(_, index) in new Array(10)"
+				v-for="(_, index) in new Array(15)"
 				:key="index"
 				class="show-card"
 			/>
@@ -35,11 +37,13 @@
 
 	// Modules
 	import { defineComponent } from "vue";
+	import { filter } from "fuzzaldrin";
 
 	// Components
 	import ShowCard from "@components/show/ShowCard.vue";
 	import ShowCardHusk from "@components/husks/ShowCardHusk.vue";
 	import ShowInformationPopup from "@components/popups/ShowInformationPopup.vue";
+	import Input from "@components/Input.vue";
 
 	// Utils
 	import { getShows } from "@utils/api";
@@ -53,7 +57,8 @@
 		components: {
 			ShowCard,
 			ShowCardHusk,
-			ShowInformationPopup
+			ShowInformationPopup,
+			Input
 		},
 		props: {
 			showId: {
@@ -63,13 +68,31 @@
 		},
 		data () {
 			return {
-				shows: [] as ShowHusk[],
-				selectedShowId: ""
+
+				selectedShowId: "",
+				searchQuery: "",
+
+				// Lists
+				allShows: [] as ShowHusk[],
+				searchedShows: [] as ShowHusk[]
 			};
 		},
 		computed: {
 			showList (): ShowHusk[] {
 				return this.$store.state.cache.showList;
+			},
+			isSearching (): boolean {
+				return this.searchQuery.trim().length > 0;
+			},
+			shows (): ShowHusk[] {
+				return this.isSearching
+					? this.searchedShows
+					: this.allShows;
+			}
+		},
+		watch: {
+			searchQuery (query: string) {
+				this.searchedShows = filter(this.allShows, query, { key: "title" });
 			}
 		},
 		async mounted () {
@@ -81,10 +104,10 @@
 			}
 
 			if (this.showList.length > 0) {
-				this.shows = this.showList;
+				this.allShows = this.showList;
 			} else {
-				this.shows = await getShows();
-				this.$store.commit("cache/CACHE_SHOW_LIST", this.shows);
+				this.allShows = await getShows();
+				this.$store.commit("cache/CACHE_SHOW_LIST", this.allShows);
 			}
 
 		},
@@ -114,24 +137,27 @@
 		opacity: 0;
 	}
 
+	.heading-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.faded {
+		font-size: 2rem;
+		margin-top: 2rem;
+	}
+
 	.show-container {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		flex-wrap: wrap;
-	}
 
-	.show-card {
-		margin: 5px 5px 2px 5px;
-	}
-
-	.show-overlay {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background: rgba(0, 0, 0, .5)
+		.show-card {
+			margin: 5px 5px 2px 5px;
+		}
 	}
 
 	@media only screen and (max-width: 500px) {

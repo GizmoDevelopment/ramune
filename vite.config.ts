@@ -24,7 +24,8 @@ export default defineConfig({
 			"@styles": path.resolve(__dirname, "./src/styles"),
 			"@stores": path.resolve(__dirname, "./src/stores"),
 			"@factories": path.resolve(__dirname, "./src/factories"),
-			"@directives": path.resolve(__dirname, "./src/directives")
+			"@directives": path.resolve(__dirname, "./src/directives"),
+			"@plugins": path.resolve(__dirname, "./src/plugins")
 		}
 	},
 	server: {

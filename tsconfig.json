@@ -28,7 +28,8 @@
 			"@styles/*": ["styles/*"],
 			"@stores/*": ["stores/*"],
 			"@factories/*": ["factories/*"],
-			"@directives/*": ["directives/*"]
+			"@directives/*": ["directives/*"],
+			"@plugins/*": ["plugins/*"]
 		},
 		"plugins": [
 			{ "name": "@vuedx/typescript-plugin-vue" }

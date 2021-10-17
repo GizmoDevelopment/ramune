@@ -36,8 +36,8 @@ export default {
 				window.localStorage.setItem("volume", state.toString());
 			}
 		},
-		UPDATE_LANGUAGE (_state: SettingsState, languageCode: string) {
-			_state.language = languageCode;
+		UPDATE_LANGUAGE (state: SettingsState, languageCode: string) {
+			state.language = languageCode;
 		}
 	},
 	getters: {

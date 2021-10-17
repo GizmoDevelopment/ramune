@@ -3,6 +3,7 @@ import { Module } from "vuex";
 import { Show, ShowHusk } from "@typings/show";
 import { CacheState } from "@typings/shims-vuex";
 import { ParsedLyrics } from "@typings/lyrics";
+import { Language } from "@typings/main";
 
 export default {
 	namespaced: true,
@@ -11,6 +12,7 @@ export default {
 			shows: new Map(),
 			showList: [],
 			parsedLyrics: new Map(),
+			languages: {}
 		};
 	},
 	mutations: {
@@ -28,6 +30,9 @@ export default {
 		},
 		REPLACE_PARSED_LYRICS_CACHE (state: CacheState, newParsedLyricsCache: Map<string, ParsedLyrics>) {
 			state.parsedLyrics = newParsedLyricsCache;
+		},
+		CACHE_LANGUAGE (state: CacheState, { code, language }: { code: string; language: Language }) {
+			state.languages[code] = language;
 		}
 	}
 } as Module<CacheState, unknown>;

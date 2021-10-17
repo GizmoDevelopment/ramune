@@ -16,7 +16,6 @@
     "last 4 versions"
   ],
   "dependencies": {
-    "@vueuse/head": "^0.6.0",
     "axios": "^0.23.0",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.1.0",

@@ -34,6 +34,7 @@ export interface SettingsState {
 	karaoke: boolean;
 	effects: boolean;
 	volume: number;
+	language: string;
 }
 
 export interface State {

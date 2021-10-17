@@ -13,7 +13,8 @@ export default {
 			flavor: window.localStorage.getItem("flavorName") || "blueberry",
 			karaoke: true,
 			effects: true,
-			volume: Number(window.localStorage.getItem("volume")) || 1
+			volume: Number(window.localStorage.getItem("volume")) || 1,
+			language: window.localStorage.getItem("language") || "en-us"
 		};
 	},
 	mutations: {
@@ -34,6 +35,9 @@ export default {
 				_state.volume = state;
 				window.localStorage.setItem("volume", state.toString());
 			}
+		},
+		UPDATE_LANGUAGE (_state: SettingsState, languageCode: string) {
+			_state.language = languageCode;
 		}
 	},
 	getters: {

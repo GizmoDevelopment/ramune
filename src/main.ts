@@ -11,6 +11,9 @@ import { createStore } from "@factories/store";
 // Directives
 import Tooltip from "@directives/tooltip";
 
+// Plugins
+import i18n from "@plugins/i18n";
+
 // Views
 import App from "@views/App.vue";
 
@@ -35,6 +38,7 @@ export default viteSSR (App, { routes: router.options.routes }, ({ app, router, 
 		.use(createHead)
 		.use(store)
 		.use(VueSocketIO, ioInstance)
+		.use(i18n, store)
 		.directive("tooltip", Tooltip)
 		.component(ClientOnly.name, ClientOnly);
 

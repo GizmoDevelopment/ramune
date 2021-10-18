@@ -12,7 +12,7 @@
 				<ContextMenu
 					v-if="isHost && user.id !== host.id"
 					:identifier="user.id"
-					:items="[ 'actions/promote_host', 'actions_kick' ]"
+					:items="[ 'actions/promote_host', 'actions/kick' ]"
 					@ctx-promote-host="promoteUserIdToHost"
 					@ctx-kick="kickUserId"
 				>

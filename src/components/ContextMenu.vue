@@ -17,9 +17,9 @@
 						v-for="(item, index) in items"
 						:key="index"
 						class="tray-button context-menu-button"
-						@click="$emit(`ctx-${item.toLowerCase().replace(/\s/g, '-')}`, identifier)"
+						@click="$emit(`ctx-${actionNames[item]}`, identifier)"
 					>
-						{{ item }}
+						{{ $t(item) }}
 					</button>
 				</div>
 			</div>
@@ -58,7 +58,8 @@
 		},
 		data () {
 			return {
-				isOpen: false
+				isOpen: false,
+				actionNames: {} as Record<string, string>
 			};
 		},
 		computed: {
@@ -67,7 +68,13 @@
 			}
 		},
 		mounted () {
+
 			document.addEventListener("click", this.handleOutsideClick);
+
+			// Save encoded names
+			this.items.forEach(item => {
+				this.actionNames[item] = item.split("/")[1].replace(/_/g, "-");
+			});
 		},
 		beforeUnmount () {
 			document.removeEventListener("click", this.handleOutsideClick);

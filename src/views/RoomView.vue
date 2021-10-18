@@ -30,7 +30,7 @@
 		/>
 	</div>
 	<div v-else>
-		<h3 class="faded no-video-message">Waiting for host</h3>
+		<h3 class="faded no-video-message">{{ $t("description/host_wait") }}</h3>
 		<LoadingBuffer v-if="isLoadingRoomData" />
 	</div>
 	<br><br>

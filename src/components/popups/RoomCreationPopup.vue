@@ -1,6 +1,6 @@
 <template>
 	<Popup
-		title="Create a room"
+		:title="$t('actions/create_room')"
 		:visible="visible"
 		@dismiss="$emit('dismiss')"
 	>
@@ -22,7 +22,7 @@
 
 				variant="dark"
 				placeholder="Anime night"
-				label="Name"
+				:label="$t('inputs/name')"
 				autofocus
 
 				:limit="25"
@@ -34,13 +34,13 @@
 				type="text"
 				variant="dark"
 				placeholder="hau~hau~ (optional)"
-				label="Password"
+				:label="$t('inputs/password')"
 
 				:limit="50"
 			/>
 		</form>
 		<div class="room-preview-container">
-			<p>Preview</p>
+			<p>{{ $t("labels/preview") }}</p>
 			<div v-if="roomPreviewObject" class="room-preview">
 				<RoomCard
 					:room="roomPreviewObject"
@@ -55,7 +55,7 @@
 			:class="{ 'disabled-button': isCreateButtonDisabled }"
 			@click="createRoom"
 		>
-			Create
+			{{ $t("actions/create") }}
 		</button>
 	</Popup>
 </template>
@@ -96,7 +96,7 @@
 		emits: [ "dismiss" ],
 		data () {
 			return {
-				debounce: false,
+				isBusy: false,
 				error: "",
 				roomName: "",
 				roomPassword: "",
@@ -108,7 +108,7 @@
 				return this.$store.state.user.user;
 			},
 			isCreateButtonDisabled (): boolean {
-				return this.roomName.trim().length === 0 || this.debounce;
+				return this.roomName.trim().length === 0 || this.isBusy;
 			}
 		},
 		watch: {
@@ -152,7 +152,7 @@
 				if (this.isCreateButtonDisabled)
 					return;
 
-				this.debounce = true;
+				this.isBusy = true;
 
 				const roomOptions: CreateRoomOptions = {
 					name: this.roomName
@@ -174,7 +174,7 @@
 
 					} else {
 
-						this.debounce = false;
+						this.isBusy = false;
 						this.error = res.message;
 
 						console.error(res.message);

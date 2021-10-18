@@ -21,7 +21,7 @@
 					ref="input"
 					v-model="messageContent"
 					class="input chat-input"
-					placeholder="Click here or press '/' to start typing"
+					:placeholder="$t('descriptions/chat_box')"
 					maxlength="500"
 					cols="28"
 					rows="1"

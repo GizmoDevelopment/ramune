@@ -1,7 +1,7 @@
 <template>
 	<Popup
 		:visible="visible"
-		title="Login"
+		:title="$t('labels/login')"
 		@dismiss="$emit('dismiss')"
 	>
 		<Error :v-show="error" :text="error" />
@@ -11,7 +11,7 @@
 				variant="dark"
 				type="text"
 				name="username"
-				label="Username / Email"
+				:label="$t('inputs/username_and_email')"
 				:autofocus="true"
 			/>
 			<Input
@@ -19,16 +19,17 @@
 				variant="dark"
 				type="password"
 				name="password"
-				label="Password"
+				:label="$t('inputs/password')"
 			/>
 			<LoadingBuffer v-if="isBusy" size="small" />
 			<button
 				v-else
 				class="primary-button"
+				:class="{ 'disabled-button': isLoginButtonDisabled }"
 				name="login"
 				@click="attemptLogin()"
 			>
-				Log in
+				{{ $t("actions/log_in") }}
 			</button>
 		</form>
 	</Popup>
@@ -76,8 +77,16 @@
 				isBusy: false
 			};
 		},
+		computed: {
+			isLoginButtonDisabled (): boolean {
+				return (this.username.trim().length === 0 || this.password.trim().length === 0) || this.isBusy;
+			}
+		},
 		methods: {
 			async attemptLogin () {
+
+				if (this.isLoginButtonDisabled)
+					return;
 
 				const
 					username = this.username.trim(),
@@ -103,14 +112,23 @@
 							console.error(err);
 
 							if (typeof err === "object") {
-								this.error = (err as ErrorResult).message.replace(/\.$/, "");
+
+								const error = (err as ErrorResult).message.replace(/\.$/, "");
+
+								switch (error) {
+									case "Invalid credentials":
+										this.error = this.$t("errors/invalid_credentials");
+										break;
+									default:
+										this.error = error;
+								}
 							}
 						}
 
 						this.isBusy = false;
 
 					} else {
-						this.error = "Empty fields";
+						this.error = this.$t("errors/empty_fields");
 					}
 
 				}

@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<h1 class="heading">Home</h1>
+		<h1 class="heading">{{ $t("views/home") }}</h1>
 		<div v-if="$socket.connected" class="online-user-list-container">
-			<h3 class="heading">Online users</h3>
+			<h3 class="heading">{{ $t("labels/online_users") }}</h3>
 			<div v-if="onlineUsers.length > 0" class="online-user-list">
 				<div
 					v-for="user in onlineUsers"

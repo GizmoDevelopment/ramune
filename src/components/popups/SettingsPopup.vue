@@ -5,8 +5,8 @@
 		@dismiss="$emit('dismiss')"
 	>
 		<div class="setting">
-			<span class="heading setting-title">Flavor</span>
-			<span class="setting-description">Changes the accent color across the website.</span>
+			<span class="heading setting-title">{{ $t("labels/flavor") }}</span>
+			<span class="setting-description">{{ $t("descriptions/setting_flavor") }}</span>
 			<div class="flavor-grid">
 				<button
 					v-for="(colors, name) in flavors"
@@ -17,20 +17,20 @@
 					:style="{ backgroundColor: colors.primary }"
 					@click="setFlavor(name)"
 				>
-					<span class="flavor-name">{{ name }}</span>
+					<span class="flavor-name">{{ $t(`flavors/${name}`) }}</span>
 				</button>
 			</div>
 		</div>
 		<div class="setting">
-			<span class="heading setting-title">Experience</span>
-			<span class="setting-description">Toggle special experience features.</span>
+			<span class="heading setting-title">{{ $t("labels/experience") }}</span>
+			<span class="setting-description">{{ $t("descriptions/setting_experience") }}</span>
 			<div class="experience-list">
 				<div class="experience-toggle">
-					<span class="experience-title">Video Effects</span>
+					<span class="experience-title">{{ $t("labels/video_effects") }}</span>
 					<Toggle v-model="isLeafEnabled" />
 				</div>
 				<div class="experience-toggle">
-					<span class="experience-title">Karaoke</span>
+					<span class="experience-title">{{ $t("labels/karaoke") }}</span>
 					<Toggle v-model="isKaraokeEnabled" />
 				</div>
 			</div>

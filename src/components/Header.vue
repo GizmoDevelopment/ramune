@@ -11,10 +11,10 @@
 					<Logo v-else class="logo" />
 				</router-link>
 				<router-link to="/shows">
-					Shows
+					{{ $t("views/shows") }}
 				</router-link>
 				<router-link to="/rooms">
-					Rooms
+					{{ $t("views/rooms") }}
 				</router-link>
 			</div>
 			<div v-if="user" class="user-container">
@@ -26,7 +26,7 @@
 				>
 				<ContextMenu
 					align="right"
-					:items="[ 'Settings', 'Log out' ]"
+					:items="[ 'labels/settings', 'actions/log_out' ]"
 					@ctx-settings="isInSettings = !isInSettings"
 					@ctx-log-out="logout"
 				>
@@ -35,7 +35,7 @@
 			</div>
 			<div v-else class="login">
 				<button class="primary-button" @click="isLoggingIn = true">
-					Log In
+					{{ $t("actions/log_in") }}
 				</button>
 			</div>
 		</div>

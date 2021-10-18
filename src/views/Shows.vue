@@ -2,10 +2,10 @@
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div class="heading-container">
-			<h1 class="heading">Shows</h1>
+			<h1 class="heading">{{ $t("views/shows") }}</h1>
 			<Input
 				v-model="searchQuery"
-				placeholder="Search..."
+				:placeholder="$t('inputs/search')"
 				:enabled="allShows.length > 0"
 			/>
 		</div>
@@ -18,7 +18,7 @@
 				@select-show="selectShow"
 			/>
 		</div>
-		<h3 v-else-if="isSearching && searchedShows.length === 0" class="faded">Nothing found :(</h3>
+		<h3 v-else-if="isSearching && searchedShows.length === 0" class="faded">{{ $t("errors/nothing_found") }} :(</h3>
 		<div v-else class="show-container">
 			<ShowCardHusk
 				v-for="(_, index) in new Array(15)"

@@ -65,6 +65,9 @@
 		computed: {
 			connectError (): string {
 				return this.$store.state.generic.connectError;
+			},
+			loginRequirement (): string {
+				return this.$t("errors/login_required_room");
 			}
 		},
 		watch: {
@@ -82,7 +85,7 @@
 			if (this.user) {
 				this._joinRoom();
 			} else {
-				this.status = "You must be logged in to join a room";
+				this.status = this.loginRequirement;
 			}
 		},
 		beforeUnmount () {
@@ -97,11 +100,18 @@
 			},
 			async _joinRoom () {
 				this.joinRoom({ id: this.roomId }).catch(err => {
+					switch (err) {
+						case "The room requires a password.":
 
-					this.status = err;
+							this.status = this.$t("errors/room_requires_password");
+							this.joinPopupVisible = true;
 
-					if (err === "The room requires a password") {
-						this.joinPopupVisible = true;
+							break;
+						case "Room doesn't exist.":
+							this.status = this.$t("errors/room_not_found");
+							break;
+						default:
+							this.status = err;
 					}
 				});
 			}

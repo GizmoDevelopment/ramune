@@ -108,7 +108,7 @@
 										@mouseenter="isBusy = true"
 										@mouseleave="isSubtitleTrayVisible = false; isBusy = false"
 									>
-										<span class="video-tray-title">Subtitles</span>
+										<span class="video-tray-title">{{ $t("labels/subtitles") }}</span>
 										<button
 											v-for="subtitle in episode.subtitles"
 											:key="subtitle.code"

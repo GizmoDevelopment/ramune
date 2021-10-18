@@ -2,7 +2,7 @@
 	<div>
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div class="heading-bar">
-			<h1 class="heading">Rooms</h1>
+			<h1 class="heading">{{ $t("views/rooms") }}</h1>
 			<div v-if="rooms">
 				<button class="primary-button icon-button" @click="isCreatingRoom = true">
 					<Plus class="plus-icon" />
@@ -21,7 +21,7 @@
 					/>
 				</div>
 				<div v-else>
-					<h3 class="faded">There are no active rooms</h3>
+					<h3 class="faded">{{ $t("errors/no_active_rooms") }} :(</h3>
 				</div>
 				<RoomCreationPopup
 					:visible="isCreatingRoom"
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div v-else>
-			<h3 class="faded">You must be logged in to view this page</h3>
+			<h3 class="faded">{{ $t("errors/login_required_page") }}</h3>
 		</div>
 	</div>
 </template>

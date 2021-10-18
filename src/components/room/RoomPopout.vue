@@ -1,6 +1,6 @@
 <template>
 	<div class="popout-container">
-		<div class="room-information">
+		<div class="popout-information">
 			<UserList
 				id="user-list"
 				:tooltips="false"
@@ -8,10 +8,12 @@
 				:host="room.host"
 			/>
 		</div>
-		<!-- This is where RoomController will teleport the video element to -->
-		<div id="room-video-popout-container" />
-		<div v-if="!room.data" class="no-video-message-container">
-			<p class="faded">Waiting for host</p>
+		<div class="popout-content">
+			<!-- This is where RoomController will teleport the video element to -->
+			<div v-show="room.data" id="room-video-popout-container" />
+			<div v-show="!room.data" class="no-video-message-container">
+				<p class="faded">Waiting for host</p>
+			</div>
 		</div>
 		<div
 			class="overlay hover-opacity"
@@ -51,58 +53,74 @@
 
 </script>
 
+<style lang="scss">
+
+	#room-video-popout-container {
+
+		div {
+			width: auto;
+			height: 100%;
+		}
+
+		video {
+			border-radius: var(--popup-border-radius);
+		}
+	}
+
+</style>
+
 <style scoped lang="scss">
 
 	@import "@styles/main.scss";
 
 	.popout-container {
+
 		position: relative;
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
 		box-shadow: 0 0 10px variable(primary-color);
 		width: 350px;
 		height: calc(350px * (9 / 16));
-	}
 
-	#room-video-popout-container,
-	.no-video-message-container {
-		position: absolute;
-		width: inherit;
-		top: 0;
-		left: 0;
-		height: inherit;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-content: center;
-		align-items: center;
-		z-index: 1;
-		margin-top: 2px;
-	}
+		.popout-information {
 
-	.room-information {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		padding: 5px;
-		z-index: 2;
-	}
+			position: relative;
+			width: 100%;
+			height: 100%;
+			padding: 5px;
+			z-index: 2;
 
-	.user-list {
-		height: 2em;
-	}
+			.user-list {
+				height: 2em;
+			}
+		}
 
-	.overlay {
-		border-radius: variable(popup-border-radius);
-		z-index: 3;
-	}
+		.popout-content {
 
-</style>
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
 
-<style>
+			#room-video-popout-container,
+			.no-video-message-container {
+				position: relative;
+				width: inherit;
+				height: inherit;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 1;
+			}
+		}
 
-	#room-video-popout-container video {
-		border-radius: var(--popup-border-radius);
+		.overlay {
+			border-radius: variable(popup-border-radius);
+			z-index: 3;
+		}
 	}
 
 </style>

@@ -3,6 +3,8 @@ import { App, Plugin } from "vue";
 import { State } from "@typings/shims-vuex";
 import { Store } from "vuex";
 
+export type TranslateFunction = (key: string) => string;
+
 export default {
 	install (app: App, store: Store<State>) {
 

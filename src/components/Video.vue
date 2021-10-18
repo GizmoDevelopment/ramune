@@ -354,7 +354,7 @@
 
 				setTimeout(() => {
 					if (this.episode.id === _episodeId && this.show.id === _showId) {
-						this.selectedSubtitleLanguage = this.episode.subtitles[0].code;
+						this.selectedSubtitleLanguage = this.episode.subtitles[0]?.code || null;
 					}
 				}, 100);
 
@@ -473,7 +473,7 @@
 				});
 			}
 
-			this.selectedSubtitleLanguage = this.episode.subtitles[0].code;
+			this.selectedSubtitleLanguage = this.episode.subtitles[0]?.code || null;
 		},
 		beforeUnmount () {
 

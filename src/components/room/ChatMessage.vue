@@ -44,6 +44,13 @@
 				type: Boolean,
 				default: false
 			}
+		},
+		computed: {
+			topMargin (): string {
+				return this.repeating
+					? ".5em"
+					: "2em";
+			}
 		}
 	});
 
@@ -69,7 +76,7 @@
 		flex-direction: row-reverse;
 		justify-content: flex-start;
 		align-items: flex-start;
-		margin-top: .5rem;
+		margin-top: v-bind(topMargin);
 
 		* {
 			pointer-events: auto;

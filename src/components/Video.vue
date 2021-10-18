@@ -38,7 +38,7 @@
 				</div>
 				<transition name="fade">
 					<div
-						v-show="isMouseInOverlay && !isMouseStatic || isHoveringOverControls"
+						v-show="(isMouseInOverlay && !isMouseStatic || isHoveringOverControls) && !isInPopOutMode"
 						class="hover-overlay"
 					>
 						<div class="time-row">

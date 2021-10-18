@@ -10,7 +10,7 @@
 		</div>
 		<div class="popout-content">
 			<!-- This is where RoomController will teleport the video element to -->
-			<div v-show="room.data" id="room-video-popout-container" />
+			<div v-show="room.data" id="video-popout-container" />
 			<div v-show="!room.data" class="no-video-message-container">
 				<p class="faded">Waiting for host</p>
 			</div>
@@ -42,7 +42,7 @@
 		},
 		mixins: [ RoomMixin ],
 		mounted () {
-			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-popout-container");
+			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "video-popout-container");
 		},
 		methods: {
 			returnToRoom () {
@@ -55,7 +55,7 @@
 
 <style lang="scss">
 
-	#room-video-popout-container {
+	#video-popout-container {
 
 		div {
 			width: auto;
@@ -105,7 +105,7 @@
 			display: flex;
 			justify-content: center;
 
-			#room-video-popout-container,
+			#video-popout-container,
 			.no-video-message-container {
 				position: relative;
 				width: inherit;

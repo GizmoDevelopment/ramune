@@ -5,6 +5,9 @@ import { Store } from "vuex";
 
 export type TranslateFunction = (key: string) => string;
 
+// TODO: Language change should be reactive
+// TODO: Show badges
+
 export default {
 	install (app: App, store: Store<State>) {
 
@@ -14,7 +17,7 @@ export default {
 				[ section, string ] = key.split("/"),
 				language = store.state.settings.language;
 
-			return store.state.cache.languages[language][section][string];
+			return store.state.cache.languages[language]?.[section]?.[string] || store.state.cache.languages["en-us"][section][string];
 		};
 
 		app.provide("i18n", store);

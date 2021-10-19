@@ -38,6 +38,7 @@ export default {
 		},
 		UPDATE_LANGUAGE (state: SettingsState, languageCode: string) {
 			state.language = languageCode;
+			window.localStorage.setItem("language", languageCode);
 		}
 	},
 	getters: {

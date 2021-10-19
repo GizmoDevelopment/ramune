@@ -5,6 +5,11 @@ import { CacheState } from "@typings/shims-vuex";
 import { ParsedLyrics } from "@typings/lyrics";
 import { Language } from "@typings/main";
 
+// Languages
+import * as en from "../../public/i18n/en-us.json";
+import * as sl from "../../public/i18n/sl-si.json";
+import * as da from "../../public/i18n/da-dk.json";
+
 export default {
 	namespaced: true,
 	state () {
@@ -12,7 +17,11 @@ export default {
 			shows: new Map(),
 			showList: [],
 			parsedLyrics: new Map(),
-			languages: {}
+			languages: {
+				"en-us": en,
+				"sl-si": sl,
+				"da-dk": da
+			}
 		};
 	},
 	mutations: {

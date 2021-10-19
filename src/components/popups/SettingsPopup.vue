@@ -1,7 +1,7 @@
 <template>
 	<Popup
 		:visible="visible"
-		title="Settings"
+		:title="$t('labels/settings')"
 		@dismiss="$emit('dismiss')"
 	>
 		<div class="setting">
@@ -35,6 +35,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="setting">
+			<span class="heading setting-title">{{ $t("labels/language") }}</span>
+			<div class="language-selector">
+				<span class="current-language-name">{{ $t("meta/name") }}</span>
+				<Dropdown
+					class="language-dropdown"
+					:entries="languageList"
+					:current-index="currentLanguageIndex"
+					@select-index="setLanguageByIndex"
+				/>
+			</div>
+		</div>
 	</Popup>
 </template>
 
@@ -46,6 +58,7 @@
 	// Components
 	import Popup from "@components/popups/Popup.vue";
 	import Toggle from "@components/Toggle.vue";
+	import Dropdown from "@components/Dropdown.vue";
 
 	// Utils
 	import { FLAVORS } from "@utils/constants";
@@ -54,7 +67,8 @@
 		name: "SettingsPopup",
 		components: {
 			Popup,
-			Toggle
+			Toggle,
+			Dropdown
 		},
 		props: {
 			visible: {
@@ -85,11 +99,23 @@
 				set (value: boolean) {
 					this.$store.commit("settings/UPDATE_KARAOKE_STATE", value);
 				}
+			},
+			currentLanguage (): string {
+				return this.$store.state.settings.language;
+			},
+			languageList (): string[] {
+				return Object.keys(this.$store.state.cache.languages);
+			},
+			currentLanguageIndex (): number {
+				return this.languageList.indexOf(this.currentLanguage);
 			}
 		},
 		methods: {
 			setFlavor (flavorName: string) {
 				this.$store.commit("settings/UPDATE_FLAVOR", flavorName);
+			},
+			setLanguageByIndex (index: number) {
+				this.$store.commit("settings/UPDATE_LANGUAGE", this.languageList[index]);
 			}
 		}
 	});
@@ -208,6 +234,24 @@
 			justify-content: space-between;
 			align-items: center;
 			padding: .3rem 0 .3rem 0;
+		}
+	}
+
+	// Language
+
+	.language-selector {
+
+		width: 100%;
+		display: inline-flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.current-language-name {
+			font-weight: bold;
+		}
+
+		.language-dropdown {
+			font-size: .6rem;
 		}
 	}
 

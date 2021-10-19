@@ -1,0 +1,66 @@
+{
+	"meta": {
+		"name": "Slovenščina"
+	},
+	"badges": {
+		"episode_count": "%N% Epizod{a|i|}",
+		"movie": "Film"
+	},
+	"views": {
+		"home": "Domov",
+		"shows": "Serije",
+		"rooms": "Sobe"
+	},
+	"actions": {
+		"log_in": "Prijavi",
+		"log_out": "Odjavi",
+		"create": "Ustvari",
+		"create_room": "Ustvari sobo",
+		"promote_host": "Promote to Host",
+		"kick": "Kick"
+	},
+	"inputs": {
+		"name": "Ime",
+		"password": "Geslo",
+		"username_and_email": "Uporabniško ime / E-pošta",
+		"room_password": "Geslo sobe",
+		"search": "Išči..."
+	},
+	"labels": {
+		"preview": "Predogled",
+		"subtitles": "Podnapisi",
+		"verification": "Verifikacija",
+		"login": "Prijava",
+		"settings": "Nastavitve",
+		"flavor": "Okus",
+		"experience": "Posebnosti",
+		"video_effects": "Video Efekti",
+		"karaoke": "Karaoke",
+		"online_users": "Online users",
+		"language": "Jezik"
+	},
+	"descriptions": {
+		"setting_flavor": "Changes the accent color across the website.",
+		"setting_experience": "Toggle special experience features.",
+		"chat_box": "Click here or press '/' to start typing",
+		"host_wait": "Waiting for host"
+	},
+	"errors": {
+		"no_active_rooms": "Ni aktivnih sob",
+		"nothing_found": "Nič ni bilo najdeno",
+		"login_required_room": "Moraš biti prijavljen za se pridružit sobam",
+		"login_required_page": "Moraš biti prijavljen za videt to stran",
+		"empty_fields": "Prazna mesta",
+		"invalid_credentials": "Napačni podatki",
+		"invalid_password": "Napačno geslo",
+		"room_not_found": "Soba ne obstaja",
+		"room_requires_password": "Soba potrebuje geslo"
+	},
+	"flavors": {
+		"blueberry": "Borovnica",
+		"strawberry": "Jagoda",
+		"watermelon": "Lubenica",
+		"grape": "Grozdje",
+		"orange": "Pomaranča"
+	}
+}

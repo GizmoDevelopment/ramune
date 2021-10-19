@@ -10,7 +10,7 @@
 				<h1 class="heading show-title">{{ show.title }}</h1>
 				<div class="show-stats">
 					<!-- <ShowScoreLabel class="show-score" :score="show.score" /> -->
-					<div class="flavorable show-episode-count">{{ show.format === "movie" ? "Movie" : formattedEpisodeCount }}</div>
+					<div class="flavorable show-episode-count">{{ show.format === "movie" ? $t("badges/movie") : formattedEpisodeCount }}</div>
 				</div>
 				<p class="show-description">{{ formattedDescription }}</p>
 			</div>
@@ -59,7 +59,7 @@
 				}
 			},
 			formattedEpisodeCount (): string {
-				return pluralize("{NUM} Episode{S}", this.episodeCount);
+				return this.$t("badges/episode_count", [[ "%N%", this.episodeCount ]]);
 			},
 			formattedDescription (): string {
 				return this.show.description.replace(/\\n/g, "\n") || "";

@@ -1,0 +1,66 @@
+{
+	"meta": {
+		"name": "Dansk"
+	},
+	"badges": {
+		"episode_count": "%N% Episod{e|er|er}",
+		"movie": "Film"
+	},
+	"views": {
+		"home": "Hjem",
+		"shows": "Shows",
+		"rooms": "Rum"
+	},
+	"actions": {
+		"log_in": "Log ind",
+		"log_out": "Log ud",
+		"create": "Skab",
+		"create_room": "Lav et rum",
+		"promote_host": "Gør til vært",
+		"kick": "Smid ud"
+	},
+	"inputs": {
+		"name": "Navn",
+		"password": "Kodeord",
+		"username_and_email": "Brugernavn / Email",
+		"room_password": "Rum password",
+		"search": "Søg..."
+	},
+	"labels": {
+		"preview": "Forhåndsvisning",
+		"subtitles": "Undertekster",
+		"verification": "Verifikation ",
+		"login": "Log på",
+		"settings": "Indstillinger",
+		"flavor": "Smag",
+		"experience": "Oplevelse",
+		"video_effects": "Video Effekter",
+		"karaoke": "Karaoke",
+		"online_users": "Online Brugere",
+		"language": "Sprog"
+	},
+	"descriptions": {
+		"setting_flavor": "Ændre farven på hjemmesiden.",
+		"setting_experience": "Slå speciale effekter til/fra.",
+		"chat_box": "Klik her eller tryk '/' for at skrive",
+		"host_wait": "Venter på værten"
+	},
+	"errors": {
+		"no_active_rooms": "Der er ingen aktive rum",
+		"nothing_found": "Intet fundet",
+		"login_required_room": "Du skal være logget på for at kunne deltage i et rum",
+		"login_required_page": "Du skal være logget på for at kunne se denne side",
+		"empty_fields": "Tomme felter",
+		"invalid_credentials": "Forkerte legitimationsoplysninger",
+		"invalid_password": "Forkert kodeord",
+		"room_not_found": "Dette rum eksistere ikke",
+		"room_requires_password": "Dette rum kræver et kodeord"
+	},
+	"flavors": {
+		"blueberry": "Blåbær",
+		"strawberry": "Jordbær",
+		"watermelon": "Vandmalon",
+		"grape": "Vindrue",
+		"orange": "Appelsin"
+	}
+}

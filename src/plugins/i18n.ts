@@ -10,7 +10,7 @@ type ReplaceValues = [ string, string | number ][];
 const numeratorMatcher = new RegExp(/\{(.?)\|(.?)\|(.?)\}/);
 const numeratorReplacer = new RegExp(/(\{.+?\})/);
 
-// TODO: Language change should be reactive
+// TODO: Support more enumerations
 
 export default {
 	install (app: App, store: Store<State>) {

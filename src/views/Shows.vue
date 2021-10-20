@@ -21,7 +21,7 @@
 		<h3 v-else-if="isSearching && searchedShows.length === 0" class="faded">{{ $t("errors/nothing_found") }} :(</h3>
 		<div v-else class="show-container">
 			<ShowCardHusk
-				v-for="(_, index) in new Array(15)"
+				v-for="(_, index) in new Array(16)"
 				:key="index"
 				class="show-card"
 			/>
@@ -88,6 +88,9 @@
 				return this.isSearching
 					? this.searchedShows
 					: this.allShows;
+			},
+			showOverflow (): string {
+				return this.selectedShowId ? "hidden" : "auto";
 			}
 		},
 		watch: {
@@ -175,6 +178,10 @@
 </style>
 
 <style lang="scss">
+
+	body {
+		overflow-y: v-bind(showOverflow);
+	}
 
 	.heading-container .input-container {
 		font-size: 1.2rem;

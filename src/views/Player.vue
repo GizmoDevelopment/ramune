@@ -124,7 +124,7 @@
 
 </script>
 
-<style scoped>
+<style lang="scss">
 
 	#video-player {
 		width: 100%;

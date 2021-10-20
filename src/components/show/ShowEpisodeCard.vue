@@ -53,6 +53,10 @@
 			active: {
 				type: Boolean,
 				default: false
+			},
+			width: {
+				type: String,
+				default: "200px"
 			}
 		},
 		emits: [ "select-episode" ],
@@ -74,7 +78,7 @@
 	@import "@styles/main.scss";
 
 	// Variables
-	$card-width: 200px;
+	$card-width: v-bind(width);
 	$card-height: calc(#{$card-width} * .56);
 
 	// Containers

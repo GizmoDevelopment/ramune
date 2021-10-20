@@ -1,13 +1,6 @@
 // Types
 import { Range } from "@typings/main";
 
-/**
- * @param input String to modify (e.g. "{NUM} tree{S}") -> "3 trees" | "1 tree"
- */
-export function pluralize (input: string, amount: number): string {
-	return input.replace(/\{NUM\}/gm, amount.toString()).replace(/{S}/gm, amount > 1 ? "s" : "");
-}
-
 export function formatTimestamp (timestamp: number): string {
 
 	if (isNaN(timestamp) || timestamp === 0) return "0:00";

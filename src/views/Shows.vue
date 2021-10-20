@@ -88,9 +88,6 @@
 				return this.isSearching
 					? this.searchedShows
 					: this.allShows;
-			},
-			showOverflow (): string {
-				return this.selectedShowId ? "hidden" : "auto";
 			}
 		},
 		watch: {
@@ -178,10 +175,6 @@
 </style>
 
 <style lang="scss">
-
-	body {
-		overflow-y: v-bind(showOverflow);
-	}
 
 	.heading-container .input-container {
 		font-size: 1.2rem;

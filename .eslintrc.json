@@ -32,7 +32,8 @@
 		"vue/component-api-style": [ "error", [ "options", "composition" ] ],
 		"vue/no-useless-mustaches": [ "error" ],
 		"vue/no-useless-v-bind": [ "error" ],
-		"vue/no-lone-template": [ "error" ]
+		"vue/no-lone-template": [ "error" ],
+		"vue/no-use-computed-property-like-method": [ "error" ]
     },
 	"overrides": [
 		{

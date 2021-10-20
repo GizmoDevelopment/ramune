@@ -158,7 +158,7 @@
 		&:hover {
 
 			.episode-thumbnail {
-				transform: scale(103%);
+				transform: scale(102%);
 				filter: blur(1px);
 			}
 

@@ -17,6 +17,7 @@
 		</div>
 		<ShowEpisodePicker
 			variant="dark"
+			:row-count="5"
 			:show="show"
 		/>
 	</div>

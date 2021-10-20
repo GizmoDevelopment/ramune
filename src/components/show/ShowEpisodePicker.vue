@@ -1,5 +1,5 @@
 <template>
-	<div class="episode-picker-container">
+	<div ref="episodePickerContainer" class="episode-picker-container">
 		<div v-if="show.seasons.length > 1" class="title-bar">
 			<Dropdown
 				class="dropdown"
@@ -17,6 +17,7 @@
 				:key="`${show.id}-${episode.id}`"
 				:episode="episode"
 				:active="episode.id === currentEpisodeId"
+				:width="episodeCardWidth"
 				@select-episode="selectEpisode"
 			/>
 		</div>
@@ -26,7 +27,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, PropType, ref } from "vue";
 
 	// Components
 	import Dropdown from "@components/Dropdown.vue";
@@ -59,7 +60,19 @@
 			currentEpisodeId: {
 				type: Number,
 				default: 0
+			},
+			rowCount: {
+				type: Number,
+				default: 6
 			}
+		},
+		setup () {
+
+			const episodePickerContainer = ref<HTMLDivElement>();
+
+			return {
+				episodePickerContainer
+			};
 		},
 		data () {
 			return {
@@ -70,6 +83,11 @@
 		computed: {
 			currentSeason (): Season {
 				return this.show.seasons[this.currentSeasonIndex];
+			},
+			episodeCardWidth (): string {
+				return this.episodePickerContainer
+					? `${(this.episodePickerContainer.clientWidth / this.rowCount) - 8}px`
+					: "200px";
 			}
 		},
 		watch: {
@@ -117,17 +135,11 @@
 	}
 
 	.title-bar {
-
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 1rem;
-
-		.season-title {
-			font-weight: bold;
-			font-size: 2rem;
-		}
 	}
 
 	.no-title-bar-spacer {

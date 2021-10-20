@@ -6,9 +6,9 @@ import { ParsedLyrics } from "@typings/lyrics";
 import { Language } from "@typings/main";
 
 // Languages
-import * as en from "../../public/i18n/en-us.json";
-import * as sl from "../../public/i18n/sl-si.json";
-import * as da from "../../public/i18n/da-dk.json";
+import * as en from "../i18n/en-us.json";
+import * as sl from "../i18n/sl-si.json";
+import * as da from "../i18n/da-dk.json";
 
 export default {
 	namespaced: true,

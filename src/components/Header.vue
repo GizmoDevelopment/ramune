@@ -47,12 +47,14 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineAsyncComponent, defineComponent } from "vue";
 
 	// Components
-	import LoginPopup from "@components/popups/LoginPopup.vue";
-	import SettingsPopup from "@components/popups/SettingsPopup.vue";
 	import ContextMenu from "@components/ContextMenu.vue";
+
+	// Async Components
+	const SettingsPopup = defineAsyncComponent(() => import("@components/popups/SettingsPopup.vue"));
+	const LoginPopup = defineAsyncComponent(() => import("@components/popups/LoginPopup.vue"));
 
 	// Mixins
 	import MainMixin from "@mixins/Main";

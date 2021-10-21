@@ -29,14 +29,16 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineAsyncComponent, defineComponent } from "vue";
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
-	import Video from "@components/Video.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
+
+	// Async Components
+	const Video = defineAsyncComponent(() => import("@components/Video.vue"));
 
 	// Utils
 	import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";

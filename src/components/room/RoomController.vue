@@ -19,11 +19,13 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineAsyncComponent, defineComponent } from "vue";
 
 	// Components
-	import Video from "@components/Video.vue";
 	import RoomChat from "@components/room/RoomChat.vue";
+
+	// Async Components
+	const Video = defineAsyncComponent(() => import("@components/Video.vue"));
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";

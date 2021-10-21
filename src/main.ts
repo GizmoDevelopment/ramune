@@ -2,7 +2,6 @@
 import viteSSR, { ClientOnly } from "vite-ssr";
 import VueSocketIO from "vue-socket.io-extended";
 import { io } from "socket.io-client";
-import { createHead } from "@vueuse/head";
 
 // Factories
 import { createRouter } from "@factories/router";
@@ -31,11 +30,9 @@ if (typeof SOCKET_ENDPOINT !== "string") {
 export default viteSSR (App, { routes: router.options.routes }, ({ app, router, initialState }) => {
 
 	const
-		head = createHead(),
 		store = createStore();
 
 	app
-		.use(createHead)
 		.use(store)
 		.use(VueSocketIO, ioInstance)
 		.use(i18n, store)
@@ -54,5 +51,5 @@ export default viteSSR (App, { routes: router.options.routes }, ({ app, router, 
 		next();
 	});
 
-	return { head };
+	return {};
 });

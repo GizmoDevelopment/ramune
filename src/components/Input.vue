@@ -1,7 +1,25 @@
 <template>
 	<div class="input-container">
 		<p v-if="label.length > 0">{{ label }}</p>
+		<div v-if="$slots.default" class="input">
+			<slot />
+			<input
+
+				ref="input"
+				v-model="value"
+
+				:alt="label"
+				:type="type"
+				:variant="variant"
+				:placeholder="placeholder"
+				:maxlength="limit"
+				:name="name"
+				:readonly="!enabled"
+			>
+		</div>
 		<input
+
+			v-else
 
 			ref="input"
 			v-model="value"

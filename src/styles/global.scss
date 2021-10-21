@@ -71,18 +71,38 @@
 
 	@include light;
 
-	font-family: variable(font);
-	color: variable(text-color);
+	font-size: 1.1em;
+
 	border: 2px solid transparent;
 	border-radius: variable(popup-border-radius);
-	font-size: 1.1em;
-	outline: none;
+
 	padding: .2em .4em .2em .4em;
-	box-sizing: border-box;
+
+	display: inline-flex;
+	align-items: center;
+
 	transition: border-color .2s ease-in-out;
 
 	&:focus {
 		border-color: variable(primary-color);
+	}
+
+	&,
+	input {
+
+		font-family: variable(font);
+
+		color: variable(text-color);
+
+		box-sizing: border-box;
+		outline: none;
+	}
+
+	input {
+		font-size: 1em;
+		background: none;
+		border: none;
+		padding: .1em .2em .1em .2em;
 	}
 }
 

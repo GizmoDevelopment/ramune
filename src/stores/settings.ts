@@ -6,39 +6,65 @@ import { Flavor } from "@typings/main";
 // Variables
 import { FLAVORS } from "@utils/constants";
 
+// ! IF YOU'RE ADDING SAVABLE OBJECTS/ARRAYS/MAPS, MAKE SURE TO STRINGIFY THEM PROPERLY
+
+function saveSetting (name: string, value: unknown): void {
+	window.localStorage.setItem(name, `${value}`);
+}
+
+function getSetting <T> (name: string, defaultValue: T): unknown {
+
+	const setting = window.localStorage.getItem(name);
+
+	if (setting !== null) {
+		switch (typeof defaultValue) {
+			case "number":
+				return Number(setting);
+			case "boolean":
+				return setting === "true" ? true : false;
+			default: // Strings
+				return setting;
+		}
+	} else {
+		return defaultValue;
+	}
+}
+
 export default {
 	namespaced: true,
 	state () {
 		return {
-			flavor: window.localStorage.getItem("flavorName") || "blueberry",
-			karaoke: true,
-			effects: true,
-			volume: Number(window.localStorage.getItem("volume")) || 1,
-			language: window.localStorage.getItem("language") || "en-us"
+			flavor: getSetting("flavor", "blueberry"),
+			karaoke: getSetting("karaoke", true),
+			effects: getSetting("effects", true),
+			volume: getSetting("volume", 1),
+			language: getSetting("language", "en-us")
 		};
 	},
 	mutations: {
 		UPDATE_FLAVOR (state: SettingsState, flavorName: string) {
 			if (flavorName in FLAVORS) {
 				state.flavor = flavorName;
-				window.localStorage.setItem("flavorName", flavorName);
+				saveSetting("flavor", flavorName);
 			}
 		},
 		UPDATE_KARAOKE_STATE (_state: SettingsState, state: boolean) {
 			_state.karaoke = state;
+			saveSetting("karaoke", state);
 		},
 		UPDATE_EFFECTS_STATE (_state: SettingsState, state: boolean) {
 			_state.effects = state;
+			saveSetting("effects", state);
 		},
-		UPDATE_VOLUME (_state: SettingsState, state: number) {
-			if (state >= 0 && state <= 1) {
-				_state.volume = state;
-				window.localStorage.setItem("volume", state.toString());
+		UPDATE_VOLUME (_state: SettingsState, value: number) {
+			if (value >= 0 && value <= 1) {
+				_state.volume = value;
+				saveSetting("volume", value);
 			}
 		},
 		UPDATE_LANGUAGE (state: SettingsState, languageCode: string) {
 			state.language = languageCode;
-			window.localStorage.setItem("language", languageCode);
+			saveSetting("language", languageCode);
 		}
 	},
 	getters: {

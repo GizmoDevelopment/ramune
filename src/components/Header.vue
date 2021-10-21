@@ -40,7 +40,6 @@
 			</div>
 		</div>
 	</header>
-	<div class="empty" />
 	<LoginPopup :visible="isLoggingIn" @dismiss="isLoggingIn = false" />
 	<SettingsPopup :visible="isInSettings" @dismiss="isInSettings = false" />
 </template>
@@ -110,19 +109,19 @@
 	@import "@styles/main.scss";
 
 	header {
-		position: fixed;
+
+		position: sticky;
 		width: 100%;
 		height: 60px;
+		top: 0;
+
 		background-color: variable(container-background-color);
+
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		z-index: 4;
-	}
 
-	.empty {
-		height: 60px;
-		margin-bottom: 1rem;
+		z-index: 4;
 	}
 
 	a {

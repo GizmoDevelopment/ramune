@@ -7,7 +7,9 @@
 				v-model="searchQuery"
 				:placeholder="$t('inputs/search')"
 				:enabled="allShows.length > 0"
-			/>
+			>
+				<SearchIcon />
+			</Input>
 		</div>
 		<div v-if="shows.length > 0" class="show-container">
 			<ShowCard
@@ -45,6 +47,9 @@
 	import ShowInformationPopup from "@components/popups/ShowInformationPopup.vue";
 	import Input from "@components/Input.vue";
 
+	// Icons
+	import SearchIcon from "@assets/icons/search.svg?component";
+
 	// Utils
 	import { getShows } from "@utils/api";
 	import { clearPageTitle } from "@utils/dom";
@@ -58,7 +63,8 @@
 			ShowCard,
 			ShowCardHusk,
 			ShowInformationPopup,
-			Input
+			Input,
+			SearchIcon
 		},
 		props: {
 			showId: {

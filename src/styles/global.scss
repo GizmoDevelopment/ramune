@@ -170,17 +170,23 @@
 }
 
 .icon {
+
 	height: 1em;
+
+	path {
+
+		stroke: variable(text-color);
+
+		&:not(.no-fill) {
+			fill: variable(text-color);
+		}
+
+		&.no-fill {
+			fill: none;
+		}
+	}
 }
 
-.icon path {
-	fill: variable(text-color);
-	stroke: variable(text-color);
-}
-
-.no-fill path {
-	fill: none !important;
-}
 
 .husk, .husk-dark {
 	color: transparent;

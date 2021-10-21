@@ -83,10 +83,6 @@
 
 	transition: border-color .2s ease-in-out;
 
-	&:focus {
-		border-color: variable(primary-color);
-	}
-
 	&,
 	input {
 
@@ -103,6 +99,11 @@
 		background: none;
 		border: none;
 		padding: .1em .2em .1em .2em;
+	}
+
+	&:focus,
+	&.active {
+		border-color: variable(primary-color);
 	}
 }
 

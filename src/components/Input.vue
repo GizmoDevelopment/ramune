@@ -1,7 +1,11 @@
 <template>
 	<div class="input-container">
 		<p v-if="label.length > 0">{{ label }}</p>
-		<div v-if="$slots.default" class="input">
+		<div
+			v-if="$slots.default"
+			class="input"
+			:class="{ 'active': focused }"
+		>
 			<slot />
 			<input
 
@@ -15,6 +19,9 @@
 				:maxlength="limit"
 				:name="name"
 				:readonly="!enabled"
+
+				@focus="focused = true"
+				@blur="focused = false"
 			>
 		</div>
 		<input
@@ -93,7 +100,8 @@
 		},
 		data () {
 			return {
-				value: ""
+				value: "",
+				focused: false
 			};
 		},
 		watch: {

@@ -1,6 +1,7 @@
 {
 	"meta": {
-		"name": "Slovenščina"
+		"name": "Slovenščina",
+		"flag": "🇸🇮"
 	},
 	"badges": {
 		"episode_count": "%N% Epizod{a|i|}",

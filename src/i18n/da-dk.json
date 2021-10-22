@@ -1,6 +1,7 @@
 {
 	"meta": {
-		"name": "Dansk"
+		"name": "Dansk",
+		"flag": "🇩🇰"
 	},
 	"badges": {
 		"episode_count": "%N% Episod{e|er|er}",

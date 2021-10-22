@@ -1,6 +1,7 @@
 {
 	"meta": {
-		"name": "English"
+		"name": "English (US)",
+		"flag": "🇺🇸"
 	},
 	"badges": {
 		"episode_count": "%N% Episod{e|s|s}",

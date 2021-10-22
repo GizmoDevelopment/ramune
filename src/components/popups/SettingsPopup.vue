@@ -124,7 +124,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	.setting {
 
@@ -165,10 +165,9 @@
 	.flavor-grid {
 		width: 100%;
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		justify-content: center;
 		align-items: flex-start;
-		flex-wrap: wrap;
 	}
 
 	.flavor-button {

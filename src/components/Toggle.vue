@@ -49,8 +49,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/variables.scss";
+	@import "@styles/main";
+	@import "@styles/variables";
 
 	.toggle-container {
 
@@ -64,7 +64,7 @@
 		cursor: pointer;
 		transition: $flavorable-transitions;
 
-		&:after {
+		&::after {
 
 			position: absolute;
 			width: 1.6em;

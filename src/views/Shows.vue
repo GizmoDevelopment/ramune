@@ -163,9 +163,8 @@
 	.show-container {
 
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		justify-content: flex-start;
-		flex-wrap: wrap;
 
 		.show-card {
 			margin: 5px 5px 2px 5px;

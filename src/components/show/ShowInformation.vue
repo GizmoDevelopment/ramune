@@ -71,8 +71,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/components/ShowInformation.scss";
+	@import "@styles/main";
+	@import "@styles/components/ShowInformation";
 
 	// Show Banner
 
@@ -85,7 +85,6 @@
 		background-image: v-bind(bannerUrl);
 		background-size: cover;
 		background-position: center;
-		-webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 		border-top-left-radius: variable(popup-border-radius);
 		border-top-right-radius: variable(popup-border-radius);

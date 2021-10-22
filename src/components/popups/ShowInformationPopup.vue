@@ -106,7 +106,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	// Overlay & Container
 

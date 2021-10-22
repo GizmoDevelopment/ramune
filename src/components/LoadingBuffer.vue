@@ -60,7 +60,7 @@
 			transform: scale3d(1, 1.2, 1) translateY(-50px);
 		}
 		100% {
-			transform: scale3d(1, .2, 1) translateY(0px);
+			transform: scale3d(1, .2, 1) translateY(0);
 		}
 	}
 
@@ -72,7 +72,7 @@
 			transform: scale3d(1, 1.4, 1) translateY(-150px);
 		}
 		100% {
-			transform: scale3d(1, .2, 1) translateY(0px);
+			transform: scale3d(1, .2, 1) translateY(0);
 		}
 	}
 

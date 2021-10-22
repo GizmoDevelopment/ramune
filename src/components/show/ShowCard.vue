@@ -46,8 +46,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/mixins.scss";
-	@import "@styles/components/ShowCard.scss";
+	@import "@styles/mixins";
+	@import "@styles/components/ShowCard";
 
 	.show-poster-container {
 

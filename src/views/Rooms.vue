@@ -144,10 +144,9 @@
 
 	.room-list {
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		justify-content: flex-start;
 		align-items: center;
-		flex-wrap: wrap;
 	}
 
 	.room-card {

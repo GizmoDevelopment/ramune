@@ -128,7 +128,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	.episode-picker-container {
 		margin-top: 1rem;
@@ -148,10 +148,9 @@
 
 	.episode-list {
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		justify-content: flex-start;
 		align-items: flex-start;
-		flex-wrap: wrap;
 	}
 
 	.dropdown {

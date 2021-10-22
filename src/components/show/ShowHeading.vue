@@ -44,7 +44,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	.show-title {
 		margin-top: .1em;

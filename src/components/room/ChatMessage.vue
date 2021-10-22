@@ -58,7 +58,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/mixins.scss";
+	@import "@styles/mixins";
 
 	.fade-message-avatar-enter-active,
 	.fade-message-avatar-leave-active {
@@ -102,7 +102,7 @@
 		text-align: left;
 	}
 
-	.first-message-content:before {
+	.first-message-content::before {
 		content: "";
 		position: absolute;
 		right: -5px;
@@ -129,7 +129,8 @@
 			height: 1.375em;
 		}
 
-		img, video {
+		img,
+		video {
 			max-width: 100%;
 			height: auto;
 		}

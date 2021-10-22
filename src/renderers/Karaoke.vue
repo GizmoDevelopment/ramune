@@ -182,7 +182,7 @@
 
 <style lang="scss" scoped>
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	.lyrics-appear-enter-active,
 	.lyrics-appear-leave-active {

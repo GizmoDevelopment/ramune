@@ -24,8 +24,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/components/ShowInformation.scss";
+	@import "@styles/main";
+	@import "@styles/components/ShowInformation";
 
 	/*! stylelint-disable-next-line no-duplicate-selectors */
 	.show-episode-count {

@@ -723,8 +723,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/variables.scss";
+	@import "@styles/main";
+	@import "@styles/variables";
 
 	// Transitions
 

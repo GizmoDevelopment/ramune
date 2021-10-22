@@ -60,8 +60,8 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/animations.scss";
+	@import "@styles/main";
+	@import "@styles/animations";
 
 	// Transitions
 
@@ -84,10 +84,9 @@
 
 	.user-list {
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		justify-content: flex-start;
 		align-items: center;
-		flex-wrap: wrap;
 		height: 3rem;
 	}
 

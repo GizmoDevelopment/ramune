@@ -53,25 +53,9 @@
 
 </script>
 
-<style lang="scss">
-
-	#video-popout-container {
-
-		div {
-			width: auto;
-			height: 100%;
-		}
-
-		video {
-			border-radius: var(--popup-border-radius);
-		}
-	}
-
-</style>
-
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	.popout-container {
 
@@ -120,6 +104,25 @@
 		.overlay {
 			border-radius: variable(popup-border-radius);
 			z-index: 3;
+		}
+	}
+
+</style>
+
+<style lang="scss">
+
+	// stylelint-disable no-descending-specificity
+	#video-popout-container {
+
+		// Fixes non-16:9 videos strecthing outside the pop-out
+		div {
+			width: auto;
+			height: 100%;
+		}
+
+		// Adds round corners to pop-out video
+		video {
+			border-radius: var(--popup-border-radius);
 		}
 	}
 

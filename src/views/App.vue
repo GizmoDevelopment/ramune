@@ -1,6 +1,6 @@
 <template>
 	<Header />
-	<div class="content-container">
+	<div class="app-content-container">
 		<div class="route-content">
 			<router-view v-slot="{ Component }">
 				<transition name="view" mode="out-in">
@@ -180,18 +180,18 @@
 
 <style lang="scss">
 
-	@import "@styles/main.scss";
-	@import "@styles/global.scss";
-	@import "@styles/font.scss";
-	@import "@styles/animations.scss";
-	@import "@styles/mixins.scss";
-	@import "@styles/tooltip.scss";
+	@import "@styles/main";
+	@import "@styles/global";
+	@import "@styles/font";
+	@import "@styles/animations";
+	@import "@styles/mixins";
+	@import "@styles/tooltip";
 
 	:root {
 
 		--font: Roboto, sans-serif;
 
-		/* Colors */
+		// Colors
 
 		/*
 			Dynamic:
@@ -204,25 +204,25 @@
 		--faded-heading-text-color: #b4b4b4;
 		--container-background-color: rgb(31, 31, 31);
 		--container-hover-color: #494949;
-		--background-color: #0D0D0D;
+		--background-color: #0d0d0d;
 		--transparent-hover-color: rgba(13, 13, 13, .5);
 		--tray-background-color: rgb(41, 41, 41);
 		--tray-hover-background-color: rgb(65, 65, 65);
-		--error-color: hsl(0, 95%, 60%);
+		--error-color: hsl(0deg, 95%, 60%);
 
-		/* Values */
+		// Values
 		--card-border-radius: 3px;
 		--popup-border-radius: 8px;
 		--overlay-background-color: rgba(0, 0, 0, .7);
 		--border-style: 2px solid var(--primary-color);
 
-		/* Timing Functions */
+		// Timing Functions
 		--easing-enter: cubic-bezier(0, 1.68, .43, 1.01);
 		--easing-leave: cubic-bezier(.67, 0, 1, -.83);
 
 	}
 
-	/* Transitions */
+	// Transitions
 
 	.view-enter-active,
 	.view-leave-active {
@@ -259,21 +259,13 @@
 		opacity: 0;
 	}
 
-	/* Globals */
-
-	*[variant=light] {
-		@include light;
-	}
-
-	*[variant=dark] {
-		@include dark;
-	}
+	// Globals
 
 	img {
 		color: transparent;
 	}
 
-	/* Layout */
+	// Layout
 
 	body {
 		margin: 0;
@@ -287,7 +279,7 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	.content-container {
+	.app-content-container {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;

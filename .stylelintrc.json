@@ -1,10 +1,10 @@
 {
 	"extends": "stylelint-config-standard-scss",
-	"processors": [
-		"@mapbox/stylelint-processor-arbitrary-tags"
-	],
 	"plugins": [
 		"stylelint-scss"
+	],
+	"processors": [
+		"@mapbox/stylelint-processor-arbitrary-tags"
 	],
 	"ignoreFiles": [ "**/*.{js,ts}" ],
 	"rules": {
@@ -35,9 +35,12 @@
 				"blockless-after-same-name-blockless"
 			]
 		} ],
+		"font-family-name-quotes": "always-unless-keyword",
 		"scss/comment-no-empty": null,
 		"scss/dollar-variable-empty-line-before": null,
-		"scss/double-slash-comment-empty-line-before": null
+		"scss/double-slash-comment-empty-line-before": null,
+		"scss/at-function-parentheses-space-before": "always",
+		"scss/at-mixin-parentheses-space-before": "always"
 	},
 	"customSyntax": "postcss-scss"
 }

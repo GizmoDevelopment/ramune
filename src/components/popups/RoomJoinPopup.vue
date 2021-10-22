@@ -30,7 +30,7 @@
 			form="join-room-form"
 			type="submit"
 			class="button primary-button"
-			:class="{ 'disabled-button': isJoinButtonDisabled }"
+			:class="{ 'disabled': isJoinButtonDisabled }"
 			@click="verifyPassword"
 		>
 			Enter

@@ -52,7 +52,7 @@
 			form="create-room-form"
 			type="submit"
 			class="primary-button"
-			:class="{ 'disabled-button': isCreateButtonDisabled }"
+			:class="{ 'disabled': isCreateButtonDisabled }"
 			@click="createRoom"
 		>
 			{{ $t("actions/create") }}

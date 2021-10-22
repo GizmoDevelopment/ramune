@@ -25,7 +25,7 @@
 			<button
 				v-else
 				class="primary-button"
-				:class="{ 'disabled-button': isLoginButtonDisabled }"
+				:class="{ 'disabled': isLoginButtonDisabled }"
 				name="login"
 				@click="attemptLogin()"
 			>

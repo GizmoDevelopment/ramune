@@ -10,15 +10,32 @@
 	"rules": {
 		"no-empty-source": null,
 		"no-invalid-double-slash-comments": null,
-		"scss/comment-no-empty": null,
-		"indentation": "tab",
-		"number-leading-zero": "never",
 		"no-empty-first-line": null,
-		"rule-empty-line-before": "always",
+		"rule-empty-line-before": null,
 		"max-empty-lines": null,
 		"declaration-empty-line-before": null,
 		"block-closing-brace-empty-line-before": null,
-		"alpha-value-notation": "number"
+		"custom-property-empty-line-before": null,
+		"shorthand-property-no-redundant-values": null,
+		"indentation": "tab",
+		"number-leading-zero": "never",
+		"alpha-value-notation": "number",
+		"color-function-notation": "legacy",
+		"value-keyword-case": [ "lower", {
+			"ignoreFunctions": [
+				"v-bind"
+			],
+			"ignoreProperties": [
+				"/^--.+?$/"
+			]
+		} ],
+		"at-rule-empty-line-before": [ "always", {
+			"except": [
+				"blockless-after-same-name-blockless"
+			]
+		} ],
+		"scss/comment-no-empty": null,
+		"scss/dollar-variable-empty-line-before": null
 	},
 	"customSyntax": "postcss-scss"
 }

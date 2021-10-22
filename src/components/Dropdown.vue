@@ -2,32 +2,44 @@
 	<div
 		class="dropdown"
 		:class="{ 'active': isOpen }"
-		:variant="variant"
-		@click="isOpen = !isOpen"
-		@mouseleave="isOpen = isOpen ? !isOpen : isOpen"
+
 	>
-		<div class="dropdown-currently-selected">
-			<p class="dropdown-currently-selected-label">{{ entries[currentIndex] }}</p>
-			<Caret class="dropdown-icon" :class="{ 'active': isOpen }" />
-		</div>
-		<transition name="dropdown">
-			<div v-show="isOpen" class="dropdown-holder">
-				<div
-					class="dropdown-container"
+		<!-- @mouseleave="isOpen = false" -->
+		<button
+			class="button dropdown-button"
+			:variant="variant"
+			@click="isOpen = !isOpen"
+		>
+			<span class="dropdown-currently-selected">
+				<slot
+					:key="currentIndex"
 					:variant="variant"
+					:entry="items[currentIndex]"
+				/>
+			</span>
+			<Caret class="dropdown-icon" />
+		</button>
+		<transition name="dropdown">
+			<div
+				v-show="isOpen"
+				class="dropdown-tray"
+				:variant="variant"
+			>
+				<button
+					v-for="(item, index) in items"
+					:key="index"
+					v-memo="[ currentIndex === index ]"
+					class="secondary-button dropdown-entry"
+					:class="{ 'active': currentIndex === index }"
+					:variant="variant"
+					@click="$emit('select-index', index); isOpen = false"
 				>
-					<button
-						v-for="(entry, index) in entries"
+					<slot
 						:key="index"
-						v-memo="[ currentIndex === index ]"
-						class="secondary-button dropdown-entry"
 						:variant="variant"
-						:class="{ 'active': currentIndex === index }"
-						@click="$emit('select-index', index)"
-					>
-						{{ entry }}
-					</button>
-				</div>
+						:item="item"
+					/>
+				</button>
 			</div>
 		</transition>
 	</div>
@@ -51,7 +63,7 @@
 		},
 		mixins: [ GenericMixin ],
 		props: {
-			entries: {
+			items: {
 				type: Array as PropType<string[]>,
 				required: true
 			},
@@ -72,7 +84,7 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main.scss";
+	@import "@styles/main";
 
 	// Variables
 	$empty-border: 2px solid transparent;
@@ -84,7 +96,7 @@
 	.dropdown-enter-from,
 	.dropdown-leave-to {
 		opacity: 0;
-		transform: translateY(-.3em);
+		transform: translateY(-.2em);
 	}
 
 	.dropdown-leave-active,
@@ -96,91 +108,84 @@
 
 	.dropdown {
 
-		display: inline-block;
 		position: relative;
-		cursor: pointer;
-		padding: .4rem .7rem .4rem .7rem;
-		border-radius: variable(popup-border-radius);
-		border-top: $empty-border;
+
+		.dropdown-button {
+
+			font-size: 1.2em;
+			font-weight: bold;
+
+			padding: .3em .7em .4em .7em;
+			border: $empty-border;
+			border-bottom: none;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			transition: border $border-transition, border-radius $border-transition;
+
+			.dropdown-currently-selected {
+				margin-right: 1em;
+			}
+
+			.dropdown-icon {
+				transition: transform .3s ease;
+				transform: rotateZ(90deg);
+			}
+		}
 
 		&.active {
-			border-radius: variable(popup-border-radius) variable(popup-border-radius) 0 0;
-			border-top: $filled-border;
-		}
 
-		.dropdown-holder {
-			position: absolute;
-			width: calc(100% + 4px); // ? Because border-box doesn't account for the border...?
-			top: 100%;
-			left: -2px; // ? Because border-box doesn't account for the border...?
-			z-index: 2;
-		}
-	}
+			.dropdown-button {
+				border: $filled-border;
+				border-bottom: none;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 
-	.dropdown-container {
-		box-sizing: border-box;
-		width: 100%;
-		height: auto;
-		display: flex;
-		padding: 0 0 .3rem 0;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		border-radius: 0 0 variable(popup-border-radius) variable(popup-border-radius);
-		border-bottom: $filled-border;
-	}
-
-	.dropdown,
-	.dropdown-container {
-		border-left: $empty-border;
-		border-right: $empty-border;
-		transition: border $border-transition, border-radius $border-transition;
-	}
-
-	.dropdown.active,
-	.dropdown-container {
-		border-left: $filled-border;
-		border-right: $filled-border;
-	}
-
-	.dropdown-currently-selected {
-
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		font-weight: bold;
-
-		.dropdown-currently-selected-label {
-			margin: 0 1.5rem 0 0;
-			font-size: 1.4em;
-			user-select: none;
-		}
-
-		.dropdown-icon {
-
-			transition: transform .3s ease;
-			transform: rotateZ(90deg);
-
-			&.active {
+			.dropdown-icon {
 				transform: rotateZ(90deg) rotateY(180deg);
 			}
 		}
 	}
 
-	.dropdown-entry {
+	.dropdown-tray {
 
+		position: absolute;
 		width: 100%;
-		padding: .3rem .7rem .3rem .7rem;
-		font-size: 1.2rem;
-		border-radius: 0;
-		user-select: none;
-		text-align: left;
-		transition: background-color .3s ease;
 
-		&.active {
-			background-color: variable(container-hover-color);
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+
+		padding: 0 0 .3em 0;
+
+		box-sizing: border-box;
+		border-radius: 0 0 variable(button-border-radius) variable(button-border-radius);
+		border: $filled-border;
+		border-top: none;
+
+		z-index: 4;
+
+		.dropdown-entry {
+
+			width: 100%;
+			border-radius: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&:not(:hover) {
+				background-color: transparent;
+			}
+
+			&.active {
+				background-color: variable(container-hover-color);
+			}
 		}
+
 	}
 
 </style>

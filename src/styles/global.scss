@@ -83,7 +83,9 @@
 
 .input {
 
-	@include light;
+	&:not([variant="dark"]) {
+		@include light;
+	}
 
 	font-size: 1.1em;
 

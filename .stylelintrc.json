@@ -17,6 +17,7 @@
 		"block-closing-brace-empty-line-before": null,
 		"custom-property-empty-line-before": null,
 		"shorthand-property-no-redundant-values": null,
+		"no-eol-whitespace": null,
 		"indentation": "tab",
 		"number-leading-zero": "never",
 		"alpha-value-notation": "number",

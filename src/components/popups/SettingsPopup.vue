@@ -41,10 +41,14 @@
 				<span class="current-language-name">{{ $t("meta/name") }}</span>
 				<Dropdown
 					class="language-dropdown"
-					:entries="languageList"
+					:items="languageList"
 					:current-index="currentLanguageIndex"
 					@select-index="setLanguageByIndex"
-				/>
+				>
+					<template #default="slotProps">
+						<MarkdownRenderer class="language-flag" :content="languageFlagList[slotProps.key]" />
+					</template>
+				</Dropdown>
 			</div>
 		</div>
 	</Popup>
@@ -60,6 +64,9 @@
 	import Toggle from "@components/Toggle.vue";
 	import Dropdown from "@components/Dropdown.vue";
 
+	// Renderers
+	import MarkdownRenderer from "@renderers/Markdown.vue";
+
 	// Utils
 	import { FLAVORS } from "@utils/constants";
 
@@ -68,7 +75,8 @@
 		components: {
 			Popup,
 			Toggle,
-			Dropdown
+			Dropdown,
+			MarkdownRenderer
 		},
 		props: {
 			visible: {
@@ -102,6 +110,9 @@
 			},
 			currentLanguage (): string {
 				return this.$store.state.settings.language;
+			},
+			languageFlagList (): string[] {
+				return Object.values(this.$store.state.cache.languages).map(lang => lang.meta.flag);
 			},
 			languageList (): string[] {
 				return Object.keys(this.$store.state.cache.languages);
@@ -252,6 +263,12 @@
 		.language-dropdown {
 			font-size: .6rem;
 		}
+	}
+
+	.language-flag {
+		font-size: 1.5rem;
+		display: inline-flex;
+		align-content: center;
 	}
 
 </style>

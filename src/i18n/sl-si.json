@@ -17,7 +17,7 @@
 		"log_out": "Odjavi",
 		"create": "Ustvari",
 		"create_room": "Ustvari sobo",
-		"promote_host": "Promote to Host",
+		"promote_host": "Promoviraj na Gostitelja",
 		"kick": "Kick"
 	},
 	"inputs": {
@@ -37,15 +37,15 @@
 		"experience": "Posebnosti",
 		"video_effects": "Video Efekti",
 		"karaoke": "Karaoke",
-		"online_users": "Online users",
+		"online_users": "Aktivni uporabniki",
 		"language": "Jezik",
 		"season_index": "Sezona %N%"
 	},
 	"descriptions": {
-		"setting_flavor": "Changes the accent color across the website.",
-		"setting_experience": "Toggle special experience features.",
-		"chat_box": "Click here or press '/' to start typing",
-		"host_wait": "Waiting for host"
+		"setting_flavor": "Spremeni barvo spletne strani.",
+		"setting_experience": "Preklopi razne nastavitve.",
+		"chat_box": "Klikni ali pritisni '/' za pisati",
+		"host_wait": "Čakam na Gostitelja"
 	},
 	"errors": {
 		"no_active_rooms": "Ni aktivnih sob",

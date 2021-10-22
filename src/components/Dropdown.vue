@@ -2,9 +2,8 @@
 	<div
 		class="dropdown"
 		:class="{ 'active': isOpen }"
-
+		@mouseleave="isOpen = false"
 	>
-		<!-- @mouseleave="isOpen = false" -->
 		<button
 			class="button dropdown-button"
 			:variant="variant"

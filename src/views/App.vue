@@ -267,16 +267,30 @@
 
 	// Layout
 
-	body {
-		margin: 0;
-		background-color: var(--background-color);
-		font-family: var(--font);
-		color: var(--text-color);
-	}
-
 	#app {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	}
+
+	body {
+
+		color: var(--text-color);
+		background-color: var(--background-color);
+		font-family: var(--font);
+
+		margin: 0;
+
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		&.no-scroll {
+
+			overflow-y: hidden;
+
+			#app {
+				overflow-y: scroll;
+			}
+		}
 	}
 
 	.app-content-container {

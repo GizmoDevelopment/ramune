@@ -7,7 +7,7 @@ export type TranslateFunction = (key: string, replace?: ReplaceValues) => string
 type ReplaceValues = [ string, string | number ][];
 
 // Variables
-const numeratorMatcher = new RegExp(/\{(.?)\|(.?)\|(.?)\}/);
+const numeratorMatcher = new RegExp(/\{(.*?)\|(.*?)\|(.*?)\}/);
 const numeratorReplacer = new RegExp(/(\{.+?\})/);
 
 // TODO: Support more enumerations

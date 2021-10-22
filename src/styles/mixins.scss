@@ -1,11 +1,9 @@
-@import "@styles/main.scss";
+@import "@styles/main";
 
 @mixin text-wrap {
 	overflow-wrap: break-word;
 	word-break: break-word;
 	white-space: break-spaces;
-	-ms-hyphens: auto;
-	-webkit-hyphens: auto;
 	hyphens: auto;
 }
 

@@ -1,6 +1,6 @@
-@import "@styles/main.scss";
-@import "@styles/mixins.scss";
-@import "@styles/variables.scss";
+@import "@styles/main";
+@import "@styles/mixins";
+@import "@styles/variables";
 
 // Themeing
 
@@ -121,11 +121,10 @@
 	}
 }
 
-.husk, .husk-dark {
+.husk,
+.husk-dark {
 	color: transparent;
 	border-radius: variable(card-border-radius);
-	-ms-user-select: none;
-	-webkit-user-select: none;
 	user-select: none;
 	animation: gradient 5s ease infinite;
 }
@@ -314,13 +313,13 @@ input[type="range"] {
 
 	// Firefox
 	&::-moz-range-track { @include track; overflow: hidden; }
-	&::-moz-range-progress { @include progress }
-	&::-moz-range-thumb { @include thumb }
+	&::-moz-range-progress { @include progress; }
+	&::-moz-range-thumb { @include thumb; }
 
 	// Safari/Chrome/Edge
 	// Support the HTML5 specification or else you can eat my shit, WebKit/Blink
 	// &::-webkit-slider-runnable-track { @include track }
-	&::-webkit-slider-container { @include track }
-	&::-webkit-slider-thumb { @include thumb }
+	&::-webkit-slider-container { @include track; }
+	&::-webkit-slider-thumb { @include thumb; }
 
 }

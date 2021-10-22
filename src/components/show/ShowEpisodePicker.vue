@@ -4,10 +4,14 @@
 			<Dropdown
 				class="dropdown"
 				:variant="variant"
-				:entries="seasonList"
+				:items="seasonList"
 				:current-index="currentSeasonIndex"
 				@select-index="selectSeason"
-			/>
+			>
+				<template #default="slotProps">
+					<span>{{ $t('labels/season_index', [ [ "%N%", slotProps.key + 1 ] ]) }}</span>
+				</template>
+			</Dropdown>
 		</div>
 		<div v-else class="no-title-bar-spacer" />
 		<div class="episode-list">
@@ -95,7 +99,7 @@
 				immediate: true,
 				handler () {
 					this.currentSeasonIndex = getSeasonIndexFromEpisodeId(this.show, this.currentEpisodeId) || 0;
-					this.seasonList = this.show.seasons.map(season => `Season ${season.id}`);
+					this.seasonList = new Array(this.show.seasons.length).fill("labels/season");
 				}
 			}
 		},

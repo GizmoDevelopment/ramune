@@ -213,6 +213,7 @@
 		// Values
 		--card-border-radius: 3px;
 		--popup-border-radius: 8px;
+		--button-border-radius: 10px;
 		--overlay-background-color: rgba(0, 0, 0, .7);
 		--border-style: 2px solid var(--primary-color);
 

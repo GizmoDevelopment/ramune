@@ -115,6 +115,10 @@
 		padding: .1em .2em .1em .2em;
 	}
 
+	.icon {
+		margin-right: .2em;
+	}
+
 	&:focus,
 	&.active {
 		border-color: variable(primary-color);

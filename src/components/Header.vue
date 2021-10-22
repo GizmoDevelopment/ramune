@@ -40,6 +40,7 @@
 			</div>
 		</div>
 	</header>
+	<div class="header-spacer" />
 	<LoginPopup :visible="isLoggingIn" @dismiss="isLoggingIn = false" />
 	<SettingsPopup :visible="isInSettings" @dismiss="isInSettings = false" />
 </template>
@@ -110,12 +111,15 @@
 
 	@import "@styles/main";
 
+	header,
+	.header-spacer {
+		height: 60px;
+	}
+
 	header {
 
-		position: sticky;
-		width: 100%;
-		height: 60px;
-		top: 0;
+		position: fixed;
+		width: 100vw;
 
 		background-color: variable(container-background-color);
 

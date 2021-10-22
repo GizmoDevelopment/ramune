@@ -37,7 +37,8 @@
 		"video_effects": "Video Effekter",
 		"karaoke": "Karaoke",
 		"online_users": "Online Brugere",
-		"language": "Sprog"
+		"language": "Sprog",
+		"season_index": "Sæson %N%"
 	},
 	"descriptions": {
 		"setting_flavor": "Ændre farven på hjemmesiden.",

@@ -37,7 +37,8 @@
 		"video_effects": "Video Effects",
 		"karaoke": "Karaoke",
 		"online_users": "Online users",
-		"language": "Language"
+		"language": "Language",
+		"season_index": "Season %N%"
 	},
 	"descriptions": {
 		"setting_flavor": "Changes the accent color across the website.",

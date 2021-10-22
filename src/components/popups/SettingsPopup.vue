@@ -11,7 +11,7 @@
 				<button
 					v-for="(colors, name) in flavors"
 					:key="name"
-					v-memo="[ flavorName === name ]"
+					v-memo="[ flavorName === name, currentLanguage ]"
 					class="button flavor-button"
 					:class="{ 'selected-flavor': flavorName === name }"
 					:style="{ backgroundColor: colors.primary }"

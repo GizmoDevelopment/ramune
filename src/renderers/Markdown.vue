@@ -89,7 +89,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
 
 	.emoji {
 		display: inline-block;

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="player-container">
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
 		<div v-if="show && season && episode">
 			<Video
@@ -125,6 +125,14 @@
 	});
 
 </script>
+
+<style lang="scss" scoped>
+
+	.player-container {
+		margin-top: 2rem;
+	}
+
+</style>
 
 <style lang="scss">
 

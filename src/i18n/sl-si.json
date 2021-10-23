@@ -13,8 +13,8 @@
 		"rooms": "Sobe"
 	},
 	"actions": {
-		"log_in": "Prijavi",
-		"log_out": "Odjavi",
+		"log_in": "Prijavi se",
+		"log_out": "Odjavi se",
 		"create": "Ustvari",
 		"create_room": "Ustvari sobo",
 		"promote_host": "Promoviraj na Gostitelja",

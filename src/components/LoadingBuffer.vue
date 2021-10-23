@@ -1,15 +1,15 @@
 <template>
-	<div class="logo-container">
+	<div class="buffer-container">
 		<img
 			v-if="shouldDisplayHanyuu"
 			class="logo"
-			:class="{ small: size === 'small', normal: size === 'normal' }"
+			:class="[ size ]"
 			:src="Hanyuu"
 		>
 		<Logo
 			v-else
 			class="logo"
-			:class="{ small: size === 'small', normal: size === 'normal' }"
+			:class="[ size ]"
 		/>
 	</div>
 </template>
@@ -54,31 +54,31 @@
 
 	@keyframes loading-s {
 		0% {
-			transform: scale3d(1, .2, 1);
+			transform: scale3d(1, .3, 1);
 		}
 		50% {
-			transform: scale3d(1, 1.2, 1) translateY(-50px);
+			transform: scale3d(1, 1.1, 1) translateY(-45px);
 		}
 		100% {
-			transform: scale3d(1, .2, 1) translateY(0);
+			transform: scale3d(1, .3, 1) translateY(0);
 		}
 	}
 
 	@keyframes loading-n {
 		0% {
-			transform: scale3d(1, .2, 1);
+			transform: scale3d(1, .3, 1);
 		}
 		50% {
-			transform: scale3d(1, 1.4, 1) translateY(-150px);
+			transform: scale3d(1, 1.2, 1) translateY(-130px);
 		}
 		100% {
-			transform: scale3d(1, .2, 1) translateY(0);
+			transform: scale3d(1, .3, 1) translateY(0);
 		}
 	}
 
 	//
 
-	.logo-container {
+	.buffer-container {
 
 		width: 100%;
 		text-align: center;

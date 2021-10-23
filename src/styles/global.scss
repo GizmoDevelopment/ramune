@@ -18,6 +18,23 @@
 	transition: $flavorable-transitions;
 }
 
+.icon {
+
+	height: 1em;
+
+	path {
+		stroke: variable(text-color);
+	}
+
+	&:not(.no-fill) path {
+		fill: variable(text-color);
+	}
+
+	&.no-fill path {
+		fill: none;
+	}
+}
+
 // Elements
 
 .button,
@@ -254,24 +271,6 @@
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;
-}
-
-.icon {
-
-	height: 1em;
-
-	path {
-
-		stroke: variable(text-color);
-
-		&:not(.no-fill) {
-			fill: variable(text-color);
-		}
-
-		&.no-fill {
-			fill: none;
-		}
-	}
 }
 
 .anchor-without-decoration {

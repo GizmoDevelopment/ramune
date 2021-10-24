@@ -442,11 +442,11 @@
 						this.video.volume = this.$store.state.settings.volume;
 
 						// URL Timestamp
-						if (this.$route.query.t) {
+						if (this.$route.query.t && !this.room) {
 
 							const timestamp = Number(this.$route.query.t);
 
-							if (!isNaN(timestamp) && !this.room) {
+							if (!isNaN(timestamp)) {
 								this.video.currentTime = timestamp;
 							}
 						}

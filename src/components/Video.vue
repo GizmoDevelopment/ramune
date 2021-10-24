@@ -516,7 +516,11 @@
 							this.toggleFullscreen();
 							break;
 						case "Digit0":
-							this.video.currentTime = 0;
+
+							if (this.controls) {
+								this.video.currentTime = 0;
+							}
+
 							break;
 						default:
 					}

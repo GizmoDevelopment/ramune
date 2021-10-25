@@ -114,6 +114,12 @@
 				}
 			}
 		},
+		beforeUnmount () {
+
+			const body = document.getElementsByTagName("body");
+
+			body[0].classList.remove("no-scroll");
+		},
 		methods: {
 			dismiss () {
 				if (this.dismissable) {

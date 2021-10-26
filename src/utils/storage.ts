@@ -21,3 +21,7 @@ export function getSetting <T> (name: string, defaultValue: T): unknown {
 		return defaultValue;
 	}
 }
+
+export function removeSetting (name: string): void {
+	window.localStorage.removeItem(name);
+}

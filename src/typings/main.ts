@@ -62,6 +62,7 @@ interface SubtitlesOctopusOptions {
 	legacyWorkerUrl?: string;
 	debug?: boolean;
 	fonts?: string[];
+	blendRender?: boolean;
 }
 
 // Responses

@@ -634,6 +634,7 @@
 						subContent: this.subtitles[langCode] || "",
 						workerUrl: "/libass/subtitles-octopus-worker.js",
 						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
+						blendRender: true,
 						debug: DEV
 					})
 				}

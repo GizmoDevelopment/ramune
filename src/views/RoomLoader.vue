@@ -38,8 +38,8 @@
 	import RoomView from "@views/RoomView.vue";
 
 	// Types
-	import { Room } from "@typings/room";
-	import { AuthenticatedUser } from "gizmo-api/lib/types";
+	import type { Room } from "@typings/room";
+	import type { AuthenticatedUser } from "gizmo-api/lib/types";
 
 	export default defineComponent({
 		name: "RoomLoader",

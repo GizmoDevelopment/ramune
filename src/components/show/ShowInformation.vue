@@ -32,7 +32,7 @@
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 
 	// Types
-	import { Show, Season } from "@typings/show";
+	import type { Show, Season } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowInformation",

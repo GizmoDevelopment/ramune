@@ -32,7 +32,7 @@
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
-	import { Show } from "@typings/show";
+	import type { Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowInformationPopup",

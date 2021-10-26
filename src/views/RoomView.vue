@@ -67,8 +67,8 @@
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
-	import { SocketResponse } from "@typings/main";
-	import { Room } from "@typings/room";
+	import type { SocketResponse } from "@typings/main";
+	import type { Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomView",

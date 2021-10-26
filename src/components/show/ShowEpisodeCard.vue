@@ -34,7 +34,7 @@
 	import { formatTimestamp } from "@utils/essentials";
 
 	// Types
-	import { Episode } from "@typings/show";
+	import type { Episode } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowEpisodeCard",

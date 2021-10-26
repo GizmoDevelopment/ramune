@@ -47,8 +47,8 @@
 	import RoomMixin from "@mixins/Room";
 
 	// Types
-	import { User } from "gizmo-api/lib/types";
-	import { Room } from "@typings/room";
+	import type { User } from "gizmo-api/lib/types";
+	import type { Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomUserList",

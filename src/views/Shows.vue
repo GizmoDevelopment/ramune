@@ -55,7 +55,7 @@
 	import { clearPageTitle } from "@utils/dom";
 
 	// Types
-	import { ShowHusk } from "@typings/show";
+	import type { ShowHusk } from "@typings/show";
 
 	export default defineComponent({
 		name: "Shows",

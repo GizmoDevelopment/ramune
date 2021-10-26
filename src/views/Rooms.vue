@@ -67,8 +67,8 @@
 	import { clearPageTitle } from "@utils/dom";
 
 	// Types
-	import { PartialRoom } from "@typings/room";
-	import { SocketResponse } from "@typings/main";
+	import type { PartialRoom } from "@typings/room";
+	import type { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "Rooms",

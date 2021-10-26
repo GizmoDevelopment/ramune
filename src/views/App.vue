@@ -40,9 +40,9 @@
 	import { getCookie } from "@utils/dom";
 
 	// Types
-	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
-	import { Room, RoomData } from "@typings/room";
-	import { Flavor } from "@typings/settings";
+	import type { AuthenticatedUser, User } from "gizmo-api/lib/types";
+	import type { Room, RoomData } from "@typings/room";
+	import type { Flavor } from "@typings/settings";
 
 	export default defineComponent({
 		name: "App",

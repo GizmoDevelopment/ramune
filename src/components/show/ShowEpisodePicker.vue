@@ -45,9 +45,9 @@
 	import { getSeasonIndexFromEpisodeId } from "@utils/show";
 
 	// Types
-	import { Season, Show } from "@typings/show";
-	import { SocketResponse } from "@typings/main";
-	import { Room } from "@typings/room";
+	import type { Season, Show } from "@typings/show";
+	import type { SocketResponse } from "@typings/main";
+	import type { Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "ShowEpisodePicker",

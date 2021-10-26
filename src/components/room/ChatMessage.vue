@@ -28,7 +28,7 @@
 	import MarkdownRenderer from "@renderers/Markdown.vue";
 
 	// Types
-	import { Message } from "@typings/message";
+	import type { Message } from "@typings/message";
 
 	export default defineComponent({
 		name: "ChatMessage",

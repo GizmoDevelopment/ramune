@@ -35,8 +35,8 @@
 	import { clearPageTitle } from "@utils/dom";
 
 	// Types
-	import { User } from "gizmo-api/lib/types";
-	import { SocketResponse } from "@typings/main";
+	import type { User } from "gizmo-api/lib/types";
+	import type { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "Home",

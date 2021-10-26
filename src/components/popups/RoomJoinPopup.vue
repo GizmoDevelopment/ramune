@@ -52,7 +52,7 @@
 	import RoomMethodsMixin from "@mixins/RoomMethods";
 
 	// Types
-	import { JoinRoomOptions } from "@typings/room";
+	import type { JoinRoomOptions } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomJoinPopup",

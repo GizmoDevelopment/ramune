@@ -15,7 +15,7 @@
 	import { getRelativeEpisodeId } from "@utils/show";
 
 	// Types
-	import { Episode, Season, Show } from "@typings/show";
+	import type { Episode, Season, Show } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowHeading",

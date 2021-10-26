@@ -75,9 +75,9 @@
 	import { getUserFromAuthenticatedUser } from "@utils/user";
 
 	// Types
-	import { SocketResponse } from "@typings/main";
-	import { Room, CreateRoomOptions } from "@typings/room";
-	import { AuthenticatedUser } from "gizmo-api/lib/types";
+	import type { AuthenticatedUser } from "gizmo-api/lib/types";
+	import type { SocketResponse } from "@typings/main";
+	import type { Room, CreateRoomOptions } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomCreationPopup",

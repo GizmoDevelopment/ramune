@@ -46,7 +46,7 @@
 	import { setPageTitle } from "@utils/dom";
 
 	// Types
-	import { Show, Episode, Season } from "@typings/show";
+	import type { Show, Episode, Season } from "@typings/show";
 
 	export default defineComponent({
 		name: "Player",

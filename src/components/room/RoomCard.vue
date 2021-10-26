@@ -31,7 +31,7 @@
 	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Types
-	import { PartialRoom, Room } from "@typings/room";
+	import type { PartialRoom, Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "RoomCard",

@@ -26,7 +26,7 @@
 	import Play from "@assets/icons/play.svg?component";
 
 	// Types
-	import { ShowHusk } from "@typings/show";
+	import type { ShowHusk } from "@typings/show";
 
 	export default defineComponent({
 		name: "ShowCard",

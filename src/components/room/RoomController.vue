@@ -31,8 +31,8 @@
 	import RoomMixin from "@mixins/Room";
 
 	// Types
-	import { RoomSyncData } from "@typings/room";
-	import { SocketResponse } from "@typings/main";
+	import type { RoomSyncData } from "@typings/room";
+	import type { SocketResponse } from "@typings/main";
 
 	export default defineComponent({
 		name: "RoomController",

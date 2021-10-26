@@ -204,9 +204,9 @@
 	import { INPUT_ELEMENTS } from "@utils/constants";
 
 	// Types
-	import { SubtitlesOctopus } from "@typings/main";
-	import { Episode, Show, Subtitles } from "@typings/show";
-	import { RoomSyncData } from "@typings/room";
+	import type { SubtitlesOctopus } from "@typings/main";
+	import type { Episode, Show, Subtitles } from "@typings/show";
+	import type { RoomSyncData } from "@typings/room";
 
 	// Constants
 	const DEV = import.meta.env.DEV;

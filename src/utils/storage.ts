@@ -4,10 +4,22 @@ export function saveSetting (name: string, value: unknown): void {
 
 export function getSetting <T> (name: string, defaultValue: T): T {
 
-	const setting = window.localStorage.getItem(name);
+	const settingValue = window.localStorage.getItem(name);
 
-	if (setting !== null) {
-		return JSON.parse(setting);
+	console.log(settingValue);
+
+	if (settingValue !== null) {
+		try {
+			return JSON.parse(settingValue);
+		} catch (err) {
+
+			// Might have old non-JSON settings
+			try {
+				return JSON.parse(JSON.stringify(settingValue));
+			} catch (err) {
+				return defaultValue;
+			}
+		}
 	} else {
 		return defaultValue;
 	}

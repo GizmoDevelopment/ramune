@@ -6,8 +6,6 @@ export function getSetting <T> (name: string, defaultValue: T): T {
 
 	const settingValue = window.localStorage.getItem(name);
 
-	console.log(settingValue);
-
 	if (settingValue !== null) {
 		try {
 			return JSON.parse(settingValue);

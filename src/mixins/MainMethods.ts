@@ -6,6 +6,7 @@ import SocketMixin from "@mixins/Socket";
 
 // Utils
 import { setCookie, removeCookie } from "@utils/dom";
+import { getUserFromAuthenticatedUser } from "@utils/user";
 
 // Types
 import type { AuthenticatedUser } from "gizmo-api/lib/types";
@@ -16,7 +17,7 @@ export default defineComponent({
 		login (user: AuthenticatedUser) {
 
 			this.$store.commit("user/UPDATE_USER", user);
-			this.$store.commit("cache/CACHE_USER", user);
+			this.$store.commit("cache/CACHE_USER", getUserFromAuthenticatedUser(user));
 
 			this.loginToSocket(user.token);
 

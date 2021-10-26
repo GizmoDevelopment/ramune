@@ -1,7 +1,7 @@
 declare global {
 
 	interface Window {
-		twemoji: { parse (element: HTMLElement, options?: TwemojiOptions): void };
+		twemoji: Twemoji;
 		SubtitlesOctopus: typeof SubtitlesOctopus;
 	}
 
@@ -15,6 +15,30 @@ declare global {
 	}
 
 }
+
+// Twemoji (https://github.com/twitter/twemoji/blob/master/index.d.ts)
+
+interface Twemoji {
+	convert: {
+		fromCodePoint (hexCodePoint: string): string;
+		toCodePoint (utf16surrogatePairs: string): string;
+	};
+	parse (node: HTMLElement | string, options?: TwemojiOptions): void;
+}
+
+interface TwemojiOptions {
+
+	base?: string;
+	ext?: ".png" | ".svg";
+	className?: string;
+	size?: string | number;
+	folder?: string;
+
+	callback?: (icon: string, options: TwemojiOptions) => string;
+	attributes?: () => Record<string, unknown>;
+}
+
+// JavascriptSubtitlesOctopus
 
 export declare class SubtitlesOctopus {
 
@@ -40,21 +64,7 @@ interface SubtitlesOctopusOptions {
 	fonts?: string[];
 }
 
-interface TwemojiOptions {
-	callback?: (icon: string, options: TwemojiCallbackOptions) => string;
-	attributes?: () => Record<string, unknown>;
-	base?: string;
-	ext?: ".png" | ".svg" | string;
-	className?: string;
-	size?: string | number;
-	folder?: string;
-}
-
-interface TwemojiCallbackOptions {
-	base: string;
-	size: string;
-	ext: string;
-}
+// Responses
 
 interface BaseResponse {
 	type: "success" | "error";
@@ -75,6 +85,8 @@ export interface ErrorResponse extends BaseResponse {
 export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 export type SocketResponse<T> = SuccessResponse<T> | ErrorResponse;
+
+//
 
 export type Range = [ number, number ];
 

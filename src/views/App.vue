@@ -42,7 +42,7 @@
 	// Types
 	import { AuthenticatedUser, User } from "gizmo-api/lib/types";
 	import { Room, RoomData } from "@typings/room";
-	import { Flavor } from "@typings/main";
+	import { Flavor } from "@typings/settings";
 
 	export default defineComponent({
 		name: "App",

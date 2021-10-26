@@ -1,7 +1,7 @@
 // Types
 import { Module } from "vuex";
 import { SettingsState } from "@typings/shims-vuex";
-import { Flavor } from "@typings/main";
+import { Flavor } from "@typings/settings";
 
 // Variables
 import { FLAVORS } from "@utils/constants";

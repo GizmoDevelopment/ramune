@@ -6,7 +6,7 @@ import { AuthenticatedUser } from "gizmo-api/lib/types";
 import { Show, ShowHusk } from "@typings/show";
 import { Room } from "@typings/room";
 import { ParsedLyrics } from "@typings/lyrics";
-import { Language } from "./main";
+import { Language } from "@typings/settings";
 
 export interface CacheState {
 	shows: Map<string, Show>;

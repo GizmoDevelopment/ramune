@@ -3,7 +3,7 @@ import { Module } from "vuex";
 import { Show, ShowHusk } from "@typings/show";
 import { CacheState } from "@typings/shims-vuex";
 import { ParsedLyrics } from "@typings/lyrics";
-import { Language } from "@typings/main";
+import { Language } from "@typings/settings";
 
 // Languages
 import * as en from "../i18n/en-us.json";

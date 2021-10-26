@@ -1,3 +1,6 @@
+// Utils
+import { saveSetting, getSetting } from "@utils/storage";
+
 // Types
 import type { Module } from "vuex";
 import type { SettingsState } from "@typings/shims-vuex";
@@ -5,30 +8,6 @@ import type { Flavor } from "@typings/settings";
 
 // Variables
 import { FLAVORS } from "@utils/constants";
-
-// ! IF YOU'RE ADDING SAVABLE OBJECTS/ARRAYS/MAPS, MAKE SURE TO STRINGIFY THEM PROPERLY
-
-function saveSetting (name: string, value: unknown): void {
-	window.localStorage.setItem(name, `${value}`);
-}
-
-function getSetting <T> (name: string, defaultValue: T): unknown {
-
-	const setting = window.localStorage.getItem(name);
-
-	if (setting !== null) {
-		switch (typeof defaultValue) {
-			case "number":
-				return Number(setting);
-			case "boolean":
-				return setting === "true" ? true : false;
-			default: // Strings
-				return setting;
-		}
-	} else {
-		return defaultValue;
-	}
-}
 
 export default {
 	namespaced: true,

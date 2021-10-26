@@ -1,11 +1,8 @@
 // Modules
 import { defineComponent } from "vue";
 
-// Utils
-import { setCookie } from "@utils/dom";
-
 // Types
-import type { User, AuthenticatedUser } from "gizmo-api/lib/types";
+import type { User } from "gizmo-api/lib/types";
 import type { Room } from "@typings/room";
 import type { SocketResponse } from "@typings/main";
 
@@ -16,16 +13,6 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		login (user: AuthenticatedUser) {
-			if (user) {
-
-				this.$store.commit("user/UPDATE_USER", user);
-				setCookie("GIZMO_TOKEN", user.token);
-
-				this.loginToSocket(user.token);
-
-			}
-		},
 		loginToSocket (token: string) {
 			this.$socket.client.emit("CLIENT:AUTHENTICATE", { token }, (res: SocketResponse<User>) => {
 				if (res.type === "success") {

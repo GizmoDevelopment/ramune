@@ -1,6 +1,9 @@
 // Modules
 import { defineComponent } from "vue";
 
+// Mixins
+import SocketMixin from "@mixins/Socket";
+
 // Utils
 import { setCookie, removeCookie } from "@utils/dom";
 
@@ -8,11 +11,14 @@ import { setCookie, removeCookie } from "@utils/dom";
 import type { AuthenticatedUser } from "gizmo-api/lib/types";
 
 export default defineComponent({
+	mixins: [ SocketMixin ],
 	methods: {
 		login (user: AuthenticatedUser) {
 
 			this.$store.commit("user/UPDATE_USER", user);
 			this.$store.commit("cache/CACHE_USER", user);
+
+			this.loginToSocket(user.token);
 
 			setCookie("GIZMO_TOKEN", user.token);
 		},

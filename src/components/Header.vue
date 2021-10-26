@@ -17,11 +17,11 @@
 					{{ $t("views/rooms") }}
 				</router-link>
 			</div>
-			<div v-if="user" class="user-container">
-				<p class="user-username">{{ user.username }}</p>
+			<div v-if="chosenUser" class="user-container">
+				<p class="user-username">{{ chosenUser.username }}</p>
 				<img
 					class="user-avatar"
-					:src="user.avatar_url"
+					:src="chosenUser.avatar_url"
 					alt="Your profile picture"
 				>
 				<ContextMenu
@@ -88,6 +88,12 @@
 		computed: {
 			shouldDisplayHanyuu (): boolean {
 				return this.$store.state.generic.shouldDisplayHanyuu;
+			},
+			cachedUser () {
+				return this.$store.state.cache.cachedUser;
+			},
+			chosenUser () {
+				return this.user || this.cachedUser;
 			}
 		}
 	});

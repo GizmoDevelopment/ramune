@@ -1,6 +1,6 @@
 // Types
 import type { Store } from "vuex";
-import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { AuthenticatedUser, User } from "gizmo-api/lib/types";
 import type { Show, ShowHusk } from "@typings/show";
 import type { Room } from "@typings/room";
 import type { ParsedLyrics } from "@typings/lyrics";
@@ -11,6 +11,7 @@ export interface CacheState {
 	showList: ShowHusk[];
 	parsedLyrics: Map<string, ParsedLyrics>;
 	languages: Record<string, Language>;
+	cachedUser: User | null;
 }
 
 export interface RoomState {

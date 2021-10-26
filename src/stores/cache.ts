@@ -1,4 +1,5 @@
 // Types
+import type { User } from "gizmo-api/lib/types";
 import type { Module } from "vuex";
 import type { Show, ShowHusk } from "@typings/show";
 import type { CacheState } from "@typings/shims-vuex";
@@ -9,6 +10,7 @@ import type { Language } from "@typings/settings";
 import * as en from "../i18n/en-us.json";
 import * as sl from "../i18n/sl-si.json";
 import * as da from "../i18n/da-dk.json";
+import { getSetting, removeSetting, saveSetting } from "@utils/storage";
 
 export default {
 	namespaced: true,
@@ -21,7 +23,8 @@ export default {
 				"en-us": en,
 				"sl-si": sl,
 				"da-dk": da
-			}
+			},
+			cachedUser: getSetting<User | null>("cachedUser", null)
 		};
 	},
 	mutations: {
@@ -42,6 +45,16 @@ export default {
 		},
 		CACHE_LANGUAGE (state: CacheState, { code, language }: { code: string; language: Language }) {
 			state.languages[code] = language;
+		},
+		CACHE_USER (state: CacheState, user: User | null) {
+
+			state.cachedUser = user;
+
+			if (user) {
+				saveSetting("cachedUser", user);
+			} else {
+				removeSetting("cachedUser");
+			}
 		}
 	}
 } as Module<CacheState, unknown>;

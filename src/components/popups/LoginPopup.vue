@@ -42,7 +42,7 @@
 	import { login } from "gizmo-api";
 
 	// Mixins
-	import SocketMixin from "@mixins/Socket";
+	import MainMethodsMixin from "@mixins/MainMethods";
 
 	// Components
 	import Popup from "@components/popups/Popup.vue";
@@ -61,7 +61,7 @@
 			LoadingBuffer,
 			Input
 		},
-		mixins: [ SocketMixin ],
+		mixins: [ MainMethodsMixin ],
 		props: {
 			visible: {
 				type: Boolean,

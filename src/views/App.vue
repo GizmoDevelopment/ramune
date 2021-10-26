@@ -30,6 +30,7 @@
 	// Mixins
 	import MainMixin from "@mixins/Main";
 	import SocketMixin from "@mixins/Socket";
+	import MainMethodsMixin from "@mixins/MainMethods";
 
 	// Components
 	import Header from "@components/Header.vue";
@@ -51,7 +52,7 @@
 			RoomController,
 			RoomPopout
 		},
-		mixins: [ MainMixin, SocketMixin ],
+		mixins: [ MainMixin, SocketMixin, MainMethodsMixin ],
 		data () {
 			return {
 				cacheCleaner: 0

@@ -53,6 +53,9 @@
 	// Components
 	import ContextMenu from "@components/ContextMenu.vue";
 
+	// Mixins
+	import MainMethodsMixin from "@mixins/MainMethods";
+
 	// Async Components
 	const SettingsPopup = defineAsyncComponent(() => import("@components/popups/SettingsPopup.vue"));
 	const LoginPopup = defineAsyncComponent(() => import("@components/popups/LoginPopup.vue"));
@@ -65,9 +68,6 @@
 	import Logo from "@assets/icons/logo.svg?component";
 	import Caret from "@assets/icons/caret.svg?component";
 
-	// Utils
-	import { removeCookie } from "@utils/dom";
-
 	export default defineComponent({
 		name: "Header",
 		components: {
@@ -77,7 +77,7 @@
 			Caret,
 			SettingsPopup
 		},
-		mixins: [ MainMixin ],
+		mixins: [ MainMixin, MainMethodsMixin ],
 		data () {
 			return {
 				isLoggingIn: false,
@@ -88,19 +88,6 @@
 		computed: {
 			shouldDisplayHanyuu (): boolean {
 				return this.$store.state.generic.shouldDisplayHanyuu;
-			}
-		},
-		methods: {
-			logout () {
-				if (this.user) {
-
-					this.$store.commit("user/REMOVE_USER");
-					removeCookie("GIZMO_TOKEN");
-
-					if (this.$socket.connected) {
-						this.$socket.client.disconnect();
-					}
-				}
 			}
 		}
 	});

@@ -68,6 +68,7 @@
 <style scoped lang="scss">
 
 	.container {
+
 		width: 400px;
 		border-radius: var(--popup-border-radius);
 		display: flex;
@@ -75,35 +76,37 @@
 		align-items: flex-start;
 		justify-content: flex-start;
 		padding: .75rem;
-	}
 
-	.title-bar {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1rem;
+		.title-bar {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1rem;
+		}
+
 	}
 
 	.inner-title-bar {
+
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-	}
 
-	.room-name {
-		margin-top: 0;
-		margin-bottom: 0;
-		font-size: 1.5rem;
-		font-weight: 500;
-	}
+		.room-name {
+			margin-top: 0;
+			margin-bottom: 0;
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
 
-	.lock-icon {
-		font-size: 1.3em;
-		margin-right: .3em;
+		.lock-icon {
+			font-size: 1.3em;
+			margin-right: .3em;
+		}
 	}
 
 	@media only screen and (max-width: 600px) {

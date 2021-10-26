@@ -1,11 +1,13 @@
 // Modules
 import { defineComponent } from "vue";
 
-// Types
-import { User, AuthenticatedUser } from "gizmo-api/lib/types";
-import { Room } from "@typings/room";
-import { SocketResponse } from "@typings/main";
+// Utils
 import { setCookie } from "@utils/dom";
+
+// Types
+import type { User, AuthenticatedUser } from "gizmo-api/lib/types";
+import type { Room } from "@typings/room";
+import type { SocketResponse } from "@typings/main";
 
 export default defineComponent({
 	computed: {

@@ -1,5 +1,5 @@
 // Types
-import { Range } from "@typings/main";
+import type { Range } from "@typings/main";
 
 export function formatTimestamp (timestamp: number): string {
 

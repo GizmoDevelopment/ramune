@@ -5,8 +5,8 @@ import axios from "axios";
 import { convertTimestampToSeconds } from "@utils/essentials";
 
 // Types
-import { Lyrics } from "@typings/show";
-import { ParsedLyrics } from "@typings/lyrics";
+import type { Lyrics } from "@typings/show";
+import type { ParsedLyrics } from "@typings/lyrics";
 
 export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 

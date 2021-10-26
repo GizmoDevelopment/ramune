@@ -1,7 +1,7 @@
-// Typings
-import { App, Plugin } from "vue";
-import { State } from "@typings/shims-vuex";
-import { Store } from "vuex";
+// Types
+import type { App, Plugin } from "vue";
+import type { State } from "@typings/shims-vuex";
+import type { Store } from "vuex";
 
 export type TranslateFunction = (key: string, replace?: ReplaceValues) => string;
 type ReplaceValues = [ string, string | number ][];

@@ -1,5 +1,5 @@
 // Types
-import { TranslateFunction } from "@plugins/i18n";
+import type { TranslateFunction } from "@plugins/i18n";
 
 declare module "@vue/runtime-core" {
 	interface ComponentCustomProperties {

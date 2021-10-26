@@ -1,5 +1,5 @@
 // Types
-import { Episode, Season, Show } from "@typings/show";
+import type { Episode, Season, Show } from "@typings/show";
 
 export function getEpisodeById (show: Show, episodeId: number): Episode | null {
 

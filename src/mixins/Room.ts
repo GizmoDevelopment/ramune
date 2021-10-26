@@ -1,13 +1,14 @@
 // Modules
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
 
 // Utils
 import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
 
 // Types
-import { AuthenticatedUser } from "gizmo-api/lib/types";
-import { Room } from "@typings/room";
-import { Episode, Show, Season } from "@typings/show";
+import type { PropType } from "vue";
+import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { Room } from "@typings/room";
+import type { Episode, Show, Season } from "@typings/show";
 
 export default defineComponent({
 	props: {

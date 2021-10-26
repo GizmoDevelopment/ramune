@@ -2,8 +2,8 @@
 import axios from "axios";
 
 // Types
-import { APIResponse } from "@typings/main";
-import { Show, ShowHusk } from "@typings/show";
+import type { APIResponse } from "@typings/main";
+import type { Show, ShowHusk } from "@typings/show";
 
 // Constants
 const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;

@@ -1,5 +1,5 @@
 // Types
-import { AuthenticatedUser, User } from "gizmo-api/lib/types";
+import type { AuthenticatedUser, User } from "gizmo-api/lib/types";
 
 export function getUserFromAuthenticatedUser (user: AuthenticatedUser): User {
 

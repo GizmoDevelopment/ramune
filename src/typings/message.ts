@@ -1,5 +1,5 @@
 // Types
-import { User } from "gizmo-api/lib/types";
+import type { User } from "gizmo-api/lib/types";
 
 export interface Message {
 	id: string;

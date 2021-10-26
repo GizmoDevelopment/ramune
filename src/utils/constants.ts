@@ -1,5 +1,5 @@
 // Types
-import { Flavor } from "@typings/settings";
+import type { Flavor } from "@typings/settings";
 
 export const FLAVORS: Record<string, Flavor> = {
 	blueberry: {

@@ -1,5 +1,5 @@
-// Modules
-import { Directive, DirectiveBinding } from "vue";
+// Types
+import type { Directive, DirectiveBinding } from "vue";
 
 export default {
 	mounted (el: HTMLElement, binding: DirectiveBinding<string>) {

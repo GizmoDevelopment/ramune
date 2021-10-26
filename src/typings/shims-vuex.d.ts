@@ -1,12 +1,10 @@
-// Modules
-import { Store } from "vuex";
-
 // Types
-import { AuthenticatedUser } from "gizmo-api/lib/types";
-import { Show, ShowHusk } from "@typings/show";
-import { Room } from "@typings/room";
-import { ParsedLyrics } from "@typings/lyrics";
-import { Language } from "@typings/settings";
+import type { Store } from "vuex";
+import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { Show, ShowHusk } from "@typings/show";
+import type { Room } from "@typings/room";
+import type { ParsedLyrics } from "@typings/lyrics";
+import type { Language } from "@typings/settings";
 
 export interface CacheState {
 	shows: Map<string, Show>;

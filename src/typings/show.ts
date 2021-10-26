@@ -1,5 +1,5 @@
 // Types
-import { LeafRendererData } from "@typings/leaf";
+import type { LeafRendererData } from "@typings/leaf";
 
 export interface ShowHusk {
 	id: string;

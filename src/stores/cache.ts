@@ -1,9 +1,9 @@
 // Types
-import { Module } from "vuex";
-import { Show, ShowHusk } from "@typings/show";
-import { CacheState } from "@typings/shims-vuex";
-import { ParsedLyrics } from "@typings/lyrics";
-import { Language } from "@typings/settings";
+import type { Module } from "vuex";
+import type { Show, ShowHusk } from "@typings/show";
+import type { CacheState } from "@typings/shims-vuex";
+import type { ParsedLyrics } from "@typings/lyrics";
+import type { Language } from "@typings/settings";
 
 // Languages
 import * as en from "../i18n/en-us.json";

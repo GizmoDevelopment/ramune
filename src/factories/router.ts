@@ -1,5 +1,5 @@
 // Modules
-import { createRouter as _createRouter, createWebHistory, createMemoryHistory, RouteComponent, Router } from "vue-router";
+import { createRouter as _createRouter, createWebHistory, createMemoryHistory } from "vue-router";
 
 // Views
 import Home from "@views/Home.vue";
@@ -8,6 +8,9 @@ import Rooms from "@views/Rooms.vue";
 import Player from "@views/Player.vue";
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const RoomLoader = (): Promise<RouteComponent> => import("@views/RoomLoader.vue");
+
+// Types
+import type { RouteComponent, Router } from "vue-router";
 
 export function createRouter (): Router {
 	return _createRouter({

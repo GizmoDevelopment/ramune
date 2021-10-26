@@ -1,7 +1,7 @@
 // Types
-import { Module } from "vuex";
-import { AuthenticatedUser } from "gizmo-api/lib/types";
-import { UserState } from "@typings/shims-vuex";
+import type { Module } from "vuex";
+import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { UserState } from "@typings/shims-vuex";
 
 export default {
 	namespaced: true,

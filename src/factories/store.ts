@@ -1,5 +1,5 @@
 // Modules
-import { createStore as _createStore, createLogger, Store } from "vuex";
+import { createStore as _createStore, createLogger } from "vuex";
 
 // Stores
 import CacheStore from "@stores/cache";
@@ -9,7 +9,8 @@ import GenericStore from "@stores/generic";
 import SettingsStore from "@stores/settings";
 
 // Types
-import { State } from "@typings/shims-vuex";
+import type { Store } from "vuex";
+import type { State } from "@typings/shims-vuex";
 
 // Constants
 const DEV = import.meta.env.DEV;

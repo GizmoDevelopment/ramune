@@ -2,8 +2,8 @@
 import { defineComponent } from "vue";
 
 // Types
-import { SocketResponse } from "@typings/main";
-import { JoinRoomOptions, Room } from "@typings/room";
+import type { SocketResponse } from "@typings/main";
+import type { JoinRoomOptions, Room } from "@typings/room";
 
 export default defineComponent({
 	methods: {

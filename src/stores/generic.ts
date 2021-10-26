@@ -1,6 +1,6 @@
 // Types
-import { Module } from "vuex";
-import { GenericState } from "@typings/shims-vuex";
+import type { Module } from "vuex";
+import type { GenericState } from "@typings/shims-vuex";
 
 export default {
 	namespaced: true,

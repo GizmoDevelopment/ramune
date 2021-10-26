@@ -1,8 +1,8 @@
 // Types
-import { Module } from "vuex";
-import { User } from "gizmo-api/lib/types";
-import { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
-import { RoomState } from "@typings/shims-vuex";
+import type { Module } from "vuex";
+import type { User } from "gizmo-api/lib/types";
+import type { Room, RoomData, UpdatableRoomProperties } from "@typings/room";
+import type { RoomState } from "@typings/shims-vuex";
 
 export default {
 	namespaced: true,

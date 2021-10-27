@@ -261,3 +261,11 @@
 	}
 
 </style>
+
+<style lang="scss">
+
+	.popup-close-button path {
+		stroke-width: 30;
+	}
+
+</style>

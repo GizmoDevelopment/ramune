@@ -49,10 +49,10 @@
 	<div v-if="isMobile" class="mobile-navigator">
 		<transition name="mobile-navigator-slide">
 			<div v-if="isNavigatorOpen" class="mobile-navigator-tray">
-				<router-link to="/shows">
+				<router-link to="/shows" @click="isNavigatorOpen = false">
 					{{ $t("views/shows") }}
 				</router-link>
-				<router-link to="/rooms">
+				<router-link to="/rooms" @click="isNavigatorOpen = false">
 					{{ $t("views/rooms") }}
 				</router-link>
 			</div>
@@ -206,6 +206,12 @@
 		}
 	}
 
+	a {
+		color: variable(text-color);
+		text-decoration: none;
+		font-size: 20px;
+	}
+
 	.navigation,
 	.login {
 		display: flex;
@@ -219,11 +225,6 @@
 		a {
 
 			position: relative;
-
-			color: variable(text-color);
-			text-decoration: none;
-			font-size: 20px;
-
 			margin: 15px;
 
 			// Underline every anchor label except for the logo, which has the href for root path

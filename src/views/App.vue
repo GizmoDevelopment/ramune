@@ -102,6 +102,8 @@
 					console.error(err);
 					this.logout();
 				}
+			} else {
+				this.logout();
 			}
 
 		},

@@ -100,6 +100,7 @@
 					this.login({ ...await getAuthenticatedUser(token), token });
 				} catch (err) {
 					console.error(err);
+					this.logout();
 				}
 			}
 

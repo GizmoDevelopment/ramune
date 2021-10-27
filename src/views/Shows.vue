@@ -191,4 +191,17 @@
 		}
 	}
 
+	@media only screen and (max-width: 500px) {
+		.heading-container {
+
+			flex-direction: column;
+			align-items: flex-start !important;
+
+			.input-container {
+				width: 100%;
+				margin-bottom: 1rem;
+			}
+		}
+	}
+
 </style>

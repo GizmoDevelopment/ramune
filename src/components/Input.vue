@@ -142,7 +142,8 @@
 			font-size: 1.2em;
 		}
 
-		input {
+		input,
+		.input {
 			width: 100%;
 		}
 	}

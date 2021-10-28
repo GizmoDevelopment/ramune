@@ -61,8 +61,8 @@
 	import { INPUT_ELEMENTS } from "@utils/constants";
 
 	// Types
-	import { SocketResponse } from "@typings/main";
-	import { Message } from "@typings/message";
+	import type { SocketResponse } from "@typings/main";
+	import type { Message } from "@typings/message";
 
 	export default defineComponent({
 		name: "RoomChat",
@@ -89,7 +89,8 @@
 				allowInput: true,
 				isFullscreen: false,
 				isFocusedOnInput: false,
-				isMessageSending: false
+				isMessageSending: false,
+				pingSound: new Audio("/ping.mp3")
 			};
 		},
 		computed: {
@@ -213,11 +214,26 @@
 						this.messages = this.messages.filter(message => message.id !== msg.id);
 					}
 				}, 30000);
+			},
+			ping () {
+				if (!document.hasFocus()) {
+					(this.pingSound.cloneNode(false) as HTMLAudioElement).play();
+				}
 			}
 		},
 		sockets: {
 			"ROOM:MESSAGE" (msg: Message) {
+
 				this.pushMessageToHistory(msg);
+				this.ping();
+
+				if (Notification.permission === "granted" && !document.hasFocus()) {
+					new Notification(msg.user.username, {
+						body: msg.content,
+						icon: msg.user.avatar_url,
+						silent: true
+					})
+				}
 			}
 		}
 	});

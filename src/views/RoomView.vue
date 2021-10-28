@@ -97,9 +97,14 @@
 		},
 		mounted () {
 
+			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
+
 			setPageTitle(`Ramune — ${this.room.name}`);
 
-			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
+			if (Notification.permission !== "granted") {
+				Notification.requestPermission();
+			}
+
 		},
 		methods: {
 			kickUserId (userId: string) {

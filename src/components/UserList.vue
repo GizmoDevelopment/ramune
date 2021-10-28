@@ -1,5 +1,5 @@
 <template>
-	<div class="user-list">
+	<div class="user-list-container">
 		<transition-group name="user-list">
 			<div
 				v-for="user in users"
@@ -7,11 +7,13 @@
 				v-memo="[ host, typingUserList.includes(user.id) ]"
 				v-tooltip="tooltips && user.username || false"
 				class="user"
-				:class="{ host: isHost(user) }"
+				:class="{
+					host: isHost(user),
+					typing: typingUserList.includes(user.id)
+				}"
 			>
 				<img
 					class="flavorable user-avatar"
-					:class="{ typing: typingUserList.includes(user.id) }"
 					:src="user.avatar_url"
 					:alt="`${user.username}'s profile picture`"
 				>
@@ -60,60 +62,6 @@
 
 <style scoped lang="scss">
 
-	@import "@styles/main";
-	@import "@styles/animations";
-
-	// Transitions
-
-	.user-list-enter-active,
-	.user-list-leave-active {
-		transition: opacity .4s ease-in-out, transform .4s ease-in-out;
-	}
-
-	.user-list-enter-from,
-	.user-list-leave-to {
-		opacity: 0;
-		transform: translateY(.5rem);
-	}
-
-	//
-
-	.user-list-move {
-		transition: transform .3s ease;
-	}
-
-	.user-list {
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: flex-start;
-		align-items: center;
-		height: 3rem;
-	}
-
-	.user {
-
-		height: 100%;
-		margin-left: -6px;
-
-		&:first-child {
-			margin-left: 0;
-		}
-
-		.user-avatar {
-			border-radius: 50%;
-			width: auto;
-			height: 100%;
-		}
-	}
-
-	.host .user-avatar {
-		width: auto;
-		height: calc(100% - 6px);
-		border: 3px solid variable(primary-color);
-	}
-
-	.typing {
-		animation: jumping 1s ease-in-out infinite;
-	}
+	@import "@styles/components/UserList";
 
 </style>

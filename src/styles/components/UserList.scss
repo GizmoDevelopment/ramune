@@ -1,0 +1,65 @@
+@import "@styles/main";
+@import "@styles/animations";
+
+// Transitions
+
+.user-list-enter-from,
+.user-list-leave-to {
+	opacity: 0;
+}
+
+.user-list-enter-active {
+	animation: bounce .6s ease-in-out reverse;
+	transition: opacity .35s ease;
+}
+
+.user-list-leave-active {
+	opacity: 0;
+	animation: bounce .6s ease-in-out;
+	transition: opacity .3s ease .3s;
+}
+
+.user-list-move {
+	transition: transform .3s ease;
+}
+
+//
+
+.user-list-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+	height: 3rem;
+}
+
+.user,
+.user-avatar {
+	transform-origin: bottom left;
+}
+
+.user {
+
+	height: 100%;
+	margin-left: -6px;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	.user-avatar {
+		width: auto;
+		height: 100%;
+		border-radius: 50%;
+	}
+
+	&.host .user-avatar {
+		width: auto;
+		height: calc(100% - 6px);
+		border: 3px solid variable(primary-color);
+	}
+
+	&.typing .user-avatar {
+		animation: bouncing 1.4s ease-in-out infinite;
+	}
+}

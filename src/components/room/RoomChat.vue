@@ -245,7 +245,7 @@
 	// Transitions
 
 	.message-fade-leave-active {
-		transition: opacity .7s ease-out;
+		transition: opacity .7s ease-out, transform .7s ease-out;
 	}
 
 	.message-fade-enter-active {
@@ -254,6 +254,7 @@
 
 	.message-fade-leave-to {
 		opacity: 0;
+		transform: translateY(-1rem);
 	}
 
 	.message-fade-enter-from {

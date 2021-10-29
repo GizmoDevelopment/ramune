@@ -41,6 +41,5 @@
 		"scss/double-slash-comment-empty-line-before": null,
 		"scss/at-function-parentheses-space-before": "always",
 		"scss/at-mixin-parentheses-space-before": "always"
-	},
-	"customSyntax": "postcss-scss"
+	}
 }

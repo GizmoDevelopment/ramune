@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 module.exports = {
+	syntax: "postcss-scss",
 	plugins: [
 		// Fixes errors with Vite's bundled CSS
 		require("stylelint")({

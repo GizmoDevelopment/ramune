@@ -1012,6 +1012,7 @@
 
 	.libassjs-canvas-parent {
 		position: absolute !important;
+		width: 100%;
 		left: 0;
 		pointer-events: none;
 		z-index: 1;

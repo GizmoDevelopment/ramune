@@ -2,7 +2,7 @@
 	<div class="popout-container">
 		<div class="popout-information">
 			<UserList
-				id="user-list"
+				class="user-list"
 				:tooltips="false"
 				:users="room.users"
 				:host="room.host"
@@ -57,14 +57,20 @@
 
 	@import "@styles/main";
 
+	// Variables
+	$popout-width: 350px;
+	$popout-height: calc($popout-width * (9 / 16));
+
+	//
+
 	.popout-container {
 
 		position: relative;
 		background-color: variable(container-background-color);
 		border-radius: variable(popup-border-radius);
 		box-shadow: 0 0 10px variable(primary-color);
-		width: 350px;
-		height: calc(350px * (9 / 16));
+		width: $popout-width;
+		height: $popout-height;
 
 		.popout-information {
 
@@ -104,6 +110,22 @@
 		.overlay {
 			border-radius: variable(popup-border-radius);
 			z-index: 3;
+		}
+	}
+
+	@media only screen and (max-width: 800px) {
+
+		$popout-width: 250px;
+		$popout-height: calc($popout-width * (9 / 16));
+
+		.popout-container {
+
+			width: $popout-width;
+			height: $popout-height;
+
+			.popout-information .user-list {
+				height: 1.5em;
+			}
 		}
 	}
 

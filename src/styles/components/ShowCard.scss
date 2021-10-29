@@ -66,3 +66,21 @@ $card-width: 158.75px;
 		font-size: .9rem;
 	}
 }
+
+@media only screen and (max-width: 380px) {
+
+	$card-width: 105px;
+
+	.show-card {
+		max-width: $card-width;
+	}
+
+	.show-poster-container {
+		width: $card-width;
+		height: calc($card-width * 1.42);
+	}
+
+	.show-title {
+		font-size: .8rem;
+	}
+}

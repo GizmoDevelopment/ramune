@@ -51,6 +51,7 @@
 
 <style scoped lang="scss">
 
+	@import "@styles/main";
 	@import "@styles/mixins";
 
 	// Transitions
@@ -68,16 +69,11 @@
 	//
 
 	.message-container {
-
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: flex-start;
 		align-items: flex-start;
 		margin-top: .5rem;
-
-		* {
-			pointer-events: auto;
-		}
 	}
 
 	.message-author-avatar {
@@ -94,23 +90,27 @@
 		position: relative;
 		max-width: 100%;
 
-		background-color: var(--container-background-color);
+		background-color: variable(container-background-color);
 
 		padding: .5rem .7rem .5rem .7rem;
-		border-radius: var(--popup-border-radius);
+		border-radius: variable(popup-border-radius);
 
 		text-align: left;
+		pointer-events: auto;
 
 		&.first-message-content::before {
-			content: "";
+
 			position: absolute;
-			right: -5px;
 			width: 0;
 			height: 0;
 			top: .55rem;
+			right: -5px;
+
 			border: .5rem solid transparent;
-			border-left-color: var(--container-background-color);
+			border-left-color: variable(container-background-color);
 			border-right: 0;
+
+			content: "";
 		}
 
 		&.repeating-message-content {

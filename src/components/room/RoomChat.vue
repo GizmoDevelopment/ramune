@@ -2,14 +2,14 @@
 	<div ref="chat" class="chat-overlay">
 		<div class="chat-container">
 			<div class="chat-message-container">
-				<transition-group name="message-fade">
-					<div
+				<transition-group name="message-transition">
+					<ChatMessage
 						v-for="(message, index) in messages"
 						:key="message.id"
 						v-memo="[ messages[index - 1]?.user?.id === message.user.id ]"
-					>
-						<ChatMessage :message="message" :repeating="messages[index - 1]?.user?.id === message.user.id" />
-					</div>
+						:message="message"
+						:repeating="messages[index - 1]?.user?.id === message.user.id"
+					/>
 				</transition-group>
 			</div>
 			<form
@@ -244,22 +244,26 @@
 
 	// Transitions
 
-	.message-fade-leave-active {
+	.message-transition-leave-active {
 		transition: opacity .7s ease-out, transform .7s ease-out;
 	}
 
-	.message-fade-enter-active {
+	.message-transition-enter-active {
 		transition: opacity .4s ease, transform .3s ease;
 	}
 
-	.message-fade-leave-to {
+	.message-transition-leave-to {
 		opacity: 0;
 		transform: translateY(-1rem);
 	}
 
-	.message-fade-enter-from {
+	.message-transition-enter-from {
 		opacity: 0;
 		transform: translateY(.5rem);
+	}
+
+	.message-transition-move {
+		transition: transform .2s ease-in-out;
 	}
 
 	// Chat Window

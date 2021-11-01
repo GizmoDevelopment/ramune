@@ -23,6 +23,7 @@
 		"Cheers",
 		"Style",
 		"TrollSuccess",
+		"TrollVoid",
 		"Scrotum",
 		"Shaft",
 		"Tip",

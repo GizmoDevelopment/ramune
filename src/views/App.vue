@@ -19,12 +19,18 @@
 			<RoomController :room="room" />
 		</div>
 	</div>
+	<canvas
+		ref="faviconCanvas"
+		class="favicon-canvas"
+		width="32"
+		height="32"
+	/>
 </template>
 
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { defineComponent, ref } from "vue";
 	import { getAuthenticatedUser } from "gizmo-api";
 
 	// Mixins
@@ -53,9 +59,22 @@
 			RoomPopout
 		},
 		mixins: [ MainMixin, SocketMixin, MainMethodsMixin ],
+		setup () {
+
+			const faviconCanvas = ref<HTMLCanvasElement>();
+
+			return {
+				faviconCanvas
+			};
+		},
 		data () {
 			return {
-				cacheCleaner: 0
+
+				// Intervals
+				cacheCleaner: 0,
+
+				// Elements
+				favicon: document.getElementById("favicon") as HTMLLinkElement | null
 			};
 		},
 		computed: {
@@ -82,9 +101,7 @@
 						root.style.setProperty("--primary-color", flavor.primary);
 						root.style.setProperty("--primary-hover-color", flavor.primaryHover);
 
-						if (favicon) {
-							favicon.href = `/favicons/${this.$store.state.settings.flavor}.png`;
-						}
+						this.updateFavicon(flavor.primary);
 					});
 				}
 			}
@@ -147,6 +164,33 @@
 					});
 
 					this.$store.commit("cache/REPLACE_PARSED_LYRICS_CACHE", parsedLyrics);
+				}
+			},
+			updateFavicon (color: string) {
+				if (this.faviconCanvas && this.favicon) {
+
+					const
+						{ favicon, faviconCanvas } = this,
+						ctx = faviconCanvas.getContext("2d"),
+						{ width, height } = this.faviconCanvas;
+
+					if (ctx) {
+
+						const logo = new Image();
+						logo.src = "/logo_flavorable.png";
+
+						logo.onload = () => {
+
+							ctx.beginPath();
+							ctx.arc(width / 2, height / 2, 14, 0, 2 * Math.PI);
+							ctx.fillStyle = color;
+							ctx.fill();
+
+							ctx.drawImage(logo, 0, 0);
+
+							favicon.href = faviconCanvas.toDataURL("image/x-icon");
+						};
+					}
 				}
 			}
 		},
@@ -333,6 +377,10 @@
 		z-index: 10;
 		margin-left: 15px;
 		margin-bottom: 15px;
+	}
+
+	.favicon-canvas {
+		display: none;
 	}
 
 </style>

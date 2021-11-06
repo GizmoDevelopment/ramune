@@ -96,6 +96,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		width: auto;
+		min-width: 1em;
 		height: 1em;
 	}
 

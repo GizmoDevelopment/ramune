@@ -36,7 +36,9 @@
 		"vue/no-useless-v-bind": [ "error" ],
 		"vue/no-lone-template": [ "error" ],
 		"vue/no-use-computed-property-like-method": [ "error" ],
-		"vue/multi-word-component-names": "off"
+		"vue/multi-word-component-names": "off",
+		"vue/no-child-content": [ "error" ],
+		"vue/no-expose-after-await": [ "error" ]
     },
 	"overrides": [
 		{

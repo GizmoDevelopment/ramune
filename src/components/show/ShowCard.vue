@@ -56,7 +56,7 @@
 		}
 
 		&:hover .show-poster {
-			transform: scale(102%);
+			transform: scale(104%);
 			filter: blur(1px);
 		}
 	}

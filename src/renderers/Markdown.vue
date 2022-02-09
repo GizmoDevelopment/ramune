@@ -38,7 +38,8 @@
 		"Ramune",
 		"Troll",
 		"RikaCheers",
-		"Kino"
+		"Kino",
+		"Beg"
 	];
 	const emojiReplacer = new RegExp(`(${emojis.join("|")})`, "g");
 

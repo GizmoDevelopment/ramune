@@ -20,7 +20,7 @@
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.1.1",
     "socket.io-client": "^4.3.1",
-    "vite-ssr": "^0.15.0",
+    "vite-ssr": "^0.14.3",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
     "vue-socket.io-extended": "^5.0.0-alpha.5",

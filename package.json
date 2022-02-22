@@ -57,6 +57,6 @@
     "vite": "^2.7.9",
     "vite-svg-loader": "^3.1.2",
     "vue-eslint-parser": "^8.2.0",
-    "vue-tsc": "^0.31.4"
+    "vue-tsc": "^0.29.6"
   }
 }

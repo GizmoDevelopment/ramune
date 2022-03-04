@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "@vueuse/head": "^0.7.5",
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.1.1",
     "socket.io-client": "^4.3.1",

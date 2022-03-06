@@ -13,7 +13,7 @@
     "serve": "vite preview"
   },
   "browserslist": [
-    "support 5 versions"
+    "last 5 versions"
   ],
   "dependencies": {
     "@vueuse/head": "^0.7.5",

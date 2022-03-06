@@ -703,7 +703,7 @@
 		},
 		sockets: {
 			"ROOM:SYNC" (data: RoomSyncData) {
-				if (this.video) {
+				if (this.video && this.room) {
 
 					this.video.currentTime = data.currentTime;
 

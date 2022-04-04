@@ -123,6 +123,10 @@
 				this.logout();
 			}
 
+			window.addEventListener("beforeunload", () => {
+				this.$socket.client.disconnect();
+			});
+
 		},
 		beforeUnmount () {
 			clearInterval(this.cacheCleaner);

@@ -69,10 +69,13 @@
 									<Pause v-else />
 								</div>
 								<div class="volume-button" @click="isVolumeTrayVisible = !isVolumeTrayVisible">
-									<VolumeHigh v-if="volume >= .85" class="video-control-button" />
-									<VolumeMedium v-else-if="volume >= .45" class="video-control-button" />
-									<VolumeLow v-else-if="volume > 0" class="video-control-button" />
-									<VolumeOff v-else class="video-control-button" />
+									<VolumeOff v-if="muted" class="video-control-button" />
+									<template v-else>
+										<VolumeHigh v-if="volume >= .85" class="video-control-button" />
+										<VolumeMedium v-else-if="volume >= .45" class="video-control-button" />
+										<VolumeLow v-else-if="volume > 0" class="video-control-button" />
+										<VolumeOff v-else class="video-control-button" />
+									</template>
 									<transition name="video-tray">
 										<div
 											v-show="isVolumeTrayVisible"
@@ -266,6 +269,7 @@
 				volume: 1,
 				duration: 0,
 				isSyncOverlayVisible: false,
+				muted: false,
 
 				// Progress Bar
 				isHoveringOverProgressBar: false,
@@ -522,6 +526,11 @@
 							}
 
 							break;
+						case "KeyM":
+
+							this.video.muted = !this.video.muted;
+
+							break;
 						default:
 					}
 				}
@@ -595,6 +604,7 @@
 			updateVolume (e: Event) {
 				if (e.target) {
 					this.volume = (e.target as HTMLVideoElement).volume;
+					this.muted = (e.target as HTMLVideoElement).muted;
 				}
 			},
 			togglePlayPause () {

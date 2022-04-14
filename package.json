@@ -22,7 +22,7 @@
     "gizmo-api": "^1.1.2",
     "socket.io-client": "^4.4.1",
     "vite-ssr": "^0.16.0",
-    "vue": "^3.2.31",
+    "vue": "^3.2.32",
     "vue-router": "^4.0.14",
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vuex": "^4.0.2"
@@ -36,7 +36,7 @@
     "@types/node": "^14.18.12",
     "@types/svgo": "^2.6.3",
     "@types/ws": "^8.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.18.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vuedx/typescript-plugin-vue": "^0.7.4",

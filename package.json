@@ -1,5 +1,17 @@
 {
+  "name": "ramune",
+  "description": "Watch anime together with your friends.",
+  "version": "2.0.0",
+  "author": "Tjaz (GizmoTjaz)",
+  "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GizmoDevelopment/ramune.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GizmoDevelopment/ramune/issues"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

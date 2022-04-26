@@ -12,6 +12,9 @@
   "bugs": {
     "url": "https://github.com/GizmoDevelopment/ramune/issues"
   },
+  "browserslist": [
+    "last 6 versions"
+  ],
   "scripts": {
     "lint:css": "stylelint ./src/**/*.{css,scss,vue}",
     "lint": "npm run lint:css",

@@ -2,14 +2,14 @@
 	"extends": "./.nuxt/tsconfig.json",
 	"compilerOptions": {
 		"strict": true,
+		"baseUrl": "src",
 		"types": [
 			"vite-svg-loader"
 		],
 		"typeRoots": [
 			"node_modules/@types",
 			"src/typings"
-		],
-		"baseUrl": "src"
+		]
 	},
 	"include": [
 		".eslintrc.js",

@@ -1,3 +1,23 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+	"extends": "./.nuxt/tsconfig.json",
+	"compilerOptions": {
+		"strict": true,
+		"types": [
+			"vite-svg-loader"
+		],
+		"typeRoots": [
+			"node_modules/@types",
+			"src/typings"
+		],
+		"baseUrl": "src"
+	},
+	"include": [
+		".eslintrc.js",
+		"*.config.js",
+		"*.config.ts",
+		"src/*.vue",
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.vue"
+]
 }

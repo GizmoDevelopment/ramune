@@ -1,5 +1,0 @@
-<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="100" cy="100" r="100" fill="white"/>
-<circle cx="100" cy="100" r="80" fill="var(--primary-color)" class="flavorable"/>
-<circle cx="126.5" cy="70.5" r="36.5" fill="white"/>
-</svg>

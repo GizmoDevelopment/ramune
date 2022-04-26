@@ -54,8 +54,8 @@ export async function formatLyrics (lyrics: Lyrics): Promise<ParsedLyrics> {
 			}
 		} else { 
 			_lyrics.lines.push({
-				// Make lyrics appear a bit sooner than when they're actually sang (-100ms)
-				start: Math.max(0, convertTimestampToSeconds(`${lineName}:${lineValue}`) - .1),
+				// Make lyrics appear a bit sooner than when they're actually sang (-300ms)
+				start: Math.max(0, convertTimestampToSeconds(`${lineName}:${lineValue}`) - .3),
 				content: line.match(/\](.*)/)?.[1] || ""
 			});
 		}

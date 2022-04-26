@@ -1,0 +1,45 @@
+{
+	"extends": "stylelint-config-standard-scss",
+	"plugins": [
+		"stylelint-scss"
+	],
+	"processors": [
+		"@mapbox/stylelint-processor-arbitrary-tags"
+	],
+	"ignoreFiles": [ "**/*.{js,ts}" ],
+	"rules": {
+		"no-empty-source": null,
+		"no-invalid-double-slash-comments": null,
+		"no-empty-first-line": null,
+		"rule-empty-line-before": null,
+		"max-empty-lines": null,
+		"declaration-empty-line-before": null,
+		"block-closing-brace-empty-line-before": null,
+		"custom-property-empty-line-before": null,
+		"shorthand-property-no-redundant-values": null,
+		"no-eol-whitespace": null,
+		"indentation": "tab",
+		"number-leading-zero": "never",
+		"alpha-value-notation": "number",
+		"color-function-notation": "legacy",
+		"value-keyword-case": [ "lower", {
+			"ignoreFunctions": [
+				"v-bind"
+			],
+			"ignoreProperties": [
+				"/^--.+?$/"
+			]
+		} ],
+		"at-rule-empty-line-before": [ "always", {
+			"except": [
+				"blockless-after-same-name-blockless"
+			]
+		} ],
+		"font-family-name-quotes": "always-unless-keyword",
+		"scss/comment-no-empty": null,
+		"scss/dollar-variable-empty-line-before": null,
+		"scss/double-slash-comment-empty-line-before": null,
+		"scss/at-function-parentheses-space-before": "always",
+		"scss/at-mixin-parentheses-space-before": "always"
+	}
+}

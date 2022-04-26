@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self' cdn.gizmo.moe ramune-cdn.gizmo.moe; connect-src 'self' api.gizmo.moe chat-gateway.gizmo.moe europe-west1-gizmo-e420d.cloudfunctions.net ramune-cdn.gizmo.moe;"

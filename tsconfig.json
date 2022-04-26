@@ -12,7 +12,6 @@
 		]
 	},
 	"include": [
-		".eslintrc.js",
 		"*.config.js",
 		"*.config.ts",
 		"src/*.vue",

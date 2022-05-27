@@ -278,7 +278,6 @@
 				// Subtitles
 				selectedSubtitleLanguage: null as string | null,
 				shouldShowSubtitles: false, // Used for hiding subtitles on video first load
-				subtitles: {} as Record<string, string>,
 				subtitleRenderer: null as SubtitlesOctopus | null,
 
 				// Trays
@@ -353,7 +352,6 @@
 				this.isPaused = true;
 				this.currentTime = 0;
 				this.shouldShowSubtitles = false;
-				this.subtitles = {};
 				this.selectedSubtitleLanguage = null;
 
 				setTimeout(() => {
@@ -376,40 +374,19 @@
 				}
 			},
 			async selectedSubtitleLanguage (langCode: string) {
-
-				const
-					_showId = this.show.id,
-					_episodeId = this.episode.id;
-
 				if (langCode) {
+					
+					const _subtitles = this.episode.subtitles.find((subtitles: Subtitles) => subtitles.code === langCode);
 
-					let subtitlesContent = this.subtitles[langCode];
+					if (_subtitles) {
 
-					if (!subtitlesContent) {
+						if (!this.subtitleRenderer) {
+							this.initializeSubtitleRenderer(langCode);
+						}
 
-						await this.fetchSubtitleLanguage(langCode);
-
-						// Re-get subtitles
-						subtitlesContent = this.subtitles[langCode];
-					}
-
-					// Failed to fetch subtitles, abort
-					if (!subtitlesContent) {
-						return;
-					}
-
-					if (!this.subtitleRenderer) {
-						this.initializeSubtitleRenderer(langCode);
-					}
-
-					// Make sure we're still on the same Show, Episode and Subtitle language
-					if (
-						this.subtitleRenderer
-						&& this.selectedSubtitleLanguage === langCode
-						&& this.show.id === _showId
-						&& this.episode.id && _episodeId
-					) {
-						this.subtitleRenderer.setTrack(subtitlesContent);
+						if (this.subtitleRenderer) { // TS is too stupid to understand that we already checked for this
+							this.subtitleRenderer.setTrackByUrl(_subtitles.url);
+						}
 					}
 
 				} else {
@@ -641,7 +618,7 @@
 				if (this.video) {
 					this.subtitleRenderer = new window.SubtitlesOctopus({
 						video: this.video,
-						subContent: this.subtitles[langCode] || "",
+						subUrl: this.episode.subtitles[0]?.url,
 						workerUrl: "/libass/subtitles-octopus-worker.js",
 						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
 						blendRender: true,
@@ -653,25 +630,6 @@
 				if (this.subtitleRenderer) {
 					this.subtitleRenderer.dispose();
 					this.subtitleRenderer = null;
-				}
-			},
-			async fetchSubtitleLanguage (langCode: string) {
-
-				const _subtitles = this.episode.subtitles.find((subtitles: Subtitles) => subtitles.code === langCode);
-
-				if (_subtitles) {
-					try {
-
-						const
-							rawData = await fetch(_subtitles.url),
-							subtitles = await rawData.text();
-
-						// Save content
-						this.subtitles[langCode] = subtitles;
-
-					} catch (err) {
-						console.error(err);
-					}
 				}
 			},
 			selectSubtitleLanguage (langCode: string) {

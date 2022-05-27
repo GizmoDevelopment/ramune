@@ -8,8 +8,15 @@
 
 #
 
+### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/JavascriptSubtitlesOctopus) of JSO's codebase that includes many improvements and bugfixes!
+
+#
+
 Website: [Click here](https:///ramune.gizmo.moe)
 
 ## Built With
 <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D">
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
+
+<br></br>
+

@@ -47,7 +47,7 @@ export declare class SubtitlesOctopus {
 	setTrackByUrl (url: string): void;
 	setTrack (content: string): void;
 	freeTrack (): void;
-	dispose (): void;
+	destroy (): void;
 	setCurrentTime (currentTime: number): void;
 }
 

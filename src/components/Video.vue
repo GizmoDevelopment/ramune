@@ -628,7 +628,7 @@
 			},
 			destroySubtitleRenderer () {
 				if (this.subtitleRenderer) {
-					this.subtitleRenderer.dispose();
+					this.subtitleRenderer.destroy();
 					this.subtitleRenderer = null;
 				}
 			},

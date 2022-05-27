@@ -1020,16 +1020,17 @@
 
 	// Subtitles & Captions
 
-	.libassjs-canvas-parent {
+	.subtitles-octopus {
+
 		position: absolute !important;
 		width: 100%;
 		left: 0;
 		pointer-events: none;
 		z-index: 1;
-	}
 
-	.libassjs-canvas {
-		visibility: v-bind(subtitleVisibility);
+		canvas {
+			visibility: v-bind(subtitleVisibility);
+		}
 	}
 
 </style>

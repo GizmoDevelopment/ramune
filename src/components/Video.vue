@@ -373,7 +373,7 @@
 					this.shouldShowSubtitles = true;
 				}
 			},
-			async selectedSubtitleLanguage (langCode: string) {
+			async selectedSubtitleLanguage (langCode: string | null) {
 				if (langCode) {
 					
 					const _subtitles = this.episode.subtitles.find((subtitles: Subtitles) => subtitles.code === langCode);
@@ -391,7 +391,9 @@
 
 				} else {
 					if (this.subtitleRenderer) {
-						this.subtitleRenderer.freeTrack();
+						// !!! FIND A WAY TO NOT DESTROY THE RENDERER WITH EACH EPISODE CHANGE
+						// this.subtitleRenderer.freeTrack();
+						this.destroySubtitleRenderer();
 					}
 				}
 			},

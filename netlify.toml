@@ -6,4 +6,4 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self' cdn.gizmo.moe ramune-cdn.gizmo.moe; connect-src 'self' api.gizmo.moe chat-gateway.gizmo.moe europe-west1-gizmo-e420d.cloudfunctions.net ramune-cdn.gizmo.moe;"
+    Content-Security-Policy = "default-src 'self' cdn.gizmo.moe ramune-cdn.gizmo.moe; connect-src 'self' api.gizmo.moe chat-gateway.gizmo.moe europe-west1-gizmo-e420d.cloudfunctions.net ramune-cdn.gizmo.moe; script-src 'wasm-unsafe-eval';"

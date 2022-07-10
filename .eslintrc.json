@@ -4,7 +4,8 @@
         "es2021": true
     },
     "extends": [
-       
+		"plugin:@gizmo-dev/typescript",
+        "plugin:@gizmo-dev/vue"
     ],
 	"parser": "vue-eslint-parser",
     "parserOptions": {

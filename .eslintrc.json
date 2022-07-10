@@ -14,5 +14,8 @@
         "sourceType": "module",
 		"project": "./tsconfig.json",
 		"extraFileExtensions": [ ".vue" ]
-    }
+    },
+	"rules": {
+		"@typescript-eslint/consistent-type-imports": "off"
+	}
 }

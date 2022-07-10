@@ -42,6 +42,7 @@ export default viteSSR (App, { routes: router.options.routes }, ({ app, router, 
 	// Hydrate app with initialState that is passed to VueX
 	app.provide("initialState", initialState);
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	router.beforeEach(async (to: any, _: unknown, next: any) => {
 
 		if (to.meta.state) {

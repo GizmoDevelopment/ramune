@@ -446,7 +446,7 @@
 								this.video && this.firstSyncData
 								&& this.video.paused !== !this.firstSyncData.playing
 							) {
-								this.isSyncOverlayVisible = true
+								this.isSyncOverlayVisible = true;
 							}
 						}, 350);
 					}
@@ -620,12 +620,12 @@
 				if (this.video) {
 					this.subtitleRenderer = new window.SubtitlesOctopus({
 						video: this.video,
-						subUrl: this.episode.subtitles[0]?.url,
+						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
 						workerUrl: "/libass/subtitles-octopus-worker.js",
 						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
 						blendRender: true,
 						debug: DEV
-					})
+					});
 				}
 			},
 			destroySubtitleRenderer () {

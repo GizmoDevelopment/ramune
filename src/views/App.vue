@@ -94,9 +94,7 @@
 				handler (flavor: Flavor) {
 					this.$nextTick(() => {
 
-						const
-							root = document.documentElement,
-							favicon = document.getElementById("favicon") as HTMLLinkElement;
+						const root = document.documentElement;
 
 						root.style.setProperty("--primary-color", flavor.primary);
 						root.style.setProperty("--primary-hover-color", flavor.primaryHover);

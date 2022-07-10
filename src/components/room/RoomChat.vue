@@ -232,7 +232,7 @@
 						body: msg.content,
 						icon: msg.user.avatar_url,
 						silent: true
-					})
+					});
 				}
 			}
 		}

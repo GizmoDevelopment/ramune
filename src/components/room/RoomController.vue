@@ -25,6 +25,7 @@
 	import RoomChat from "@components/room/RoomChat.vue";
 
 	// Async Components
+	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const Video = defineAsyncComponent(() => import("@components/Video.vue"));
 
 	// Mixins

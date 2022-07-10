@@ -22,11 +22,16 @@
 		data () {
 			return {
 				state: false
-			}
+			};
 		},
 		computed: {
 			snakeColor (): string {
-				return `var(--${ this.state ? "primary-color" : "container-background-color" })`;
+
+				const chosenColor = this.state
+					? "primary-color"
+					: "container-background-color";
+
+				return `var(--${chosenColor})`;
 			},
 			snakeOffset (): string {
 				return this.state ? "95%" : "0%";

@@ -84,7 +84,9 @@
 	import MainMethodsMixin from "@mixins/MainMethods";
 
 	// Async Components
+	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const SettingsPopup = defineAsyncComponent(() => import("@components/popups/SettingsPopup.vue"));
+	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const LoginPopup = defineAsyncComponent(() => import("@components/popups/LoginPopup.vue"));
 
 	// Mixins

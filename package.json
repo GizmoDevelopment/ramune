@@ -37,7 +37,7 @@
     "@types/svgo": "^2.6.3",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-vue": "^2.3.3",
-    "@vuedx/typescript-plugin-vue": "^0.7.4",
+    "@vuedx/typescript-plugin-vue": "^0.7.5",
     "autoprefixer": "^10.4.7",
     "esbuild": "^0.14.41",
     "eslint": "^8.16.0",

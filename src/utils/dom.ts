@@ -50,6 +50,9 @@ export function renderTwemoji (element: HTMLElement): void {
 	 * 	- ChromeOS
 	 */
 
+	// I refuse to use an async method just to find out whether someone is running Windows 11
+	// Fuck everyone that abused UAs for fingerprinting, that we now need this shit
+
 	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple|CrOS/i) === null) {
 		window.twemoji.parse(element, {
 			ext: ".svg",

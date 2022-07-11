@@ -40,7 +40,16 @@ export function removeCookie (name: string): void {
 }
 
 export function renderTwemoji (element: HTMLElement): void {
-	// Don't use Twemoji on Apple devices, as they have a pretty good emoji set
+
+	/**
+	 * Some OSs and platforms may provide their own colored emoji set,
+	 * therefore we will not be rendering Twemoji on those platforms.
+	 * 
+	 * Excluded platforms:
+	 * 	- Apple devices (macOS, iOS, iPadOS... — basically everything that runs on the Darwin kernel)
+	 * 	- ChromeOS
+	 */
+
 	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple/i) === null) {
 		window.twemoji.parse(element, {
 			ext: ".svg",

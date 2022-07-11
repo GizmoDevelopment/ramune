@@ -50,7 +50,7 @@ export function renderTwemoji (element: HTMLElement): void {
 	 * 	- ChromeOS
 	 */
 
-	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple/i) === null) {
+	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple|CrOS/i) === null) {
 		window.twemoji.parse(element, {
 			ext: ".svg",
 			folder: "twemoji",

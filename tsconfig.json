@@ -12,9 +12,6 @@
 			"esnext",
 			"dom"
 		],
-		"types": [
-			"vite-svg-loader"
-		],
 		"typeRoots": [
 			"node_modules/@types",
 			"src/typings"

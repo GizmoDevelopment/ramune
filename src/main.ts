@@ -1,7 +1,7 @@
 // Modules
 import viteSSR, { ClientOnly } from "vite-ssr/vue";
 import VueSocketIO from "vue-socket.io-extended";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 
 // Factories
 import { createRouter } from "@factories/router";

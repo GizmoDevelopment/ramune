@@ -8,7 +8,10 @@
 		"sourceMap": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"lib": ["esnext", "dom"],
+		"lib": [
+			"esnext",
+			"dom"
+		],
 		"types": [
 			"vite-svg-loader"
 		],
@@ -41,5 +44,5 @@
 		"src/**/*.ts",
 		"src/**/*.d.ts",
 		"src/**/*.vue"
-]
+	]
 }

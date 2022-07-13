@@ -16,6 +16,7 @@
 		"extraFileExtensions": [ ".vue" ]
     },
 	"rules": {
-		"@typescript-eslint/consistent-type-imports": "off"
+		"@typescript-eslint/consistent-type-imports": "off",
+		"vue/no-reserved-component-names": "off"
 	}
 }

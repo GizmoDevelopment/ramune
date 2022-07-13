@@ -19,7 +19,7 @@
     "@vueuse/head": "^0.7.6",
     "axios": "^0.27.2",
     "fuzzaldrin": "^2.1.0",
-    "gizmo-api": "^1.1.2",
+    "gizmo-api": "^1.2.2",
     "socket.io-client": "^4.5.1",
     "vite-ssr": "^0.16.0",
     "vue": "^3.2.37",

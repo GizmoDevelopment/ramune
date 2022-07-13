@@ -1,5 +1,5 @@
 // Types
-import type { User } from "gizmo-api/lib/types";
+import type { User } from "gizmo-api";
 import type { Module } from "vuex";
 import type { Show, ShowHusk } from "@typings/show";
 import type { CacheState } from "@typings/shims-vuex";

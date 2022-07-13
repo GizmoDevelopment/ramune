@@ -9,7 +9,7 @@ import { setCookie, removeCookie } from "@utils/dom";
 import { getUserFromAuthenticatedUser } from "@utils/user";
 
 // Types
-import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { AuthenticatedUser } from "gizmo-api";
 
 export default defineComponent({
 	mixins: [ SocketMixin ],

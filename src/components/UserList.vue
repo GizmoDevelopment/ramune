@@ -28,7 +28,7 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Types
-	import type { User } from "gizmo-api/lib/types";
+	import type { User } from "gizmo-api";
 
 	export default defineComponent({
 		name: "UserList",

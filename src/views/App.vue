@@ -47,7 +47,7 @@
 	import { getCookie } from "@utils/dom";
 
 	// Types
-	import type { AuthenticatedUser, User } from "gizmo-api/lib/types";
+	import type { AuthenticatedUser, User } from "gizmo-api";
 	import type { Room, RoomData } from "@typings/room";
 	import type { Flavor } from "@typings/settings";
 

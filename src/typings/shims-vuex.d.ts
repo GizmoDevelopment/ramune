@@ -1,6 +1,6 @@
 // Types
 import type { Store } from "vuex";
-import type { AuthenticatedUser, User } from "gizmo-api/lib/types";
+import type { AuthenticatedUser, User } from "gizmo-api";
 import type { Show, ShowHusk } from "@typings/show";
 import type { Room } from "@typings/room";
 import type { ParsedLyrics } from "@typings/lyrics";

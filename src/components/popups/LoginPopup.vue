@@ -51,7 +51,7 @@
 	import Input from "@components/Input.vue";
 
 	// Types
-	import type { ErrorResult } from "gizmo-api/lib/types";
+	import type { ErrorResult } from "gizmo-api";
 
 	export default defineComponent({
 		name: "LoginPopup",

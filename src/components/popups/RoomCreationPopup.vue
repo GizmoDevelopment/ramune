@@ -75,7 +75,7 @@
 	import { getUserFromAuthenticatedUser } from "@utils/user";
 
 	// Types
-	import type { AuthenticatedUser } from "gizmo-api/lib/types";
+	import type { AuthenticatedUser } from "gizmo-api";
 	import type { SocketResponse } from "@typings/main";
 	import type { Room, CreateRoomOptions } from "@typings/room";
 

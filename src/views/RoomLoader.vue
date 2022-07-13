@@ -39,7 +39,7 @@
 
 	// Types
 	import type { Room } from "@typings/room";
-	import type { AuthenticatedUser } from "gizmo-api/lib/types";
+	import type { AuthenticatedUser } from "gizmo-api";
 
 	export default defineComponent({
 		name: "RoomLoader",

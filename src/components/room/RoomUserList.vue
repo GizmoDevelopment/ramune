@@ -49,7 +49,7 @@
 	import RoomMixin from "@mixins/Room";
 
 	// Types
-	import type { User } from "gizmo-api/lib/types";
+	import type { User } from "gizmo-api";
 	import type { Room } from "@typings/room";
 
 	export default defineComponent({

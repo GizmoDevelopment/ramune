@@ -6,7 +6,7 @@ import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
 
 // Types
 import type { PropType } from "vue";
-import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { AuthenticatedUser } from "gizmo-api";
 import type { Room } from "@typings/room";
 import type { Episode, Show, Season } from "@typings/show";
 

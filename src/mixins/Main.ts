@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 // Types
-import type { AuthenticatedUser } from "gizmo-api/lib/types";
+import type { AuthenticatedUser } from "gizmo-api";
 import type { Room } from "@typings/room";
 
 export default defineComponent({

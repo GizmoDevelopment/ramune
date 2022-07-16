@@ -17,8 +17,8 @@
   ],
   "scripts": {
     "lint:css": "stylelint src/**/*.{css,scss,vue}",
-    "lint:js": "eslint src/**/*.{js,ts,vue}",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint:code": "eslint --ext .js,.ts,.d.ts,.vue .",
+    "lint": "npm run lint:code && npm run lint:css",
     "build": "npm run lint && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",

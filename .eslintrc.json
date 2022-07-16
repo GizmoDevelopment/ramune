@@ -1,50 +1,29 @@
 {
 	"root": true,
 	"extends": [
-		"@gizmo-dev/eslint-config",
+		"@nuxtjs/eslint-config-typescript",
 		"plugin:nuxt/recommended",
-		"plugin:vue/vue3-recommended"
+		"plugin:@gizmo-dev/typescript",
+		"plugin:@gizmo-dev/vue"
 	],
 	"env": {
 		"browser": true,
 		"es2021": true
 	},
-	"parser": "vue-eslint-parser",
 	"parserOptions": {
+		"ecmaVersion": 6,
 		"parser": "@typescript-eslint/parser",
-		"ecmaVersion": 12,
 		"sourceType": "module",
-		"project": "./tsconfig.json",
+		"project": [ "./tsconfig.json" ],
 		"extraFileExtensions": [ ".vue" ]
 	},
 	"plugins": [
-		"@typescript-eslint",
+		"nuxt",
 		"vue",
-		"nuxt"
+		"@typescript-eslint"
 	],
-	"rules": {
-		"vue/script-indent": [ "error", "tab", {
-			"baseIndent": 1,
-			"switchCase": 1
-		}],
-		"vue/html-indent": [ "error", "tab" ],
-		"vue/singleline-html-element-content-newline": "off",
-		"vue/max-attributes-per-line": [ "error", {
-			"singleline": 2
-		}],
-		"vue/script-setup-uses-vars": "off",
-		"vue/eqeqeq": [ "error", "always" ],
-		"vue/component-api-style": [ "error", [ "options", "composition" ] ],
-		"vue/no-useless-mustaches": [ "error" ],
-		"vue/no-useless-v-bind": [ "error" ],
-		"vue/no-lone-template": [ "error" ],
-		"vue/no-use-computed-property-like-method": [ "error" ],
-		"vue/multi-word-component-names": "off",
-		"vue/no-child-content": [ "error" ],
-		"vue/no-expose-after-await": [ "error" ],
-		"vue/component-options-name-casing": [ "error", "PascalCase" ],
-		"vue/component-tags-order": [ "error", {
-			"order": [ "template", "script", "style" ]
-		}]
-    }
+	"globals": {
+		"$fetch": true,
+		"$nuxt": true
+	}
 }

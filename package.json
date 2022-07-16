@@ -31,7 +31,7 @@
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@nuxtjs/stylelint-module": "^4.1.0",
     "autoprefixer": "^10.4.7",
-    "eslint": "^8.14.0",
+    "eslint": "^8.19.0",
     "eslint-plugin-nuxt": "^3.2.0",
     "nuxt": "3.0.0-rc.1",
     "postcss": "^8.4.12",

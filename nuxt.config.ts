@@ -15,6 +15,9 @@ export default defineNuxtConfig({
 	vite: {
 		configFile: "vite.config.ts"
 	},
+	app: {
+		baseURL: "/src"
+	},
 	alias: {
 		"@components": "/components"
 	}

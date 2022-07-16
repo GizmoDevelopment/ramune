@@ -1,18 +1,4 @@
 {
+	// https://v3.nuxtjs.org/concepts/typescript
 	"extends": "./.nuxt/tsconfig.json",
-	"compilerOptions": {
-		"strict": true,
-		"baseUrl": "src",
-		"types": [
-			"vite-svg-loader"
-		],
-		"typeRoots": [
-			"node_modules/@types",
-			"src/typings"
-		]
-	},
-	"include": [
-		"*.config.{js,ts}",
-		"src/**/*.{js,ts,d.ts,vue}"
-	]
 }

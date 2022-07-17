@@ -7,8 +7,19 @@
 	// Modules
 	import { defineComponent } from "vue";
 
+	// Stores
+	import { useMainStore } from "@stores/main";
+
 	export default defineComponent({
-		name: "App"
+		name: "App",
+		setup () {
+
+			const mainStore = useMainStore();
+
+			return {
+				mainStore
+			};
+		}
 	});
 
 </script>

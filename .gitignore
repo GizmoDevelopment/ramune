@@ -8,6 +8,7 @@ node_modules
 .nitro
 .cache
 .output
+dist
 
 # Produced by rollup-plugin-visualizer
 stats.html

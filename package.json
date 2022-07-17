@@ -46,6 +46,8 @@
     "vite-plugin-eslint": "^1.6.1"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.3.0",
+    "pinia": "^2.0.16",
     "vue": "^3.2.37"
   }
 }

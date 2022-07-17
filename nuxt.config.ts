@@ -4,7 +4,8 @@ import { defineNuxtConfig } from "nuxt";
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
 	modules: [
-		"@nuxtjs/stylelint-module"
+		"@nuxtjs/stylelint-module",
+		"@pinia/nuxt"
 	],
 	typescript: {
 		shim: false,
@@ -20,6 +21,7 @@ export default defineNuxtConfig({
 		baseURL: "/src"
 	},
 	alias: {
-		"@components": "/components"
+		"@components": "./src/components",
+		"@stores": "./src/stores"
 	}
 });

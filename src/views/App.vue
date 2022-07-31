@@ -353,6 +353,8 @@
 		-moz-osx-font-smoothing: grayscale;
 		overflow-x: hidden;
 		overflow-y: hidden;
+		width: 100%;
+		height: 100%;
 	}
 
 	body {

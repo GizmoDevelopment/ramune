@@ -102,7 +102,7 @@
 			}
 
 			this.setPageMetaTags({
-				title: `Ramune — ${this.room.name}`
+				title: this.room.name
 			});
 		},
 		beforeUnmount () {

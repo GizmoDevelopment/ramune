@@ -1,4 +1,7 @@
 <template>
+	<Head>
+		<meta name="theme-color" :content="flavor.primary">
+	</Head>
 	<Header />
 	<div class="app-content-container">
 		<div class="route-content">
@@ -39,6 +42,9 @@
 	import MainMethodsMixin from "@mixins/MainMethods";
 
 	// Components
+	import { Head } from "@vueuse/head";
+
+	// Local Components
 	import Header from "@components/Header.vue";
 	import RoomController from "@components/room/RoomController.vue";
 	import RoomPopout from "@components/room/RoomPopout.vue";
@@ -56,7 +62,8 @@
 		components: {
 			Header,
 			RoomController,
-			RoomPopout
+			RoomPopout,
+			Head
 		},
 		mixins: [ MainMixin, SocketMixin, MainMethodsMixin ],
 		setup () {

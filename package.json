@@ -28,7 +28,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/types": "^7.18.8",
+    "@babel/types": "^7.18.9",
     "@fullhuman/postcss-purgecss": "^4.1.3",
     "@gizmo-dev/eslint-plugin": "^3.2.0",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
@@ -41,12 +41,12 @@
     "@vuedx/typescript-plugin-vue": "^0.7.5",
     "autoprefixer": "^10.4.7",
     "esbuild": "^0.14.49",
-    "eslint": "^8.19.0",
+    "eslint": "^8.20.0",
     "postcss": "^8.4.14",
     "postcss-calc": "^8.2.4",
     "postcss-reporter": "^7.0.5",
     "postcss-scss": "^4.0.4",
-    "rollup-plugin-visualizer": "^5.6.0",
+    "rollup-plugin-visualizer": "^5.7.1",
     "sass": "^1.53.0",
     "stylelint": "^14.9.1",
     "stylelint-config-standard-scss": "^4.0.0",

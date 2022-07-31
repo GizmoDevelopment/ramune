@@ -12,14 +12,11 @@
 			<!-- This is where RoomController will teleport the video element to -->
 			<div v-show="room.data" id="video-popout-container" />
 			<div v-show="!room.data" class="no-video-message-container">
-				<p class="faded">Waiting for host</p>
+				<p class="faded no-select">Waiting for host</p>
 			</div>
 		</div>
-		<div
-			class="overlay hover-opacity"
-			@click="returnToRoom()"
-		>
-			<button class="primary-button">Return</button>
+		<div class="overlay hover-opacity">
+			<button class="primary-button" @click="returnToRoom()">Return</button>
 		</div>
 	</div>
 </template>
@@ -110,6 +107,7 @@
 		.overlay {
 			border-radius: variable(popup-border-radius);
 			z-index: 3;
+			cursor: default;
 		}
 	}
 

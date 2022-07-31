@@ -38,12 +38,14 @@
 			</router-view>
 		</div>
 		<div class="room-popout-container">
+		<Draggable start-position="bottom">
 			<transition name="popout-slide" mode="out-in">
 				<RoomPopout
 					v-if="room && !isViewingRoom"
 					:room="room"
 				/>
 			</transition>
+		</Draggable>
 		</div>
 		<div v-if="room">
 			<RoomController :room="room" />
@@ -75,6 +77,7 @@
 	import Header from "@components/Header.vue";
 	import RoomController from "@components/room/RoomController.vue";
 	import RoomPopout from "@components/room/RoomPopout.vue";
+	import Draggable from "@components/Draggable.vue";
 
 	// Utils
 	import { hslToHex } from "@utils/essentials";
@@ -92,7 +95,8 @@
 			Header,
 			RoomController,
 			RoomPopout,
-			Head
+			Head,
+			Draggable,
 		},
 		mixins: [ MainMixin, SocketMixin, MainMethodsMixin ],
 		setup () {
@@ -420,12 +424,19 @@
 	}
 
 	.room-popout-container {
+
 		position: fixed;
+		width: 100%;
+		height: 100%;
 		left: 0;
-		bottom: 0;
-		z-index: 10;
-		margin-left: 15px;
-		margin-bottom: 15px;
+		top: 0;
+		margin: 15px;
+		pointer-events: none;
+		z-index: 5;
+
+		* {
+			pointer-events: auto;
+		}
 	}
 
 	.favicon-canvas {

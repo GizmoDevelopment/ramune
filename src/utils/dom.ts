@@ -1,11 +1,4 @@
 /**
- * Changes page title
- */
-export function setPageTitle (title: string): void {
-	document.title = title;
-}
-
-/**
  * Resets page title to default 'Ramune'
  */
 export function clearPageTitle (): void {

@@ -2,6 +2,7 @@
 import viteSSR, { ClientOnly } from "vite-ssr/vue";
 import VueSocketIO from "vue-socket.io-extended";
 import io from "socket.io-client";
+import { createHead } from "@vueuse/head";
 
 // Factories
 import { createRouter } from "@factories/router";
@@ -22,6 +23,7 @@ const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 // Variables
 const router = createRouter();
 const ioInstance = io(SOCKET_ENDPOINT);
+const head = createHead();
 
 if (typeof SOCKET_ENDPOINT !== "string") {
 	throw Error("Environmental variable 'SOCKET_ENDPOINT' is not assigned");
@@ -36,6 +38,7 @@ export default viteSSR (App, { routes: router.options.routes }, ({ app, router, 
 		.use(store)
 		.use(VueSocketIO, ioInstance)
 		.use(i18n, store)
+		.use(head)
 		.directive("tooltip", Tooltip)
 		.component(ClientOnly.name, ClientOnly);
 

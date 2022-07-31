@@ -1,6 +1,9 @@
 <template>
 	<div class="player-container">
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
+		<Head>
+			<title v-if="show">{{ show.title }} — Episode {{ episodeId }}</title>
+		</Head>
 		<div v-if="show && season && episode">
 			<Video
 				:show="show"
@@ -32,6 +35,9 @@
 	import { defineAsyncComponent, defineComponent } from "vue";
 
 	// Components
+	import { Head } from "@vueuse/head";
+
+	// Local Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
@@ -44,7 +50,6 @@
 	// Utils
 	import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
 	import { getShow } from "@utils/api";
-	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import type { Show, Episode, Season } from "@typings/show";
@@ -56,7 +61,8 @@
 			Error,
 			Video,
 			ShowHeading,
-			ShowEpisodePicker
+			ShowEpisodePicker,
+			Head
 		},
 		props: {
 			showId: {
@@ -118,8 +124,6 @@
 					if (this.episode) {
 						this.season = getSeasonFromEpisode(this.show, this.episode);
 					}
-
-					setPageTitle(`${this.show.title} — Episode ${episodeId}`);
 				}
 			}
 		}

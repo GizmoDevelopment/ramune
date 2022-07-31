@@ -1,4 +1,7 @@
 <template>
+	<Head>
+		<title>Ramune — {{ room.name }}</title>
+	</Head>
 	<div class="room-title-bar">
 		<button class="primary-button icon-button" @click="$emit('leave-room')">
 			<Caret class="leave-icon" />
@@ -49,6 +52,9 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Components
+	import { Head } from "@vueuse/head";
+
+	// Local Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
 	import ShowHeading from "@components/show/ShowHeading.vue";
@@ -62,9 +68,6 @@
 
 	// Mixins
 	import RoomMixin from "@mixins/Room";
-
-	// Utils
-	import { setPageTitle } from "@utils/dom";
 
 	// Types
 	import type { SocketResponse } from "@typings/main";
@@ -80,7 +83,8 @@
 			LoadingBuffer,
 			MarkdownRenderer,
 			LockClosed,
-			Popup
+			Popup,
+			Head
 		},
 		mixins: [ RoomMixin ],
 		props: {
@@ -98,8 +102,6 @@
 		mounted () {
 
 			this.$store.commit("room/UPDATE_ROOM_CONTROLLER_STATE", "room-video-container");
-
-			setPageTitle(`Ramune — ${this.room.name}`);
 
 			if (Notification.permission !== "granted") {
 				Notification.requestPermission();

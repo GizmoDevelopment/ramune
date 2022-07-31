@@ -39,3 +39,34 @@ export function convertTimestampToSeconds (timestamp: string): number {
 export function getRandomNumberFromRange (range: Range): number {
 	return (Math.random() * (range[1] - range[0])) + range[0];
 }
+
+// https://stackoverflow.com/a/44134328
+export function hslToHex (hsl: string): string {
+
+	const match = hsl.match(/hsl\((\d+?), (\d+?)%, (\d+?)%\)/i);
+
+	if (!match) {
+		throw Error("Invalid HSL value");
+	}
+
+	const
+		h = Number(match[1]),
+		s = Number(match[2]),
+		l = Number(match[3]) / 100;
+
+	if (isNaN(h) || isNaN(s) || isNaN(l)) {
+		throw Error("Invalid HSL value");
+	}
+
+	const a = s * Math.min(l, 1 - l) / 100;
+
+	const f = (n: number): string => {
+
+		const k = (n + h / 30) % 12;
+		const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
+		return Math.round(255 * color).toString(16).padStart(2, "0");
+	};
+
+	return `#${f(0)}${f(8)}${f(4)}`;
+}

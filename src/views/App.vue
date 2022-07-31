@@ -25,7 +25,7 @@
 
 		<!-- Misc -->
 		<meta property="og:type" content="website">
-		<meta name="theme-color" :content="flavor.primary">
+		<meta name="theme-color" :content="hexFlavorColor">
 
 	</Head>
 	<Header />
@@ -76,6 +76,7 @@
 	import RoomPopout from "@components/room/RoomPopout.vue";
 
 	// Utils
+	import { hslToHex } from "@utils/essentials";
 	import { getCookie } from "@utils/dom";
 
 	// Types
@@ -120,6 +121,9 @@
 			},
 			metaTags (): CustomMeta {
 				return this.$store.getters["generic/meta"];
+			},
+			hexFlavorColor (): string {
+				return hslToHex(this.flavor.primary);
 			}
 		},
 		watch: {

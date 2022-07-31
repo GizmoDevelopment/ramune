@@ -427,10 +427,34 @@
 						// URL Timestamp
 						if (this.$route.query.t && !this.room) {
 
-							const timestamp = Number(this.$route.query.t);
+							const givenTimestamp = `${this.$route.query.t}`;
 
-							if (!isNaN(timestamp)) {
-								this.video.currentTime = timestamp;
+							const
+								minutesMatch = givenTimestamp.match(/(\d+?)m/i),
+								secondsMatch = givenTimestamp.match(/(\d+?)s?$/i);
+
+							let targetTimestamp = 0;
+
+							if (minutesMatch) {
+
+								const _minutes = Number(minutesMatch[1]) * 60;
+
+								if (!isNaN(_minutes)) {
+									targetTimestamp += _minutes;
+								}
+							}
+
+							if (secondsMatch) {
+
+								const _seconds = Number(secondsMatch[1]);
+
+								if (!isNaN(_seconds)) {
+									targetTimestamp += _seconds;
+								}
+							}
+
+							if (targetTimestamp > 0) {
+								this.video.currentTime = targetTimestamp;
 							}
 						}
 					}

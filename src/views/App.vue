@@ -331,6 +331,9 @@
 		background-color: var(--background-color);
 		font-family: var(--font);
 
+		width: 100%;
+		height: 100%;
+
 		margin: 0;
 
 		overflow-x: hidden;

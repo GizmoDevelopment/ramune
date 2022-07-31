@@ -23,8 +23,8 @@
 		name: "Draggable",
 		props: {
 			startPosition: {
-				type: String as PropType<"top" | "bottom">,
-				default: "top"
+				type: String as PropType<"topLeft" | "bottomLeft">,
+				default: "topLeft"
 			}
 		},
 		data () {
@@ -67,6 +67,13 @@
 					x: width / 2,
 					y: height / 2
 				};
+
+				if (this.startPosition === "bottomLeft") {
+					this.offset = {
+						x: 0,
+						y: window.innerHeight - height - 40
+					};
+				}
 
 				this.draggable.addEventListener("mousedown", this.startDragMode);
 			}

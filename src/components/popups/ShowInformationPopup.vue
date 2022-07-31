@@ -37,7 +37,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent } from "vue";
+	import { computed, defineComponent, ref } from "vue";
 
 	// Components
 	import { Head, useHead } from "@vueuse/head";
@@ -71,10 +71,21 @@
 			}
 		},
 		emits: [ "dismiss" ],
+		setup () {
+
+			const show = ref<Show | null>(null);
+
+			useHead({
+				title: computed(() => show.value && show.value.title || "Ramune")
+			});
+			
+			return {
+				show
+			};
+		},
 		data () {
 			return {
-				error: "" as number | string,
-				show: null as Show | null
+				error: "" as number | string
 			};
 		},
 		watch: {

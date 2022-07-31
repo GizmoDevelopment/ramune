@@ -4,6 +4,24 @@
 		:floating-title-bar="true"
 		@dismiss="$emit('dismiss')"
 	>
+		<Head>
+			<template v-if="show">
+				<!-- Main -->
+				<meta name="title" :content="show.title">
+				<meta name="description" :content="show.description">
+
+				<!-- Open Graph / Facebook -->
+				<meta property="og:type" content="website">
+				<meta property="og:title" :content="show.title">
+				<meta property="og:description" :content="show.description">
+				<meta property="og:image" :content="show.poster_url">
+				
+				<!-- Twitter -->
+				<meta property="twitter:title" :content="show.title">
+				<meta property="twitter:description" :content="show.description">
+				<meta property="twitter:image" :content="show.poster_url">
+			</template>
+		</Head>
 		<div class="show-container">
 			<div v-if="show" class="show-information">
 				<ShowInformation
@@ -22,6 +40,9 @@
 	import { defineComponent } from "vue";
 
 	// Components
+	import { Head, useHead } from "@vueuse/head";
+
+	// Local Components
 	import Error from "@components/Error.vue";
 	import ShowInformation from "@components/show/ShowInformation.vue";
 	import ShowInformationHusk from "@components/husks/ShowInformationHusk.vue";
@@ -40,7 +61,8 @@
 			Error,
 			ShowInformation,
 			ShowInformationHusk,
-			Popup
+			Popup,
+			Head
 		},
 		props: {
 			showId: {

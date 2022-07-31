@@ -39,9 +39,10 @@
 		</div>
 		<div class="room-popout-container">
 			<transition name="popout-slide" mode="out-in">
-				<div v-if="room && !isViewingRoom">
-					<RoomPopout :room="room" />
-				</div>
+				<RoomPopout
+					v-if="room && !isViewingRoom"
+					:room="room"
+				/>
 			</transition>
 		</div>
 		<div v-if="room">

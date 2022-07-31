@@ -42,11 +42,11 @@
 	</div>
 
 	<!-- Global Room Components -->
-	<div class="room-popout-container">
-		<Draggable start-position="bottom">
+	<div v-if="room" class="room-popout-container">
+		<Draggable start-position="bottomLeft">
 			<transition name="popout-slide" mode="out-in">
 				<RoomPopout
-					v-if="room && !isViewingRoom"
+					v-if="!isViewingRoom"
 					:room="room"
 				/>
 			</transition>

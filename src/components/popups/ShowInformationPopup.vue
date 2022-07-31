@@ -50,7 +50,7 @@
 
 	// Utils
 	import { getShow } from "@utils/api";
-	import { setPageTitle } from "@utils/dom";
+	import { clearPageTitle } from "@utils/dom";
 
 	// Types
 	import type { Show } from "@typings/show";
@@ -82,8 +82,8 @@
 				this.fetchShow();
 			},
 			show (newShow: Show | null) {
-				if (newShow) {
-					setPageTitle(newShow.title);
+				if (!newShow) {
+					clearPageTitle();
 				}
 			}
 		},

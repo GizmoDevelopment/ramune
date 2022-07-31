@@ -1,10 +1,3 @@
-/**
- * Resets page title to default 'Ramune'
- */
-export function clearPageTitle (): void {
-	document.title = "Ramune";
-}
-
 export function getCookie (name: string): string | null {
 
 	const

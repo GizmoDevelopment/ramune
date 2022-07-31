@@ -7,6 +7,13 @@
 		<meta property="og:title" :content="metaTags.title">
 		<meta property="twitter:title" :content="metaTags.title">
 
+		<!-- Site -->
+		<template v-if="metaTags.title !== 'Ramune'">
+			<meta name="apple-mobile-web-app-title" content="Ramune">
+			<meta name="og:site_name" content="Ramune">
+			<meta name="twitter:site" content="Ramune">
+		</template>
+
 		<!-- Description -->
 		<meta name="description" :content="metaTags.description">
 		<meta name="og:description" :content="metaTags.description">

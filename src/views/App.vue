@@ -29,6 +29,8 @@
 
 	</Head>
 	<Header />
+
+	<!-- Main View -->
 	<div class="app-content-container">
 		<div class="route-content">
 			<router-view v-slot="{ Component }">
@@ -37,7 +39,10 @@
 				</transition>
 			</router-view>
 		</div>
-		<div class="room-popout-container">
+	</div>
+
+	<!-- Global Room Components -->
+	<div class="room-popout-container">
 		<Draggable start-position="bottom">
 			<transition name="popout-slide" mode="out-in">
 				<RoomPopout
@@ -46,11 +51,12 @@
 				/>
 			</transition>
 		</Draggable>
-		</div>
-		<div v-if="room">
-			<RoomController :room="room" />
-		</div>
 	</div>
+	<div v-if="room">
+		<RoomController :room="room" />
+	</div>
+
+	<!-- Favicon Renderer -->
 	<canvas
 		ref="faviconCanvas"
 		class="favicon-canvas"

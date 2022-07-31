@@ -31,9 +31,6 @@
 	// Mixins
 	import SocketMixin from "@mixins/Socket";
 
-	// Utils
-	import { clearPageTitle } from "@utils/dom";
-
 	// Types
 	import type { User } from "gizmo-api";
 	import type { SocketResponse } from "@typings/main";
@@ -49,7 +46,6 @@
 		},
 		mounted () {
 
-			clearPageTitle();
 			this.fetchOnlineUsers();
 
 			this.onlineUsersFetcherInterval = window.setInterval(() => {

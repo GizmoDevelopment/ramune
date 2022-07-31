@@ -4,6 +4,7 @@ import { defineComponent } from "vue";
 // Types
 import type { AuthenticatedUser } from "gizmo-api";
 import type { Room } from "@typings/room";
+import type { InputCustomMeta } from "@stores/generic";
 
 export default defineComponent({
 	computed: {
@@ -15,6 +16,11 @@ export default defineComponent({
 		},
 		isHost (): boolean {
 			return this.room?.host?.id === this.user?.id;
+		}
+	},
+	methods: {
+		setPageMetaTags (metaTags: InputCustomMeta) {
+			this.$store.commit("generic/UPDATE_META_TAGS", metaTags);
 		}
 	}
 });

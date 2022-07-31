@@ -25,9 +25,16 @@ export interface UserState {
 	user: AuthenticatedUser | null;
 }
 
+export interface CustomMeta {
+	title: string;
+	description: string;
+	image_url: string;
+}
+
 export interface GenericState {
 	connectError: string;
 	shouldDisplayHanyuu: boolean;
+	meta: CustomMeta;
 }
 
 export interface SettingsState {

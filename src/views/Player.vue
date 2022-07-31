@@ -1,9 +1,6 @@
 <template>
 	<div class="player-container">
 		<!-- SINGLE ROOT IS REQUIRED OR ELSE ROUTE TRANSITION SHITS ITSELF -->
-		<Head>
-			<title v-if="show">{{ show.title }} — Episode {{ episodeId }}</title>
-		</Head>
 		<div v-if="show && season && episode">
 			<Video
 				:show="show"
@@ -34,9 +31,6 @@
 	// Modules
 	import { defineAsyncComponent, defineComponent } from "vue";
 
-	// Components
-	import { Head } from "@vueuse/head";
-
 	// Local Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import Error from "@components/Error.vue";
@@ -46,6 +40,9 @@
 	// Async Components
 	// eslint-disable-next-line @typescript-eslint/naming-convention
 	const Video = defineAsyncComponent(() => import("@components/Video.vue"));
+
+	// Mixins
+	import MainMixin from "@mixins/Main";
 
 	// Utils
 	import { getEpisodeById, getSeasonFromEpisode } from "@utils/show";
@@ -61,9 +58,9 @@
 			Error,
 			Video,
 			ShowHeading,
-			ShowEpisodePicker,
-			Head
+			ShowEpisodePicker
 		},
+		mixins: [ MainMixin ],
 		props: {
 			showId: {
 				type: String,
@@ -83,8 +80,18 @@
 			};
 		},
 		watch: {
-			episodeId (_episodeId: number) {
-				this.setEpisode(_episodeId);
+			episodeId: {
+				immediate: true,
+				handler (_episodeId: number) {
+					this.setEpisode(_episodeId);
+					this.updateMetaTags();
+				}
+			},
+			show: {
+				immediate: true,
+				handler () {
+					this.updateMetaTags();
+				}
 			}
 		},
 		async mounted () {
@@ -115,6 +122,9 @@
 
 			this.setEpisode(this.episodeId);
 		},
+		beforeUnmount () {
+			this.setPageMetaTags({});
+		},
 		methods: {
 			setEpisode (episodeId: number) {
 				if (this.show) {
@@ -124,6 +134,13 @@
 					if (this.episode) {
 						this.season = getSeasonFromEpisode(this.show, this.episode);
 					}
+				}
+			},
+			updateMetaTags () {
+				if (this.show) {
+					this.setPageMetaTags({
+						title: `${this.show.title} — Episode ${this.episodeId}`
+					});
 				}
 			}
 		}

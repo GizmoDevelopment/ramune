@@ -1,7 +1,4 @@
 <template>
-	<Head>
-		<title>Ramune — {{ room.name }}</title>
-	</Head>
 	<div class="room-title-bar">
 		<button class="primary-button icon-button" @click="$emit('leave-room')">
 			<Caret class="leave-icon" />
@@ -51,9 +48,6 @@
 	// Modules
 	import { defineComponent, PropType } from "vue";
 
-	// Components
-	import { Head } from "@vueuse/head";
-
 	// Local Components
 	import RoomUserList from "@components/room/RoomUserList.vue";
 	import ShowEpisodePicker from "@components/show/ShowEpisodePicker.vue";
@@ -67,6 +61,7 @@
 	import LockClosed from "@assets/icons/lock-closed.svg?component";
 
 	// Mixins
+	import MainMixin from "@mixins/Main";
 	import RoomMixin from "@mixins/Room";
 
 	// Types
@@ -83,10 +78,9 @@
 			LoadingBuffer,
 			MarkdownRenderer,
 			LockClosed,
-			Popup,
-			Head
+			Popup
 		},
-		mixins: [ RoomMixin ],
+		mixins: [ MainMixin, RoomMixin ],
 		props: {
 			room: {
 				type: Object as PropType<Room>,
@@ -107,6 +101,12 @@
 				Notification.requestPermission();
 			}
 
+			this.setPageMetaTags({
+				title: `Ramune — ${this.room.name}`
+			});
+		},
+		beforeUnmount () {
+			this.setPageMetaTags({});
 		},
 		methods: {
 			kickUserId (userId: string) {

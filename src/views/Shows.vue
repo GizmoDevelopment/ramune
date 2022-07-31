@@ -52,7 +52,6 @@
 
 	// Utils
 	import { getShows } from "@utils/api";
-	import { clearPageTitle } from "@utils/dom";
 
 	// Types
 	import type { ShowHusk } from "@typings/show";
@@ -103,8 +102,6 @@
 		},
 		async mounted () {
 
-			clearPageTitle();
-
 			if (this.showId) {
 				this.selectShow(this.showId);
 			}
@@ -125,7 +122,6 @@
 				} else {
 					this.selectedShowId = "";
 					this.$router.push("/shows");
-					clearPageTitle();
 				}
 			}
 		}

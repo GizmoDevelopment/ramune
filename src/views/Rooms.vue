@@ -63,9 +63,6 @@
 	// Icons
 	import Plus from "@assets/icons/plus.svg?component";
 
-	// Utils
-	import { clearPageTitle } from "@utils/dom";
-
 	// Types
 	import type { PartialRoom } from "@typings/room";
 	import type { SocketResponse } from "@typings/main";
@@ -99,9 +96,6 @@
 			}
 		},
 		mounted () {
-
-			clearPageTitle();
-
 			this.fetchRooms();
 			this.roomRefreshInterval = window.setInterval(this.fetchRooms, 2000);
 		},

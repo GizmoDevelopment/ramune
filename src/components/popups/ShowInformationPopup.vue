@@ -4,24 +4,6 @@
 		:floating-title-bar="true"
 		@dismiss="$emit('dismiss')"
 	>
-		<Head>
-			<template v-if="show">
-				<!-- Main -->
-				<meta name="title" :content="show.title">
-				<meta name="description" :content="show.description">
-
-				<!-- Open Graph / Facebook -->
-				<meta property="og:type" content="website">
-				<meta property="og:title" :content="show.title">
-				<meta property="og:description" :content="show.description">
-				<meta property="og:image" :content="show.poster_url">
-				
-				<!-- Twitter -->
-				<meta property="twitter:title" :content="show.title">
-				<meta property="twitter:description" :content="show.description">
-				<meta property="twitter:image" :content="show.poster_url">
-			</template>
-		</Head>
 		<div class="show-container">
 			<div v-if="show" class="show-information">
 				<ShowInformation
@@ -37,10 +19,7 @@
 <script lang="ts">
 
 	// Modules
-	import { computed, defineComponent, ref } from "vue";
-
-	// Components
-	import { Head, useHead } from "@vueuse/head";
+	import { defineComponent } from "vue";
 
 	// Local Components
 	import Error from "@components/Error.vue";
@@ -48,9 +27,11 @@
 	import ShowInformationHusk from "@components/husks/ShowInformationHusk.vue";
 	import Popup from "@components/popups/Popup.vue";
 
+	// Mixins
+	import MainMixin from "@mixins/Main";
+
 	// Utils
 	import { getShow } from "@utils/api";
-	import { clearPageTitle } from "@utils/dom";
 
 	// Types
 	import type { Show } from "@typings/show";
@@ -61,9 +42,9 @@
 			Error,
 			ShowInformation,
 			ShowInformationHusk,
-			Popup,
-			Head
+			Popup
 		},
+		mixins: [ MainMixin ],
 		props: {
 			showId: {
 				type: String,
@@ -71,30 +52,25 @@
 			}
 		},
 		emits: [ "dismiss" ],
-		setup () {
-
-			const show = ref<Show | null>(null);
-
-			useHead({
-				title: computed(() => show.value && show.value.title || "Ramune")
-			});
-			
-			return {
-				show
-			};
-		},
 		data () {
 			return {
-				error: "" as number | string
+				error: "" as number | string,
+				show: null as Show | null
 			};
 		},
 		watch: {
 			showId () {
 				this.fetchShow();
 			},
-			show (newShow: Show | null) {
-				if (!newShow) {
-					clearPageTitle();
+			show (_show: Show | null) {
+				if (_show) {
+					this.setPageMetaTags({
+						title: _show.title,
+						description: _show.description,
+						image_url: _show.poster_url
+					});
+				} else {
+					this.setPageMetaTags({});
 				}
 			}
 		},

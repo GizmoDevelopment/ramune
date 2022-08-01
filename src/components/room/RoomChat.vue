@@ -215,6 +215,7 @@
 					this.messages.push(msg);
 				}
 
+				// Automatically delete message after 30s
 				setTimeout(() => {
 					if (this?.messages) {
 						this.messages = this.messages.filter(message => message.id !== msg.id);

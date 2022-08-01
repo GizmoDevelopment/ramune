@@ -47,6 +47,7 @@
 
 	// Modules
 	import { defineComponent, ref } from "vue";
+	import { FastAverageColor } from "fast-average-color";
 
 	// Components
 	import ChatMessage from "@components/room/ChatMessage.vue";
@@ -63,6 +64,11 @@
 	// Types
 	import type { SocketResponse } from "@typings/main";
 	import type { Message } from "@typings/message";
+	import type { User } from "gizmo-api";
+
+	interface UserColors {
+		[key: string]: string;
+	}
 
 	export default defineComponent({
 		name: "RoomChat",
@@ -88,6 +94,10 @@
 				messages: [] as Message[],
 				pingSound: new Audio("/ping.mp3"),
 
+				// User Colors
+				fac: new FastAverageColor(),
+				userColors: {} as UserColors,
+				userColorCleanup: 0,
 
 				// Input
 				allowInput: true,
@@ -221,11 +231,25 @@
 						this.messages = this.messages.filter(message => message.id !== msg.id);
 					}
 				}, 30000);
+
+				// Save user's dominant color
+				if (!this.userColors[msg.user.username]) {
+					this.cacheUserColor(msg.user);
+				}
 			},
 			ping () {
 				if (!document.hasFocus()) {
 					(this.pingSound.cloneNode(false) as HTMLAudioElement).play();
 				}
+			},
+			async cacheUserColor (user: User) {
+				
+				const color = await this.fac.getColorAsync(user.avatar_url);
+				
+				if (color) {
+					this.userColors[user.username] = color.hex;
+				}
+			},
 			}
 		},
 		sockets: {

@@ -131,7 +131,7 @@
 		}
 	}
 
-	@media only screen and (max-width: 1250px) {
+	@media only screen and (max-width: 1150px) {
 		.show-container {
 			width: 100%;
 			padding-left: 0;

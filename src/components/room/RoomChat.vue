@@ -84,13 +84,19 @@
 		},
 		data () {
 			return {
-				messageContent: "",
+
 				messages: [] as Message[],
+				pingSound: new Audio("/ping.mp3"),
+
+
+				// Input
 				allowInput: true,
+				messageContent: "",
+
+				// States
 				isFullscreen: false,
 				isFocusedOnInput: false,
-				isMessageSending: false,
-				pingSound: new Audio("/ping.mp3")
+				isMessageSending: false
 			};
 		},
 		computed: {

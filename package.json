@@ -18,6 +18,7 @@
   "dependencies": {
     "@vueuse/head": "^0.7.8",
     "axios": "^0.27.2",
+    "fast-average-color": "^9.1.1",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.2.2",
     "socket.io-client": "^4.5.1",

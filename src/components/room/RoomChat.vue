@@ -138,12 +138,18 @@
 			}
 		},
 		mounted () {
+			
 			document.addEventListener("keydown", this.handleKey);
 			document.addEventListener("fullscreenchange", this.updateFullscreenState);
+
+			this.userColorCleanup = window.setInterval(this.clearUserColors, 60000);
 		},
 		beforeUnmount () {
+
 			document.removeEventListener("keydown", this.handleKey);
 			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
+
+			clearInterval(this.userColorCleanup);
 		},
 		methods: {
 			prepareMessage () {
@@ -250,6 +256,25 @@
 					this.userColors[user.username] = color.hex;
 				}
 			},
+			clearUserColors () {
+
+				if (Object.keys(this.userColors).length < 50) {
+					return;
+				}
+
+				const
+					userColors = Object.entries(this.userColors),
+					_userColors = {} as UserColors;
+
+				// Clean up the first half
+				for (let i = userColors.length - 1; i >= Math.floor(userColors.length / 2); i--) {
+
+					const _userColor = userColors[i];
+
+					_userColors[_userColor[0]] = _userColor[1];
+				}
+
+				this.userColors = _userColors;
 			}
 		},
 		sockets: {

@@ -2,7 +2,6 @@
 	<div
 		ref="draggable"
 		class="draggable-wrapper"
-		:style="draggableStyle"
 	>
 		<slot />
 	</div>
@@ -41,10 +40,8 @@
 			};
 		},
 		computed: {
-			draggableStyle () {
-				return {
-					transform:`translateX(${this.offset.x}px) translateY(${this.offset.y}px)`
-				};
+			draggableTransform () {
+				return `translateX(${this.offset.x}px) translateY(${this.offset.y}px)`;
 			}
 		},
 		setup () {
@@ -166,7 +163,8 @@
 	.draggable-wrapper {
 		position: relative;
 		display: inline-block;
-		transition: .3s ease-out;
+		transform: v-bind(draggableTransform);
+		transition: .2s ease-out;
 	}
 
 </style>

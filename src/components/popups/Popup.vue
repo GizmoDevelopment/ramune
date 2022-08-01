@@ -254,9 +254,15 @@
 		box-shadow: none !important;
 	}
 
-	@media only screen and (max-width: 1250px) {
+	@media only screen and (max-width: 1100px) {
 		.popup-content {
-			width: 90%;
+			width: 100%;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.popup-container {
+			width: 100%;
 		}
 	}
 

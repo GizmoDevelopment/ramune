@@ -88,6 +88,11 @@
 			}
 		},
 		emits: [ "leave-room" ],
+		data () {
+			return {
+				typingIndicatorTimeouts: [] as Array<number>
+			};
+		},
 		computed: {
 			isLoadingRoomData (): boolean {
 				return this.$store.state.room.isLoadingRoomData;
@@ -106,7 +111,12 @@
 			});
 		},
 		beforeUnmount () {
+
 			this.setPageMetaTags({});
+
+			this.typingIndicatorTimeouts.forEach(id => {
+				clearTimeout(id);
+			});	
 		},
 		methods: {
 			kickUserId (userId: string) {
@@ -130,7 +140,20 @@
 		},
 		sockets: {
 			"ROOM:USER_START_TYPING" (userId: number) {
+
 				this.$store.commit("room/USER_START_TYPING", userId);
+
+				// Set up timeout
+
+				const timeout = window.setTimeout(() => {
+					if (this?.$store && this.$store.state.room.typingUserList.includes(userId)) {
+						this.$store.commit("room/USER_STOP_TYPING", userId);
+						this.typingIndicatorTimeouts = this.typingIndicatorTimeouts.filter(id => id !== timeout);
+					}
+				}, 15000);
+
+				this.typingIndicatorTimeouts.push(timeout);
+
 			},
 			"ROOM:USER_STOP_TYPING" (userId: number) {
 				this.$store.commit("room/USER_STOP_TYPING", userId);

@@ -35,7 +35,7 @@
 				// Read-only
 				originPosition: null as Pos2 | null,
 				position: null as Pos2 | null,
-				animationSpeed: "0s",
+				animationSpeed: "0s", // Start with no animation to prevent "gliding" to start position
 
 				offset: { x: 0, y: 0 } as Pos2,
 			};
@@ -43,6 +43,13 @@
 		computed: {
 			draggableTransform () {
 				return `translateX(${this.offset.x}px) translateY(${this.offset.y}px)`;
+			}
+		},
+		watch: {
+			isDragging (state: boolean) {
+				this.animationSpeed = state
+					? "0s"
+					: ".6s";
 			}
 		},
 		setup () {
@@ -78,11 +85,6 @@
 
 			document.addEventListener("mouseup", this.stopDragMode);
 			document.addEventListener("mousemove", this.updateOffset);
-
-			// Prevents the element from "gliding" to start position on mount
-			this.$nextTick(() => {
-				this.animationSpeed = ".2s";
-			});
 		},
 		beforeUnmount () {
 

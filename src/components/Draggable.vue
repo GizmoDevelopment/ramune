@@ -94,7 +94,11 @@
 			document.removeEventListener("mousemove", this.updateOffset);
 		},
 		methods: {
-			startDragMode () {
+			startDragMode (e: MouseEvent) {
+
+				// Prevents text selection while dragging
+				e.preventDefault();
+
 				this.isDragging = true;
 			},
 			stopDragMode () {

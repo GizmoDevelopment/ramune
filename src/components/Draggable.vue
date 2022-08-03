@@ -176,7 +176,7 @@
 		position: relative;
 		display: inline-block;
 		transform: v-bind(draggableTransform);
-		transition: v-bind(animationSpeed) ease-out;
+		transition: v-bind(animationSpeed) cubic-bezier(.12, -.09, .04, 1.04);
 	}
 
 </style>

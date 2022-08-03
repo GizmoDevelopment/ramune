@@ -329,13 +329,13 @@
 
 	.view-enter-active,
 	.view-leave-active {
-		transition: opacity .25s ease, transform .25s ease;
+		transition: opacity .25s ease, transform .2s ease;
 	}
 
 	.view-enter-from,
 	.view-leave-to {
 		opacity: 0;
-		transform: translateY(.5rem) scale(99%);
+		transform: translateY(.3rem) scale(99.7%);
 	}
 
 	.popout-slide-enter-active {

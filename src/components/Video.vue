@@ -64,11 +64,16 @@
 								@mouseenter="isHoveringOverControls = true"
 								@mouseleave="isHoveringOverControls = false"
 							>
-								<div v-if="controls" @click="togglePlayPause">
+								<div
+									v-if="controls"
+									class="icon"
+									@click="togglePlayPause"
+								>
 									<Play v-if="isPaused" />
 									<Pause v-else />
 								</div>
 								<Skip @click="skipEpisode" />
+								<div class="icon volume-button" @click="isVolumeTrayVisible = !isVolumeTrayVisible">
 									<VolumeOff v-if="muted" class="video-control-button" />
 									<template v-else>
 										<VolumeHigh v-if="volume >= .85" class="video-control-button" />

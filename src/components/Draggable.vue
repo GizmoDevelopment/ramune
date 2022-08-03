@@ -121,6 +121,11 @@
 						y: window.innerHeight / 2
 					};
 
+					/**
+					 * The "40" is to compensate for the Room pop-out's margins.
+					 * Should probably find a better solution so it works with any element.
+					 */
+
 					if (finalOffset.x > windowOrigin.x) {
 						finalOffset.x = window.innerWidth - 2 * this.originPosition.x - 40;
 					} else if (finalOffset.x < windowOrigin.x) {

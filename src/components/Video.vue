@@ -986,7 +986,7 @@
 
 	.volume-tray {
 
-		left: .5rem;
+		left: -5rem;
 
 		input {
 			width: 9rem;

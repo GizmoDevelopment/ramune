@@ -47,7 +47,6 @@
 
 	// Modules
 	import { defineComponent, ref } from "vue";
-	import { FastAverageColor } from "fast-average-color";
 
 	// Components
 	import ChatMessage from "@components/room/ChatMessage.vue";
@@ -64,11 +63,6 @@
 	// Types
 	import type { SocketResponse } from "@typings/main";
 	import type { Message } from "@typings/message";
-	import type { User } from "gizmo-api";
-
-	interface UserColors {
-		[key: string]: string;
-	}
 
 	export default defineComponent({
 		name: "RoomChat",
@@ -93,11 +87,6 @@
 
 				messages: [] as Message[],
 				pingSound: new Audio("/ping.mp3"),
-
-				// User Colors
-				fac: new FastAverageColor(),
-				userColors: {} as UserColors,
-				userColorCleanup: 0,
 
 				// Input
 				allowInput: true,
@@ -138,18 +127,12 @@
 			}
 		},
 		mounted () {
-			
 			document.addEventListener("keydown", this.handleKey);
 			document.addEventListener("fullscreenchange", this.updateFullscreenState);
-
-			this.userColorCleanup = window.setInterval(this.clearUserColors, 60000);
 		},
 		beforeUnmount () {
-
 			document.removeEventListener("keydown", this.handleKey);
 			document.removeEventListener("fullscreenchange", this.updateFullscreenState);
-
-			clearInterval(this.userColorCleanup);
 		},
 		methods: {
 			prepareMessage () {
@@ -237,44 +220,11 @@
 						this.messages = this.messages.filter(message => message.id !== msg.id);
 					}
 				}, 30000);
-
-				// Save user's dominant color
-				if (!this.userColors[msg.user.username]) {
-					this.cacheUserColor(msg.user);
-				}
 			},
 			ping () {
 				if (!document.hasFocus()) {
 					(this.pingSound.cloneNode(false) as HTMLAudioElement).play();
 				}
-			},
-			async cacheUserColor (user: User) {
-				
-				const color = await this.fac.getColorAsync(user.avatar_url);
-				
-				if (color) {
-					this.userColors[user.username] = color.hex;
-				}
-			},
-			clearUserColors () {
-
-				if (Object.keys(this.userColors).length < 50) {
-					return;
-				}
-
-				const
-					userColors = Object.entries(this.userColors),
-					_userColors = {} as UserColors;
-
-				// Clean up the first half
-				for (let i = userColors.length - 1; i >= Math.floor(userColors.length / 2); i--) {
-
-					const _userColor = userColors[i];
-
-					_userColors[_userColor[0]] = _userColor[1];
-				}
-
-				this.userColors = _userColors;
 			}
 		},
 		sockets: {

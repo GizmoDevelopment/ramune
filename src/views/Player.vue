@@ -5,6 +5,7 @@
 			<Video
 				:show="show"
 				:episode="episode"
+				@play-episode-id="navigateToEpisodeById"
 			/>
 			<ShowHeading
 				:show="show"
@@ -142,6 +143,9 @@
 						title: `${this.show.title} — Episode ${this.episodeId}`
 					});
 				}
+			},
+			navigateToEpisodeById (id: number) {
+				this.$router.push(this.$route.path.replace(/(\d+?)$/, `${id}`));
 			}
 		}
 	});

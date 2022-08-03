@@ -68,7 +68,7 @@
 									<Play v-if="isPaused" />
 									<Pause v-else />
 								</div>
-								<div class="volume-button" @click="isVolumeTrayVisible = !isVolumeTrayVisible">
+								<Skip @click="skipEpisode" />
 									<VolumeOff v-if="muted" class="video-control-button" />
 									<template v-else>
 										<VolumeHigh v-if="volume >= .85" class="video-control-button" />
@@ -201,10 +201,12 @@
 	import Expand from "@assets/icons/expand.svg?component";
 	import ClosedCaptioning from "@assets/icons/closed-captioning.svg?component";
 	import Checkmark from "@assets/icons/checkmark.svg?component";
+	import Skip from "@assets/icons/skip.svg?component";
 
 	// Utils
 	import { formatTimestamp } from "@utils/essentials";
 	import { INPUT_ELEMENTS } from "@utils/constants";
+	import { getEpisodeById } from "@utils/show";
 
 	// Types
 	import type { SubtitlesOctopus } from "@typings/main";
@@ -229,7 +231,8 @@
 			Expand,
 			ClosedCaptioning,
 			UserList,
-			Checkmark
+			Checkmark,
+			Skip
 		},
 		mixins: [ MainMixin ],
 		props: {
@@ -246,7 +249,7 @@
 				default: true
 			}
 		},
-		emits: [ "update" ],
+		emits: [ "update", "play-episode-id" ],
 		setup () {
 
 			const
@@ -536,6 +539,18 @@
 							break;
 						default:
 					}
+				}
+			},
+			skipEpisode () {
+
+				if (this.room && !this.isHost) {
+					return;
+				}
+
+				const nextEpisode = getEpisodeById(this.show, this.episode.id + 1);
+
+				if (nextEpisode) {
+					this.$emit("play-episode-id", nextEpisode.id);
 				}
 			},
 

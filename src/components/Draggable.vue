@@ -35,6 +35,7 @@
 				// Read-only
 				originPosition: null as Pos2 | null,
 				position: null as Pos2 | null,
+				animationSpeed: "0s",
 
 				offset: { x: 0, y: 0 } as Pos2,
 			};
@@ -77,6 +78,11 @@
 
 			document.addEventListener("mouseup", this.stopDragMode);
 			document.addEventListener("mousemove", this.updateOffset);
+
+			// Prevents the element from "gliding" to start position on mount
+			this.$nextTick(() => {
+				this.animationSpeed = ".2s";
+			});
 		},
 		beforeUnmount () {
 
@@ -164,7 +170,7 @@
 		position: relative;
 		display: inline-block;
 		transform: v-bind(draggableTransform);
-		transition: .2s ease-out;
+		transition: v-bind(animationSpeed) ease-out;
 	}
 
 </style>

@@ -4,6 +4,7 @@
 			<img
 				v-if="!repeating"
 				class="message-author-avatar"
+				:class="{ host: isHost }"
 				:src="message.user.avatar_url"
 				:alt="`${ message.user.username }'s profile picture`"
 			>
@@ -29,6 +30,7 @@
 
 	// Types
 	import type { Message } from "@typings/message";
+	import type { Room } from "@typings/room";
 
 	export default defineComponent({
 		name: "ChatMessage",
@@ -43,6 +45,14 @@
 			repeating: {
 				type: Boolean,
 				default: false
+			}
+		},
+		computed: {
+			room (): Room | null {
+				return this.$store.state.room.room;
+			},
+			isHost (): boolean {
+				return this.room ? this.room.host.id === this.message.user.id : false;
 			}
 		}
 	});
@@ -77,10 +87,17 @@
 	}
 
 	.message-author-avatar {
+
 		width: 35px;
 		height: 35px;
 		margin-left: 11px;
 		border-radius: 50%;
+
+		&.host {
+			width: calc(35px - 6px);
+			height: calc(35px - 6px);
+			border: 3px solid variable(primary-color);
+		}
 	}
 
 	.message-content {

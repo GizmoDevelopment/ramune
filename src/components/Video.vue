@@ -72,7 +72,7 @@
 									<Play v-if="isPaused" />
 									<Pause v-else />
 								</div>
-								<Skip @click="skipEpisode" />
+								<Skip v-if="!room" @click="skipEpisode" />
 								<div class="icon volume-button" @click="isVolumeTrayVisible = !isVolumeTrayVisible">
 									<VolumeOff v-if="muted" class="video-control-button" />
 									<template v-else>

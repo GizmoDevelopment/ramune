@@ -30,8 +30,8 @@ export const FLAVORS: Record<string, Flavor> = {
 		primary: "hsl(40, 90%, 60%)",
 		primaryHover: "hsl(40, 90%, 40%)"
 	},
-	pomegranate: {
-		primary: "hsl(0, 90%, 40%)",
+	cherry: {
+		primary: "hsl(0, 90%, 30%)",
 		primaryHover: "hsl(0, 90%, 20%)"
 	}
 };

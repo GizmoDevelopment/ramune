@@ -21,6 +21,10 @@ export const FLAVORS: Record<string, Flavor> = {
 	orange: {
 		primary: "hsl(17, 80%, 55%)",
 		primaryHover: "hsl(17, 80%, 45%)"
+	},
+	bubble_gum: {
+		primary: "hsl(300, 90%, 75%)",
+		primaryHover: "hsl(300, 90%, 65%)"
 	}
 };
 

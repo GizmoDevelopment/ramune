@@ -112,6 +112,8 @@
 		padding: .5rem .7rem .5rem .7rem;
 		border-radius: variable(popup-border-radius);
 
+		line-height: 1.5;
+
 		text-align: left;
 		pointer-events: auto;
 

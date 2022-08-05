@@ -215,10 +215,10 @@
 
 		&:hover {
 
-			transform: translateY(-.3rem);
+			transform: translateY(-.2rem);
 
 			.flavor-name {
-				transform: translateY(-.8em);
+				transform: translateY(-.6em);
 				opacity: 1;
 			}
 		}

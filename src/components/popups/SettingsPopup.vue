@@ -6,7 +6,7 @@
 	>
 		<div class="setting">
 			<span class="heading setting-title">{{ $t("labels/flavor") }}</span>
-			<span class="setting-description">{{ $t("descriptions/setting_flavor") }}</span>
+			<span class="setting-description flavor-description">{{ $t("descriptions/setting_flavor") }}</span>
 			<div class="flavor-grid">
 				<button
 					v-for="(colors, name) in flavors"
@@ -158,9 +158,14 @@
 		}
 
 		.setting-description {
+
 			color: variable(faded-heading-text-color);
 			font-size: 1rem;
 			margin-bottom: 2rem;
+
+			&.flavor-description {
+				margin-bottom: .5rem;
+			}
 		}
 
 	}

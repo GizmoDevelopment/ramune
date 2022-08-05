@@ -201,8 +201,11 @@
 
 			position: absolute;
 			top: -1em;
+			width: 200%;
+			left: -50%;
 
 			font-size: 1rem;
+			text-align: center;
 			opacity: 0;
 
 			user-select: none;

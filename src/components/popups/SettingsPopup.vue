@@ -189,6 +189,7 @@
 
 		margin: .2em;
 		padding: .5em;
+		margin-top: 1.5em;
 		border: 3px solid transparent;
 
 		display: flex;

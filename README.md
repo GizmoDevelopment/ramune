@@ -22,3 +22,36 @@
 
 Website: [Click here](https:///ramune.gizmo.moe)
 
+<br>
+
+# Setup
+
+## 1. Clone the repository
+This will create a local copy of the project.
+```sh
+git clone https://github.com/GizmoDevelopment/ramune.git
+```
+
+## 2. Set environmental variables
+Make sure that you have the environmental variables set up if you want full functionality.
+```sh
+mv .env.example .env
+```
+### VITE_SHOW_ENDPOINT
+This endpoint is responsible for fetching show data. [Project page](https://github.com/GizmoDevelopment/ramune-backend)
+
+### VITE_SOCKET_ENDPOINT
+This endpoint is responsible for handling the WebSocket connections for rooms and chatting. [Project page](https://github.com/GizmoDevelopment/gizmo-chat-backend)
+
+### VITE_CDN_ENDPOINT
+This is where all the images and videos are actually stored.
+
+## 3. Run development server
+```sh
+npm run dev
+```
+
+## 4. Build for production
+```sh
+npm run build
+```

@@ -940,17 +940,22 @@
 			}
 
 			.progress-bar-hover-tooltip {
+
 				position: absolute;
+				width: auto;
+				height: 1rem;
+				top: -2.2rem;
+
+				left: v-bind(progressBarHoverTooltipPosition);
+				transform: translateX(-50%);
+
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				width: auto;
-				height: 1rem;
-				top: -1.6rem;
-				left: v-bind(progressBarHoverTooltipPosition);
+				
+				font-size: 1.2rem;
 				background-color: variable(container-background-color);
-				transform: translateX(-50%);
-				padding: .2rem .5rem .2rem .5rem;
+				padding: .4rem .7rem .4rem .7rem;
 				border-radius: 1.5rem;
 			}
 		}

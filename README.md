@@ -14,7 +14,7 @@
 
 #
 
-### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/JavascriptSubtitlesOctopus) of JSO's codebase that includes many improvements and bugfixes!
+### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/JavascriptSubtitlesOctopus) of JSO's codebase that includes many improvements and bug fixes!
 
 #
 

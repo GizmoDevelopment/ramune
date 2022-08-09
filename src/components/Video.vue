@@ -967,7 +967,7 @@
 		}
 	}
 
-	// Platters
+	// Trays
 
 	.video-tray {
 

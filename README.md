@@ -22,9 +22,3 @@
 
 Website: [Click here](https:///ramune.gizmo.moe)
 
-## Built With
-<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D">
-<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
-
-<br></br>
-

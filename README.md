@@ -9,7 +9,7 @@
 </p>
 
 <div align="center" style="display: inline-flex; width: 100%; justify-content: center; align-items: center;">
-	<img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" style="border-radius: 4px; margin: .5rem;">
+	<img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" style="border-radius: 2px; margin: .5rem;">
 	<img height="24" src="https://vitejs.dev/logo.svg" style="margin: .5rem;">
 	<img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png"  style="margin: .5rem;">
 </div>

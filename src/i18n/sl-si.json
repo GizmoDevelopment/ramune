@@ -45,7 +45,8 @@
 		"setting_flavor": "Spremeni barvo spletne strani.",
 		"setting_experience": "Preklopi razne nastavitve.",
 		"chat_box": "Klikni ali pritisni '/' za pisati",
-		"host_wait": "Čakam na Gostitelja"
+		"host_wait": "Čakam na Gostitelja",
+		"no_one_online": "Nobena oseba ni trenutno aktivna"
 	},
 	"errors": {
 		"no_active_rooms": "Ni aktivnih sob",

@@ -45,7 +45,8 @@
 		"setting_flavor": "Changes the accent color across the website.",
 		"setting_experience": "Toggle special experience features.",
 		"chat_box": "Click here or press '/' to start typing",
-		"host_wait": "Waiting for Host"
+		"host_wait": "Waiting for Host",
+		"no_one_online": "No one seems to be online"
 	},
 	"errors": {
 		"no_active_rooms": "There are no active rooms",

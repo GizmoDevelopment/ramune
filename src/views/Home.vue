@@ -18,7 +18,7 @@
 					<span class="user-name">{{ user.username }}</span>
 				</div>
 			</div>
-			<h3 v-else class="faded">No one seems to be online</h3>
+			<h3 v-else class="faded">{{ $t("descriptions/no_one_online") }}</h3>
 		</div>
 	</div>
 </template>

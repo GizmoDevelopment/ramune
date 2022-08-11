@@ -45,7 +45,8 @@
 		"setting_flavor": "Ændre farven på hjemmesiden.",
 		"setting_experience": "Slå speciale effekter til/fra.",
 		"chat_box": "Klik her eller tryk '/' for at skrive",
-		"host_wait": "Venter på Værten"
+		"host_wait": "Venter på Værten",
+		"no_one_online": "No one seems to be online"
 	},
 	"errors": {
 		"no_active_rooms": "Der er ingen aktive rum",

@@ -1,18 +1,13 @@
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/25076630/124389427-e2520600-dc9b-11eb-88a9-150a0e372899.png" height="50">
-</p>
-<p align="center" style="font-weight: bold;">Watch anime together with your friends.</p>
-
-<p align="center">
+	<br>
+	<span align="center"><b>Watch anime together with your friends.</b></span>
+	<br><br>
 	<a href="https://github.com/GizmoDevelopment/ramune/actions"><img src="https://img.shields.io/github/workflow/status/GizmoDevelopment/ramune/Build?label=Build"></a>
 	<a href="https://discord.gg/DHKjwQY"><img src="https://img.shields.io/discord/246369359705014272?color=%236E85D2&label=Discord&logo=discord&logoColor=white"></a>
+	<br><br>
+	<img src="https://skillicons.dev/icons?i=ts,vite,vue&theme=dark" alt="Languages and tools used">
 </p>
-
-<div align="center" style="display: inline-flex; width: 100%; justify-content: center; align-items: center;">
-	<img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" style="border-radius: 2px; margin: .5rem;">
-	<img height="24" src="https://vitejs.dev/logo.svg" style="margin: .5rem;">
-	<img height="24" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png"  style="margin: .5rem;">
-</div>
 
 #
 

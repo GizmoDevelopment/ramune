@@ -1,5 +1,7 @@
 // Modules
 import { defineNuxtConfig } from "nuxt";
+// import { visualizer } from "rollup-plugin-visualizer";
+// import eslintPlugin from "vite-plugin-eslint";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -13,12 +15,6 @@ export default defineNuxtConfig({
 	},
 	postcss: {
 		config: true
-	},
-	vite: {
-		configFile: "vite.config.ts"
-	},
-	app: {
-		baseURL: "/src"
 	},
 	alias: {
 		"@components": "./src/components",

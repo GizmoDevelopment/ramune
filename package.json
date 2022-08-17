@@ -15,7 +15,7 @@
     "last 6 versions"
   ],
   "scripts": {
-    "lint:css": "stylelint src/**/*.{css,scss,vue}",
+    "lint:css": "stylelint **/*.{css,scss,vue}",
     "lint:code": "eslint --ext .js,.ts,.d.ts,.vue .",
     "lint": "npm run lint:code && npm run lint:css",
     "build": "npm run lint && nuxt build",

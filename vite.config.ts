@@ -28,14 +28,6 @@ export default defineConfig({
 			"@plugins": path.resolve(__dirname, "./src/plugins")
 		}
 	},
-	server: {
-		fs: {
-			allow: [
-				"..",
-				"libass"
-			]
-		}
-	},
 	build: {
 		rollupOptions: {
 			plugins: [

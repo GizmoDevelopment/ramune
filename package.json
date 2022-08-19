@@ -7,8 +7,7 @@
     "lint:js": "eslint ./src/**/*.{js,ts,vue}",
     "lint:css": "stylelint ./src/**/*.{css,scss,vue}",
     "lint": "npm run lint:js && npm run lint:css",
-    "build": "vue-tsc --noEmit && vite build && npm run minify-libass",
-    "minify-libass": "esbuild ./public/libass/subtitles-octopus-worker-legacy.js ./public/libass/subtitles-octopus-worker.js ./public/libass/subtitles-octopus.js --minify --outdir=dist/libass/",
+    "build": "vue-tsc --noEmit && vite build",
     "dev": "vite",
     "serve": "vite preview"
   },
@@ -20,6 +19,7 @@
     "axios": "^0.27.2",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.2.2",
+    "jassub": "^1.1.8",
     "socket.io-client": "^4.5.1",
     "vite-ssr": "^0.16.0",
     "vue": "^3.2.37",

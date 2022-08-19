@@ -184,6 +184,7 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
+	import JASSUB from "jassub";
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -209,12 +210,11 @@
 	import Skip from "@assets/icons/skip.svg?component";
 
 	// Utils
-	import { formatTimestamp } from "@utils/essentials";
 	import { INPUT_ELEMENTS } from "@utils/constants";
+	import { formatTimestamp } from "@utils/essentials";
 	import { getEpisodeById } from "@utils/show";
 
 	// Types
-	import type { SubtitlesOctopus } from "@typings/main";
 	import type { Episode, Show, Subtitles } from "@typings/show";
 	import type { RoomSyncData } from "@typings/room";
 
@@ -286,7 +286,7 @@
 				// Subtitles
 				selectedSubtitleLanguage: null as string | null,
 				shouldShowSubtitles: false, // Used for hiding subtitles on video first load
-				subtitleRenderer: null as SubtitlesOctopus | null,
+				subtitleRenderer: null as JASSUB | null,
 
 				// Trays
 				isVolumeTrayVisible: false,
@@ -662,12 +662,9 @@
 			// Subtitles
 			initializeSubtitleRenderer (langCode: string) {
 				if (this.video) {
-					this.subtitleRenderer = new window.SubtitlesOctopus({
+					this.subtitleRenderer = new JASSUB({
 						video: this.video,
 						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
-						workerUrl: "/libass/subtitles-octopus-worker.js",
-						legacyWorkerUrl: "/libass/subtitles-octopus-worker-legacy.js",
-						blendRender: true,
 						debug: DEV
 					});
 				}

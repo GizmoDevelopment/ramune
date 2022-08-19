@@ -2,7 +2,6 @@ declare global {
 
 	interface Window {
 		twemoji: Twemoji;
-		SubtitlesOctopus: typeof SubtitlesOctopus;
 	}
 
 	interface Document {
@@ -36,33 +35,6 @@ interface TwemojiOptions {
 
 	callback?: (icon: string, options: TwemojiOptions) => string;
 	attributes?: () => Record<string, unknown>;
-}
-
-// JavascriptSubtitlesOctopus
-
-export declare class SubtitlesOctopus {
-
-	constructor (options: SubtitlesOctopusOptions);
-
-	setTrackByUrl (url: string): void;
-	setTrack (content: string): void;
-	freeTrack (): void;
-	destroy (): void;
-	setCurrentTime (currentTime: number): void;
-}
-
-interface SubtitlesOctopusOptions {
-
-	workerUrl: string;
-
-	video?: HTMLVideoElement;
-	canvas?: HTMLCanvasElement;
-	subUrl?: string;
-	subContent?: string;
-	legacyWorkerUrl?: string;
-	debug?: boolean;
-	fonts?: string[];
-	blendRender?: boolean;
 }
 
 // Responses

@@ -42,8 +42,8 @@ export function renderTwemoji (element: HTMLElement): void {
 	if (navigator.userAgent.match(/Darwin|Macintosh|Mac OS|Apple|CrOS/i) === null) {
 		window.twemoji.parse(element, {
 			ext: ".svg",
-			folder: "twemoji",
-			base: "https://cdn.gizmo.moe/assets/"
+			folder: "v14",
+			base: "https://cdn.gizmo.moe/assets/twemoji/"
 		});
 	}
 }

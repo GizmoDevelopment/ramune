@@ -185,6 +185,8 @@
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
 	import JASSUB from "jassub";
+	import workerUrl from "jassub/dist/jassub-worker.js?url";
+	import legacyWorkerUrl from "jassub/dist/jassub-worker-legacy.js?url";
 
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -664,6 +666,8 @@
 				if (this.video) {
 					this.subtitleRenderer = new JASSUB({
 						video: this.video,
+						workerUrl,
+						legacyWorkerUrl,
 						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
 						debug: DEV
 					});

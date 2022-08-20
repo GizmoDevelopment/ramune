@@ -1030,7 +1030,8 @@
 
 	// Subtitles & Captions
 
-	.subtitles-octopus {
+	/* stylelint-disable-next-line selector-class-pattern */
+	.JASSUB {
 
 		position: absolute !important;
 		width: 100%;

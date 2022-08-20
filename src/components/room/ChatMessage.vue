@@ -142,17 +142,19 @@
 <style lang="scss">
 
 	// stylelint-disable-next-line no-duplicate-selectors
-	.message-container {
+	.message-content {
 
 		.emoji {
-			height: 1.375em;
+			height: 1.3em;
 		}
 
-		img,
+		// Unused, as posting images & videos is currently unsupported
+		img:not([class="emoji"]),
 		video {
 			max-width: 100%;
 			height: auto;
 		}
+
 	}
 
 </style>

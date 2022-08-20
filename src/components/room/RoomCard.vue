@@ -97,12 +97,14 @@
 		align-items: center;
 
 		.room-name {
+			flex: 1;
 			margin-top: 0;
 			margin-bottom: 0;
 			font-size: 1.5rem;
 			font-weight: 500;
 			text-overflow: ellipsis;
 			overflow-x: hidden;
+			white-space: nowrap;
 		}
 
 		.lock-icon {

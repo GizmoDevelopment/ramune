@@ -96,7 +96,7 @@
 
 	.emoji {
 		display: inline-block;
-		vertical-align: middle;
+		vertical-align: -15%;
 		width: auto;
 		min-width: 1em;
 		height: 1em;

@@ -18,6 +18,7 @@
 	&:hover .tooltip {
 		opacity: 1;
 		transform: translateY(0) scale(100%);
+		transition: opacity .1s ease, transform .1s ease;
 	}
 
 }

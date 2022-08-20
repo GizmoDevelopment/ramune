@@ -70,3 +70,20 @@ export function hslToHex (hsl: string): string {
 
 	return `#${f(0)}${f(8)}${f(4)}`;
 }
+
+export async function typeFetch (method: string, url: string): Promise<string>;
+export async function typeFetch<T> (method: string, url: string): Promise<T>;
+export async function typeFetch<T> (method: string, url: string): Promise<T | string> {
+
+	const response = await fetch(url, { method });
+
+	if (response.ok) {
+		if (response.headers.get("Content-Type")?.includes("application/json")) {
+			return response.json() as Promise<T>;
+		} else {
+			return response.text();
+		}
+	} else {
+		throw new Error(response.statusText);
+	}
+}

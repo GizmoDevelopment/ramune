@@ -16,7 +16,6 @@
   ],
   "dependencies": {
     "@vueuse/head": "^0.7.9",
-    "axios": "^0.27.2",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.2.2",
     "jassub": "^1.1.8",

@@ -1,5 +1,5 @@
-// Modules
-import axios from "axios";
+// Utils
+import { typeFetch } from "@utils/essentials";
 
 // Types
 import type { APIResponse } from "@typings/main";
@@ -14,7 +14,7 @@ const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
 export async function getShows (): Promise<ShowHusk[]> {
 	try {
 
-		const { data: response } = await axios.get<APIResponse<ShowHusk[]>>(`${SHOW_ENDPOINT}/shows`);
+		const response = await typeFetch<APIResponse<ShowHusk[]>>("get", `${SHOW_ENDPOINT}/shows`);
 
 		if (response.type === "success") {
 			return response.data;
@@ -34,7 +34,7 @@ export async function getShows (): Promise<ShowHusk[]> {
 export async function getShow (showId: string): Promise<Show | null> {
 	try {
 
-		const { data: response } = await axios.get<APIResponse<Show>>(`${SHOW_ENDPOINT}/shows/${showId}`);
+		const response = await typeFetch<APIResponse<Show>>("get", `${SHOW_ENDPOINT}/shows/${showId}`);
 
 		if (response.type === "success") {
 			return response.data;

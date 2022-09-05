@@ -19,7 +19,7 @@
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.2.2",
     "jassub": "^1.1.11",
-    "socket.io-client": "^4.5.1",
+    "socket.io-client": "^4.5.2",
     "vite-ssr": "^0.16.0",
     "vue": "^3.2.38",
     "vue-router": "^4.0.15",

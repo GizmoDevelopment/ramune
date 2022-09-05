@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import { createHead } from "@vueuse/head";
 
 // Factories
-import { createRouter } from "@factories/router";
+import { routes } from "@factories/router";
 import { createStore } from "@factories/store";
 
 // Directives
@@ -21,7 +21,6 @@ import App from "@views/App.vue";
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
 
 // Variables
-const router = createRouter();
 const ioInstance = io(SOCKET_ENDPOINT);
 const head = createHead();
 
@@ -29,7 +28,7 @@ if (typeof SOCKET_ENDPOINT !== "string") {
 	throw Error("Environmental variable 'SOCKET_ENDPOINT' is not assigned");
 }
 
-export default viteSSR (App, { routes: router.options.routes }, ({ app, router, initialState }) => {
+export default viteSSR (App, { routes }, ({ app, router, initialState }) => {
 
 	const
 		store = createStore();

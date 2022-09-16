@@ -766,6 +766,8 @@
 
 	.video-container {
 
+		background-color: #000;
+
 		min-width: 100%;
 		position: relative;
 		display: inline-flex;

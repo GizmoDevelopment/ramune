@@ -103,7 +103,13 @@
 
 					if (this.canvas && particle) {
 
-						const particleCount = particle.count;
+						const
+							particleCount = particle.count,
+							particleDirection = {
+								x: getRandomNumberFromRange([ -1, 1 ]),
+								y: getRandomNumberFromRange([ -1, 1 ])
+							};
+						
 						let particleImage: HTMLImageElement | null = null;
 
 						if (particle.image) {
@@ -149,6 +155,13 @@
 								instance.speed.y = typeof particle.speed.y === "number"
 									? particle.speed.y
 									: getRandomNumberFromRange(particle.speed.y);
+
+								// Maintain consistent direction for all particles using "drift" movement
+								if (particle.movementStyle === "drift") {
+									instance.speed.x = Math.abs(instance.speed.x) * particleDirection.x;
+									instance.speed.y = Math.abs(instance.speed.y) * particleDirection.y;
+								}
+
 							}
 
 							if (particle.color) {

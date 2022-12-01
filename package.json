@@ -18,7 +18,7 @@
     "@vueuse/head": "^0.9.8",
     "fuzzaldrin": "^2.1.0",
     "gizmo-api": "^1.2.2",
-    "jassub": "^1.1.13",
+    "jassub": "^1.2.1",
     "socket.io-client": "^4.5.4",
     "vite-ssr": "^0.16.0",
     "vue": "^3.2.45",

@@ -188,7 +188,8 @@
 	import workerUrl from "jassub/dist/jassub-worker.js?url";
 	// import legacyWorkerUrl from "jassub/dist/jassub-worker-legacy.js?url";
 	import "jassub/dist/jassub-worker.wasm?url";
-
+	import "jassub/dist/default.woff2?url";
+	
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
 	import UserList from "@components/UserList.vue";

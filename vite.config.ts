@@ -32,7 +32,22 @@ export default defineConfig({
 		rollupOptions: {
 			plugins: [
 				visualizer()
-			]
+			],
+			output: {
+				assetFileNames: (chunkInfo) => {
+
+					const assetPath = chunkInfo.name || "";
+
+					// Keep jassub's wasm worker and default font asset names as-is
+					switch (assetPath.match(/.*\/jassub\/dist\/(.+)/i)?.[1]) {
+						case "default.woff2":
+						case "jassub-worker.wasm":
+							return "assets/[name][extname]";
+						default:
+							return "assets/[name]-[hash][extname]";
+					}
+				}
+			}
 		}
 	}
 });

@@ -44,7 +44,13 @@ export default defineConfig({
 						case "jassub-worker.wasm":
 							return "assets/[name][extname]";
 						default:
-							return "assets/[name]-[hash][extname]";
+					}
+
+					// Don't hash font files, as they can stay cached forever
+					if (assetPath.endsWith(".ttf")) {
+						return "assets/[name][extname]";
+					} else {
+						return "assets/[name]-[hash][extname]";
 					}
 				}
 			}

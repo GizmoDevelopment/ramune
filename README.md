@@ -11,11 +11,9 @@
 
 #
 
-### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/jassub) of JSO's codebase that includes many improvements and bug fixes!
+#### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/jassub) of JSO's codebase that includes many improvements and bug fixes!
 
 #
-
-Website: [Click here](https:///ramune.gizmo.moe)
 
 <br>
 
@@ -28,7 +26,7 @@ git clone https://github.com/GizmoDevelopment/ramune.git
 ```
 
 ## 2. Set environmental variables
-Make sure that you have the environmental variables set up if you want full functionality.
+Make sure that you have the environmental variables set up if you want the website to function.
 ```sh
 mv .env.example .env
 ```

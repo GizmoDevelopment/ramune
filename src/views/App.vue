@@ -1,33 +1,6 @@
 <template>
-	<Head>
-		
-		<!-- Title -->
-		<title>{{ metaTags.title }}</title>
-		<meta name="title" :content="metaTags.title">
-		<meta property="og:title" :content="metaTags.title">
-		<meta property="twitter:title" :content="metaTags.title">
-
-		<!-- Site -->
-		<template v-if="metaTags.title !== 'Ramune'">
-			<meta name="apple-mobile-web-app-title" content="Ramune">
-			<meta name="og:site_name" content="Ramune">
-			<meta name="twitter:site" content="Ramune">
-		</template>
-
-		<!-- Description -->
-		<meta name="description" :content="metaTags.description">
-		<meta name="og:description" :content="metaTags.description">
-		<meta name="twitter:description" :content="metaTags.description">
-
-		<!-- Image -->
-		<meta property="og:image" :content="metaTags.image_url">
-		<meta property="twitter:image" :content="metaTags.image_url">
-
-		<!-- Misc -->
-		<meta property="og:type" content="website">
-		<meta name="theme-color" :content="hexFlavorColor">
-
-	</Head>
+	
+	<Meta />
 	<Header />
 
 	<!-- Main View -->
@@ -76,24 +49,20 @@
 	import SocketMixin from "@mixins/Socket";
 	import MainMethodsMixin from "@mixins/MainMethods";
 
-	// Components
-	import { Head } from "@vueuse/head";
-
 	// Local Components
 	import Header from "@components/Header.vue";
 	import RoomController from "@components/room/RoomController.vue";
 	import RoomPopout from "@components/room/RoomPopout.vue";
 	import Draggable from "@components/Draggable.vue";
+	import Meta from "@components/Meta.vue";
 
 	// Utils
-	import { hslToHex } from "@utils/essentials";
 	import { getCookie } from "@utils/dom";
 
 	// Types
 	import type { AuthenticatedUser, User } from "gizmo-api";
 	import type { Room, RoomData } from "@typings/room";
 	import type { Flavor } from "@typings/settings";
-	import type { CustomMeta } from "@typings/shims-vuex";
 
 	export default defineComponent({
 		name: "App",
@@ -101,8 +70,8 @@
 			Header,
 			RoomController,
 			RoomPopout,
-			Head,
 			Draggable,
+			Meta
 		},
 		mixins: [ MainMixin, SocketMixin, MainMethodsMixin ],
 		setup () {
@@ -129,12 +98,6 @@
 			},
 			flavor (): Flavor {
 				return this.$store.getters["settings/flavor"];
-			},
-			metaTags (): CustomMeta {
-				return this.$store.getters["generic/meta"];
-			},
-			hexFlavorColor (): string {
-				return hslToHex(this.flavor.primary);
 			}
 		},
 		watch: {

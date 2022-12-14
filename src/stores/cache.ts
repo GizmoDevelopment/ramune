@@ -10,6 +10,7 @@ import type { Language } from "@typings/settings";
 import * as en from "../i18n/en-us.json";
 import * as sl from "../i18n/sl-si.json";
 import * as da from "../i18n/da-dk.json";
+import * as jp from "../i18n/ja-jp.json";
 import { getSetting, removeSetting, saveSetting } from "@utils/storage";
 
 export default {
@@ -22,7 +23,8 @@ export default {
 			languages: {
 				"en-us": en,
 				"sl-si": sl,
-				"da-dk": da
+				"da-dk": da,
+				"ja-jp": jp
 			},
 			cachedUser: getSetting<User | null>("cachedUser", null)
 		};

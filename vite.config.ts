@@ -37,7 +37,7 @@ export default defineConfig({
 					const assetPath = chunkInfo.name || "";
 
 					// Keep jassub's wasm worker and default font asset names as-is
-					switch (assetPath.match(/.*\/jassub\/dist\/(.+)/i)?.[1]) {
+					switch (assetPath) {
 						// case "default.woff2": Liberation Sans, but it doesn't support JP characters
 						case "jassub-worker.wasm":
 							return "assets/[name][extname]";

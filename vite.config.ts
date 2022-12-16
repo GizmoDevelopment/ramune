@@ -45,7 +45,7 @@ export default defineConfig({
 					}
 
 					// Don't hash font files, as they can stay cached forever
-					if (assetPath.endsWith(".ttf")) {
+					if (assetPath.match(/\.(woff2|ttf|otf)/i)) {
 						return "assets/[name][extname]";
 					} else {
 						return "assets/[name]-[hash][extname]";

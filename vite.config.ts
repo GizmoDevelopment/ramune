@@ -3,12 +3,10 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import svgLoader from "vite-svg-loader";
-import viteSSR from "vite-ssr/plugin";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
 	plugins: [
-		viteSSR(),
 		vue(),
 		svgLoader()
 	],
@@ -39,15 +37,15 @@ export default defineConfig({
 					const assetPath = chunkInfo.name || "";
 
 					// Keep jassub's wasm worker and default font asset names as-is
-					switch (assetPath.match(/.*\/jassub\/dist\/(.+)/i)?.[1]) {
-						case "default.woff2":
+					switch (assetPath) {
+						// case "default.woff2": Liberation Sans, but it doesn't support JP characters
 						case "jassub-worker.wasm":
 							return "assets/[name][extname]";
 						default:
 					}
 
 					// Don't hash font files, as they can stay cached forever
-					if (assetPath.endsWith(".ttf")) {
+					if (assetPath.match(/\.(woff2|ttf|otf)/i)) {
 						return "assets/[name][extname]";
 					} else {
 						return "assets/[name]-[hash][extname]";

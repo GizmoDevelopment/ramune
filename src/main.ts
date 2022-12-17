@@ -1,58 +1,19 @@
-// Modules
-import viteSSR, { ClientOnly } from "vite-ssr/vue";
-import VueSocketIO from "vue-socket.io-extended";
-import io from "socket.io-client";
-import { createHead } from "@vueuse/head";
-
 // Factories
-import { routes } from "@factories/router";
-import { createStore } from "@factories/store";
-
-// Directives
-import Tooltip from "@directives/tooltip";
-
-// Plugins
-import i18n from "@plugins/i18n";
-
-// Views
-import App from "@views/App.vue";
-
-// Constants
-const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;
+import { createApp } from "@factories/app";
 
 // Variables
-const ioInstance = io(SOCKET_ENDPOINT);
-const head = createHead();
+const app = createApp();
 
-if (typeof SOCKET_ENDPOINT !== "string") {
-	throw Error("Environmental variable 'SOCKET_ENDPOINT' is not assigned");
+if (!import.meta.env.VITE_CDN_ENDPOINT) {
+	console.error("Missing environmental variable VITE_CDN_ENDPOINT");
 }
 
-export default viteSSR (App, { routes }, ({ app, router, initialState }) => {
+if (!import.meta.env.VITE_SHOW_ENDPOINT) {
+	console.error("Missing environmental variable VITE_SHOW_ENDPOINT");
+}
 
-	const
-		store = createStore();
+if (!import.meta.env.VITE_SOCKET_ENDPOINT) {
+	console.error("Missing environmental variable VITE_SOCKET_ENDPOINT");
+}
 
-	app
-		.use(store)
-		.use(VueSocketIO, ioInstance)
-		.use(i18n, store)
-		.use(head)
-		.directive("tooltip", Tooltip)
-		.component(ClientOnly.name, ClientOnly);
-
-	// Hydrate app with initialState that is passed to VueX
-	app.provide("initialState", initialState);
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	router.beforeEach(async (to: any, _: unknown, next: any) => {
-
-		if (to.meta.state) {
-			return next();
-		}
-
-		next();
-	});
-
-	return {};
-});
+app.mount("#app");

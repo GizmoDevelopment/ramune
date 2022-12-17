@@ -23,26 +23,35 @@
 					</router-link>
 				</template>
 			</div>
-			<div v-if="chosenUser" class="user-container">
-				<p class="user-username">{{ chosenUser.username }}</p>
-				<img
-					class="user-avatar"
-					:src="chosenUser.avatar_url"
-					alt="Your profile picture"
-				>
-				<ContextMenu
-					align="right"
-					:items="[ 'labels/settings', 'actions/log_out' ]"
-					@ctx-settings="isInSettings = !isInSettings"
-					@ctx-log-out="logout"
-				>
-					<Caret class="more-icon" />
-				</ContextMenu>
-			</div>
-			<div v-else class="login">
-				<button class="primary-button" @click="isLoggingIn = true">
-					{{ $t("actions/log_in") }}
-				</button>
+			<div class="user-section">
+				<template v-if="chosenUser">
+					<p class="user-username">{{ chosenUser.username }}</p>
+					<img
+						class="user-avatar"
+						:src="chosenUser.avatar_url"
+						alt="Your profile picture"
+					>
+					<ContextMenu
+						align="right"
+						:items="[ 'labels/settings', 'actions/log_out' ]"
+						@ctx-settings="isInSettings = !isInSettings"
+						@ctx-log-out="logout"
+					>
+						<Caret class="more-icon" />
+					</ContextMenu>
+				</template>
+				<template v-else>
+					<button class="primary-button" @click="isLoggingIn = true">
+						{{ $t("actions/log_in") }}
+					</button>
+					<ContextMenu
+						align="right"
+						:items="[ 'labels/settings' ]"
+						@ctx-settings="isInSettings = !isInSettings"
+					>
+						<Caret class="more-icon" />
+					</ContextMenu>
+				</template>
 			</div>
 		</div>
 	</header>
@@ -214,15 +223,12 @@
 		font-size: 20px;
 	}
 
-	.navigation,
-	.login {
+	.navigation {
+
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
-	}
-
-	.navigation {
 
 		a {
 
@@ -268,9 +274,9 @@
 		}
 	}
 
-	// User
+	// User Section
 
-	.user-container {
+	.user-section {
 
 		display: flex;
 		flex-direction: row;

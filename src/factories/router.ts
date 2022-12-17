@@ -1,3 +1,6 @@
+// Modules
+import { createRouter as _createRouter, createWebHistory } from "vue-router";
+
 // Views
 import Home from "@views/Home.vue";
 import Shows from "@views/Shows.vue";
@@ -6,9 +9,9 @@ import Player from "@views/Player.vue";
 import ErrorView from "@views/Error.vue";
 
 // Types
-import type { RouteLocation, RouteRecordRaw } from "vue-router";
+import type { RouteLocation, RouteRecordRaw, Router } from "vue-router";
 
-export const routes = [
+const routes = [
 	{
 		name: "home",
 		path: "/",
@@ -48,3 +51,10 @@ export const routes = [
 		component: ErrorView
 	}
 ] as RouteRecordRaw[];
+
+export function createRouter (): Router {
+	return _createRouter({
+		routes,
+		history: createWebHistory()
+	});
+}

@@ -184,10 +184,10 @@
 
 	// Modules
 	import { defineComponent, PropType, ref } from "vue";
-	import JASSUB from "jassub";
-	import workerUrl from "jassub/dist/jassub-worker.js?url";
-	// import legacyWorkerUrl from "jassub/dist/jassub-worker-legacy.js?url";
-	import "jassub/dist/jassub-worker.wasm?url";
+	import SubtitlesOctopus from "libass-wasm";
+	import "libass-wasm/dist/js/subtitles-octopus-worker.wasm?url";
+	import workerUrl from "libass-wasm/dist/js/subtitles-octopus-worker.js?url";
+	// import legacyWorkerUrl from "libass-wasm/dist/js/subtitles-octopus-worker-legacy.js?url";
 	
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -289,7 +289,7 @@
 				// Subtitles
 				selectedSubtitleLanguage: null as string | null,
 				shouldShowSubtitles: false, // Used for hiding subtitles on video first load
-				subtitleRenderer: null as JASSUB | null,
+				subtitleRenderer: null as SubtitlesOctopus | null,
 
 				// Trays
 				isVolumeTrayVisible: false,
@@ -665,15 +665,13 @@
 			// Subtitles
 			initializeSubtitleRenderer (langCode: string) {
 				if (this.video) {
-					this.subtitleRenderer = new JASSUB({
+					this.subtitleRenderer = new SubtitlesOctopus({
 						video: this.video,
-						workerUrl,
 						// legacyWorkerUrl,
 						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
 						debug: DEV,
-						// ! Firefox does not currently properly implement the OffscreenCanvas API
-						offscreenRender: navigator.userAgent.match(/Mozilla/i) === null,
-						fallbackFont: "noto sans jp",
+						workerUrl,
+						fallbackFont: "/fonts/NotoSansJP-Regular.woff2",
 						availableFonts: {
 							"noto sans jp": "/fonts/NotoSansJP-Regular.woff2"
 						}
@@ -682,7 +680,7 @@
 			},
 			destroySubtitleRenderer () {
 				if (this.subtitleRenderer) {
-					this.subtitleRenderer.destroy();
+					this.subtitleRenderer.dispose();
 					this.subtitleRenderer = null;
 				}
 			},
@@ -1039,8 +1037,7 @@
 
 	// Subtitles & Captions
 
-	/* stylelint-disable-next-line selector-class-pattern */
-	.JASSUB {
+	.libassjs-canvas-parent {
 
 		position: absolute !important;
 		width: 100%;

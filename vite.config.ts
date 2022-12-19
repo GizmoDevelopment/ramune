@@ -36,10 +36,9 @@ export default defineConfig({
 
 					const assetPath = chunkInfo.name || "";
 
-					// Keep jassub's wasm worker and default font asset names as-is
+					// JSO doesn't support requesting hashed names
 					switch (assetPath) {
-						// case "default.woff2": Liberation Sans, but it doesn't support JP characters
-						case "jassub-worker.wasm":
+						case "subtitles-octopus-worker.wasm":
 							return "assets/[name][extname]";
 						default:
 					}

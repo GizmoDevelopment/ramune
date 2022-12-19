@@ -9,12 +9,6 @@
 	<img src="https://skillicons.dev/icons?i=ts,vite,vue&theme=dark" alt="Languages and tools used">
 </p>
 
-#
-
-#### Special thanks to [Cas (ThaUnknown)](https://github.com/ThaUnknown) for [their dedicated rewrite](https://github.com/ThaUnknown/jassub) of JSO's codebase that includes many improvements and bug fixes!
-
-#
-
 <br>
 
 # Setup

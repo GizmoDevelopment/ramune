@@ -9,8 +9,6 @@
 	<img src="https://skillicons.dev/icons?i=ts,vite,vue&theme=dark" alt="Languages and tools used">
 </p>
 
-<br>
-
 # Setup
 
 ## 1. Clone the repository

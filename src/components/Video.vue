@@ -653,8 +653,6 @@
 					if (this.videoContainer) {
 						if (this.videoContainer.webkitRequestFullscreen) {
 							this.videoContainer.webkitRequestFullscreen();
-						} else if (this.videoContainer.webkitEnterFullscreen) {
-							this.videoContainer.webkitEnterFullscreen();
 						} else {
 							this.videoContainer.requestFullscreen();
 						}

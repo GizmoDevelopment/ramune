@@ -663,6 +663,9 @@
 			// Subtitles
 			initializeSubtitleRenderer (langCode: string) {
 				if (this.video) {
+
+					const notFirefox = navigator.userAgent.match(/Mozilla/i) === null;
+
 					this.subtitleRenderer = new JASSUB({
 						video: this.video,
 						workerUrl,
@@ -670,7 +673,9 @@
 						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
 						debug: DEV,
 						// ! Firefox does not currently properly implement the OffscreenCanvas API
-						offscreenRender: navigator.userAgent.match(/Mozilla/i) === null,
+						offscreenRender: notFirefox,
+						// Async render apparently performs poorly on Firefox
+						asyncRender: notFirefox,
 						fallbackFont: "noto sans jp",
 						availableFonts: {
 							"noto sans jp": "/fonts/NotoSansJP-Regular.woff2"

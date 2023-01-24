@@ -674,8 +674,6 @@
 						debug: DEV,
 						// ! Firefox does not currently properly implement the OffscreenCanvas API
 						offscreenRender: notFirefox,
-						// Async render apparently performs poorly on Firefox
-						asyncRender: notFirefox,
 						fallbackFont: "noto sans jp",
 						availableFonts: {
 							"noto sans jp": "/fonts/NotoSansJP-Regular.woff2"

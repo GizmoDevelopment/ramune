@@ -147,7 +147,7 @@
 		methods: {
 			cleanCache () {
 
-				const { shows, parsedLyrics } = this.$store.state.cache;
+				const { shows, parsedLyrics, episodeChapters } = this.$store.state.cache;
 
 				if (shows.size > 20) {
 
@@ -181,6 +181,23 @@
 					});
 
 					this.$store.commit("cache/REPLACE_PARSED_LYRICS_CACHE", parsedLyrics);
+				}
+
+				if (episodeChapters.size > 40) {
+
+					const amountToClean = Math.floor(episodeChapters.size / 2);
+					let index = 0;
+
+					episodeChapters.forEach((_, key: string) => {
+
+						if (index < amountToClean) {
+							episodeChapters.delete(key);
+						}
+
+						index++;
+					});
+
+					this.$store.commit("cache/REPLACE_EPISODE_CHAPTERS_CACHE", episodeChapters);
 				}
 			},
 			updateFavicon (color: string) {

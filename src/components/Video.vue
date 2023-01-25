@@ -364,7 +364,7 @@
 					return {
 						x: ch.start < 5 // if the OP starts within the first 5s, place the marker at the start
 							? "0%"
-							: (ch.start / this.duration * 100) + "%",
+							: ((ch.start - 5) / this.duration * 100) + "%",
 						width: ((ch.end - ch.start) / this.duration * 100) + "%"
 					};
 				});

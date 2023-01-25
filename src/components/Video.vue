@@ -54,6 +54,17 @@
 								>
 									<div class="flavorable progress-bar-snake" />
 								</div>
+								<div class="progress-bar-markers">
+									<div
+										v-for="marker in progressBarMarkers"
+										:key="marker.x + marker.width"
+										class="progress-bar-marker"
+										:style="{
+											left: marker.x,
+											width: marker.width
+										}"
+									></div>
+								</div>
 								<div v-show="isHoveringOverProgressBar" class="progress-bar-hover-tooltip">{{ formattedHover }}</div>
 							</div>
 							<span>{{ formattedDuration }}</span>
@@ -216,9 +227,10 @@
 	import { INPUT_ELEMENTS } from "@utils/constants";
 	import { formatTimestamp } from "@utils/essentials";
 	import { getEpisodeById } from "@utils/show";
+	import { getEpisodeChapters } from "@utils/api";
 
 	// Types
-	import type { Episode, Show, Subtitles } from "@typings/show";
+	import type { Episode, Show, Subtitles, EpisodeChapters } from "@typings/show";
 	import type { RoomSyncData } from "@typings/room";
 
 	// Constants
@@ -306,7 +318,8 @@
 
 				// Misc
 				volumeSaver: 0,
-				firstSyncData: null as RoomSyncData | null
+				firstSyncData: null as RoomSyncData | null,
+				episodeChapters: [] as EpisodeChapters
 
 			};
 		},
@@ -345,36 +358,75 @@
 			},
 			progressBarHoverTooltipPosition (): string {
 				return `${(this.hoverCurrentTime / this.duration) * 100}%`;
+			},
+			progressBarMarkers () {
+				return this.episodeChapters.map(ch => {
+					return {
+						x: ch.start < 5 // if the OP starts within the first 5s, place the marker at the start
+							? "0%"
+							: (ch.start / this.duration * 100) + "%",
+						width: ((ch.end - ch.start) / this.duration * 100) + "%"
+					};
+				});
 			}
 
 		},
 		watch: {
-			episode (episode: Episode) {
+			episode: {
+				immediate: true,
+				handler (episode: Episode) {
 
-				const
-					_episodeId = episode.id,
-					_showId = this.show.id;
+					const
+						_episodeId = episode.id,
+						_showId = this.show.id;
 
-				if (this.video) {
-					this.video.pause();
-					this.video.currentTime = 0;
-				}
-
-				this.isPaused = true;
-				this.currentTime = 0;
-				this.shouldShowSubtitles = false;
-				this.selectedSubtitleLanguage = null;
-
-				setTimeout(() => {
-					if (this.episode.id === _episodeId && this.show.id === _showId) {
-						this.selectedSubtitleLanguage = this.episode.subtitles[0]?.code || null;
+					if (this.video) {
+						this.video.pause();
+						this.video.currentTime = 0;
 					}
-				}, 100);
 
-				window.scrollTo({
-					top: 0,
-					behavior: "smooth"
-				});
+					this.isPaused = true;
+					this.currentTime = 0;
+					this.shouldShowSubtitles = false;
+					this.selectedSubtitleLanguage = null;
+
+					setTimeout(() => {
+						if (this.episode.id === _episodeId && this.show.id === _showId) {
+							this.selectedSubtitleLanguage = this.episode.subtitles[0]?.code || null;
+						}
+					}, 100);
+
+					window.scrollTo({
+						top: 0,
+						behavior: "smooth"
+					});
+
+					const chapters = this.$store.state.cache.episodeChapters.get(`${this.show.id}/${this.episode.id}`);
+
+					if (chapters) {
+						this.episodeChapters = chapters; 
+					} else {
+
+						this.episodeChapters = [];
+
+						getEpisodeChapters(this.show.id, this.episode.id).then(_chapters => {
+							
+							// Only apply the chapter list if the same episode is still selected
+							if (this.episode.id === _episodeId && this.show.id === _showId) {
+								this.episodeChapters = _chapters; 
+							}
+
+							this.$store.commit("settings/CACHE_EPISODE_CHAPTERS", {
+								showId: _showId,
+								episodeId: _episodeId,
+								chapters: _chapters
+							});
+
+						}).catch(err => {
+							console.error(err);
+						});
+					}
+				}
 			},
 			isPaused (state: boolean) {
 
@@ -921,7 +973,8 @@
 			flex: 1;
 
 			.progress-bar,
-			.progress-bar-snake {
+			.progress-bar-snake,
+			.progress-bar-marker {
 				border-radius: 1.25rem;
 			}
 
@@ -968,6 +1021,23 @@
 				background-color: variable(container-background-color);
 				padding: .4rem .7rem .4rem .7rem;
 				border-radius: 1.5rem;
+			}
+
+			.progress-bar-markers {
+
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+
+				.progress-bar-marker {
+					position: absolute;
+					height: 100%;
+					background-color: variable(tray-background-color);
+					opacity: .45;
+				}
 			}
 		}
 

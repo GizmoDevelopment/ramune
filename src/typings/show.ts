@@ -16,6 +16,7 @@ export interface Show extends ShowHusk {
 
 export interface Season {
 	id: number;
+	source: string;
 	episodes: Episode[];
 }
 

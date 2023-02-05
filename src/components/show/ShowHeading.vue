@@ -1,5 +1,8 @@
 <template>
-	<h1 class="heading show-title">{{ show.title }}</h1>
+	<div class="heading-container">
+		<h1 class="heading show-title">{{ show.title }}</h1>
+		<p v-if="season.source !== 'N/A'" class="source-label">Source: <b>{{ season.source }}</b></p>
+	</div>
 	<span v-if="show.format !=='movie'" class="faded episode-label">
 		<span class="episode-index">S{{ season.id }} E{{ id }}</span>
 		<span class="episode-title">{{ episode.title }}</span>
@@ -46,9 +49,26 @@
 
 	@import "@styles/main";
 
-	.show-title {
-		margin-top: .1em;
-		margin-bottom: .2em;
+	.heading-container {
+
+		width: 100%;
+		display: inline-flex;
+		justify-content: space-between;
+		align-items: flex-start;
+
+		.show-title {
+			margin-top: .1em;
+			margin-bottom: .2em;
+		}
+
+		.source-label {
+
+			color: variable(faded-text-color);
+
+			b {
+				color: variable(text-color);
+			}
+		}
 	}
 
 	.episode-index {

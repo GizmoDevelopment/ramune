@@ -39,7 +39,7 @@
 
 	// Modules
 	import { defineComponent } from "vue";
-	import { filter } from "fuzzaldrin";
+	import fuzzysort from "fuzzysort";
 
 	// Components
 	import ShowCard from "@components/show/ShowCard.vue";
@@ -97,7 +97,7 @@
 		},
 		watch: {
 			searchQuery (query: string) {
-				this.searchedShows = filter(this.allShows, query, { key: "title" });
+				this.searchedShows = fuzzysort.go(query, this.allShows, { key: "title" }).map(r => r.obj);
 			}
 		},
 		async mounted () {

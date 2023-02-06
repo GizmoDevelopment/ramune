@@ -3,7 +3,7 @@ import { typeFetch } from "@utils/essentials";
 
 // Types
 import type { APIResponse } from "@typings/main";
-import type { Show, ShowHusk } from "@typings/show";
+import type { EpisodeChapters, Show, ShowHusk } from "@typings/show";
 
 // Constants
 const SHOW_ENDPOINT = import.meta.env.VITE_SHOW_ENDPOINT;
@@ -45,5 +45,22 @@ export async function getShow (showId: string): Promise<Show | null> {
 	} catch (err) {
 		console.error(err);
 		return null;
+	}
+}
+
+export async function getEpisodeChapters (showId: string, episodeId: number): Promise<EpisodeChapters> {
+	try {
+
+		const response = await typeFetch<APIResponse<EpisodeChapters>>("get", `${SHOW_ENDPOINT}/shows/${showId}/episodes/${episodeId}/chapters`);
+
+		if (response.type === "success") {
+			return response.data;
+		} else {
+			throw new Error(response.message);
+		}
+
+	} catch (err) {
+		console.error(err);
+		return [];
 	}
 }

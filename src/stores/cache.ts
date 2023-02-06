@@ -1,7 +1,7 @@
 // Types
 import type { User } from "gizmo-api";
 import type { Module } from "vuex";
-import type { Show, ShowHusk } from "@typings/show";
+import type { EpisodeChapters, Show, ShowHusk } from "@typings/show";
 import type { CacheState } from "@typings/shims-vuex";
 import type { ParsedLyrics } from "@typings/lyrics";
 import type { Language } from "@typings/settings";
@@ -20,6 +20,7 @@ export default {
 			shows: new Map(),
 			showList: [],
 			parsedLyrics: new Map(),
+			episodeChapters: new Map(),
 			languages: {
 				"en-us": en,
 				"sl-si": sl,
@@ -57,6 +58,12 @@ export default {
 			} else {
 				removeSetting("cachedUser");
 			}
+		},
+		CACHE_EPISODE_CHAPTERS (state: CacheState, { showId, episodeId, chapters }: { showId: string; episodeId: number; chapters: EpisodeChapters }) {
+			state.episodeChapters.set(`${showId}/${episodeId}`, chapters);
+		},
+		REPLACE_EPISODE_CHAPTERS_CACHE (state: CacheState, newChaptersListCache: Map<string, EpisodeChapters>) {
+			state.episodeChapters = newChaptersListCache;
 		}
 	}
 } as Module<CacheState, unknown>;

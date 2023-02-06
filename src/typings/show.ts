@@ -48,3 +48,11 @@ export interface Lyrics {
 }
 
 export type ShowFormat = "movie";
+
+export type EpisodeChapters = EpisodeChapter[];
+
+export interface EpisodeChapter {
+	type: "op" | "ed" | "recap";
+	start: number;
+	end: number;
+}

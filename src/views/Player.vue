@@ -17,6 +17,7 @@
 				:show="show"
 				:current-episode-id="episodeId"
 			/>
+			<img class="show-splash" :src="episode.thumbnail_url" alt="Episode thumbnail used as background image">
 		</div>
 		<div v-else-if="status">
 			<Error :text="status" />
@@ -156,6 +157,18 @@
 
 	.player-container {
 		margin-top: 2rem;
+	}
+
+	.show-splash {
+		position: absolute;
+		min-width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		filter: blur(50px);
+		opacity: .15;
+		z-index: -1;
+		pointer-events: none;
 	}
 
 </style>

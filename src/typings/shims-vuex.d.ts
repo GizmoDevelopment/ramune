@@ -44,6 +44,7 @@ export interface SettingsState {
 	effects: boolean;
 	volume: number;
 	language: string;
+	splashBackground: boolean;
 }
 
 export interface State {

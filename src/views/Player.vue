@@ -18,11 +18,15 @@
 				:current-episode-id="episodeId"
 			/>
 			<Teleport to="#app">
-				<img
-					class="show-splash"
-					alt="Episode thumbnail used as background image"
-					:src="episode.thumbnail_url"
-				>
+				<transition name="splash-fade">
+					<div v-show="isSplashBackgroundEnabled" class="splash-container">
+						<img
+							class="splash-background"
+							alt="Episode thumbnail used as background image"
+							:src="episode.thumbnail_url"
+						>
+					</div>
+				</transition>
 			</Teleport>
 		</div>
 		<div v-else-if="status">
@@ -86,6 +90,11 @@
 				episode: null as Episode | null,
 				status: "" as string | number
 			};
+		},
+		computed: {
+			isSplashBackgroundEnabled (): boolean {
+				return this.$store.state.settings.splashBackground;
+			}
 		},
 		watch: {
 			episodeId: {
@@ -166,27 +175,52 @@
 			opacity: 0;
 		}
 		to {
-			opacity: .1;
+			opacity: .15;
 		}
+	}
+
+	.splash-fade-enter-active {
+		transition: opacity 0;
+	}
+	
+	.splash-fade-leave-active {
+		transition: opacity .8s ease-out;
+	}
+
+	.splash-fade-enter-from,
+	.splash-fade-leave-to {
+		opacity: 0;
 	}
 
 	.player-container {
 		margin-top: 2rem;
 	}
 
-	.show-splash {
-		position: absolute;
-		min-width: 100%;
+	.splash-container,
+	.splash-background {
 		height: 100%;
 		top: 0;
 		left: 0;
-		filter: blur(50px);
-		mask-image: linear-gradient(to top, transparent 0%, black 50%);
-		opacity: 0;
-		animation: fade-in 3s ease .1s 1;
-		animation-fill-mode: forwards;
+	}
+
+	.splash-container {
+
+		position: absolute;
+		width: 100%;
 		z-index: -1;
-		pointer-events: none;
+
+		.splash-background {
+			position: absolute;
+			min-width: 100%;
+			
+			filter: blur(50px);
+			mask-image: linear-gradient(to top, transparent 0%, black 50%);
+			opacity: 0;
+			animation: fade-in 3s ease .1s 1;
+			animation-fill-mode: forwards;
+			z-index: -1;
+			pointer-events: none;
+		}
 	}
 
 </style>

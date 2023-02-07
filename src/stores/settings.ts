@@ -17,7 +17,8 @@ export default {
 			karaoke: getSetting("karaoke", true),
 			effects: getSetting("effects", true),
 			volume: getSetting("volume", 1),
-			language: getSetting("language", "en-us")
+			language: getSetting("language", "en-us"),
+			splashBackground: getSetting("splashBackground", true)
 		};
 	},
 	mutations: {
@@ -44,6 +45,10 @@ export default {
 		UPDATE_LANGUAGE (state: SettingsState, languageCode: string) {
 			state.language = languageCode;
 			saveSetting("language", languageCode);
+		},
+		UPDATE_SPLASH_BACKGROUND_STATE (_state: SettingsState, state: boolean) {
+			_state.splashBackground = state;
+			saveSetting("splashBackground", state);
 		}
 	},
 	getters: {

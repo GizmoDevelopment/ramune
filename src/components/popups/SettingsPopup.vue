@@ -33,6 +33,10 @@
 					<span class="experience-title">{{ $t("labels/karaoke") }}</span>
 					<Toggle v-model="isKaraokeEnabled" />
 				</div>
+				<div class="experience-toggle">
+					<span class="experience-title">{{ $t("labels/splash_background") }}</span>
+					<Toggle v-model="isSplashBackgroundEnabled" />
+				</div>
 			</div>
 		</div>
 		<div class="setting">
@@ -106,6 +110,14 @@
 				},
 				set (value: boolean) {
 					this.$store.commit("settings/UPDATE_KARAOKE_STATE", value);
+				}
+			},
+			isSplashBackgroundEnabled: {
+				get () {
+					return this.$store.state.settings.splashBackground;
+				},
+				set (value: boolean) {
+					this.$store.commit("settings/UPDATE_SPLASH_BACKGROUND_STATE", value);
 				}
 			},
 			currentLanguage (): string {

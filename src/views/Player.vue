@@ -17,7 +17,13 @@
 				:show="show"
 				:current-episode-id="episodeId"
 			/>
-			<img class="show-splash" :src="episode.thumbnail_url" alt="Episode thumbnail used as background image">
+			<Teleport to="#app">
+				<img
+					class="show-splash"
+					alt="Episode thumbnail used as background image"
+					:src="episode.thumbnail_url"
+				>
+			</Teleport>
 		</div>
 		<div v-else-if="status">
 			<Error :text="status" />

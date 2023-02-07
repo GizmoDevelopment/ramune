@@ -8,9 +8,9 @@
 					aria-label="Home"
 				>
 					<img
-						v-if="shouldDisplayHanyuu"
+						v-if="secretLogo"
 						class="secret-logo"
-						:src="Hanyuu"
+						:src="secretLogo"
 					>
 					<Logo v-else class="logo" />
 				</router-link>
@@ -102,7 +102,6 @@
 	import MainMixin from "@mixins/Main";
 
 	// Icons
-	import Hanyuu from "@assets/images/hanyuu.webp";
 	import Logo from "@assets/icons/logo.svg?component";
 	import Caret from "@assets/icons/caret.svg?component";
 	import Menu from "@assets/icons/menu.svg?component";
@@ -124,14 +123,10 @@
 			return {
 				isLoggingIn: false,
 				isInSettings: false,
-				isNavigatorOpen: false,
-				Hanyuu: Hanyuu
+				isNavigatorOpen: false
 			};
 		},
 		computed: {
-			shouldDisplayHanyuu (): boolean {
-				return this.$store.state.generic.shouldDisplayHanyuu;
-			},
 			cachedUser () {
 				return this.$store.state.cache.cachedUser;
 			},
@@ -140,6 +135,9 @@
 			},
 			isMobile () {
 				return /Mobi|Android/i.test(navigator.userAgent);
+			},
+			secretLogo () {
+				return this.$store.state.generic.secretLogo;
 			}
 		}
 	});

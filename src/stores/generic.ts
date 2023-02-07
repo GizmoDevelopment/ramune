@@ -1,5 +1,8 @@
+// Logos
+import Hanyuu from "@assets/images/hanyuu.webp?url";
+
 // Types
-import { Module } from "vuex";
+import type { Module } from "vuex";
 import type { CustomMeta, GenericState } from "@typings/shims-vuex";
 
 export interface InputCustomMeta {
@@ -14,12 +17,16 @@ const DEFAULT_META_TAGS: CustomMeta = {
 	image_url: "https://ramune.gizmo.moe/logo.png"
 };
 
+const SECRET_LOGOS = [
+	Hanyuu
+];
+
 export default {
 	namespaced: true,
 	state () {
 		return {
 			connectError: "",
-			shouldDisplayHanyuu: Math.floor(Math.random() * 40) === 34,
+			secretLogo: SECRET_LOGOS[Math.floor(Math.random() * 3)] ?? null,
 			meta: { ...DEFAULT_META_TAGS }
 		};
 	},

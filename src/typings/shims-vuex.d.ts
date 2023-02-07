@@ -34,8 +34,8 @@ export interface CustomMeta {
 
 export interface GenericState {
 	connectError: string;
-	shouldDisplayHanyuu: boolean;
 	meta: CustomMeta;
+	secretLogo: string | null;
 }
 
 export interface SettingsState {

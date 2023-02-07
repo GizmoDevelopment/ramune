@@ -1,10 +1,10 @@
 <template>
 	<div class="buffer-container">
 		<img
-			v-if="shouldDisplayHanyuu"
+			v-if="secretLogo"
 			class="logo"
 			:class="[ size ]"
-			:src="Hanyuu"
+			:src="secretLogo"
 		>
 		<Logo
 			v-else
@@ -20,7 +20,6 @@
 	import { defineComponent, PropType } from "vue";
 
 	// Icons
-	import Hanyuu from "@assets/images/hanyuu.webp";
 	import Logo from "@assets/icons/logo.svg?component";
 
 	export default defineComponent({
@@ -34,14 +33,9 @@
 				default: "normal"
 			}
 		},
-		data () {
-			return {
-				Hanyuu: Hanyuu
-			};
-		},
 		computed: {
-			shouldDisplayHanyuu (): boolean {
-				return this.$store.state.generic.shouldDisplayHanyuu;
+			secretLogo () {
+				return this.$store.state.generic.secretLogo;
 			}
 		}
 	});

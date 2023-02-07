@@ -155,6 +155,15 @@
 
 <style lang="scss" scoped>
 
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: .1;
+		}
+	}
+
 	.player-container {
 		margin-top: 2rem;
 	}
@@ -166,10 +175,12 @@
 		top: 0;
 		left: 0;
 		filter: blur(50px);
-		opacity: .1;
+		mask-image: linear-gradient(to top, transparent 0%, black 50%);
+		opacity: 0;
+		animation: fade-in 3s ease .1s 1;
+		animation-fill-mode: forwards;
 		z-index: -1;
 		pointer-events: none;
-		mask-image: linear-gradient(to top, transparent 0%, black 50%);
 	}
 
 </style>

@@ -1,5 +1,7 @@
 // Logos
 import Hanyuu from "@assets/images/hanyuu.webp?url";
+import DangoTomoya from "@assets/images/dango_tomoya.webp?url";
+import DangoNagisa from "@assets/images/dango_nagisa.webp?url";
 
 // Types
 import type { Module } from "vuex";
@@ -18,7 +20,9 @@ const DEFAULT_META_TAGS: CustomMeta = {
 };
 
 const SECRET_LOGOS = [
-	Hanyuu
+	Hanyuu,
+	DangoTomoya,
+	DangoNagisa
 ];
 
 export default {
@@ -26,7 +30,7 @@ export default {
 	state () {
 		return {
 			connectError: "",
-			secretLogo: SECRET_LOGOS[Math.floor(Math.random() * 3)] ?? null,
+			secretLogo: SECRET_LOGOS[Math.floor(Math.random() * 40)] ?? null,
 			meta: { ...DEFAULT_META_TAGS }
 		};
 	},

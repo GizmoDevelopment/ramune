@@ -166,9 +166,10 @@
 		top: 0;
 		left: 0;
 		filter: blur(50px);
-		opacity: .15;
+		opacity: .1;
 		z-index: -1;
 		pointer-events: none;
+		mask-image: linear-gradient(to top, transparent 0%, black 50%);
 	}
 
 </style>

@@ -263,7 +263,7 @@
 	}
 
 	.secret-logo {
-		height: 2em;
+		height: 1.6em;
 	}
 
 	@media only screen and (max-width: 500px) {

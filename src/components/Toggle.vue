@@ -34,7 +34,9 @@
 				return `var(--${chosenColor})`;
 			},
 			headOffset (): string {
-				return this.state ? "95%" : "0%";
+				return this.state
+					? "100%"
+					: "0%";
 			}
 		},
 		watch: {

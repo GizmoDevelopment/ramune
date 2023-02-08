@@ -20,11 +20,12 @@
 			<Teleport to="#app">
 				<transition name="splash-fade">
 					<div v-show="isSplashBackgroundEnabled" class="splash-container">
-						<img
+						<div
 							class="splash-background"
-							alt="Episode thumbnail used as background image"
-							:src="episode.thumbnail_url"
-						>
+							:style="{
+								backgroundImage: `url(${episode.thumbnail_url})`
+							}"
+						/>
 					</div>
 				</transition>
 			</Teleport>
@@ -210,14 +211,21 @@
 		z-index: -1;
 
 		.splash-background {
+
 			position: absolute;
 			min-width: 100%;
-			
+
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			transition: background 1s ease;
+
 			filter: blur(50px);
 			mask-image: linear-gradient(to top, transparent 0%, black 50%);
+
 			opacity: 0;
 			animation: fade-in 3s ease .1s 1;
 			animation-fill-mode: forwards;
+
 			z-index: -1;
 			pointer-events: none;
 		}

@@ -25,7 +25,7 @@
 			};
 		},
 		computed: {
-			snakeColor (): string {
+			headColor (): string {
 
 				const chosenColor = this.state
 					? "primary-color"
@@ -33,7 +33,7 @@
 
 				return `var(--${chosenColor})`;
 			},
-			snakeOffset (): string {
+			headOffset (): string {
 				return this.state ? "95%" : "0%";
 			}
 		},
@@ -63,7 +63,7 @@
 		width: 3.5em;
 		height: 2em;
 
-		background-color: v-bind(snakeColor);
+		background-color: v-bind(headColor);
 		border-radius: 10em;
 
 		cursor: pointer;
@@ -81,7 +81,7 @@
 			border-radius: 50%;
 			content: "";
 
-			transform: translateY(-50%) translateX(v-bind(snakeOffset));
+			transform: translateY(-50%) translateX(v-bind(headOffset));
 			transition: transform .25s ease;
 		}
 	}

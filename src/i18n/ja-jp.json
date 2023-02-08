@@ -40,7 +40,8 @@
 		"online_users": "オンラインユーザー",
 		"language": "言語",
 		"season_index": "第%N%期",
-		"splash_background": "バックグランドスプラッシュイメージ"
+		"splash_background": "バックグランドスプラッシュイメージ",
+		"video_source": "ソース"
 	},
 	"descriptions": {
 		"setting_flavor": "ウェブサイト全体のアクセントカラーを変更する。",

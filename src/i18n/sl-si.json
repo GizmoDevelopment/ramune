@@ -40,7 +40,8 @@
 		"online_users": "Aktivni uporabniki",
 		"language": "Jezik",
 		"season_index": "Sezona %N%",
-		"splash_background": "Barvno ozadje"
+		"splash_background": "Barvno ozadje",
+		"video_source": "Vir"
 	},
 	"descriptions": {
 		"setting_flavor": "Spremeni barvo spletne strani.",

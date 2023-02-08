@@ -40,7 +40,8 @@
 		"online_users": "Online Brugere",
 		"language": "Sprog",
 		"season_index": "Sæson %N%",
-		"splash_background": "Brug forbillede som baggrunds accent"
+		"splash_background": "Brug forbillede som baggrunds accent",
+		"video_source": "Kilde"
 	},
 	"descriptions": {
 		"setting_flavor": "Ændre farven på hjemmesiden.",

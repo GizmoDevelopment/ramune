@@ -1,7 +1,7 @@
 <template>
 	<div class="heading-container">
 		<h1 class="heading show-title">{{ show.title }}</h1>
-		<p v-if="season.source !== 'N/A'" class="source-label">Source: <b>{{ season.source }}</b></p>
+		<p v-if="season.source !== 'N/A'" class="source-label">{{ $t("labels/video_source") }}: <b>{{ season.source }}</b></p>
 	</div>
 	<span v-if="show.format !=='movie'" class="faded episode-label">
 		<span class="episode-badge">S{{ season.id }} E{{ id }}</span>

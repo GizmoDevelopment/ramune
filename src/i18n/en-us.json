@@ -39,7 +39,8 @@
 		"karaoke": "Karaoke",
 		"online_users": "Online users",
 		"language": "Language",
-		"season_index": "Season %N%"
+		"season_index": "Season %N%",
+		"splash_background": "Background splash image"
 	},
 	"descriptions": {
 		"setting_flavor": "Changes the accent color across the website.",

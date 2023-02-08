@@ -39,7 +39,8 @@
 		"karaoke": "Karaoke",
 		"online_users": "Aktivni uporabniki",
 		"language": "Jezik",
-		"season_index": "Sezona %N%"
+		"season_index": "Sezona %N%",
+		"splash_background": "Barvno ozadje"
 	},
 	"descriptions": {
 		"setting_flavor": "Spremeni barvo spletne strani.",

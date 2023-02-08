@@ -39,7 +39,8 @@
 		"karaoke": "カラオケ",
 		"online_users": "オンラインユーザー",
 		"language": "言語",
-		"season_index": "第%N%期"
+		"season_index": "第%N%期",
+		"splash_background": "バックグランドスプラッシュイメージ"
 	},
 	"descriptions": {
 		"setting_flavor": "ウェブサイト全体のアクセントカラーを変更する。",

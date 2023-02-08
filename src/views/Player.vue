@@ -17,6 +17,18 @@
 				:show="show"
 				:current-episode-id="episodeId"
 			/>
+			<Teleport to="#app">
+				<transition name="splash-fade">
+					<div v-show="isSplashBackgroundEnabled" class="splash-container">
+						<div
+							class="splash-background"
+							:style="{
+								backgroundImage: `url(${episode.thumbnail_url})`
+							}"
+						/>
+					</div>
+				</transition>
+			</Teleport>
 		</div>
 		<div v-else-if="status">
 			<Error :text="status" />
@@ -79,6 +91,11 @@
 				episode: null as Episode | null,
 				status: "" as string | number
 			};
+		},
+		computed: {
+			isSplashBackgroundEnabled (): boolean {
+				return this.$store.state.settings.splashBackground;
+			}
 		},
 		watch: {
 			episodeId: {
@@ -154,8 +171,64 @@
 
 <style lang="scss" scoped>
 
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: .15;
+		}
+	}
+
+	.splash-fade-enter-active {
+		transition: opacity 0;
+	}
+	
+	.splash-fade-leave-active {
+		transition: opacity .8s ease-out;
+	}
+
+	.splash-fade-enter-from,
+	.splash-fade-leave-to {
+		opacity: 0;
+	}
+
 	.player-container {
 		margin-top: 2rem;
+	}
+
+	.splash-container,
+	.splash-background {
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.splash-container {
+
+		position: absolute;
+		width: 100%;
+		z-index: -1;
+
+		.splash-background {
+
+			position: absolute;
+			min-width: 100%;
+
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			transition: background 1s ease;
+
+			filter: blur(50px);
+			mask-image: linear-gradient(to top, transparent 0%, black 50%);
+
+			opacity: 0;
+			animation: fade-in 3s ease .1s 1;
+			animation-fill-mode: forwards;
+
+			z-index: -1;
+			pointer-events: none;
+		}
 	}
 
 </style>

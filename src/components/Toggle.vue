@@ -74,14 +74,14 @@
 			position: absolute;
 			width: 1.6em;
 			height: 1.6em;
-			top: .2em;
+			top: 50%;
 			margin: 0 .2em 0 .2em;
 
 			background-color: variable(text-color);
 			border-radius: 50%;
 			content: "";
 
-			transform: translateX(v-bind(snakeOffset));
+			transform: translateY(-50%) translateX(v-bind(snakeOffset));
 			transition: transform .25s ease;
 		}
 	}

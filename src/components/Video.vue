@@ -416,7 +416,7 @@
 								this.episodeChapters = _chapters; 
 							}
 
-							this.$store.commit("settings/CACHE_EPISODE_CHAPTERS", {
+							this.$store.commit("cache/CACHE_EPISODE_CHAPTERS", {
 								showId: _showId,
 								episodeId: _episodeId,
 								chapters: _chapters

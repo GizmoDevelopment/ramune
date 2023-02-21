@@ -4,9 +4,9 @@
   "license": "MIT",
   "version": "1.13.0",
   "scripts": {
-    "lint:js": "eslint ./src/**/*.{js,ts,vue}",
+    "lint:src": "eslint ./src/**/*.{ts,vue}",
     "lint:css": "stylelint ./src/**/*.{css,scss,vue}",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "npm run lint:src && npm run lint:css",
     "build": "vue-tsc --noEmit && vite build",
     "dev": "vite",
     "serve": "vite preview"

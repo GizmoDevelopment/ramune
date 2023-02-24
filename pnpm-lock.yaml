@@ -8,7 +8,6 @@ specifiers:
   '@types/connect': ^3.4.35
   '@types/fuzzaldrin': ^2.1.4
   '@types/node': ^14.18.34
-  '@types/svgo': ^2.6.4
   '@types/ws': ^8.5.4
   '@vitejs/plugin-vue': ^4.0.0
   '@vuedx/typescript-plugin-vue': ^0.7.6
@@ -56,7 +55,6 @@ devDependencies:
   '@types/connect': 3.4.35
   '@types/fuzzaldrin': 2.1.4
   '@types/node': 14.18.36
-  '@types/svgo': 2.6.4
   '@types/ws': 8.5.4
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.3+vue@3.2.47
   '@vuedx/typescript-plugin-vue': 0.7.6
@@ -548,12 +546,6 @@ packages:
   /@types/socket.io-client/1.4.36:
     resolution: {integrity: sha512-ZJWjtFBeBy1kRSYpVbeGYTElf6BqPQUkXDlHHD4k/42byCN5Rh027f4yARHCink9sKAkbtGZXEAmR0ZCnc2/Ag==}
     dev: false
-
-  /@types/svgo/2.6.4:
-    resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
-    dependencies:
-      '@types/node': 14.18.36
-    dev: true
 
   /@types/ws/8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}

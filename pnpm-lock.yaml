@@ -15,7 +15,7 @@ specifiers:
   autoprefixer: ^10.4.13
   eslint: ^8.33.0
   fuzzysort: ^2.0.4
-  gizmo-api: ^1.2.3
+  gizmo-api: ^1.2.4
   jassub: ^1.3.0
   postcss: ^8.4.21
   postcss-calc: ^8.2.4
@@ -39,7 +39,7 @@ specifiers:
 dependencies:
   '@vueuse/head': 0.9.8_vue@3.2.47
   fuzzysort: 2.0.4
-  gizmo-api: 1.2.3
+  gizmo-api: 1.2.4
   jassub: 1.4.5
   socket.io-client: 4.6.1
   vue: 3.2.47
@@ -1747,8 +1747,8 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
     dev: true
 
-  /gizmo-api/1.2.3:
-    resolution: {integrity: sha512-HjLWf/dgsc6h6HzLcEBiqp4e1i07YZhbZ9Tx+/sqQWvuikMvxpgrwpyy2g0yt2RW0B0C/VG/4K1Dl3/QoJJRGA==}
+  /gizmo-api/1.2.4:
+    resolution: {integrity: sha512-dMMhPbz1MoPRQsr645oOBNk5Nj6bhFI8WUhXBlasUN6NEurMpm0ZeLlVssTXMWOHCHJnGY/6MongdVr84rljxw==}
     engines: {node: '>=14.x'}
     dependencies:
       cross-fetch: 3.1.5

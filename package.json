@@ -15,13 +15,13 @@
     "last 5 versions"
   ],
   "engines": {
-	"node": ">=14"
+    "node": ">=14"
   },
   "packageManager": "pnpm@7.27.1",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^2.0.4",
-    "gizmo-api": "^1.2.3",
+    "gizmo-api": "^1.2.4",
     "jassub": "^1.3.0",
     "socket.io-client": "^4.6.0",
     "vue": "^3.2.47",

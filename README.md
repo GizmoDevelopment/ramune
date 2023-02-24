@@ -3,7 +3,7 @@
 	<br>
 	<span align="center"><b>Watch anime together with your friends.</b></span>
 	<br><br>
-	<a href="https://github.com/GizmoDevelopment/ramune/actions"><img src="https://img.shields.io/github/actions/workflow/status/GizmoDevelopment/ramune/build.yml?branch=master"></a>
+	<a href="https://github.com/GizmoDevelopment/ramune/actions"><img src="https://img.shields.io/github/actions/workflow/status/GizmoDevelopment/ramune/ci.yml?branch=master"></a>
 	<a href="https://discord.gg/DHKjwQY"><img src="https://img.shields.io/discord/246369359705014272?color=%236E85D2&label=Discord&logo=discord&logoColor=white"></a>
 	<br><br>
 	<img src="https://skillicons.dev/icons?i=ts,vite,vue&theme=dark" alt="Languages and tools used">

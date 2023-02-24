@@ -14,6 +14,10 @@
   "browserslist": [
     "last 5 versions"
   ],
+  "engines": {
+	"node": ">=14"
+  },
+  "packageManager": "pnpm@7.27.1",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^2.0.4",

@@ -9,5 +9,6 @@
   ],
   "ignoreDeps": [
     "@types/node"
-  ]
+  ],
+  "rangeStrategy": "bump"
 }

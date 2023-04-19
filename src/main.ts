@@ -1,5 +1,7 @@
 // Factories
 import { createApp } from "@factories/app";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import RPCClient from "@factories/rpc";
 
 // Variables
 const app = createApp();

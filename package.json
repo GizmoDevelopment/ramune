@@ -15,9 +15,9 @@
     "last 5 versions"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
-  "packageManager": "pnpm@7.28.0",
+  "packageManager": "pnpm@8.3.0",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^2.0.4",

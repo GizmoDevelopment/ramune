@@ -23,7 +23,7 @@ specifiers:
   postcss-scss: ^4.0.6
   rollup-plugin-visualizer: ^5.9.0
   sass: ^1.58.0
-  socket.io-client: ^4.6.0
+  socket.io-client: ^4.6.1
   stylelint: ^14.16.1
   stylelint-config-standard-scss: ^6.1.0
   stylelint-scss: ^4.3.0

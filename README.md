@@ -34,7 +34,7 @@ mv .env.example .env
 This endpoint is responsible for fetching show data. [Project page](https://github.com/GizmoDevelopment/ramune-backend)
 
 ### VITE_SOCKET_ENDPOINT
-This endpoint is responsible for handling the WebSocket connections for rooms and chatting. [Project page](https://github.com/GizmoDevelopment/gizmo-chat-backend)
+This endpoint is responsible for handling the WebSocket connections for rooms and chatting. [Project page](https://github.com/GizmoDevelopment/ramune-chat)
 
 ### VITE_CDN_ENDPOINT
 This is where all the images and videos are actually stored.

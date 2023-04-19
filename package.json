@@ -20,6 +20,7 @@
   "packageManager": "pnpm@8.3.0",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
+    "discord-rpc": "^4.0.1",
     "fuzzysort": "^2.0.4",
     "gizmo-api": "^1.2.4",
     "jassub": "^1.5.12",
@@ -35,6 +36,7 @@
     "@gizmo-dev/eslint-plugin": "^3.3.3",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
     "@types/connect": "^3.4.35",
+    "@types/discord-rpc": "^4.0.4",
     "@types/fuzzaldrin": "^2.1.4",
     "@types/node": "^16.18.23",
     "@types/ws": "^8.5.4",

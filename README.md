@@ -30,21 +30,23 @@ Make sure that you have the environmental variables set up if you want the websi
 ```sh
 mv .env.example .env
 ```
-### VITE_SHOW_ENDPOINT
-This endpoint is responsible for fetching show data. [Project page](https://github.com/GizmoDevelopment/ramune-backend)
 
-### VITE_SOCKET_ENDPOINT
-This endpoint is responsible for handling the WebSocket connections for rooms and chatting. [Project page](https://github.com/GizmoDevelopment/ramune-chat)
+- **VITE_SHOW_ENDPOINT** - The endpoint responsible for fetching Show data ([Project page](https://github.com/GizmoDevelopment/ramune-backend))
+- **VITE_SOCKET_ENDPOINT** - The WebSocket server responsible for rooms, syncing, and chatting. ([Project page](https://github.com/GizmoDevelopment/ramune-chat))
+- **VITE_CDN_ENDPOINT** - This is where all the images and videos are actually stored.
 
-### VITE_CDN_ENDPOINT
-This is where all the images and videos are actually stored.
+```
+VITE_SHOW_ENDPOINT=https://ramune-api.gizmo.moe
+VITE_SOCKET_ENDPOINT=https://ramune-chat.gizmo.moe
+VITE_CDN_ENDPOINT=https://ramune-cdn.gizmo.moe
+```
 
 ## 3. Run development server
 ```sh
-npm run dev
+pnpm dev
 ```
 
 ## 4. Build for production
 ```sh
-npm run build
+pnpm build
 ```

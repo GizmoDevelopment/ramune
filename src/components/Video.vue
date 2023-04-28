@@ -448,8 +448,7 @@
 						}
 
 						if (this.subtitleRenderer) { // TS is too stupid to understand that we already checked for this
-							const subs = await (await fetch(_subtitles.url)).text();
-							this.subtitleRenderer.setTrack(subs);
+							this.subtitleRenderer.setTrackByUrl(_subtitles.url);
 						}
 					}
 

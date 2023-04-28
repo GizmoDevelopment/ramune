@@ -38,7 +38,7 @@
     "@types/fuzzaldrin": "^2.1.4",
     "@types/node": "^16.18.24",
     "@types/ws": "^8.5.4",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^4.2.1",
     "@vuedx/typescript-plugin-vue": "^0.7.6",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",

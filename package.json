@@ -50,7 +50,7 @@
     "sass": "^1.62.1",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-scss": "^4.6.0",
+    "stylelint-scss": "^4.7.0",
     "typescript": "~5.0.4",
     "vite": "^4.3.3",
     "vite-svg-loader": "^4.0.0",

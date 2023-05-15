@@ -70,8 +70,8 @@ devDependencies:
     specifier: ^8.4.23
     version: 8.4.23
   postcss-calc:
-    specifier: ^8.2.4
-    version: 8.2.4(postcss@8.4.23)
+    specifier: ^9.0.1
+    version: 9.0.1(postcss@8.4.23)
   postcss-reporter:
     specifier: ^7.0.5
     version: 7.0.5(postcss@8.4.23)
@@ -2564,8 +2564,9 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /postcss-calc@8.2.4(postcss@8.4.23):
-    resolution: {integrity: sha512-SmWMSJmB8MRnnULldx0lQIyhSNvuDl9HfrZkaqqE/WHAhToYsAvDq+yAsA/kIyINDszOp3Rh0GFoNuH5Ypsm3Q==}
+  /postcss-calc@9.0.1(postcss@8.4.23):
+    resolution: {integrity: sha512-TipgjGyzP5QzEhsOZUaIkeO5mKeMFpebWzRogWG/ysonUlnHcq5aJe0jOjpfzUU8PeSaBQnrE8ehR0QA5vs8PQ==}
+    engines: {node: ^14 || ^16 || >=18.0}
     peerDependencies:
       postcss: ^8.2.2
     dependencies:

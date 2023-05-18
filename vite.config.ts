@@ -30,28 +30,7 @@ export default defineConfig({
 		rollupOptions: {
 			plugins: [
 				visualizer()
-			],
-			output: {
-				assetFileNames: (chunkInfo) => {
-
-					const assetPath = chunkInfo.name || "";
-
-					// Keep jassub's wasm worker and default font asset names as-is
-					switch (assetPath) {
-						// case "default.woff2": Liberation Sans, but it doesn't support JP characters
-						case "jassub-worker.wasm":
-							return "assets/[name][extname]";
-						default:
-					}
-
-					// Don't hash font files, as they can stay cached forever
-					if (assetPath.match(/\.(woff2|ttf|otf)/i)) {
-						return "assets/[name][extname]";
-					} else {
-						return "assets/[name]-[hash][extname]";
-					}
-				}
-			}
+			]
 		}
 	}
 });

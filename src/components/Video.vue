@@ -197,8 +197,7 @@
 	import { defineComponent, PropType, ref } from "vue";
 	import JASSUB from "jassub";
 	import workerUrl from "jassub/dist/jassub-worker.js?url";
-	// import legacyWorkerUrl from "jassub/dist/jassub-worker-legacy.js?url";
-	import "jassub/dist/jassub-worker.wasm?url";
+	import wasmUrl from "jassub/dist/jassub-worker.wasm?url";
 	
 	// Components
 	import LoadingBuffer from "@components/LoadingBuffer.vue";
@@ -721,7 +720,7 @@
 					this.subtitleRenderer = new JASSUB({
 						video: this.video,
 						workerUrl,
-						// legacyWorkerUrl,
+						wasmUrl,
 						subUrl: this.episode.subtitles.find(sub => sub.code === langCode)?.url || this.episode.subtitles[0].url,
 						debug: DEV,
 						// ! Firefox does not currently properly implement the OffscreenCanvas API

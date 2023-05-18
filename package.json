@@ -24,7 +24,7 @@
     "gizmo-api": "^1.2.5",
     "jassub": "^1.6.2",
     "socket.io-client": "^4.6.1",
-    "vue": "^3.3.2",
+    "vue": "^3.3.4",
     "vue-router": "^4.2.0",
     "vue-socket.io-extended": "^5.0.0-alpha.5",
     "vuex": "^4.1.0"

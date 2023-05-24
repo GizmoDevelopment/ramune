@@ -1,14 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"config:base",
-		":disableDependencyDashboard"
-	],
-	"schedule": [
-		"before 10:00 AM"
-	],
-	"rangeStrategy": "bump",
-	"ignoreDeps": [
-		"@types/node"
-	]
+	"extends": [ "github>GizmoDevelopment/renovate-config" ]
 }

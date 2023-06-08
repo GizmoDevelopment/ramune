@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^6.1.0
     version: 6.1.0(postcss@8.4.24)(stylelint@14.16.1)
   stylelint-scss:
-    specifier: ^5.0.0
-    version: 5.0.0(stylelint@14.16.1)
+    specifier: ^5.0.1
+    version: 5.0.1(stylelint@14.16.1)
   typescript:
     specifier: ~5.1.3
     version: 5.1.3
@@ -2650,7 +2650,7 @@ packages:
       commander: 9.5.0
       glob: 8.1.0
       postcss: 8.4.24
-      postcss-selector-parser: 6.0.11
+      postcss-selector-parser: 6.0.13
     dev: true
 
   /queue-microtask@1.2.3:
@@ -3038,19 +3038,19 @@ packages:
     dependencies:
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
-      postcss-selector-parser: 6.0.11
+      postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       stylelint: 14.16.1
     dev: true
 
-  /stylelint-scss@5.0.0(stylelint@14.16.1):
-    resolution: {integrity: sha512-5Ee5kG3JIcP2jk2PMoFMiNmW/815V+wK5o37X5ke90ihWMpPXI9iyqeA6zEWipWSRXeQc0kqbd7hKqiR+wPKNA==}
+  /stylelint-scss@5.0.1(stylelint@14.16.1):
+    resolution: {integrity: sha512-n87iCRZrr2J7//I/QFsDXxFLnHKw633U4qvWZ+mOW6KDAp/HLj06H+6+f9zOuTYy+MdGdTuCSDROCpQIhw5fvQ==}
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0
     dependencies:
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
-      postcss-selector-parser: 6.0.11
+      postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       stylelint: 14.16.1
     dev: true

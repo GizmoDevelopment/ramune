@@ -37,7 +37,7 @@
     "@types/connect": "^3.4.35",
     "@types/fuzzaldrin": "^2.1.4",
     "@types/node": "^18.16.16",
-    "@types/ws": "^8.5.4",
+    "@types/ws": "^8.5.5",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vuedx/typescript-plugin-vue": "^0.7.6",
     "autoprefixer": "^10.4.14",

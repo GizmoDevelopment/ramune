@@ -23,7 +23,7 @@
     "fuzzysort": "^2.0.4",
     "gizmo-api": "^1.2.5",
     "jassub": "^1.7.1",
-    "socket.io-client": "^4.6.2",
+    "socket.io-client": "^4.7.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2",
     "vue-socket.io-extended": "^5.0.0-alpha.5",

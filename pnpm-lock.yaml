@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.0.4
     version: 2.0.4
   gizmo-api:
-    specifier: ^1.2.5
-    version: 1.2.5
+    specifier: ^1.2.6
+    version: 1.2.6
   jassub:
     specifier: ^1.7.1
     version: 1.7.1
@@ -1851,9 +1851,9 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
     dev: true
 
-  /gizmo-api@1.2.5:
-    resolution: {integrity: sha512-FD7Ls4L9gn95RdouIn51XZplQBlaRYFXRUdOKzUrKuae2UfvB/poM0tS/XSeUqjpjVVxw/hI/Xr2AbLCymyOjw==}
-    engines: {node: '>=18'}
+  /gizmo-api@1.2.6:
+    resolution: {integrity: sha512-I2kfln6veyI8qvH4kw1txyPI7kRzGPq4FHU2/978WRo8VQN1NCyyFT9DKYQUyOvC7FvXwv1DvLyoLIpqSqdnJA==}
+    engines: {node: '>=v18.16.1'}
     dependencies:
       cross-fetch: 3.1.6
     transitivePeerDependencies:

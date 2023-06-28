@@ -21,7 +21,7 @@
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^2.0.4",
-    "gizmo-api": "^1.2.5",
+    "gizmo-api": "^1.2.6",
     "jassub": "^1.7.1",
     "socket.io-client": "^4.7.0",
     "vue": "^3.3.4",

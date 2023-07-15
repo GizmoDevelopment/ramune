@@ -41,7 +41,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "@vuedx/typescript-plugin-vue": "^0.7.6",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "postcss": "^8.4.26",
     "postcss-calc": "^9.0.1",
     "postcss-reporter": "^7.0.5",

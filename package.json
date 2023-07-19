@@ -15,7 +15,7 @@
     "last 5 versions"
   ],
   "engines": {
-    "node": ">=v18.16.1"
+    "node": ">=v18.17.0"
   },
   "packageManager": "pnpm@8.6.9",
   "dependencies": {

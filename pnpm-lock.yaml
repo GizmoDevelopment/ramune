@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^2.1.4
     version: 2.1.4
   '@types/node':
-    specifier: ^18.17.3
-    version: 18.17.3
+    specifier: ^18.17.4
+    version: 18.17.4
   '@types/ws':
     specifier: ^8.5.5
     version: 8.5.5
@@ -102,7 +102,7 @@ devDependencies:
     version: 5.1.6
   vite:
     specifier: ^4.4.9
-    version: 4.4.9(@types/node@18.17.3)(sass@1.64.2)
+    version: 4.4.9(@types/node@18.17.4)(sass@1.64.2)
   vite-svg-loader:
     specifier: ^4.0.0
     version: 4.0.0
@@ -582,7 +582,7 @@ packages:
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
     dev: true
 
   /@types/fuzzaldrin@2.1.4:
@@ -597,8 +597,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@18.17.3:
-    resolution: {integrity: sha512-2x8HWtFk0S99zqVQABU9wTpr8wPoaDHZUcAkoTKH+nL7kPv3WUI9cRi/Kk5Mz4xdqXSqTkKP7IWNoQQYCnDsTA==}
+  /@types/node@18.17.4:
+    resolution: {integrity: sha512-ATL4WLgr7/W40+Sp1WnNTSKbgVn6Pvhc/2RHAdt8fl6NsQyp4oPCi2eKcGOvA494bwf1K/W6nGgZ9TwDqvpjdw==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -620,7 +620,7 @@ packages:
   /@types/ws@8.5.5:
     resolution: {integrity: sha512-lwhs8hktwxSjf9UaZ9tG5M03PGogvFaH8gUgLNbN9HKIg0dvv6q+gkSuJ8HN4/VbyxkuLzCjlN7GquQ0gUJfIg==}
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.0.0(@typescript-eslint/parser@6.0.0)(eslint@8.46.0)(typescript@5.1.6):
@@ -764,7 +764,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.9(@types/node@18.17.3)(sass@1.64.2)
+      vite: 4.4.9(@types/node@18.17.4)(sass@1.64.2)
       vue: 3.3.4
     dev: true
 
@@ -3309,7 +3309,7 @@ packages:
       svgo: 3.0.2
     dev: true
 
-  /vite@4.4.9(@types/node@18.17.3)(sass@1.64.2):
+  /vite@4.4.9(@types/node@18.17.4)(sass@1.64.2):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3337,7 +3337,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       esbuild: 0.18.11
       postcss: 8.4.27
       rollup: 3.27.2

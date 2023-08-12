@@ -12,10 +12,6 @@
 			"esnext",
 			"dom"
 		],
-		"typeRoots": [
-			"node_modules/@types",
-			"src/typings"
-		],
 		"baseUrl": "src",
 		"paths": {
 			"@typings/*": ["typings/*"],

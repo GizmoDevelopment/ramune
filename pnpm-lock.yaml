@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^0.4.0
     version: 0.4.0
   '@types/connect':
-    specifier: ^3.4.35
-    version: 3.4.35
+    specifier: ^3.4.36
+    version: 3.4.36
   '@types/fuzzaldrin':
     specifier: ^2.1.4
     version: 2.1.4
@@ -579,8 +579,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@types/connect@3.4.35:
-    resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
+  /@types/connect@3.4.36:
+    resolution: {integrity: sha512-P63Zd/JUGq+PdrM1lv0Wv5SBYeA2+CORvbrXbngriYY0jzLUWfQMQQxOhjONEz/wlHOAxOdY7CY65rgQdTjq2w==}
     dependencies:
       '@types/node': 18.17.14
     dev: true

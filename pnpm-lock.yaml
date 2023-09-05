@@ -46,9 +46,6 @@ devDependencies:
   '@mapbox/stylelint-processor-arbitrary-tags':
     specifier: ^0.4.0
     version: 0.4.0
-  '@types/connect':
-    specifier: ^3.4.35
-    version: 3.4.35
   '@types/fuzzaldrin':
     specifier: ^2.1.4
     version: 2.1.4
@@ -572,12 +569,6 @@ packages:
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
-    dev: true
-
-  /@types/connect@3.4.35:
-    resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
-    dependencies:
-      '@types/node': 18.17.14
     dev: true
 
   /@types/fuzzaldrin@2.1.4:

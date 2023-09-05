@@ -34,7 +34,6 @@
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@gizmo-dev/eslint-plugin": "^3.3.7",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
-    "@types/connect": "^3.4.35",
     "@types/fuzzaldrin": "^2.1.4",
     "@types/node": "^18.17.14",
     "@types/ws": "^8.5.5",

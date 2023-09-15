@@ -35,8 +35,8 @@ dependencies:
 
 devDependencies:
   '@babel/types':
-    specifier: ^7.22.17
-    version: 7.22.17
+    specifier: ^7.22.19
+    version: 7.22.19
   '@fullhuman/postcss-purgecss':
     specifier: ^5.0.0
     version: 5.0.0(postcss@8.4.29)
@@ -128,6 +128,11 @@ packages:
   /@babel/helper-validator-identifier@7.22.15:
     resolution: {integrity: sha512-4E/F9IIEi8WR94324mbDUMo074YTheJmd7eZF5vITTeYchqAi6sYXRLHUVsmkdmY4QjfKTcB2jB7dVP3NaBElQ==}
     engines: {node: '>=6.9.0'}
+    dev: true
+
+  /@babel/helper-validator-identifier@7.22.19:
+    resolution: {integrity: sha512-Tinq7ybnEPFFXhlYOYFiSjespWQk0dq2dRNAiMdRTOYQzEGqnnNyrTxPYHP5r6wGjlF1rFgABdDV0g8EwD6Qbg==}
+    engines: {node: '>=6.9.0'}
 
   /@babel/highlight@7.18.6:
     resolution: {integrity: sha512-u7stbOuYjaPezCuLj29hNW1v64M2Md2qupEKP1fHc7WdOA3DgLh37suiSrZYY7haUB7iBeQZ9P1uiRF359do3g==}
@@ -143,7 +148,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.22.17
+      '@babel/types': 7.22.19
     dev: true
 
   /@babel/parser@7.21.8:
@@ -151,7 +156,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.22.17
+      '@babel/types': 7.22.19
 
   /@babel/types@7.12.1:
     resolution: {integrity: sha512-BzSY3NJBKM4kyatSOWh3D/JJ2O3CVzBybHWxtgxnggaxEuaSTTDqeiSb/xk9lrkw2Tbqyivw5ZU4rT+EfznQsA==}
@@ -161,12 +166,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@babel/types@7.22.17:
-    resolution: {integrity: sha512-YSQPHLFtQNE5xN9tHuZnzu8vPr61wVTBZdfv1meex1NBosa4iT05k/Jw06ddJugi4bk7The/oSwQGFcksmEJQg==}
+  /@babel/types@7.22.19:
+    resolution: {integrity: sha512-P7LAw/LbojPzkgp5oznjE6tQEIWbp4PkkfrZDINTro9zgBRtI324/EYsiSI7lhPbpIQ+DCeR2NNmMWANGGfZsg==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.22.5
-      '@babel/helper-validator-identifier': 7.22.15
+      '@babel/helper-validator-identifier': 7.22.19
       to-fast-properties: 2.0.0
 
   /@csstools/selector-specificity@2.1.1(postcss-selector-parser@6.0.11)(postcss@8.4.29):

@@ -12,8 +12,8 @@ dependencies:
     specifier: ^2.0.4
     version: 2.0.4
   gizmo-api:
-    specifier: ^1.2.6
-    version: 1.2.6
+    specifier: ^1.2.7
+    version: 1.2.7
   jassub:
     specifier: ^1.7.7
     version: 1.7.7
@@ -1370,10 +1370,10 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /cross-fetch@3.1.6:
-    resolution: {integrity: sha512-riRvo06crlE8HiqOwIpQhxwdOk4fOeR7FVM/wXoxchFEqMNUjvbs3bfo4OTgMEMHzppd4DxFBDbyySj8Cv781g==}
+  /cross-fetch@4.0.0:
+    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
     dependencies:
-      node-fetch: 2.6.11
+      node-fetch: 2.7.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -1838,11 +1838,11 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
     dev: true
 
-  /gizmo-api@1.2.6:
-    resolution: {integrity: sha512-I2kfln6veyI8qvH4kw1txyPI7kRzGPq4FHU2/978WRo8VQN1NCyyFT9DKYQUyOvC7FvXwv1DvLyoLIpqSqdnJA==}
-    engines: {node: '>=v18.16.1'}
+  /gizmo-api@1.2.7:
+    resolution: {integrity: sha512-IijGsVPHrZFbzMkkdvLmIrR+EPD55yX0Gl/sJKip6tt17NdZKpWRxUqQ4qODxOVd5t5l+urJ08WkpOGZZR4n+w==}
+    engines: {node: '>=v18.18.0'}
     dependencies:
-      cross-fetch: 3.1.6
+      cross-fetch: 4.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -2360,8 +2360,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /node-fetch@2.6.11:
-    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
+  /node-fetch@2.7.0:
+    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0

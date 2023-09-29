@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^7.0.5
     version: 7.0.5(postcss@8.4.31)
   postcss-scss:
-    specifier: ^4.0.8
-    version: 4.0.8(postcss@8.4.31)
+    specifier: ^4.0.9
+    version: 4.0.9(postcss@8.4.31)
   rollup-plugin-visualizer:
     specifier: ^5.9.2
     version: 5.9.2
@@ -2576,8 +2576,8 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /postcss-scss@4.0.8(postcss@8.4.31):
-    resolution: {integrity: sha512-Cr0X8Eu7xMhE96PJck6ses/uVVXDtE5ghUTKNUYgm8ozgP2TkgV3LWs3WgLV1xaSSLq8ZFiXaUrj0LVgG1fGEA==}
+  /postcss-scss@4.0.9(postcss@8.4.31):
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.29
@@ -2969,7 +2969,7 @@ packages:
         optional: true
     dependencies:
       postcss: 8.4.31
-      postcss-scss: 4.0.8(postcss@8.4.31)
+      postcss-scss: 4.0.9(postcss@8.4.31)
       stylelint: 14.16.1
       stylelint-config-recommended: 9.0.0(stylelint@14.16.1)
       stylelint-scss: 4.7.0(stylelint@14.16.1)

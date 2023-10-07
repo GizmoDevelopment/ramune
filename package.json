@@ -35,7 +35,7 @@
     "@gizmo-dev/eslint-plugin": "^3.3.8",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
     "@types/fuzzaldrin": "^2.1.5",
-    "@types/node": "^18.18.3",
+    "@types/node": "^18.18.4",
     "@types/ws": "^8.5.6",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vuedx/typescript-plugin-vue": "^0.7.6",

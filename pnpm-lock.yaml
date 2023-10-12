@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.2.7
     version: 1.2.7
   jassub:
-    specifier: ^1.7.8
-    version: 1.7.8
+    specifier: ^1.7.9
+    version: 1.7.9
   socket.io-client:
     specifier: ^4.7.2
     version: 4.7.2
@@ -2119,10 +2119,10 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /jassub@1.7.8:
-    resolution: {integrity: sha512-F4rd+eOsI+9aN0bVqNEtrX7xCyU4y33DiYbwxd7hTaB7HtJBGYaAFzTWkmvW40uFVcYfjIQ9tXqNu5VnjDS5RQ==}
+  /jassub@1.7.9:
+    resolution: {integrity: sha512-jcW+kXsX8oKLCKzfZwREReBO0ggMIphs0F/CbLhF0MnoXTJG46WZ0r/QddI6YHmkq0STA2JgnwWzy4CftEIGYQ==}
     dependencies:
-      rvfc-polyfill: 1.0.6
+      rvfc-polyfill: 1.0.7
     dev: false
 
   /js-message@1.0.7:
@@ -2776,8 +2776,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /rvfc-polyfill@1.0.6:
-    resolution: {integrity: sha512-y7tu9Bh19CTnzBZWEQEEEo5UYvhVi5Ud9C3ndeWtm9m+tUO5vK8qqbpAMJfEDgRSFZokrVHmehnhGjd9LyazBg==}
+  /rvfc-polyfill@1.0.7:
+    resolution: {integrity: sha512-seBl7J1J3/k0LuzW2T9fG6JIOpni5AbU+/87LA+zTYKgTVhsfShmS8K/yOo1eeEjGJHnAdkVAUUM+PEjN9Mpkw==}
     dev: false
 
   /safe-buffer@5.1.2:

@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^18.18.6
     version: 18.18.6
   '@types/ws':
-    specifier: ^8.5.7
-    version: 8.5.7
+    specifier: ^8.5.8
+    version: 8.5.8
   '@vitejs/plugin-vue':
     specifier: ^4.4.0
     version: 4.4.0(vite@4.5.0)(vue@3.3.4)
@@ -602,8 +602,8 @@ packages:
     resolution: {integrity: sha512-ZJWjtFBeBy1kRSYpVbeGYTElf6BqPQUkXDlHHD4k/42byCN5Rh027f4yARHCink9sKAkbtGZXEAmR0ZCnc2/Ag==}
     dev: false
 
-  /@types/ws@8.5.7:
-    resolution: {integrity: sha512-6UrLjiDUvn40CMrAubXuIVtj2PEfKDffJS7ychvnPU44j+KVeXmdHHTgqcM/dxLUTHxlXHiFM8Skmb8ozGdTnQ==}
+  /@types/ws@8.5.8:
+    resolution: {integrity: sha512-flUksGIQCnJd6sZ1l5dqCEG/ksaoAg/eUwiLAGTJQcfgvZJKF++Ta4bJA6A5aPSJmsr+xlseHn4KLgVlNnvPTg==}
     dependencies:
       '@types/node': 18.18.6
     dev: true

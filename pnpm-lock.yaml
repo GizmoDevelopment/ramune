@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.2.7
     version: 1.2.7
   jassub:
-    specifier: ^1.7.10
-    version: 1.7.10
+    specifier: ^1.7.11
+    version: 1.7.11
   socket.io-client:
     specifier: ^4.7.2
     version: 4.7.2
@@ -2078,8 +2078,8 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /jassub@1.7.10:
-    resolution: {integrity: sha512-G6zQntHIdWQKd2Tp+wTuyUJxTEnp7ZgGTn/bHZRWswPNFBwsiGG9RO6hWNmyyYqiUBGNGNQ4Ms10doBKne8iFQ==}
+  /jassub@1.7.11:
+    resolution: {integrity: sha512-d8DOg9qgkn/YMhc9EumoyBVxWVEyuScFVKanJYq2sdncfxoBKgYS5xa8FGKRi43nJIXtrQJgPKthwx1N/rnZkQ==}
     dependencies:
       rvfc-polyfill: 1.0.7
     dev: false

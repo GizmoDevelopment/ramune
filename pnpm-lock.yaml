@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^0.4.0
     version: 0.4.0
   '@types/fuzzaldrin':
-    specifier: ^2.1.6
-    version: 2.1.6
+    specifier: ^2.1.7
+    version: 2.1.7
   '@types/node':
     specifier: ^18.18.8
     version: 18.18.8
@@ -570,8 +570,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@types/fuzzaldrin@2.1.6:
-    resolution: {integrity: sha512-FqxJQosSRv60SvA3jWHHpYj5fBZyUl+mGOCHnUGC6l/1zFklhXTmU6x11PjsBu3IhkEAbJIElSEV+FgvZ8CahQ==}
+  /@types/fuzzaldrin@2.1.7:
+    resolution: {integrity: sha512-81J3CaI0Bpgx8qEGSBhH4Qizfkji7faIudQgLjurdecRGcJ6FBNFwUrycwJp+f8c2Ibh5YovMHF9l2hYiXDtWA==}
     dev: true
 
   /@types/json-schema@7.0.14:

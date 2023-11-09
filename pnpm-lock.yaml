@@ -35,8 +35,8 @@ dependencies:
 
 devDependencies:
   '@babel/types':
-    specifier: ^7.23.0
-    version: 7.23.0
+    specifier: ^7.23.3
+    version: 7.23.3
   '@fullhuman/postcss-purgecss':
     specifier: ^5.0.0
     version: 5.0.0(postcss@8.4.31)
@@ -144,7 +144,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
     dev: true
 
   /@babel/parser@7.23.0:
@@ -152,7 +152,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
 
   /@babel/types@7.12.1:
     resolution: {integrity: sha512-BzSY3NJBKM4kyatSOWh3D/JJ2O3CVzBybHWxtgxnggaxEuaSTTDqeiSb/xk9lrkw2Tbqyivw5ZU4rT+EfznQsA==}
@@ -162,8 +162,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@babel/types@7.23.0:
-    resolution: {integrity: sha512-0oIyUfKoI3mSqMvsxBdclDwxXKXAUA8v/apZbc+iSyARYou1o8ZGDxbUYyLFoW2arqS2jDGqJuZvv1d/io1axg==}
+  /@babel/types@7.23.3:
+    resolution: {integrity: sha512-OZnvoH2l8PK5eUvEcUyCt/sXgr/h+UWpVuBbOljwcrAgUl6lpchoQ++PHGyQy1AtYnVA6CEq3y5xeEI10brpXw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-string-parser': 7.22.5

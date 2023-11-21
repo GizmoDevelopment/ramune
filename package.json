@@ -30,7 +30,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.23.3",
+    "@babel/types": "^7.23.4",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@gizmo-dev/eslint-plugin": "^3.3.8",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",

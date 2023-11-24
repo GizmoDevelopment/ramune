@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^2.1.7
     version: 2.1.7
   '@types/node':
-    specifier: ^18.18.12
-    version: 18.18.12
+    specifier: ^18.18.13
+    version: 18.18.13
   '@types/ws':
     specifier: ^8.5.10
     version: 8.5.10
@@ -99,7 +99,7 @@ devDependencies:
     version: 5.3.2
   vite:
     specifier: ^4.5.0
-    version: 4.5.0(@types/node@18.18.12)(sass@1.69.5)
+    version: 4.5.0(@types/node@18.18.13)(sass@1.69.5)
   vite-svg-loader:
     specifier: ^4.0.0
     version: 4.0.0
@@ -582,8 +582,8 @@ packages:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
 
-  /@types/node@18.18.12:
-    resolution: {integrity: sha512-G7slVfkwOm7g8VqcEF1/5SXiMjP3Tbt+pXDU3r/qhlM2KkGm786DUD4xyMA2QzEElFrv/KZV9gjygv4LnkpbMQ==}
+  /@types/node@18.18.13:
+    resolution: {integrity: sha512-vXYZGRrSCreZmq1rEjMRLXJhiy8MrIeVasx+PCVlP414N7CJLHnMf+juVvjdprHyH+XRy3zKZLHeNueOpJCn0g==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -607,7 +607,7 @@ packages:
   /@types/ws@8.5.10:
     resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
     dependencies:
-      '@types/node': 18.18.12
+      '@types/node': 18.18.13
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.11.0(@typescript-eslint/parser@6.11.0)(eslint@8.54.0)(typescript@5.3.2):
@@ -752,7 +752,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.5.0(@types/node@18.18.12)(sass@1.69.5)
+      vite: 4.5.0(@types/node@18.18.13)(sass@1.69.5)
       vue: 3.3.8(typescript@5.3.2)
     dev: true
 
@@ -3209,7 +3209,7 @@ packages:
       svgo: 3.0.4
     dev: true
 
-  /vite@4.5.0(@types/node@18.18.12)(sass@1.69.5):
+  /vite@4.5.0(@types/node@18.18.13)(sass@1.69.5):
     resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3237,7 +3237,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.18.12
+      '@types/node': 18.18.13
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4

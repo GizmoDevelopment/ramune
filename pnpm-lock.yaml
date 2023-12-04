@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^4.0.9
     version: 4.0.9(postcss@8.4.32)
   rollup-plugin-visualizer:
-    specifier: ^5.9.3
-    version: 5.9.3
+    specifier: ^5.10.0
+    version: 5.10.0
   sass:
     specifier: ^1.69.5
     version: 1.69.5
@@ -2693,8 +2693,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup-plugin-visualizer@5.9.3:
-    resolution: {integrity: sha512-ieGM5UAbMVqThX67GCuFHu/GkaSXIUZwFKJsSzE+7+k9fibU/6gbUz7SL+9BBzNtv5bIFHj7kEu0TWcqEnT/sQ==}
+  /rollup-plugin-visualizer@5.10.0:
+    resolution: {integrity: sha512-N4AkNL0qFvipegbDJ0kupS+8eKGjL0q+lYwV46NflLX/B8Rh73wz3kCIdg50bR6XVhNcaMA4Eb519xtm90Ckfg==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:

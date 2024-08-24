@@ -47,7 +47,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, type PropType } from "vue";
 
 	// Mixins
 	import GenericMixin from "@mixins/Generic";

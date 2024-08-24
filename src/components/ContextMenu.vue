@@ -30,7 +30,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, type PropType, ref } from "vue";
 
 	export default defineComponent({
 		name: "ContextMenu",

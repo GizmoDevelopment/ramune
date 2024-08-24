@@ -27,7 +27,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, type PropType } from "vue";
 
 	// Icons
 	import MusicNote from "@assets/icons/music-note.svg?component";
@@ -36,8 +36,8 @@
 	import { formatLyrics } from "@utils/lyrics";
 
 	// Types
-	import { Lyrics } from "@typings/show";
-	import { ParsedLyrics } from "@typings/lyrics";
+	import type { Lyrics } from "@typings/show";
+	import type { ParsedLyrics } from "@typings/lyrics";
 
 	export default defineComponent({
 		name: "Karaoke",

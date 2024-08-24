@@ -25,7 +25,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, type PropType } from "vue";
 
 	// Types
 	import type { User } from "gizmo-api";

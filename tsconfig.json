@@ -32,6 +32,7 @@
 		]
 	},
 	"include": [
+		"eslint.config.mjs",
 		"*.config.js",
 		"*.config.ts",
 		"src/**/*.ts",

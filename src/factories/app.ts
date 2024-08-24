@@ -18,7 +18,7 @@ import i18n from "@plugins/i18n";
 import _App from "@views/App.vue";
 
 // Types
-import { App } from "vue";
+import type { App } from "vue";
 
 // Constants
 const SOCKET_ENDPOINT = import.meta.env.VITE_SOCKET_ENDPOINT;

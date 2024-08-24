@@ -20,7 +20,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, type PropType } from "vue";
 
 	// Icons
 	import Play from "@assets/icons/play.svg?component";

@@ -31,7 +31,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, type PropType, ref } from "vue";
 
 	// Components
 	import Dropdown from "@components/Dropdown.vue";

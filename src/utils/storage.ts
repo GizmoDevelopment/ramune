@@ -9,14 +9,16 @@ export function getSetting <T> (name: string, defaultValue: T): T {
 	if (settingValue !== null) {
 		try {
 			return JSON.parse(settingValue);
-		} catch (err) {
+		} catch {
 
 			// Might have old non-JSON settings
 			try {
 				return JSON.parse(JSON.stringify(settingValue));
 			} catch (err) {
+				console.error(err);
 				return defaultValue;
 			}
+
 		}
 	} else {
 		return defaultValue;

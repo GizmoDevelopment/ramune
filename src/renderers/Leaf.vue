@@ -11,14 +11,14 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, type PropType, ref } from "vue";
 
 	// Utils
 	import { getRandomNumberFromRange } from "@utils/essentials";
 	import { waitForImageLoad } from "@utils/dom";
 
 	// Types
-	import { LeafRendererData, LeafRendererInstance } from "@typings/leaf";
+	import type { LeafRendererData, LeafRendererInstance } from "@typings/leaf";
 
 	// Variables
 	const FRAME_INTERVAL = (1 / 30) * 1000; // 30 FPS is less stressful than 60 FPS and fast enough for our eyes to perceive motion

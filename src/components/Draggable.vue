@@ -10,7 +10,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, type PropType, ref } from "vue";
 
 	// Types
 	interface Pos2 {
@@ -25,6 +25,14 @@
 				type: String as PropType<"topLeft" | "bottomLeft">,
 				default: "topLeft"
 			}
+		},
+		setup () {
+
+			const draggable = ref<HTMLDivElement>();
+
+			return {
+				draggable
+			};
 		},
 		data () {
 			return {
@@ -51,14 +59,6 @@
 					? "0s"
 					: ".6s";
 			}
-		},
-		setup () {
-
-			const draggable = ref<HTMLDivElement>();
-
-			return {
-				draggable
-			};
 		},
 		mounted () {
 

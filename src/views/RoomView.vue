@@ -46,7 +46,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType } from "vue";
+	import { defineComponent, type PropType } from "vue";
 
 	// Local Components
 	import RoomUserList from "@components/room/RoomUserList.vue";

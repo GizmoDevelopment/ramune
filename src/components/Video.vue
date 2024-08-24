@@ -63,7 +63,7 @@
 											left: marker.x,
 											width: marker.width
 										}"
-									></div>
+									/>
 								</div>
 								<div v-show="isHoveringOverProgressBar" class="progress-bar-hover-tooltip">{{ formattedHover }}</div>
 							</div>
@@ -194,7 +194,7 @@
 <script lang="ts">
 
 	// Modules
-	import { defineComponent, PropType, ref } from "vue";
+	import { defineComponent, type PropType, ref } from "vue";
 	import JASSUB from "jassub";
 	import workerUrl from "jassub/dist/jassub-worker.js?url";
 	import wasmUrl from "jassub/dist/jassub-worker.wasm?url";

@@ -7,7 +7,7 @@ export default [
 	...configs.vue,
 	{
 		languageOptions: {
-			ecmaVersion: 2021,
+			ecmaVersion: 2022,
 			globals: {
 				...globals.browser
 			},

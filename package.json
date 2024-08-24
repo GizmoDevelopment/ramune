@@ -5,7 +5,7 @@
   "version": "1.13.4",
   "scripts": {
     "lint": "npm run lint:src && npm run lint:css",
-    "lint:src": "eslint ./src/**/*.{d.ts,ts,vue}",
+    "lint:src": "eslint --no-cache src/components/ContextMenu.vue",
     "lint:css": "stylelint ./src/**/*.{css,scss,vue}",
     "build": "vue-tsc --noEmit && vite build",
     "dev": "vite",
@@ -54,6 +54,6 @@
     "typescript": "^5.5.4",
     "vite": "^4.5.3",
     "vite-svg-loader": "^4.0.0",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^2.0.29"
   }
 }

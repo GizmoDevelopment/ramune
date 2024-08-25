@@ -61,7 +61,7 @@ importers:
         specifier: ^0.7.6
         version: 0.7.6
       autoprefixer:
-        specifier: ^10.4.19
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.41)
       eslint:
         specifier: ^9.9.1

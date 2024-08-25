@@ -22,7 +22,7 @@
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^3.0.2",
     "gizmo-api": "^1.2.7",
-    "jassub": "^1.7.15",
+    "jassub": "^1.7.17",
     "socket.io-client": "^4.7.5",
     "vue": "^3.3.13",
     "vue-router": "^4.2.5",

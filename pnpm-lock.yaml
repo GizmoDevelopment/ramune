@@ -36,9 +36,6 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.4.38(typescript@5.5.4))
     devDependencies:
-      '@babel/types':
-        specifier: ^7.23.6
-        version: 7.25.4
       '@fullhuman/postcss-purgecss':
         specifier: ^5.0.0
         version: 5.0.0(postcss@8.4.41)

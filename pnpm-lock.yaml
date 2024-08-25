@@ -52,7 +52,7 @@ importers:
         specifier: ^20.16.1
         version: 20.16.1
       '@types/ws':
-        specifier: ^8.5.10
+        specifier: ^8.5.12
         version: 8.5.12
       '@vitejs/plugin-vue':
         specifier: ^4.6.2

@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
-    "@gizmo-dev/eslint-plugin": "^5.0.1",
+    "@gizmo-dev/eslint-plugin": "^5.0.2",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
     "@types/fuzzaldrin": "^2.1.7",
     "@types/node": "^20.16.1",

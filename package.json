@@ -53,6 +53,6 @@
     "typescript": "^5.5.4",
     "vite": "^4.5.3",
     "vite-svg-loader": "^4.0.0",
-    "vue-tsc": "^2.1.0"
+    "vue-tsc": "^2.1.2"
   }
 }

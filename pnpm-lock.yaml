@@ -27,8 +27,8 @@ importers:
         specifier: ^3.5.4
         version: 3.5.4(typescript@5.6.2)
       vue-router:
-        specifier: ^4.4.4
-        version: 4.4.4(vue@3.5.4(typescript@5.6.2))
+        specifier: ^4.4.5
+        version: 4.4.5(vue@3.5.4(typescript@5.6.2))
       vue-socket.io-extended:
         specifier: ^5.0.0-alpha.5
         version: 5.0.0-alpha.5
@@ -2066,8 +2066,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  vue-router@4.4.4:
-    resolution: {integrity: sha512-3MlnDqwRwZwCQVbtVfpsU+nrNymNjnXSsQtXName5925NVC1+326VVfYH9vSrA0N13teGEo8z5x7gbRnGjCDiQ==}
+  vue-router@4.4.5:
+    resolution: {integrity: sha512-4fKZygS8cH1yCyuabAXGUAsyi1b2/o/OKgu/RUb+znIYOxPRxdkytJEx+0wGcpBE1pX6vUgh5jwWOKRGvuA/7Q==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -4271,7 +4271,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-router@4.4.4(vue@3.5.4(typescript@5.6.2)):
+  vue-router@4.4.5(vue@3.5.4(typescript@5.6.2)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.4(typescript@5.6.2)

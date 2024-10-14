@@ -20,7 +20,7 @@
   "packageManager": "pnpm@9.12.1",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
-    "fuzzysort": "^3.0.2",
+    "fuzzysort": "^3.1.0",
     "gizmo-api": "^1.2.7",
     "jassub": "^1.7.17",
     "socket.io-client": "^4.8.0",

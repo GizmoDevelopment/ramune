@@ -17,7 +17,7 @@
   "engines": {
     "node": ">=20.18.0"
   },
-  "packageManager": "pnpm@9.13.0",
+  "packageManager": "pnpm@9.13.2",
   "dependencies": {
     "@vueuse/head": "^0.9.8",
     "fuzzysort": "^3.1.0",

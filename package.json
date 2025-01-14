@@ -46,7 +46,7 @@
     "postcss-reporter": "^7.1.0",
     "postcss-scss": "^4.0.9",
     "rollup-plugin-visualizer": "^5.13.1",
-    "sass": "^1.83.1",
+    "sass": "^1.83.4",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-scss": "^5.3.2",

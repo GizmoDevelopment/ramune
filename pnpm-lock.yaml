@@ -56,7 +56,7 @@ importers:
         version: 8.5.13
       '@vitejs/plugin-vue':
         specifier: ^4.6.2
-        version: 4.6.2(vite@4.5.5(@types/node@20.17.12)(sass@1.83.1))(vue@3.5.13(typescript@5.7.3))
+        version: 4.6.2(vite@4.5.5(@types/node@20.17.12)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))
       '@vuedx/typescript-plugin-vue':
         specifier: ^0.7.6
         version: 0.7.6
@@ -85,8 +85,8 @@ importers:
         specifier: ^5.13.1
         version: 5.14.0(rollup@3.29.5)
       sass:
-        specifier: ^1.83.1
-        version: 1.83.1
+        specifier: ^1.83.4
+        version: 1.83.4
       stylelint:
         specifier: ^14.16.1
         version: 14.16.1
@@ -101,7 +101,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^4.5.5
-        version: 4.5.5(@types/node@20.17.12)(sass@1.83.1)
+        version: 4.5.5(@types/node@20.17.12)(sass@1.83.4)
       vite-svg-loader:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1713,8 +1713,8 @@ packages:
   safe-buffer@5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
 
-  sass@1.83.1:
-    resolution: {integrity: sha512-EVJbDaEs4Rr3F0glJzFSOvtg2/oy2V/YrGFPqPY24UqcLDWcI9ZY5sN+qyO3c/QCZwzgfirvhXvINiJCE/OLcA==}
+  sass@1.83.4:
+    resolution: {integrity: sha512-B1bozCeNQiOgDcLd33e2Cs2U60wZwjUUXzh900ZyQF5qUasvMdDZYbQ566LJu7cqR+sAHlAfO6RMkaID5s6qpA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -2585,9 +2585,9 @@ snapshots:
       '@typescript-eslint/types': 8.19.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-vue@4.6.2(vite@4.5.5(@types/node@20.17.12)(sass@1.83.1))(vue@3.5.13(typescript@5.7.3))':
+  '@vitejs/plugin-vue@4.6.2(vite@4.5.5(@types/node@20.17.12)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      vite: 4.5.5(@types/node@20.17.12)(sass@1.83.1)
+      vite: 4.5.5(@types/node@20.17.12)(sass@1.83.4)
       vue: 3.5.13(typescript@5.7.3)
 
   '@volar/language-core@2.4.11':
@@ -3808,7 +3808,7 @@ snapshots:
 
   safe-buffer@5.1.2: {}
 
-  sass@1.83.1:
+  sass@1.83.4:
     dependencies:
       chokidar: 4.0.3
       immutable: 5.0.3
@@ -4110,7 +4110,7 @@ snapshots:
       '@vue/compiler-sfc': 3.5.13
       svgo: 3.3.2
 
-  vite@4.5.5(@types/node@20.17.12)(sass@1.83.1):
+  vite@4.5.5(@types/node@20.17.12)(sass@1.83.4):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.0
@@ -4118,7 +4118,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.17.12
       fsevents: 2.3.3
-      sass: 1.83.1
+      sass: 1.83.4
 
   vscode-languageserver-textdocument@1.0.12: {}
 

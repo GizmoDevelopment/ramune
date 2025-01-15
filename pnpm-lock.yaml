@@ -38,7 +38,7 @@ importers:
     devDependencies:
       '@fullhuman/postcss-purgecss':
         specifier: ^6.0.0
-        version: 6.0.0(postcss@8.5.0)
+        version: 6.0.0(postcss@8.5.1)
       '@gizmo-dev/eslint-plugin':
         specifier: ^5.0.6
         version: 5.0.6(eslint@9.18.0)(typescript@5.7.3)
@@ -62,7 +62,7 @@ importers:
         version: 0.7.6
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.0)
+        version: 10.4.20(postcss@8.5.1)
       eslint:
         specifier: ^9.18.0
         version: 9.18.0
@@ -70,17 +70,17 @@ importers:
         specifier: ^15.14.0
         version: 15.14.0
       postcss:
-        specifier: ^8.5.0
-        version: 8.5.0
+        specifier: ^8.5.1
+        version: 8.5.1
       postcss-calc:
         specifier: ^10.1.0
-        version: 10.1.0(postcss@8.5.0)
+        version: 10.1.0(postcss@8.5.1)
       postcss-reporter:
         specifier: ^7.1.0
-        version: 7.1.0(postcss@8.5.0)
+        version: 7.1.0(postcss@8.5.1)
       postcss-scss:
         specifier: ^4.0.9
-        version: 4.0.9(postcss@8.5.0)
+        version: 4.0.9(postcss@8.5.1)
       rollup-plugin-visualizer:
         specifier: ^5.13.1
         version: 5.14.0(rollup@3.29.5)
@@ -92,7 +92,7 @@ importers:
         version: 14.16.1
       stylelint-config-standard-scss:
         specifier: ^6.1.0
-        version: 6.1.0(postcss@8.5.0)(stylelint@14.16.1)
+        version: 6.1.0(postcss@8.5.1)(stylelint@14.16.1)
       stylelint-scss:
         specifier: ^5.3.2
         version: 5.3.2(stylelint@14.16.1)
@@ -1605,8 +1605,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.0:
-    resolution: {integrity: sha512-27VKOqrYfPncKA2NrFOVhP5MGAfHKLYn/Q0mz9cNQyRAKYi3VNHwYU2qKKqPCqgBmeeJ0uAFB56NumXZ5ZReXg==}
+  postcss@8.5.1:
+    resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -2301,9 +2301,9 @@ snapshots:
       '@eslint/core': 0.10.0
       levn: 0.4.1
 
-  '@fullhuman/postcss-purgecss@6.0.0(postcss@8.5.0)':
+  '@fullhuman/postcss-purgecss@6.0.0(postcss@8.5.1)':
     dependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
       purgecss: 6.0.0
 
   '@gizmo-dev/eslint-plugin@5.0.6(eslint@9.18.0)(typescript@5.7.3)':
@@ -2624,7 +2624,7 @@ snapshots:
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
       magic-string: 0.30.17
-      postcss: 8.5.0
+      postcss: 8.5.1
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.13':
@@ -2828,14 +2828,14 @@ snapshots:
 
   astral-regex@2.0.0: {}
 
-  autoprefixer@10.4.20(postcss@8.5.0):
+  autoprefixer@10.4.20(postcss@8.5.1):
     dependencies:
       browserslist: 4.24.4
       caniuse-lite: 1.0.30001692
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.0
+      postcss: 8.5.1
       postcss-value-parser: 4.2.0
 
   balanced-match@1.0.2: {}
@@ -3669,29 +3669,29 @@ snapshots:
 
   picomatch@4.0.2: {}
 
-  postcss-calc@10.1.0(postcss@8.5.0):
+  postcss-calc@10.1.0(postcss@8.5.1):
     dependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
       postcss-selector-parser: 7.0.0
       postcss-value-parser: 4.2.0
 
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-reporter@7.1.0(postcss@8.5.0):
+  postcss-reporter@7.1.0(postcss@8.5.1):
     dependencies:
       picocolors: 1.1.1
-      postcss: 8.5.0
+      postcss: 8.5.1
       thenby: 1.3.4
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.0):
+  postcss-safe-parser@6.0.0(postcss@8.5.1):
     dependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
 
-  postcss-scss@4.0.9(postcss@8.5.0):
+  postcss-scss@4.0.9(postcss@8.5.1):
     dependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -3705,7 +3705,7 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.0:
+  postcss@8.5.1:
     dependencies:
       nanoid: 3.3.8
       picocolors: 1.1.1
@@ -3721,7 +3721,7 @@ snapshots:
     dependencies:
       commander: 12.1.0
       glob: 10.4.5
-      postcss: 8.5.0
+      postcss: 8.5.1
       postcss-selector-parser: 6.1.2
 
   queue-microtask@1.2.3: {}
@@ -3918,26 +3918,26 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-recommended-scss@8.0.0(postcss@8.5.0)(stylelint@14.16.1):
+  stylelint-config-recommended-scss@8.0.0(postcss@8.5.1)(stylelint@14.16.1):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.0)
+      postcss-scss: 4.0.9(postcss@8.5.1)
       stylelint: 14.16.1
       stylelint-config-recommended: 9.0.0(stylelint@14.16.1)
       stylelint-scss: 4.7.0(stylelint@14.16.1)
     optionalDependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
 
   stylelint-config-recommended@9.0.0(stylelint@14.16.1):
     dependencies:
       stylelint: 14.16.1
 
-  stylelint-config-standard-scss@6.1.0(postcss@8.5.0)(stylelint@14.16.1):
+  stylelint-config-standard-scss@6.1.0(postcss@8.5.1)(stylelint@14.16.1):
     dependencies:
       stylelint: 14.16.1
-      stylelint-config-recommended-scss: 8.0.0(postcss@8.5.0)(stylelint@14.16.1)
+      stylelint-config-recommended-scss: 8.0.0(postcss@8.5.1)(stylelint@14.16.1)
       stylelint-config-standard: 29.0.0(stylelint@14.16.1)
     optionalDependencies:
-      postcss: 8.5.0
+      postcss: 8.5.1
 
   stylelint-config-standard@29.0.0(stylelint@14.16.1):
     dependencies:
@@ -3986,10 +3986,10 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.0
+      postcss: 8.5.1
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 6.0.0(postcss@8.5.0)
+      postcss-safe-parser: 6.0.0(postcss@8.5.1)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -4113,7 +4113,7 @@ snapshots:
   vite@4.5.5(@types/node@20.17.13)(sass@1.83.4):
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.5.0
+      postcss: 8.5.1
       rollup: 3.29.5
     optionalDependencies:
       '@types/node': 20.17.13

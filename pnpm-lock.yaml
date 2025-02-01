@@ -49,14 +49,14 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7
       '@types/node':
-        specifier: ^20.17.16
-        version: 20.17.16
+        specifier: ^22.13.0
+        version: 22.13.0
       '@types/ws':
         specifier: ^8.5.14
         version: 8.5.14
       '@vitejs/plugin-vue':
         specifier: ^4.6.2
-        version: 4.6.2(vite@4.5.9(@types/node@20.17.16)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))
+        version: 4.6.2(vite@4.5.9(@types/node@22.13.0)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))
       '@vuedx/typescript-plugin-vue':
         specifier: ^0.7.6
         version: 0.7.6
@@ -101,7 +101,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^4.5.9
-        version: 4.5.9(@types/node@20.17.16)(sass@1.83.4)
+        version: 4.5.9(@types/node@22.13.0)(sass@1.83.4)
       vite-svg-loader:
         specifier: ^4.0.0
         version: 4.0.0
@@ -505,8 +505,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@20.17.16':
-    resolution: {integrity: sha512-vOTpLduLkZXePLxHiHsBLp98mHGnl8RptV4YAO3HfKO5UHjDvySGbxKtpYfy8Sx5+WKcgc45qNreJJRVM3L6mw==}
+  '@types/node@22.13.0':
+    resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1960,8 +1960,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.19.8:
-    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
   untildify@4.0.0:
     resolution: {integrity: sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==}
@@ -2494,9 +2494,9 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@20.17.16':
+  '@types/node@22.13.0':
     dependencies:
-      undici-types: 6.19.8
+      undici-types: 6.20.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -2506,7 +2506,7 @@ snapshots:
 
   '@types/ws@8.5.14':
     dependencies:
-      '@types/node': 20.17.16
+      '@types/node': 22.13.0
 
   '@typescript-eslint/eslint-plugin@8.21.0(@typescript-eslint/parser@8.21.0(eslint@9.19.0)(typescript@5.7.3))(eslint@9.19.0)(typescript@5.7.3)':
     dependencies:
@@ -2585,9 +2585,9 @@ snapshots:
       '@typescript-eslint/types': 8.21.0
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-vue@4.6.2(vite@4.5.9(@types/node@20.17.16)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))':
+  '@vitejs/plugin-vue@4.6.2(vite@4.5.9(@types/node@22.13.0)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      vite: 4.5.9(@types/node@20.17.16)(sass@1.83.4)
+      vite: 4.5.9(@types/node@22.13.0)(sass@1.83.4)
       vue: 3.5.13(typescript@5.7.3)
 
   '@volar/language-core@2.4.11':
@@ -4082,7 +4082,7 @@ snapshots:
 
   typescript@5.7.3: {}
 
-  undici-types@6.19.8: {}
+  undici-types@6.20.0: {}
 
   untildify@4.0.0: {}
 
@@ -4110,13 +4110,13 @@ snapshots:
       '@vue/compiler-sfc': 3.5.13
       svgo: 3.3.2
 
-  vite@4.5.9(@types/node@20.17.16)(sass@1.83.4):
+  vite@4.5.9(@types/node@22.13.0)(sass@1.83.4):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.1
       rollup: 3.29.5
     optionalDependencies:
-      '@types/node': 20.17.16
+      '@types/node': 22.13.0
       fsevents: 2.3.3
       sass: 1.83.4
 

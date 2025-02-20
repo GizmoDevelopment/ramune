@@ -41,7 +41,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.20.1",
     "globals": "^15.15.0",
-    "postcss": "^8.5.2",
+    "postcss": "^8.5.3",
     "postcss-calc": "^10.1.1",
     "postcss-reporter": "^7.1.0",
     "postcss-scss": "^4.0.9",

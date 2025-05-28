@@ -18,8 +18,8 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7
       jassub:
-        specifier: ^1.7.18
-        version: 1.7.18
+        specifier: ^1.7.20
+        version: 1.7.20
       socket.io-client:
         specifier: ^4.8.1
         version: 4.8.1
@@ -1298,8 +1298,8 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jassub@1.7.18:
-    resolution: {integrity: sha512-8cYnJlWuUP7xsdvoYyLVIcvXVa+0NvP1H1//yPck/LOHdnzY4KRwELNVx0khEd5BLN3bfWnMrcqFiHyTINObhA==}
+  jassub@1.7.20:
+    resolution: {integrity: sha512-0ADY2BdpPc6qQ6DFetg3S0TAnt530dgvxo/Gx0jyCygjyIhK6ndI47wlzwFOZo7IN+aPRaGqnhxTATf5J0j3OQ==}
 
   js-message@1.0.7:
     resolution: {integrity: sha512-efJLHhLjIyKRewNS9EGZ4UpI8NguuL6fKkhRxVuMmrGV2xN/0APGdQYwLFky5w9naebSZ0OwAGp0G6/2Cg90rA==}
@@ -3446,7 +3446,7 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jassub@1.7.18:
+  jassub@1.7.20:
     dependencies:
       rvfc-polyfill: 1.0.7
 

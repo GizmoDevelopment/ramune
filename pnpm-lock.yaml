@@ -49,14 +49,14 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7
       '@types/node':
-        specifier: ^20.17.51
-        version: 20.17.51
+        specifier: ^20.17.52
+        version: 20.17.52
       '@types/ws':
         specifier: ^8.18.1
         version: 8.18.1
       '@vitejs/plugin-vue':
         specifier: ^4.6.2
-        version: 4.6.2(vite@4.5.14(@types/node@20.17.51)(sass@1.89.0))(vue@3.5.15(typescript@5.8.3))
+        version: 4.6.2(vite@4.5.14(@types/node@20.17.52)(sass@1.89.0))(vue@3.5.15(typescript@5.8.3))
       '@vuedx/typescript-plugin-vue':
         specifier: ^0.7.6
         version: 0.7.6
@@ -101,7 +101,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: ^4.5.14
-        version: 4.5.14(@types/node@20.17.51)(sass@1.89.0)
+        version: 4.5.14(@types/node@20.17.52)(sass@1.89.0)
       vite-svg-loader:
         specifier: ^4.0.0
         version: 4.0.0
@@ -509,8 +509,8 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
-  '@types/node@20.17.51':
-    resolution: {integrity: sha512-hccptBl7C8lHiKxTBsY6vYYmqpmw1E/aGR/8fmueE+B390L3pdMOpNSRvFO4ZnXzW5+p2HBXV0yNABd2vdk22Q==}
+  '@types/node@20.17.52':
+    resolution: {integrity: sha512-2aj++KfxubvW/Lc0YyXE3OEW7Es8TWn1MsRzYgcOGyTNQxi0L8rxQUCZ7ZbyOBWZQD5I63PV9egZWMsapVaklg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2505,7 +2505,7 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
-  '@types/node@20.17.51':
+  '@types/node@20.17.52':
     dependencies:
       undici-types: 6.19.8
 
@@ -2517,7 +2517,7 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 20.17.51
+      '@types/node': 20.17.52
 
   '@typescript-eslint/eslint-plugin@8.32.1(@typescript-eslint/parser@8.32.1(eslint@9.27.0)(typescript@5.8.3))(eslint@9.27.0)(typescript@5.8.3)':
     dependencies:
@@ -2596,9 +2596,9 @@ snapshots:
       '@typescript-eslint/types': 8.32.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-vue@4.6.2(vite@4.5.14(@types/node@20.17.51)(sass@1.89.0))(vue@3.5.15(typescript@5.8.3))':
+  '@vitejs/plugin-vue@4.6.2(vite@4.5.14(@types/node@20.17.52)(sass@1.89.0))(vue@3.5.15(typescript@5.8.3))':
     dependencies:
-      vite: 4.5.14(@types/node@20.17.51)(sass@1.89.0)
+      vite: 4.5.14(@types/node@20.17.52)(sass@1.89.0)
       vue: 3.5.15(typescript@5.8.3)
 
   '@volar/language-core@2.4.14':
@@ -4136,13 +4136,13 @@ snapshots:
       '@vue/compiler-sfc': 3.5.14
       svgo: 3.3.2
 
-  vite@4.5.14(@types/node@20.17.51)(sass@1.89.0):
+  vite@4.5.14(@types/node@20.17.52)(sass@1.89.0):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.3
       rollup: 3.29.5
     optionalDependencies:
-      '@types/node': 20.17.51
+      '@types/node': 20.17.52
       fsevents: 2.3.3
       sass: 1.89.0
 

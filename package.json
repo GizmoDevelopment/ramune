@@ -15,7 +15,7 @@
     "last 5 versions"
   ],
   "engines": {
-    "node": ">=20.19.4"
+    "node": ">=22.17.1"
   },
   "packageManager": "pnpm@9.15.9",
   "dependencies": {
@@ -34,7 +34,7 @@
     "@gizmo-dev/eslint-plugin": "^5.0.7",
     "@mapbox/stylelint-processor-arbitrary-tags": "^0.4.0",
     "@types/fuzzaldrin": "^2.1.7",
-    "@types/node": "^20.19.9",
+    "@types/node": "^22.16.5",
     "@types/ws": "^8.18.1",
     "@vitejs/plugin-vue": "^4.6.2",
     "@vuedx/typescript-plugin-vue": "^0.7.6",

@@ -48,7 +48,7 @@
     "rollup-plugin-visualizer": "^5.13.1",
     "sass": "^1.89.2",
     "stylelint": "^14.16.1",
-    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint-config-standard-scss": "^15.0.1",
     "stylelint-scss": "^5.3.2",
     "typescript": "^5.8.3",
     "vite": "^4.5.14",

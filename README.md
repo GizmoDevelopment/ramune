@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This project is no longer maintained, as it has already served its purpose.
+
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/25076630/124389427-e2520600-dc9b-11eb-88a9-150a0e372899.png" height="50">
 	<br>
